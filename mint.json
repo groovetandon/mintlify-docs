@@ -1,91 +1,122 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Decisional Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#6366F1",
+    "light": "#818CF8",
+    "dark": "#4F46E5",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#6366F1",
+      "to": "#818CF8"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:support@decisional.com"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Get Started",
+    "url": "https://app.decisional.com"
   },
   "tabs": [
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Workflow Tutorials",
+      "url": "workflows"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
       "name": "Community",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "url": "https://decisional.com/community"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://decisional.com/blog"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "introduction",
         "quickstart",
-        "development"
+        "core-concepts",
+        "setup"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "User Guides",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "guides/agents",
+        "guides/worksheets",
+        "guides/sources",
+        "guides/ai-assistant",
+        "guides/runs",
+        "guides/integrations",
+        "guides/workspaces"
+      ]
+    },
+    {
+      "group": "Workflow Tutorials",
+      "pages": [
+        "workflows/finance/quote-generation",
+        "workflows/finance/invoice-management",
+        "workflows/finance/contract-extraction",
+        "workflows/gtm/sales-outbound",
+        "workflows/gtm/crm-updating",
+        "workflows/operations/data-entry"
+      ]
+    },
+    {
+      "group": "Advanced Features",
+      "pages": [
+        "advanced/configuration",
+        "advanced/data-processing",
+        "advanced/rag"
       ]
     },
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/introduction",
+        "api-reference/authentication"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Endpoints",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/agents/list",
+        "api-reference/agents/create",
+        "api-reference/agents/get",
+        "api-reference/worksheets/list",
+        "api-reference/runs/list"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        "reference/glossary",
+        "reference/faq",
+        "reference/shortcuts",
+        "reference/changelog"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/getdecisional",
+    "linkedin": "https://www.linkedin.com/company/decisional-ai/"
   }
 }
