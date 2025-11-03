@@ -1,0 +1,833 @@
+---
+title: "Working with Worksheets"
+description: "Master spreadsheet operations, data management, and advanced features"
+---
+
+## What Are Worksheets?
+
+**Worksheets are your agent's data layer** - they're full-featured spreadsheets where agents read inputs, write outputs, and store data.
+
+<Card title="Why Spreadsheets?" icon="lightbulb">
+  Spreadsheets are the perfect interface for automation. They're **flexible** (any data structure), **familiar** (everyone knows Excel), and **visual** (see your data instantly).
+</Card>
+
+---
+
+## Creating a Worksheet
+
+<Tabs>
+  <Tab title="Upload Existing">
+    **Start with your current spreadsheet**
+
+    <Steps>
+      <Step title="Click Upload">
+        In the agent page, go to the **Worksheet** tab
+      </Step>
+
+      <Step title="Select File">
+        Choose a file to upload:
+        - **CSV**: Simple comma-separated values
+        - **XLSX**: Excel workbooks (multiple sheets supported)
+        - **XLS**: Legacy Excel format
+      </Step>
+
+      <Step title="Review">
+        Your spreadsheet loads in the editor. All formatting, formulas, and data are preserved.
+      </Step>
+    </Steps>
+
+    <Info>
+      Files up to **50MB** are supported. For larger datasets, consider splitting into multiple files or using database integrations.
+    </Info>
+  </Tab>
+
+  <Tab title="Create from Scratch">
+    **Build a new spreadsheet in Decisional**
+
+    <Steps>
+      <Step title="Create Blank">
+        Click **Create Blank Worksheet**
+      </Step>
+
+      <Step title="Add Headers">
+        Type column names in the first row (e.g., Customer, Product, Quantity, Price, Total)
+      </Step>
+
+      <Step title="Add Data">
+        Enter your data or let your agent populate it
+      </Step>
+
+      <Step title="Format">
+        Apply formatting, add formulas, create charts
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Import from URL">
+    **Connect to online spreadsheets** (coming soon)
+
+    - Google Sheets (read and write)
+    - Airtable
+    - Public CSV URLs
+
+    Changes sync bidirectionally.
+  </Tab>
+</Tabs>
+
+---
+
+## The Worksheet Editor
+
+Decisional uses **SpreadJS**, a professional-grade spreadsheet engine with full Excel compatibility.
+
+### Key Features
+
+<CardGroup cols={3}>
+  <Card title="Formulas" icon="function">
+    All Excel formulas work: SUM, VLOOKUP, IF, INDEX/MATCH, and more
+  </Card>
+  <Card title="Formatting" icon="palette">
+    Cell colors, fonts, borders, number formats, conditional formatting
+  </Card>
+  <Card title="Charts" icon="chart-line">
+    Create visualizations: bar, line, pie, scatter charts
+  </Card>
+  <Card title="Multiple Sheets" icon="layer-group">
+    Work with multiple sheets in one workbook
+  </Card>
+  <Card title="Filters & Sorting" icon="filter">
+    Filter data, sort columns, group rows
+  </Card>
+  <Card title="Data Validation" icon="circle-check">
+    Dropdowns, number ranges, date validation
+  </Card>
+  <Card title="Freeze Panes" icon="snowflake">
+    Lock header rows/columns while scrolling
+  </Card>
+  <Card title="Auto-Save" icon="floppy-disk">
+    Changes sync automatically every few seconds
+  </Card>
+  <Card title="Version History" icon="clock-rotate-left">
+    Restore previous versions if needed
+  </Card>
+</CardGroup>
+
+### Keyboard Shortcuts
+
+<AccordionGroup>
+  <Accordion title="Navigation" icon="keyboard">
+    - **Arrow keys**: Move between cells
+    - **Tab**: Move right
+    - **Enter**: Move down
+    - **Ctrl/Cmd + Home**: Go to A1
+    - **Ctrl/Cmd + End**: Go to last used cell
+  </Accordion>
+
+  <Accordion title="Selection" icon="arrow-pointer">
+    - **Shift + Arrows**: Extend selection
+    - **Ctrl/Cmd + A**: Select all
+    - **Ctrl/Cmd + Space**: Select entire column
+    - **Shift + Space**: Select entire row
+  </Accordion>
+
+  <Accordion title="Editing" icon="pen">
+    - **F2**: Edit cell
+    - **Ctrl/Cmd + C**: Copy
+    - **Ctrl/Cmd + V**: Paste
+    - **Ctrl/Cmd + X**: Cut
+    - **Ctrl/Cmd + Z**: Undo
+    - **Delete**: Clear cell
+  </Accordion>
+
+  <Accordion title="Formatting" icon="brush">
+    - **Ctrl/Cmd + B**: Bold
+    - **Ctrl/Cmd + I**: Italic
+    - **Ctrl/Cmd + U**: Underline
+    - **Ctrl/Cmd + 1**: Format cells dialog
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Structuring Data for Agents
+
+How you structure your worksheet affects how well agents can work with it.
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Clear Column Headers" icon="heading">
+    **Good:**
+    | Customer Name | Order Date | Product SKU | Quantity | Unit Price | Total Amount |
+
+    **Bad:**
+    | Name | Date | Prod | Qty | $ | Tot |
+
+    **Why:** Agents understand descriptive names better. "Customer Name" is clearer than "Name".
+  </Accordion>
+
+  <Accordion title="One Data Type Per Column" icon="layer-group">
+    **Good:**
+    | Quantity | Unit Price |
+    | 10 | 50.00 |
+
+    **Bad:**
+    | Details |
+    | 10 units @ $50 |
+
+    **Why:** Agents can't easily extract data from mixed-format text.
+  </Accordion>
+
+  <Accordion title="Separate Inputs and Outputs" icon="split">
+    **Option 1: Different columns**
+    | [INPUT] Customer | [INPUT] Product | [OUTPUT] Quote ID | [OUTPUT] Total | [OUTPUT] Status |
+
+    **Option 2: Different sheets**
+    - Sheet 1: "Requests" (inputs)
+    - Sheet 2: "Generated Quotes" (outputs)
+
+    **Why:** Makes it clear what the agent should read vs. write.
+  </Accordion>
+
+  <Accordion title="Use Consistent Formats" icon="equals">
+    **Date format:** Always use YYYY-MM-DD (e.g., 2025-01-15)
+
+    **Currency:** Always include currency symbol or separate column
+
+    **Status values:** Use controlled vocabulary (e.g., "Pending", "Approved", "Rejected" - not "pending", "APPROVED", "Reject")
+
+    **Why:** Consistency helps agents understand and generate correct data.
+  </Accordion>
+
+  <Accordion title="Add a Status Column" icon="flag">
+    Track what the agent has processed:
+
+    | Row | Customer | Product | Status |
+    | 1 | Acme Corp | Widget A | **Processed** |
+    | 2 | TechCo | Widget B | **Pending** |
+    | 3 | StartupXYZ | Widget C | **Error** |
+
+    **Agent instruction:**
+    ```
+    Only process rows where Status is "Pending".
+    After processing, set Status to "Processed" or "Error".
+    ```
+  </Accordion>
+
+  <Accordion title="Include an ID Column" icon="hashtag">
+    Add a unique identifier for each row:
+
+    | ID | Customer | Product |
+    | Q-001 | Acme Corp | Widget A |
+    | Q-002 | TechCo | Widget B |
+
+    **Formula for auto-incrementing ID:**
+    ```excel
+    ="Q-" & TEXT(ROW()-1, "000")
+    ```
+
+    **Why:** Makes it easy to reference specific rows in logs and debugging.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Using Formulas
+
+Agents understand and respect Excel formulas.
+
+### Common Formulas
+
+<Tabs>
+  <Tab title="Math & Aggregation">
+    **Sum:**
+    ```excel
+    =SUM(D2:D100)
+    ```
+
+    **Average:**
+    ```excel
+    =AVERAGE(E2:E100)
+    ```
+
+    **Count:**
+    ```excel
+    =COUNTA(A2:A100)
+    ```
+
+    **Multiply:**
+    ```excel
+    =C2 * D2
+    ```
+
+    **Percentage:**
+    ```excel
+    =E2 * 0.08  // 8% tax
+    ```
+  </Tab>
+
+  <Tab title="Lookups">
+    **VLOOKUP (find value in table):**
+    ```excel
+    =VLOOKUP(B2, PriceList!A:C, 3, FALSE)
+    ```
+
+    **INDEX/MATCH (more flexible):**
+    ```excel
+    =INDEX(PriceList!C:C, MATCH(B2, PriceList!A:A, 0))
+    ```
+
+    **XLOOKUP (modern Excel):**
+    ```excel
+    =XLOOKUP(B2, PriceList!A:A, PriceList!C:C)
+    ```
+  </Tab>
+
+  <Tab title="Conditional Logic">
+    **IF:**
+    ```excel
+    =IF(E2 > 10000, "High Value", "Standard")
+    ```
+
+    **IF with multiple conditions:**
+    ```excel
+    =IF(E2 > 50000, "Tier 1", IF(E2 > 10000, "Tier 2", "Tier 3"))
+    ```
+
+    **IFS (cleaner for multiple conditions):**
+    ```excel
+    =IFS(E2 > 50000, "Tier 1", E2 > 10000, "Tier 2", TRUE, "Tier 3")
+    ```
+  </Tab>
+
+  <Tab title="Text & Dates">
+    **Concatenate:**
+    ```excel
+    =A2 & " " & B2
+    // or
+    =CONCAT(A2, " ", B2)
+    ```
+
+    **Text formatting:**
+    ```excel
+    =TEXT(C2, "MM/DD/YYYY")  // Format date
+    =TEXT(D2, "$#,##0.00")   // Format currency
+    ```
+
+    **Extract text:**
+    ```excel
+    =LEFT(A2, 5)      // First 5 characters
+    =RIGHT(A2, 3)     // Last 3 characters
+    =MID(A2, 3, 4)    // 4 characters starting at position 3
+    ```
+
+    **Today's date:**
+    ```excel
+    =TODAY()
+    ```
+  </Tab>
+</Tabs>
+
+### How Agents Use Formulas
+
+<Check>
+  **Agents read formula results:** If cell E2 has `=C2*D2`, the agent sees the calculated value, not the formula text.
+</Check>
+
+<Check>
+  **Agents can write to formula cells:** If you want the agent to override a formula, that's fine. The formula gets replaced.
+</Check>
+
+<Check>
+  **Use formulas for validation:** Add a column like `=IF(SUM(D2:D10) = E2, "Valid", "Error")` to check agent output.
+</Check>
+
+---
+
+## Working with Multiple Sheets
+
+Organize complex workflows across multiple sheets in one workbook.
+
+### Common Patterns
+
+<Tabs>
+  <Tab title="Input/Output Separation">
+    **Sheet 1: "Requests"** (input data)
+    | Request ID | Customer | Product | Quantity |
+
+    **Sheet 2: "Quotes"** (agent output)
+    | Quote ID | Request ID | Total | Status | Date |
+
+    **Agent instruction:**
+    ```
+    Read customer requests from the "Requests" sheet.
+    Write generated quotes to the "Quotes" sheet.
+    Link each quote to its request via Request ID.
+    ```
+  </Tab>
+
+  <Tab title="Reference Data">
+    **Sheet 1: "Invoices"** (main data)
+    | Invoice # | Vendor Code | Amount |
+
+    **Sheet 2: "Vendors"** (lookup table)
+    | Vendor Code | Vendor Name | Email | Address |
+
+    **Sheet 3: "Categories"** (classification)
+    | Category | Description | GL Code |
+
+    **Agent instruction:**
+    ```
+    Process invoices from the "Invoices" sheet.
+    Look up vendor details from the "Vendors" sheet.
+    Classify by category using the "Categories" sheet.
+    ```
+  </Tab>
+
+  <Tab title="Error Handling">
+    **Sheet 1: "Main Data"** (successful processing)
+
+    **Sheet 2: "Errors"** (failed items)
+    | Row # | Error Type | Error Message | Timestamp |
+
+    **Agent instruction:**
+    ```
+    Process rows from "Main Data".
+    If any error occurs, log it to the "Errors" sheet.
+    Continue processing remaining rows.
+    ```
+  </Tab>
+
+  <Tab title="Multi-Stage Pipeline">
+    **Sheet 1: "Raw Data"** (initial input)
+
+    **Sheet 2: "Validated"** (passed validation)
+
+    **Sheet 3: "Enriched"** (additional data added)
+
+    **Sheet 4: "Final Output"** (ready for distribution)
+
+    Use multiple agents, each reading from one sheet and writing to the next.
+  </Tab>
+</Tabs>
+
+---
+
+## Data Validation
+
+Constrain what agents (and humans) can enter into cells.
+
+### Setting Up Validation
+
+<Steps>
+  <Step title="Select Cells">
+    Click the column header or select the range you want to validate
+  </Step>
+
+  <Step title="Open Data Validation">
+    Click **Data → Data Validation** in the toolbar
+  </Step>
+
+  <Step title="Choose Validation Type">
+    - **List**: Dropdown with allowed values
+    - **Number**: Min/max range
+    - **Date**: Date range
+    - **Custom formula**: Advanced rules
+  </Step>
+
+  <Step title="Set Error Message">
+    Define what message shows if validation fails
+  </Step>
+</Steps>
+
+### Validation Examples
+
+<AccordionGroup>
+  <Accordion title="Dropdown List" icon="list">
+    **Use case:** Status column with fixed values
+
+    **Settings:**
+    - Type: List
+    - Source: `Pending,In Progress,Completed,Cancelled`
+
+    **Result:** Users and agents can only select from these 4 values.
+  </Accordion>
+
+  <Accordion title="Number Range" icon="hashtag">
+    **Use case:** Quantity must be between 1 and 1000
+
+    **Settings:**
+    - Type: Number
+    - Minimum: 1
+    - Maximum: 1000
+
+    **Result:** Agent can't enter 0 or 1001.
+  </Accordion>
+
+  <Accordion title="Date Range" icon="calendar">
+    **Use case:** Order date must be within last 90 days
+
+    **Settings:**
+    - Type: Date
+    - Minimum: `=TODAY()-90`
+    - Maximum: `=TODAY()`
+
+    **Result:** Only recent dates allowed.
+  </Accordion>
+
+  <Accordion title="Custom Formula" icon="function">
+    **Use case:** Email must be valid format
+
+    **Settings:**
+    - Type: Custom
+    - Formula: `=AND(ISNUMBER(FIND("@", A2)), ISNUMBER(FIND(".", A2)))`
+
+    **Result:** Must contain @ and . to be accepted.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Conditional Formatting
+
+Automatically format cells based on their values.
+
+### Use Cases
+
+<Tabs>
+  <Tab title="Highlight Status">
+    **Scenario:** Color-code status values
+
+    **Rule:**
+    - If Status = "Completed" → Green background
+    - If Status = "Error" → Red background
+    - If Status = "Pending" → Yellow background
+
+    **How to:**
+    1. Select status column
+    2. Format → Conditional Formatting
+    3. Add rule for each status value
+  </Tab>
+
+  <Tab title="Highlight High Values">
+    **Scenario:** Flag high-value orders
+
+    **Rule:**
+    - If Total > $10,000 → Bold red text
+
+    **How to:**
+    1. Select total column
+    2. Add rule: Cell value > 10000
+    3. Format: Bold, red text
+  </Tab>
+
+  <Tab title="Expiration Warnings">
+    **Scenario:** Warn about upcoming deadlines
+
+    **Rule:**
+    - If Due Date is within 7 days → Orange background
+    - If Due Date is past → Red background
+
+    **How to:**
+    1. Select date column
+    2. Rule 1: `=A2 <= TODAY()+7` → Orange
+    3. Rule 2: `=A2 < TODAY()` → Red
+  </Tab>
+
+  <Tab title="Duplicate Detection">
+    **Scenario:** Highlight duplicate invoice numbers
+
+    **Rule:**
+    - If invoice number appears more than once → Yellow background
+
+    **How to:**
+    1. Select invoice column
+    2. Add rule: `=COUNTIF($A:$A, A2) > 1`
+    3. Format: Yellow background
+  </Tab>
+</Tabs>
+
+---
+
+## Charts and Visualizations
+
+Create charts to visualize your data.
+
+### Creating a Chart
+
+<Steps>
+  <Step title="Select Data">
+    Highlight the data range you want to chart (include headers)
+  </Step>
+
+  <Step title="Insert Chart">
+    Click **Insert → Chart** in the toolbar
+  </Step>
+
+  <Step title="Choose Chart Type">
+    - **Column/Bar**: Compare values across categories
+    - **Line**: Show trends over time
+    - **Pie**: Show proportions of a whole
+    - **Scatter**: Show correlation between two variables
+  </Step>
+
+  <Step title="Customize">
+    - Add title
+    - Label axes
+    - Change colors
+    - Add legend
+  </Step>
+</Steps>
+
+### Chart Examples
+
+<CardGroup cols={2}>
+  <Card title="Sales Over Time" icon="chart-line">
+    **Data:** Date | Revenue
+
+    **Chart type:** Line chart
+
+    **Use:** Track revenue trends by day/week/month
+  </Card>
+
+  <Card title="Product Mix" icon="chart-pie">
+    **Data:** Product | Quantity Sold
+
+    **Chart type:** Pie chart
+
+    **Use:** See which products are most popular
+  </Card>
+
+  <Card title="Regional Comparison" icon="chart-column">
+    **Data:** Region | Sales | Profit
+
+    **Chart type:** Grouped column chart
+
+    **Use:** Compare metrics across regions
+  </Card>
+
+  <Card title="Price vs. Volume" icon="chart-scatter">
+    **Data:** Unit Price | Units Sold
+
+    **Chart type:** Scatter plot
+
+    **Use:** Find correlation between price and demand
+  </Card>
+</CardGroup>
+
+---
+
+## Importing and Exporting
+
+### Export Options
+
+<Tabs>
+  <Tab title="Download">
+    Click **File → Download** and choose format:
+
+    - **XLSX**: Excel workbook (preserves formulas, charts, formatting)
+    - **CSV**: Plain data (one sheet only, no formatting)
+    - **PDF**: Static snapshot for sharing
+  </Tab>
+
+  <Tab title="Share Link">
+    Click **Share** to generate a link:
+
+    - **View-only**: Recipients can see but not edit
+    - **Edit**: Recipients can make changes (syncs in real-time)
+
+    Set expiration date for time-limited access.
+  </Tab>
+
+  <Tab title="Sync to Integration">
+    Auto-export to external systems:
+
+    - **Google Drive**: Save as Google Sheet
+    - **OneDrive**: Save as Excel file
+    - **Database**: Write rows to PostgreSQL, MySQL, etc.
+
+    Set up in Integrations → Configure Export.
+  </Tab>
+</Tabs>
+
+### Import from External Sources
+
+<Tabs>
+  <Tab title="API Import">
+    Use integrations to pull live data:
+
+    ```
+    Agent instruction:
+    1. Fetch customer list from Salesforce API
+    2. Write to "Customers" sheet
+    3. Refresh daily at 6 AM
+    ```
+  </Tab>
+
+  <Tab title="Web Scraping">
+    Pull data from websites:
+
+    ```
+    Agent instruction:
+    1. Scrape pricing from competitor website: example.com/pricing
+    2. Extract product names and prices
+    3. Update "Competitor Prices" sheet
+    ```
+  </Tab>
+
+  <Tab title="Email Attachments">
+    Extract data from emailed spreadsheets:
+
+    ```
+    Agent instruction:
+    1. Monitor Gmail for emails with subject "Weekly Report"
+    2. Download attached CSV
+    3. Import data into "Weekly Data" sheet
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Advanced Features
+
+### Named Ranges
+
+Create named references for frequently used ranges:
+
+**Example:**
+- Select cells B2:B100
+- Name it "CustomerNames"
+- Use in formulas: `=VLOOKUP(A2, CustomerNames, 1, FALSE)`
+
+### Pivot Tables
+
+Summarize large datasets:
+
+<Steps>
+  <Step title="Select Data">
+    Click anywhere in your data table
+  </Step>
+
+  <Step title="Insert Pivot Table">
+    Click **Data → Pivot Table**
+  </Step>
+
+  <Step title="Configure">
+    - **Rows**: What to group by (e.g., Product)
+    - **Values**: What to summarize (e.g., Sum of Quantity)
+    - **Columns**: Secondary grouping (e.g., Month)
+  </Step>
+</Steps>
+
+### Freeze Panes
+
+Lock header rows/columns while scrolling:
+
+<Steps>
+  <Step title="Select Cell">
+    Click the cell where you want the freeze to start (e.g., B2 to freeze row 1 and column A)
+  </Step>
+
+  <Step title="Freeze">
+    Click **View → Freeze Panes**
+  </Step>
+</Steps>
+
+---
+
+## Performance Optimization
+
+### For Large Worksheets
+
+<AccordionGroup>
+  <Accordion title="Use Filters Instead of Multiple Sheets" icon="filter">
+    **Instead of:** Separate sheets for each status
+
+    **Do this:** One sheet with a Status column, use filters to view subsets
+
+    **Why:** Easier for agents to manage one dataset
+  </Accordion>
+
+  <Accordion title="Limit Formula Complexity" icon="function">
+    **Avoid:** Nested formulas with 10+ levels
+
+    **Do this:** Break complex calculations into multiple columns
+
+    **Why:** Faster calculation, easier debugging
+  </Accordion>
+
+  <Accordion title="Archive Old Data" icon="box-archive">
+    **Instead of:** One sheet with 100,000 rows going back 5 years
+
+    **Do this:** Monthly or yearly archive sheets
+
+    **Example:** "Active Data" (current month) + "Archive 2024" + "Archive 2023"
+
+    **Why:** Faster loads and agent processing
+  </Accordion>
+
+  <Accordion title="Use External Databases for Very Large Datasets" icon="database">
+    **If you have:** Millions of rows
+
+    **Do this:** Store data in PostgreSQL/Snowflake, use worksheet as a "view" or "cache"
+
+    **Agent pattern:**
+    ```
+    1. Query database for relevant rows
+    2. Write summary to worksheet
+    3. Process in worksheet
+    4. Write results back to database
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Best Practices Summary
+
+<Check>
+  **Keep it simple:** Don't over-engineer your data structure. Start simple and add complexity as needed.
+</Check>
+
+<Check>
+  **Use clear names:** Descriptive column headers, sheet names, and named ranges help everyone (including agents).
+</Check>
+
+<Check>
+  **Validate inputs:** Use data validation to prevent bad data from entering your worksheet.
+</Check>
+
+<Check>
+  **Separate concerns:** Use different sheets for inputs, outputs, reference data, and errors.
+</Check>
+
+<Check>
+  **Document your structure:** Add a "README" sheet explaining what each sheet/column does.
+</Check>
+
+<Check>
+  **Version control:** Download backups regularly or sync to external storage.
+</Check>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Working with Agents" icon="robot" href="/guides/agents">
+    Learn how agents read and write to worksheets
+  </Card>
+
+  <Card title="Working with Sources" icon="folder" href="/guides/sources">
+    Combine worksheets with document context
+  </Card>
+
+  <Card title="Advanced Data Processing" icon="gears" href="/advanced/data-processing">
+    Advanced patterns for complex data workflows
+  </Card>
+
+  <Card title="API Reference" icon="code" href="/api-reference/worksheets/list">
+    Programmatic access to worksheets
+  </Card>
+</CardGroup>

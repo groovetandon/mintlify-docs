@@ -25,26 +25,16 @@
     "name": "Get Started",
     "url": "https://app.decisional.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    },
-    {
-      "name": "Workflow Tutorials",
-      "url": "workflows"
-    }
-  ],
   "anchors": [
     {
       "name": "Community",
       "icon": "slack",
-      "url": "https://decisional.com/community"
+      "url": "https://www.decisional.com/community"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://decisional.com/blog"
+      "url": "https://www.decisional.com/blog"
     }
   ],
   "navigation": [
@@ -70,48 +60,10 @@
       ]
     },
     {
-      "group": "Workflow Tutorials",
-      "pages": [
-        "workflows/finance/quote-generation",
-        "workflows/finance/invoice-management",
-        "workflows/finance/contract-extraction",
-        "workflows/gtm/sales-outbound",
-        "workflows/gtm/crm-updating",
-        "workflows/operations/data-entry"
-      ]
-    },
-    {
-      "group": "Advanced Features",
-      "pages": [
-        "advanced/configuration",
-        "advanced/data-processing",
-        "advanced/rag"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/authentication"
-      ]
-    },
-    {
-      "group": "Endpoints",
-      "pages": [
-        "api-reference/agents/list",
-        "api-reference/agents/create",
-        "api-reference/agents/get",
-        "api-reference/worksheets/list",
-        "api-reference/runs/list"
-      ]
-    },
-    {
       "group": "Reference",
       "pages": [
         "reference/glossary",
-        "reference/faq",
-        "reference/shortcuts",
-        "reference/changelog"
+        "reference/faq"
       ]
     }
   ],

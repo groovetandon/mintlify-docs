@@ -1,0 +1,768 @@
+---
+title: "Working with Agents"
+description: "Master agent creation, configuration, and optimization"
+---
+
+## What Are Agents?
+
+**Agents are autonomous AI workers** that execute your business workflows. Think of them as digital team members who follow your instructions, understand context from documents, and complete tasks automatically.
+
+<Card title="Core Principle" icon="lightbulb">
+  Agents combine **your instructions** + **your data** + **your context** to automate complex workflows that typically require human judgment.
+</Card>
+
+---
+
+## Creating Your First Agent
+
+<Steps>
+  <Step title="Navigate to Home">
+    From the sidebar, click **Home** or the **+ New Agent** button.
+  </Step>
+
+  <Step title="Describe Your Workflow">
+    In the automation prompt, describe what you want to automate in natural language.
+
+    **Example:**
+    ```
+    I want to process incoming invoices from my email,
+    extract key details, and update my tracking spreadsheet
+    ```
+  </Step>
+
+  <Step title="Upload Your Worksheet (Optional)">
+    If your workflow involves data, upload a CSV or Excel file. This becomes your agent's data layer.
+  </Step>
+
+  <Step title="Create Agent">
+    Click **Create Agent**. Decisional will generate initial instructions based on your description.
+  </Step>
+</Steps>
+
+<Tip>
+  **Pro Tip:** Start with a simple workflow, test it, then gradually add complexity. Agents are iterative!
+</Tip>
+
+---
+
+## Agent Components
+
+Every agent has five key components:
+
+<CardGroup cols={2}>
+  <Card title="Instructions" icon="file-lines">
+    Natural language description of what the agent should do
+  </Card>
+  <Card title="Worksheet" icon="table">
+    The spreadsheet where your agent reads and writes data
+  </Card>
+  <Card title="Sources" icon="folder">
+    Documents that provide context (PDFs, links, files)
+  </Card>
+  <Card title="Integrations" icon="plug">
+    Connected services (email, CRM, Slack, etc.)
+  </Card>
+  <Card title="Triggers" icon="clock">
+    How the agent gets activated (schedule, event, manual)
+  </Card>
+</CardGroup>
+
+Let's dive into each component:
+
+---
+
+## Writing Effective Instructions
+
+Instructions are the **most important part of your agent**. Write them like you're training a smart new hire.
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Be Specific and Clear" icon="bullseye">
+    **Bad Example:**
+    ```
+    Process invoices
+    ```
+
+    **Good Example:**
+    ```
+    You are an Invoice Processing Agent.
+
+    For each invoice PDF uploaded:
+    1. Extract: Invoice number, date, vendor, line items, total
+    2. Verify the total matches the sum of line items
+    3. Look up the vendor in the Vendors worksheet
+    4. Add a new row to the Invoices worksheet with extracted data
+    5. If total > $10,000, flag for manual review
+    ```
+  </Accordion>
+
+  <Accordion title="Define Success Criteria" icon="check">
+    Tell your agent what "done" looks like:
+
+    ```
+    Success means:
+    - All required fields are filled
+    - Total is verified
+    - Vendor is matched
+    - Row is added to the correct worksheet
+    ```
+  </Accordion>
+
+  <Accordion title="Handle Edge Cases" icon="triangle-exclamation">
+    Anticipate problems and tell your agent what to do:
+
+    ```
+    Edge cases:
+    - If vendor is not found, add them to the Vendors worksheet
+    - If invoice is duplicate, skip it and log to Errors sheet
+    - If PDF is unreadable, flag for manual review
+    - If total doesn't match, recalculate and note discrepancy
+    ```
+  </Accordion>
+
+  <Accordion title="Reference Sources" icon="folder">
+    If you've uploaded context documents, tell your agent when to use them:
+
+    ```
+    Reference the "Invoice Processing SOP.pdf" for formatting rules.
+    Use the "Vendor Catalog.xlsx" to validate vendor names.
+    ```
+  </Accordion>
+
+  <Accordion title="Use Examples" icon="lightbulb">
+    Show your agent what good output looks like:
+
+    ```
+    Example output row:
+    | Invoice # | Date | Vendor | Total | Status |
+    | INV-001 | 2025-01-15 | Acme Corp | $5,432.12 | Approved |
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Instruction Template
+
+Use this template as a starting point:
+
+```markdown
+You are a [Job Title] Agent.
+
+**Your job:**
+[1-2 sentence description of the agent's purpose]
+
+**Inputs:**
+- [What data the agent receives]
+- [Where it comes from]
+
+**Process:**
+1. [First step]
+2. [Second step]
+3. [Third step]
+
+**Outputs:**
+- [What the agent produces]
+- [Where it goes]
+
+**Rules:**
+- [Important constraints]
+- [Quality standards]
+- [Edge case handling]
+
+**Success criteria:**
+- [How to know it worked]
+```
+
+---
+
+## Configuring Your Worksheet
+
+The worksheet is your agent's **data layer** - where it reads inputs and writes outputs.
+
+### Worksheet Structure Tips
+
+<Tabs>
+  <Tab title="Clear Headers">
+    Use descriptive column names:
+
+    **Good:**
+    | Customer Name | Order Date | Product SKU | Quantity | Unit Price | Total |
+
+    **Bad:**
+    | Name | Date | Prod | Qty | Price | $ |
+  </Tab>
+
+  <Tab title="Input vs Output">
+    Separate input columns from output columns:
+
+    **Example:**
+    | [INPUT] Customer | [INPUT] Product | [OUTPUT] Quote ID | [OUTPUT] Total | [OUTPUT] Status |
+
+    Or use separate sheets for inputs and outputs.
+  </Tab>
+
+  <Tab title="Use Formulas">
+    Agents understand Excel formulas! Use them for calculations:
+
+    ```
+    Total column: =Quantity * UnitPrice
+    Tax column: =Total * 0.08
+    ```
+
+    The agent will respect your formulas and use calculated values.
+  </Tab>
+
+  <Tab title="Data Validation">
+    Use dropdowns and validation to constrain agent outputs:
+
+    - Status column: Dropdown with "Pending", "Approved", "Rejected"
+    - Date columns: Date format validation
+    - Number columns: Number format with appropriate decimals
+  </Tab>
+</Tabs>
+
+### Working with Multiple Sheets
+
+You can have multiple sheets in one workbook:
+
+- **Inputs**: Raw data the agent processes
+- **Outputs**: Results the agent generates
+- **Reference**: Lookup tables (price lists, vendor catalogs)
+- **Errors**: Failed items that need manual review
+
+Reference sheets in your instructions:
+
+```
+Read customer requirements from the "Requests" sheet.
+Look up prices from the "Price List" sheet.
+Write quotes to the "Generated Quotes" sheet.
+Log any errors to the "Errors" sheet.
+```
+
+---
+
+## Adding Sources
+
+Sources provide **context** to your agents so they can make informed decisions.
+
+### Types of Sources
+
+<CardGroup cols={3}>
+  <Card title="PDFs" icon="file-pdf">
+    Contracts, invoices, forms, reports, SOPs
+  </Card>
+  <Card title="Spreadsheets" icon="file-excel">
+    Price lists, catalogs, historical data
+  </Card>
+  <Card title="Documents" icon="file-word">
+    Policies, templates, procedures
+  </Card>
+  <Card title="Images" icon="image">
+    Receipts, forms, diagrams (OCR enabled)
+  </Card>
+  <Card title="Web Links" icon="link">
+    Company websites, documentation, APIs
+  </Card>
+  <Card title="Text Files" icon="file-lines">
+    Code, configs, raw text data
+  </Card>
+</CardGroup>
+
+### How to Add Sources
+
+<Steps>
+  <Step title="Click Sources Tab">
+    In your agent page, click **Sources** in the left sidebar
+  </Step>
+
+  <Step title="Upload Files">
+    Click **Add Source** → **Upload File**
+
+    Drag and drop multiple files at once (up to 50MB per file)
+  </Step>
+
+  <Step title="Add Web Links">
+    Click **Add Source** → **Add Link**
+
+    Paste a URL. Decisional will fetch and index the content.
+  </Step>
+
+  <Step title="Name Your Sources">
+    Give each source a descriptive name so you can reference it in instructions:
+
+    **Example:** "Q4 2024 Price List" instead of "pricelist_final_v3.xlsx"
+  </Step>
+</Steps>
+
+### RAG and Citations
+
+Decisional uses **Retrieval-Augmented Generation (RAG)** to help agents understand your documents:
+
+<AccordionGroup>
+  <Accordion title="How RAG Works" icon="brain">
+    1. **Indexing**: Your documents are processed and semantically indexed
+    2. **Retrieval**: When the agent needs info, relevant sections are retrieved
+    3. **Reasoning**: The agent uses retrieved context to make decisions
+    4. **Citation**: The agent cites specific pages/sections it referenced
+  </Accordion>
+
+  <Accordion title="Bounding Box Citations" icon="square">
+    For PDFs, Decisional highlights the **exact location** the agent read:
+
+    - Page number
+    - Paragraph or section
+    - Bounding box showing the highlighted text
+
+    This makes it easy to verify the agent's reasoning.
+  </Accordion>
+
+  <Accordion title="Source Quality Tips" icon="star">
+    **Better sources = better agent performance:**
+
+    - Use **text-based PDFs** (not scanned images, unless you need OCR)
+    - Organize documents clearly with headers and sections
+    - Remove irrelevant pages (cover pages, blank pages)
+    - Use descriptive filenames
+    - Keep documents focused (one topic per file)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Connecting Integrations
+
+Integrations let your agent **take actions** beyond the spreadsheet.
+
+### Available Integration Categories
+
+<Tabs>
+  <Tab title="Communication">
+    **Email:**
+    - Gmail
+    - Outlook
+    - SMTP
+
+    **Messaging:**
+    - Slack
+    - Microsoft Teams
+    - Discord
+
+    **Use cases:**
+    - Send quotes to customers
+    - Notify team of errors
+    - Post updates to channels
+  </Tab>
+
+  <Tab title="CRM & Sales">
+    **CRM:**
+    - HubSpot
+    - Salesforce
+    - Attio
+    - Pipedrive
+
+    **Use cases:**
+    - Update deal stages
+    - Enrich contact data
+    - Log activities
+  </Tab>
+
+  <Tab title="Storage & Files">
+    **Cloud Storage:**
+    - Google Drive
+    - OneDrive
+    - Dropbox
+    - Amazon S3
+
+    **Use cases:**
+    - Read files from shared folders
+    - Save generated documents
+    - Backup data
+  </Tab>
+
+  <Tab title="Databases">
+    **SQL:**
+    - PostgreSQL
+    - MySQL
+    - Microsoft SQL Server
+
+    **Data Warehouses:**
+    - Snowflake
+    - BigQuery
+
+    **Use cases:**
+    - Query live data
+    - Write results to database
+    - Sync with data warehouse
+  </Tab>
+
+  <Tab title="Other">
+    **APIs:**
+    - Custom webhooks
+    - REST APIs
+    - GraphQL
+
+    **Payments:**
+    - Stripe
+    - Bill.com
+
+    **Calendar:**
+    - Google Calendar
+    - Outlook Calendar
+  </Tab>
+</Tabs>
+
+### Using Integrations in Instructions
+
+Once connected, reference integrations in your agent instructions:
+
+```
+When a quote is approved:
+1. Send an email via Gmail to the customer
+2. Update the deal stage in HubSpot to "Quote Sent"
+3. Post a notification to the #sales Slack channel
+4. Save the quote PDF to Google Drive
+```
+
+<Warning>
+  Make sure you've **authorized** the integration in Settings → Integrations before referencing it in instructions.
+</Warning>
+
+---
+
+## Setting Up Triggers
+
+Triggers control **when your agent runs**.
+
+### Trigger Types
+
+<Tabs>
+  <Tab title="Manual">
+    **Click the Run button**
+
+    Best for:
+    - Testing new agents
+    - One-off tasks
+    - Ad-hoc workflows
+
+    **How to use:**
+    Click **Test Run** in the agent page
+  </Tab>
+
+  <Tab title="Schedule">
+    **Time-based automation**
+
+    Best for:
+    - Daily reports
+    - Weekly summaries
+    - End-of-month processing
+
+    **Examples:**
+    - "Every day at 9 AM"
+    - "Every Monday at 8 AM"
+    - "First day of each month at 10 AM"
+    - "Every 6 hours"
+
+    **How to set:**
+    1. Click the calendar icon in Instructions tab
+    2. Choose frequency
+    3. Set time and timezone
+  </Tab>
+
+  <Tab title="Event-Based">
+    **Triggered by external events**
+
+    Best for:
+    - Real-time automation
+    - Responding to user actions
+    - Integration-driven workflows
+
+    **Examples:**
+    - When a new row is added to worksheet
+    - When an email is received
+    - When a form is submitted
+    - When a webhook is called
+    - When a file is uploaded to Google Drive
+
+    **How to set:**
+    1. Connect the relevant integration
+    2. Go to Triggers tab
+    3. Select event type
+    4. Configure conditions (optional filters)
+  </Tab>
+
+  <Tab title="API">
+    **Programmatic execution**
+
+    Best for:
+    - Custom applications
+    - External systems
+    - Developer workflows
+
+    **How to use:**
+    Make a POST request to the Decisional API:
+
+    ```bash
+    curl -X POST https://api.decisional.com/v1/agents/{agent_id}/run \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{"input": "your input data"}'
+    ```
+
+    See [API Reference →](/api-reference/introduction)
+  </Tab>
+</Tabs>
+
+---
+
+## Testing Your Agent
+
+Before going live, always test your agent thoroughly.
+
+### Testing Workflow
+
+<Steps>
+  <Step title="Prepare Test Data">
+    Create a small dataset (5-10 rows) with:
+    - Typical cases
+    - Edge cases
+    - Known error cases
+  </Step>
+
+  <Step title="Run Test">
+    Click **Test Run** and watch the AI Assistant panel for real-time reasoning
+  </Step>
+
+  <Step title="Review Output">
+    Check that:
+    - All expected columns are filled
+    - Data is accurate
+    - Formatting is correct
+    - Edge cases are handled
+  </Step>
+
+  <Step title="Check Citations">
+    If using sources, verify the agent cited the right documents
+  </Step>
+
+  <Step title="Iterate Instructions">
+    If results aren't perfect, refine your instructions and test again
+  </Step>
+</Steps>
+
+### Common Issues & Fixes
+
+<AccordionGroup>
+  <Accordion title="Agent is missing data" icon="circle-exclamation">
+    **Problem:** Some columns are empty or incomplete
+
+    **Solutions:**
+    - Make it explicit in instructions: "You MUST fill all columns"
+    - Provide examples of complete output
+    - Add a validation rule: "If any required field is missing, flag for review"
+  </Accordion>
+
+  <Accordion title="Agent misunderstands instructions" icon="face-confused">
+    **Problem:** Agent does something unexpected
+
+    **Solutions:**
+    - Break down complex steps into simpler ones
+    - Add more examples
+    - Use numbered steps instead of paragraphs
+    - Be more explicit about what NOT to do
+  </Accordion>
+
+  <Accordion title="Agent can't find information" icon="magnifying-glass">
+    **Problem:** Agent says it doesn't have the required data
+
+    **Solutions:**
+    - Check that sources are uploaded and indexed
+    - Reference sources by name in instructions
+    - Verify the information is actually in the documents
+    - Check worksheet column names match instructions
+  </Accordion>
+
+  <Accordion title="Agent is too slow" icon="hourglass">
+    **Problem:** Agent takes too long to run
+
+    **Solutions:**
+    - Reduce the number of sources (only upload what's needed)
+    - Process in smaller batches
+    - Remove large, irrelevant documents
+    - Simplify instructions (fewer steps)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Advanced Agent Patterns
+
+### Multi-Step Workflows
+
+For complex workflows, break them into multiple agents:
+
+<Steps>
+  <Step title="Agent 1: Data Collection">
+    Collects and validates input data
+  </Step>
+  <Step title="Agent 2: Processing">
+    Performs the core task
+  </Step>
+  <Step title="Agent 3: Distribution">
+    Sends results to stakeholders
+  </Step>
+</Steps>
+
+Connect them with triggers: Agent 1's completion triggers Agent 2, and so on.
+
+### Human-in-the-Loop
+
+For high-stakes decisions, add manual review:
+
+```
+If the quote total exceeds $50,000:
+1. Mark status as "Needs Review"
+2. Send a Slack notification to @sales-manager
+3. Wait for human approval before proceeding
+```
+
+### Error Handling
+
+Build resilience into your agents:
+
+```
+Error handling rules:
+- If an error occurs, log it to the "Errors" sheet
+- Send a notification to the admin
+- Continue processing remaining items (don't stop)
+- Retry failed items once before flagging
+```
+
+### Chaining with APIs
+
+Use agents to orchestrate API calls:
+
+```
+1. Fetch customer data from Salesforce API
+2. Enrich with data from Clearbit API
+3. Update the worksheet with combined data
+4. Send personalized email via Gmail
+```
+
+---
+
+## Monitoring & Optimization
+
+### View Run History
+
+<Steps>
+  <Step title="Go to Runs Tab">
+    Click **Runs** in the left sidebar
+  </Step>
+
+  <Step title="Review Executions">
+    See all past runs with:
+    - Status (Running, Completed, Failed, Needs Review)
+    - Duration
+    - Timestamp
+    - Inputs and outputs
+  </Step>
+
+  <Step title="Click for Details">
+    Click any run to see:
+    - Full execution log
+    - AI reasoning step-by-step
+    - Source citations
+    - Error messages (if failed)
+  </Step>
+</Steps>
+
+### Performance Metrics
+
+Track your agent's performance:
+
+- **Success rate**: % of runs that complete successfully
+- **Average duration**: How long runs take
+- **Error patterns**: Common failure reasons
+- **Manual review rate**: How often human intervention is needed
+
+### Optimization Tips
+
+<CardGroup cols={2}>
+  <Card title="Reduce Run Time" icon="gauge-high">
+    - Upload only necessary sources
+    - Process in batches
+    - Use lighter file formats
+    - Cache reference data in worksheet
+  </Card>
+
+  <Card title="Improve Accuracy" icon="bullseye">
+    - Add more examples
+    - Upload better source documents
+    - Add validation rules
+    - Test with edge cases
+  </Card>
+
+  <Card title="Handle More Volume" icon="arrows-up-down-left-right">
+    - Increase schedule frequency
+    - Use event-based triggers
+    - Process in parallel (multiple agents)
+    - Optimize worksheet structure
+  </Card>
+
+  <Card title="Reduce Errors" icon="shield">
+    - Add error handling rules
+    - Validate inputs first
+    - Use try-catch patterns
+    - Log everything for debugging
+  </Card>
+</CardGroup>
+
+---
+
+## Best Practices
+
+<Check>
+  **Start simple, iterate:** Don't try to build a perfect agent on day one. Start with the core workflow and add features over time.
+</Check>
+
+<Check>
+  **Test with real data:** Use actual examples from your business, not synthetic test data.
+</Check>
+
+<Check>
+  **Document your agents:** Add comments in instructions explaining why certain rules exist.
+</Check>
+
+<Check>
+  **Version control:** Before making major changes, duplicate your agent so you can roll back if needed.
+</Check>
+
+<Check>
+  **Monitor continuously:** Check run history regularly, especially in the first few weeks.
+</Check>
+
+<Check>
+  **Get feedback:** Have actual users test your agent and report issues.
+</Check>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Working with Worksheets" icon="table" href="/guides/worksheets">
+    Master spreadsheet operations and data management
+  </Card>
+
+  <Card title="Working with Sources" icon="folder" href="/guides/sources">
+    Learn advanced document processing and RAG
+  </Card>
+
+  <Card title="AI Assistant" icon="robot" href="/guides/ai-assistant">
+    Use the chat interface to debug and iterate
+  </Card>
+
+  <Card title="Workflow Tutorials" icon="graduation-cap" href="/workflows/finance/quote-generation">
+    Follow step-by-step guides for common workflows
+  </Card>
+</CardGroup>

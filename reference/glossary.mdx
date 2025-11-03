@@ -1,0 +1,334 @@
+---
+title: "Glossary"
+description: "Key terms and concepts in Decisional"
+---
+
+## Core Concepts
+
+<AccordionGroup>
+  <Accordion title="Agent" icon="robot">
+    An autonomous AI worker that executes your business workflows. Agents understand natural language instructions, process documents, and complete tasks automatically.
+
+    **Example:** A Quote Generation Agent that creates customized quotes based on customer requirements.
+  </Accordion>
+
+  <Accordion title="Worksheet" icon="table">
+    A full-featured spreadsheet where your agent reads input data and writes output. Worksheets are powered by SpreadJS and support all standard Excel features (formulas, charts, formatting, etc.).
+
+    **Example:** A price list where your agent looks up product prices and writes generated quotes.
+  </Accordion>
+
+  <Accordion title="Sources" icon="folder">
+    Documents, files, and links that provide context to your agents. Sources help agents make informed decisions by giving them access to company policies, examples, and reference materials.
+
+    **Example:** Uploading past quote PDFs so your agent can match your formatting style.
+  </Accordion>
+
+  <Accordion title="Run" icon="play">
+    A single execution of your agent's workflow. Each time your agent performs its task, that's a run. Runs have a status (Running, Completed, Failed, Needs Review) and include detailed logs.
+
+    **Example:** When your Quote Generation Agent processes 10 customer requests, that's one run.
+  </Accordion>
+
+  <Accordion title="Workspace" icon="users">
+    A container for your team's agents, worksheets, sources, and integrations. Workspaces can be personal (individual use) or organizational (team collaboration).
+
+    **Example:** "Acme Corp Sales" workspace containing all quote generation and CRM automation agents.
+  </Accordion>
+
+  <Accordion title="Integration" icon="plug">
+    A connection to an external service that your agent can interact with. Integrations enable agents to send emails, update CRMs, post to Slack, query databases, and more.
+
+    **Example:** Gmail integration allowing your agent to send quotes via email.
+  </Accordion>
+
+  <Accordion title="Trigger" icon="clock">
+    The mechanism that activates your agent. Triggers can be time-based (schedule), event-based (webhook, new data), manual (click Run button), or API-based (programmatic).
+
+    **Example:** "Run every day at 9 AM" or "Run when a new row is added to the worksheet."
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Technical Terms
+
+<AccordionGroup>
+  <Accordion title="RAG (Retrieval-Augmented Generation)" icon="brain">
+    A technique where the AI retrieves relevant information from your documents before generating a response. This allows agents to reference specific pages, sections, and data points from your sources.
+
+    **How it works:**
+    1. Your documents are indexed when uploaded
+    2. When the agent runs, it searches for relevant sections
+    3. Retrieved content is used to inform the agent's decisions
+    4. The agent cites specific sources and page numbers
+
+    **Example:** Agent extracts pricing from "Q4 Price List.pdf" page 3, paragraph 2, and cites it in the quote.
+  </Accordion>
+
+  <Accordion title="Bounding Box Citation" icon="square">
+    The exact location within a PDF where information was found. Bounding boxes show the specific paragraph, table, or section the agent referenced, highlighted with a rectangular box.
+
+    **Why it matters:** You can verify the agent didn't hallucinate by seeing exactly what it read.
+  </Accordion>
+
+  <Accordion title="OCR (Optical Character Recognition)" icon="image">
+    Technology that extracts text from images and scanned PDFs. Decisional automatically applies OCR to scanned documents so agents can read them.
+
+    **Best practices:**
+    - Use 300 DPI or higher for scans
+    - Ensure good contrast (black text on white background)
+    - Avoid skewed or rotated pages
+  </Accordion>
+
+  <Accordion title="SpreadJS" icon="table-cells">
+    The professional-grade spreadsheet engine powering Decisional worksheets. SpreadJS provides full Excel compatibility including formulas, charts, conditional formatting, and more.
+  </Accordion>
+
+  <Accordion title="Agentic Reasoning" icon="brain">
+    The ability of AI agents to think through problems, handle edge cases, and adapt to new situations - not just follow rigid rules. Agentic reasoning allows Decisional agents to handle complex workflows that traditional automation can't.
+
+    **Example:** If a product is out of stock, the agent suggests alternatives instead of failing.
+  </Accordion>
+
+  <Accordion title="Semantic Search" icon="magnifying-glass">
+    Search based on meaning, not just keywords. When your agent searches sources, it finds conceptually relevant information even if exact words don't match.
+
+    **Example:** Searching for "price" will also find "cost", "fee", "rate", etc.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Workflow Terms
+
+<AccordionGroup>
+  <Accordion title="Input Data" icon="right-to-bracket">
+    The data your agent receives to process. This typically comes from worksheet rows, API calls, email triggers, or form submissions.
+
+    **Example:** Customer name, product, and quantity from a "Quote Requests" spreadsheet.
+  </Accordion>
+
+  <Accordion title="Output Data" icon="right-from-bracket">
+    The results your agent produces. This is written to worksheets, sent via integrations (email, Slack), or returned via API.
+
+    **Example:** Generated quote with calculated prices, discounts, and total.
+  </Accordion>
+
+  <Accordion title="Instructions" icon="file-lines">
+    Natural language description of what your agent should do. Instructions are written like you're training a new team member.
+
+    **Example:**
+    ```
+    You are an Invoice Processing Agent.
+    Extract key details from uploaded invoices and add them to the tracking spreadsheet.
+    ```
+  </Accordion>
+
+  <Accordion title="Human-in-the-Loop" icon="user-check">
+    A workflow pattern where the agent pauses for manual review before proceeding. Useful for high-stakes decisions.
+
+    **Example:** "If quote exceeds $50,000, flag for manager approval before sending."
+  </Accordion>
+
+  <Accordion title="Batch Processing" icon="layer-group">
+    Processing multiple items in a single run. Agents can process entire worksheets or lists of items efficiently.
+
+    **Example:** Generate 100 quotes from 100 customer requests in one run.
+  </Accordion>
+
+  <Accordion title="Error Handling" icon="triangle-exclamation">
+    How your agent responds to problems. Good agents log errors, continue processing remaining items, and notify you of issues.
+
+    **Example:** If one invoice fails to process, log it to an "Errors" sheet and continue with the rest.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Data & Storage Terms
+
+<AccordionGroup>
+  <Accordion title="Sheet" icon="file">
+    A single tab within a worksheet (workbook). You can have multiple sheets for organizing data (e.g., "Requests", "Outputs", "Errors", "Reference Data").
+  </Accordion>
+
+  <Accordion title="Cell" icon="square">
+    A single box in a spreadsheet, identified by column letter and row number (e.g., A1, B5, Z100).
+  </Accordion>
+
+  <Accordion title="Formula" icon="function">
+    An Excel-style calculation (e.g., `=SUM(A1:A10)`, `=VLOOKUP(B2, Prices!A:B, 2, FALSE)`). Agents understand and respect formulas.
+  </Accordion>
+
+  <Accordion title="Named Range" icon="tag">
+    A friendly name for a group of cells (e.g., "CustomerNames" for cells B2:B100). Makes formulas more readable.
+  </Accordion>
+
+  <Accordion title="Data Validation" icon="circle-check">
+    Rules that constrain what can be entered in cells (e.g., dropdown lists, number ranges, date ranges). Helps ensure data quality.
+  </Accordion>
+
+  <Accordion title="Conditional Formatting" icon="palette">
+    Automatic cell formatting based on values (e.g., highlight cells red if value > 1000). Useful for visual alerts.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Integration & API Terms
+
+<AccordionGroup>
+  <Accordion title="OAuth" icon="key">
+    A secure authorization method used by integrations. When you connect Gmail, HubSpot, etc., you're using OAuth to grant Decisional permission to access those services on your behalf.
+  </Accordion>
+
+  <Accordion title="Webhook" icon="webhook">
+    A callback URL that triggers your agent when an external event occurs. Webhooks enable real-time automation.
+
+    **Example:** When a form is submitted on your website, it sends a webhook to trigger your agent.
+  </Accordion>
+
+  <Accordion title="API (Application Programming Interface)" icon="code">
+    A way for software to talk to other software. Decisional provides an API for programmatic access, and agents can call external APIs.
+  </Accordion>
+
+  <Accordion title="API Key" icon="key">
+    A secret token that authenticates API requests. Keep your API keys secure - they grant full access to your workspace.
+  </Accordion>
+
+  <Accordion title="Endpoint" icon="location-dot">
+    A specific API URL that performs an action (e.g., `/agents/create`, `/runs/list`). Each endpoint has a specific purpose.
+  </Accordion>
+
+  <Accordion title="REST API" icon="globe">
+    A standard way of building APIs using HTTP methods (GET, POST, PUT, DELETE). Decisional's API is RESTful.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Status & States
+
+<AccordionGroup>
+  <Accordion title="Running" icon="spinner">
+    The agent is currently executing. You can see real-time progress in the run logs.
+  </Accordion>
+
+  <Accordion title="Completed" icon="circle-check">
+    The agent finished successfully. All outputs have been written and actions taken.
+  </Accordion>
+
+  <Accordion title="Failed" icon="circle-xmark">
+    The agent encountered an error and couldn't complete. Check the run logs for details.
+  </Accordion>
+
+  <Accordion title="Needs Review" icon="pause">
+    The agent is waiting for human approval before proceeding (human-in-the-loop pattern).
+  </Accordion>
+
+  <Accordion title="Pending" icon="clock">
+    The item is waiting to be processed (e.g., a worksheet row with Status = "Pending").
+  </Accordion>
+
+  <Accordion title="Indexed" icon="database">
+    A source has been processed and is ready for the agent to search. Sources must be indexed before agents can use them.
+  </Accordion>
+
+  <Accordion title="Processing" icon="gear">
+    A source is currently being indexed. Wait for this to complete before running your agent.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Roles & Permissions
+
+<AccordionGroup>
+  <Accordion title="Owner" icon="crown">
+    The workspace creator. Has full control including billing, deleting workspace, and managing all resources. Each workspace has exactly one owner.
+  </Accordion>
+
+  <Accordion title="Admin" icon="user-shield">
+    Can manage all agents, invite team members, and configure integrations. Cannot access billing or delete workspace.
+  </Accordion>
+
+  <Accordion title="Editor" icon="pen">
+    Can create, edit, and run agents. Cannot invite team members or delete workspace.
+  </Accordion>
+
+  <Accordion title="Viewer" icon="eye">
+    Read-only access. Can view agents and worksheets, run agents, but cannot create or edit anything.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## File Formats
+
+<AccordionGroup>
+  <Accordion title="CSV (Comma-Separated Values)" icon="file-csv">
+    Simple text format where each line is a row and commas separate columns. No formatting, formulas, or multiple sheets.
+
+    **When to use:** Basic data export/import, no formatting needed
+  </Accordion>
+
+  <Accordion title="XLSX (Excel Workbook)" icon="file-excel">
+    Modern Excel format supporting multiple sheets, formulas, charts, formatting, and more.
+
+    **When to use:** Full-featured spreadsheets with formulas and formatting
+  </Accordion>
+
+  <Accordion title="XLS (Legacy Excel)" icon="file">
+    Older Excel format (pre-2007). Still supported but XLSX is preferred.
+  </Accordion>
+
+  <Accordion title="PDF (Portable Document Format)" icon="file-pdf">
+    Static document format. Decisional can extract text and data from PDFs using RAG and OCR.
+
+    **Best for:** Contracts, invoices, reports, policies
+  </Accordion>
+
+  <Accordion title="DOCX (Word Document)" icon="file-word">
+    Microsoft Word format. Good for policies, procedures, and template documents.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Quick Reference
+
+| Term | Category | Definition |
+|------|----------|------------|
+| **Agent** | Core | Autonomous AI worker |
+| **Worksheet** | Core | Spreadsheet data layer |
+| **Source** | Core | Context document/file |
+| **Run** | Core | Single execution |
+| **RAG** | Technical | Retrieval-Augmented Generation |
+| **OCR** | Technical | Optical Character Recognition |
+| **Trigger** | Workflow | What activates the agent |
+| **Integration** | API | Connected external service |
+| **Owner** | Role | Full workspace control |
+| **Indexed** | Status | Source ready to use |
+
+---
+
+## See Also
+
+<CardGroup cols={2}>
+  <Card title="Core Concepts" icon="book" href="/core-concepts">
+    Learn about agents, worksheets, sources, and more
+  </Card>
+
+  <Card title="FAQ" icon="circle-question" href="/reference/faq">
+    Common questions and answers
+  </Card>
+
+  <Card title="Working with Agents" icon="robot" href="/guides/agents">
+    Detailed agent guide
+  </Card>
+
+  <Card title="Support" icon="life-ring" href="mailto:support@decisional.com">
+    Contact our team for help
+  </Card>
+</CardGroup>

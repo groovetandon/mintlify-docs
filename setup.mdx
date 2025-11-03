@@ -1,0 +1,387 @@
+---
+title: "Installation & Setup"
+description: "Get your Decisional workspace up and running in minutes"
+---
+
+## Overview
+
+Decisional is a cloud-based platform that requires no installation. You can get started immediately from your web browser.
+
+<Info>
+  **System Requirements**: Decisional works on any modern web browser. For the best experience, we recommend Chrome, Firefox, Safari, or Edge (latest versions).
+</Info>
+
+---
+
+## Step 1: Create Your Account
+
+<Steps>
+  <Step title="Visit Decisional">
+    Go to [app.decisional.com/sign-up](https://app.decisional.com/sign-up)
+  </Step>
+
+  <Step title="Sign Up">
+    You can sign up using:
+    - **Google Account**: One-click sign-up with your Google workspace
+    - **Email & Password**: Create an account with any email address
+
+    <Tip>
+      If you sign up with a **company email** (not Gmail, Yahoo, etc.), you'll automatically join your organization's workspace if one exists.
+    </Tip>
+  </Step>
+
+  <Step title="Verify Email">
+    Check your inbox for a verification email and click the link to activate your account.
+  </Step>
+
+  <Step title="Complete Profile">
+    Add your name and basic information to personalize your workspace.
+  </Step>
+</Steps>
+
+---
+
+## Step 2: Understanding Workspaces
+
+When you first sign in, Decisional automatically creates a workspace for you.
+
+### Workspace Types
+
+<CardGroup cols={2}>
+  <Card title="Personal Workspace" icon="user">
+    Created for individual accounts (e.g., gmail.com, yahoo.com). You own all agents and data.
+  </Card>
+  <Card title="Organization Workspace" icon="building">
+    Automatically created when you sign up with a company email (e.g., @yourcompany.com). Shared with teammates.
+  </Card>
+</CardGroup>
+
+### Workspace Features
+
+Your workspace includes:
+- **Agents**: All your automation workflows
+- **Worksheets**: Shared spreadsheets and data
+- **Sources**: Uploaded documents and context
+- **Integrations**: Connected services (Gmail, Slack, CRM, etc.)
+- **Team Members**: Collaborators with different permission levels
+
+---
+
+## Step 3: Set Up Your First Workspace
+
+<AccordionGroup>
+  <Accordion title="Customize Workspace Settings" icon="gear">
+    1. Click your profile icon in the top-right corner
+    2. Select **Workspace Settings**
+    3. Update:
+       - Workspace name
+       - Default timezone
+       - Notification preferences
+       - Billing information (for paid plans)
+  </Accordion>
+
+  <Accordion title="Invite Team Members" icon="user-plus">
+    <Warning>
+      You must be a **Workspace Owner** or **Admin** to invite members.
+    </Warning>
+
+    **To invite teammates:**
+    1. Go to **Settings → Team**
+    2. Click **Invite Member**
+    3. Enter their email address
+    4. Assign a role:
+       - **Owner**: Full control (only one owner allowed)
+       - **Admin**: Can invite users, manage all agents
+       - **Editor**: Can create and edit agents
+       - **Viewer**: Read-only access, can run agents
+
+    They'll receive an email invitation to join your workspace.
+  </Accordion>
+
+  <Accordion title="Connect Your First Integration" icon="plug">
+    Integrations allow your agents to interact with external services.
+
+    **Popular first integrations:**
+    - **Gmail**: Send automated emails
+    - **Slack**: Post notifications
+    - **Google Drive**: Access files
+    - **HubSpot/Salesforce**: Sync CRM data
+
+    **To connect an integration:**
+    1. Go to **Integrations** in the left sidebar
+    2. Click **Add Integration**
+    3. Select the service you want to connect
+    4. Follow the OAuth flow to authorize access
+    5. Configure integration settings
+
+    <Tip>
+      You can make integrations **workspace-wide** (available to all team members) or **private** (only you can use them).
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Step 4: Understanding Roles & Permissions
+
+Different roles have different capabilities:
+
+| Permission | Owner | Admin | Editor | Viewer |
+|-----------|-------|-------|--------|--------|
+| View agents & worksheets | ✅ | ✅ | ✅ | ✅ |
+| Run agents | ✅ | ✅ | ✅ | ✅ |
+| Create agents | ✅ | ✅ | ✅ | ❌ |
+| Edit agents | ✅ | ✅ | ✅ | ❌ |
+| Delete agents | ✅ | ✅ | ✅ | ❌ |
+| Upload sources | ✅ | ✅ | ✅ | ❌ |
+| Manage integrations | ✅ | ✅ | ✅ | ❌ |
+| Invite team members | ✅ | ✅ | ❌ | ❌ |
+| Change roles | ✅ | ✅ | ❌ | ❌ |
+| Billing & subscription | ✅ | ❌ | ❌ | ❌ |
+| Delete workspace | ✅ | ❌ | ❌ | ❌ |
+
+---
+
+## Step 5: Browser & Environment Setup
+
+### Recommended Browsers
+
+<CardGroup cols={4}>
+  <Card title="Chrome" icon="chrome">
+    Version 90+
+  </Card>
+  <Card title="Firefox" icon="firefox">
+    Version 88+
+  </Card>
+  <Card title="Safari" icon="safari">
+    Version 14+
+  </Card>
+  <Card title="Edge" icon="edge">
+    Version 90+
+  </Card>
+</CardGroup>
+
+### Enable Required Features
+
+Make sure your browser has:
+- **JavaScript enabled** (required for the app to work)
+- **Cookies enabled** (for authentication)
+- **Pop-ups allowed** for app.decisional.com (for OAuth integrations)
+
+### Network & Firewall
+
+If you're behind a corporate firewall, ensure these domains are whitelisted:
+- `app.decisional.com`
+- `api.decisional.com`
+- `*.googleapis.com` (for Google integrations)
+- `*.microsoft.com` (for Microsoft integrations)
+
+---
+
+## Step 6: Configure Notifications
+
+Stay updated on agent runs and important events.
+
+<Steps>
+  <Step title="Email Notifications">
+    Go to **Settings → Notifications** and configure:
+    - Agent run completions
+    - Agent failures
+    - Manual review requests
+    - Team invitations
+    - Billing updates
+  </Step>
+
+  <Step title="Slack Notifications (Optional)">
+    Connect Slack integration to receive notifications in your channels:
+    1. Add Slack integration
+    2. Go to **Settings → Notifications**
+    3. Enable "Send to Slack"
+    4. Select which channel to post to
+  </Step>
+</Steps>
+
+---
+
+## Step 7: Security Best Practices
+
+<AccordionGroup>
+  <Accordion title="Enable Two-Factor Authentication (2FA)" icon="lock">
+    Protect your account with 2FA:
+    1. Go to **Settings → Security**
+    2. Click **Enable 2FA**
+    3. Scan the QR code with an authenticator app (Google Authenticator, Authy, etc.)
+    4. Enter the 6-digit code to confirm
+
+    <Check>
+      After enabling 2FA, you'll need to enter a code from your authenticator app every time you sign in.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Manage API Keys" icon="key">
+    If you plan to use the Decisional API:
+    1. Go to **Settings → API Keys**
+    2. Click **Generate New Key**
+    3. Give it a descriptive name (e.g., "Production API", "Testing")
+    4. Copy the key immediately (it won't be shown again)
+    5. Store it securely (use environment variables, not hardcoded in code)
+
+    <Warning>
+      **Never share your API keys publicly.** They grant full access to your workspace.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Review Audit Logs" icon="list">
+    Monitor workspace activity:
+    1. Go to **Settings → Audit Logs**
+    2. See all actions taken in your workspace:
+       - Who created/modified agents
+       - Integration connections
+       - Team member invitations
+       - Role changes
+
+    Audit logs are available on **Professional** and **Enterprise** plans.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Step 8: Choose Your Plan
+
+Decisional offers flexible pricing based on your needs.
+
+### Available Plans
+
+<Tabs>
+  <Tab title="Free">
+    **Perfect for individuals and small projects**
+
+    - 100 agent runs per month
+    - 1 workspace
+    - Up to 3 agents
+    - Basic integrations
+    - Community support
+
+    **Price**: Free forever
+  </Tab>
+
+  <Tab title="Professional">
+    **For growing teams and businesses**
+
+    - 1,000 agent runs per month
+    - Unlimited workspaces
+    - Unlimited agents
+    - All integrations
+    - Priority email support
+    - Advanced RAG features
+    - Audit logs
+
+    **Price**: Contact sales
+  </Tab>
+
+  <Tab title="Enterprise">
+    **For large organizations with custom needs**
+
+    - Unlimited agent runs
+    - Dedicated infrastructure
+    - Custom integrations
+    - SSO (SAML, OIDC)
+    - SLA guarantees
+    - Dedicated support
+    - On-premise deployment option
+
+    **Price**: Custom pricing
+  </Tab>
+</Tabs>
+
+<Card title="Upgrade Your Plan" icon="arrow-up" href="https://app.decisional.com/settings/billing">
+  Visit Settings → Billing to upgrade your plan
+</Card>
+
+---
+
+## Troubleshooting Setup Issues
+
+<AccordionGroup>
+  <Accordion title="Can't verify my email" icon="envelope">
+    **Solutions:**
+    1. Check your spam/junk folder
+    2. Wait a few minutes and try resending
+    3. Make sure you entered the correct email
+    4. Contact support@decisional.com if the issue persists
+  </Accordion>
+
+  <Accordion title="Can't sign in with Google" icon="google">
+    **Common causes:**
+    1. Pop-ups are blocked (allow pop-ups for app.decisional.com)
+    2. Third-party cookies are disabled (enable in browser settings)
+    3. Google account doesn't have sufficient permissions
+
+    Try using **Email & Password** signup instead.
+  </Accordion>
+
+  <Accordion title="Integration won't connect" icon="plug">
+    **Troubleshooting steps:**
+    1. Make sure you have admin access to the service you're connecting
+    2. Check that pop-ups are enabled
+    3. Clear your browser cache and try again
+    4. Try a different browser
+    5. Check if your organization has OAuth restrictions
+  </Accordion>
+
+  <Accordion title="Workspace not showing up" icon="building">
+    **If you signed up with a company email but don't see your organization's workspace:**
+    1. Ask a teammate to send you an invitation
+    2. Make sure you're using the same email domain
+    3. Your organization might not have a workspace yet—create one!
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Check>
+  ✅ Account created and verified
+</Check>
+<Check>
+  ✅ Workspace configured
+</Check>
+<Check>
+  ✅ Team members invited (optional)
+</Check>
+<Check>
+  ✅ First integration connected (optional)
+</Check>
+
+<CardGroup cols={2}>
+  <Card title="Quickstart Guide" icon="rocket" href="/quickstart">
+    Build your first agent in 5 minutes
+  </Card>
+
+  <Card title="Core Concepts" icon="book" href="/core-concepts">
+    Understand agents, worksheets, and sources
+  </Card>
+
+  <Card title="Working with Agents" icon="robot" href="/guides/agents">
+    Deep dive into agent configuration
+  </Card>
+
+  <Card title="Integrations Guide" icon="plug" href="/guides/integrations">
+    Learn how to connect external services
+  </Card>
+</CardGroup>
+
+---
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Join Our Community" icon="slack" href="https://decisional.com/community">
+    Get help from our team and other users
+  </Card>
+
+  <Card title="Contact Support" icon="life-ring" href="mailto:support@decisional.com">
+    Reach out to our support team
+  </Card>
+</CardGroup>
