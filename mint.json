@@ -63,7 +63,8 @@
       "group": "Reference",
       "pages": [
         "reference/glossary",
-        "reference/faq"
+        "reference/faq",
+        "reference/changelog"
       ]
     }
   ],
