@@ -1,14 +1,9 @@
-<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Decisional Icon -->
-  <rect x="2" y="6" width="28" height="28" rx="6" fill="url(#paint0_linear_decisional)"/>
-
-  <!-- Decisional Text -->
-  <text x="38" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#3E0D77">Decisional</text>
-
-  <defs>
-    <linearGradient id="paint0_linear_decisional" x1="24" y1="6" x2="8" y2="34" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#3E0D77"/>
-      <stop offset="1" stop-color="#230D39"/>
-    </linearGradient>
-  </defs>
+<svg width="507" height="507" viewBox="0 0 507 507" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M337.796 0H168.898C75.6182 0 0 75.5877 0 168.83V337.66C0 430.902 75.6182 506.49 168.898 506.49H337.796C431.076 506.49 506.694 430.902 506.694 337.66V168.83C506.694 75.5877 431.076 0 337.796 0Z" fill="url(#paint0_linear_55_251)"/>
+<defs>
+<linearGradient id="paint0_linear_55_251" x1="332.518" y1="101.298" x2="-44.147" y2="582.611" gradientUnits="userSpaceOnUse">
+<stop stop-color="#3E0D77"/>
+<stop offset="1" stop-color="#230D39"/>
+</linearGradient>
+</defs>
 </svg>
