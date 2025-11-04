@@ -28,8 +28,8 @@
   "anchors": [
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://www.decisional.com/community"
+      "icon": "discord",
+      "url": "https://discord.gg/DwPDS5Prk2"
     },
     {
       "name": "Blog",
