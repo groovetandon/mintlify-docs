@@ -3,260 +3,82 @@ title: "Changelog"
 description: "Latest updates and improvements to Decisional"
 ---
 
-<Update label="January 15, 2025" tags={["New releases"]}>
-## Documentation Launch
+<Update label="Coming Soon" tags={["Agents"]}>
+## Agent Features
 
-We've launched our comprehensive documentation site to help you get the most out of Decisional!
+Exciting new agent capabilities coming soon!
 
-### New Documentation
-- **Getting Started Guide** – Build your first agent in 5 minutes
-- **Core Concepts** – Deep dive into agents, worksheets, sources, and runs
-- **User Guides** – Complete guides for agents, worksheets, and sources
-- **Glossary & FAQ** – Quick reference and common questions
+### Features
+- **Feature 1** – Coming soon
+- **Feature 2** – Coming soon
+- **Feature 3** – Coming soon
 
-Visit our new [Introduction](/introduction) page to get started!
+Stay tuned for updates!
 </Update>
 
-<Update label="January 2025" tags={["New releases"]}>
-## Advanced RAG with Bounding Box Citations
+<Update label="Coming Soon" tags={["Worksheets"]}>
+## Worksheet Enhancements
 
-We've upgraded our document processing to provide industry-leading accuracy and transparency.
+New worksheet features on the horizon!
 
-### RAG Improvements
-- **Bounding box citations** – See exactly what your agent read, highlighted in PDFs
-- **Page-level accuracy** – Citations include page number, paragraph, and quoted text
-- **Multi-document reasoning** – Agents can synthesize information across multiple sources
-- **OCR enhancements** – Better text extraction from scanned documents and images
+### Features
+- **Feature 1** – Coming soon
+- **Feature 2** – Coming soon
+- **Feature 3** – Coming soon
 
-### Source Management
-- **Version history** – Track changes to your source documents
-- **Automatic refresh** – Schedule web sources to update daily, weekly, or hourly
-- **Folder monitoring** – Auto-sync new files from Google Drive and OneDrive
-
-Read more in our [Sources Guide](/guides/sources).
+Check back soon for details!
 </Update>
 
-<Update label="December 2024" tags={["Improvements"]}>
-## Spreadsheet Editor Enhancements
+<Update label="Coming Soon" tags={["Sources"]}>
+## Source Management
 
-Significant improvements to the worksheet experience powered by SpreadJS.
+Enhanced source management capabilities coming soon!
 
-### New Features
-- **Conditional formatting** – Highlight cells based on values automatically
-- **Data validation** – Dropdowns, number ranges, and custom rules
-- **Charts and visualizations** – Create bar, line, pie, and scatter charts
-- **Freeze panes** – Lock headers while scrolling large datasets
-- **Named ranges** – Create friendly names for cell ranges
+### Features
+- **Feature 1** – Coming soon
+- **Feature 2** – Coming soon
+- **Feature 3** – Coming soon
 
-### Performance
-- **Faster loading** – 3x faster for worksheets with 10,000+ rows
-- **Auto-save improvements** – Changes sync every 5 seconds instead of 15
-- **Better formula calculation** – Complex formulas execute 2x faster
-
-Learn more in our [Worksheets Guide](/guides/worksheets).
+More information coming soon!
 </Update>
 
-<Update label="December 2024" tags={["New releases"]}>
-## Integration Marketplace
+<Update label="Coming Soon" tags={["Integrations"]}>
+## Integration Updates
 
-We've added 15+ new integrations to connect your workflows.
+New integrations and improvements coming soon!
 
-### New Integrations
-**CRM:**
-- Attio
-- Pipedrive
-- Close
+### Features
+- **Feature 1** – Coming soon
+- **Feature 2** – Coming soon
+- **Feature 3** – Coming soon
 
-**Communication:**
-- Discord
-- Microsoft Teams (enhanced)
-- Telegram
-
-**Databases:**
-- Snowflake
-- BigQuery
-- Microsoft SQL Server
-
-**Payments:**
-- Stripe
-- Bill.com
-
-**Storage:**
-- Amazon S3
-- Dropbox
-
-See all available integrations in our [Setup Guide](/setup#step-3-set-up-your-first-workspace).
+Stay tuned!
 </Update>
 
-<Update label="November 2024" tags={["Improvements"]}>
-## Agent Performance & Reliability
-
-Major improvements to agent execution speed and reliability.
-
-### Performance
-- **50% faster execution** – Agents now process data 2x faster on average
-- **Parallel processing** – Handle multiple rows concurrently for batch workflows
-- **Smart caching** – Frequently accessed sources load instantly
-
-### Reliability
-- **Better error handling** – Agents continue processing even when individual items fail
-- **Retry logic** – Failed items automatically retry once before flagging
-- **Detailed error logs** – See exactly where and why failures occurred
-
-### Developer Experience
-- **Real-time logs** – Watch your agent's reasoning step-by-step
-- **Test mode** – Run agents on sample data without affecting production
-- **Version control** – Save and restore previous agent configurations
-
-Read our [Agent Guide](/guides/agents) for best practices.
-</Update>
-
-<Update label="October 2024" tags={["New releases"]}>
-## Human-in-the-Loop Workflows
-
-New capability to pause agents for manual review on high-stakes decisions.
-
-### Key Features
-- **Conditional pausing** – Set rules like "if amount > $50,000, flag for review"
-- **Notification system** – Get alerted via email or Slack when review is needed
-- **Review interface** – Approve, reject, or modify agent decisions inline
-- **Audit trail** – Track who approved what and when
-
-### Use Cases
-- Large quote approvals
-- Contract signing authority
-- Financial transaction verification
-- Data quality checks
-
-Example workflow:
-```
-If the quote total exceeds $50,000:
-1. Mark status as "Needs Review"
-2. Send notification to @sales-manager
-3. Wait for human approval before sending
-```
-</Update>
-
-<Update label="September 2024" tags={["Improvements"]}>
-## Workspace Collaboration
-
-Enhanced team features for better collaboration.
-
-### Team Management
-- **Role-based access** – Owner, Admin, Editor, Viewer permissions
-- **Audit logs** – Track all actions in your workspace (Professional/Enterprise)
-- **User activity** – See who's working on what in real-time
-
-### Sharing
-- **Share links** – Generate view-only or edit links for worksheets
-- **Public agents** – Share agent configurations with your team
-- **Templates** – Save agents as templates for reuse
-
-### Security
-- **Two-factor authentication (2FA)** – Secure your account
-- **API key management** – Generate and revoke keys with granular permissions
-- **SSO support** – SAML and OIDC for Enterprise plans
-
-Learn more in our [Workspaces Guide](/guides/workspaces).
-</Update>
-
-<Update label="August 2024" tags={["New releases"]}>
-## Event-Based Triggers
-
-Automate workflows in real-time with event-based triggers.
-
-### Trigger Types
-- **Webhook triggers** – Run agents when external events occur
-- **Email triggers** – Process new emails automatically
-- **Worksheet changes** – React when rows are added or updated
-- **Integration events** – Trigger on CRM updates, form submissions, file uploads
-
-### Examples
-- When invoice email arrives → Extract data → Update spreadsheet
-- When form is submitted → Enrich lead → Add to CRM
-- When file uploaded to Google Drive → Process document → Generate report
-
-### Configuration
-```
-Trigger: New row in "Quote Requests" sheet
-Condition: Status = "Pending"
-Action: Run Quote Generation Agent
-```
-
-See our [Agent Guide](/guides/agents#setting-up-triggers) for details.
-</Update>
-
-<Update label="July 2024" tags={["Improvements"]}>
+<Update label="Coming Soon" tags={["API"]}>
 ## API & Developer Tools
 
-Expanded API capabilities for programmatic access.
+API enhancements coming soon!
 
-### New Endpoints
-- **Agents API** – Create, update, list, and delete agents
-- **Runs API** – Trigger runs, check status, retrieve results
-- **Worksheets API** – Read and write worksheet data
-- **Sources API** – Upload and manage source documents
+### Features
+- **Feature 1** – Coming soon
+- **Feature 2** – Coming soon
+- **Feature 3** – Coming soon
 
-### Developer Experience
-- **API documentation** – Interactive API reference with examples
-- **SDKs** – Python and Node.js client libraries (coming soon)
-- **Webhooks** – Get notified when runs complete or fail
-- **Rate limits** – 1,000 requests/hour (Professional), 10,000/hour (Enterprise)
-
-### Example
-```bash
-curl -X POST https://api.decisional.com/v1/agents/{agent_id}/run \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"input_data": {...}}'
-```
-
-Visit our [API Reference](/api-reference/introduction) for full documentation.
+Watch this space!
 </Update>
 
-<Update label="June 2024" tags={["New releases"]}>
-## Decisional 2.0 Launch
+<Update label="Coming Soon" tags={["Platform"]}>
+## Platform Improvements
 
-Complete platform redesign with focus on speed, simplicity, and scale.
+Platform updates coming soon!
 
-### User Interface
-- **New agent builder** – Redesigned with better instruction editor and source management
-- **Improved worksheet editor** – Faster, more responsive, better Excel compatibility
-- **Dark mode** – Easy on the eyes for late-night automation building
-- **Mobile responsive** – View and monitor agents on mobile devices
+### Features
+- **Feature 1** – Coming soon
+- **Feature 2** – Coming soon
+- **Feature 3** – Coming soon
 
-### Platform
-- **Infrastructure upgrade** – 10x faster processing, 99.9% uptime SLA
-- **Global CDN** – Low latency worldwide
-- **Enhanced security** – SOC 2 Type II compliance
-- **Backup & recovery** – Automatic daily backups, point-in-time restore
-
-### Pricing
-- **Free plan** – 100 runs/month, perfect for individuals
-- **Professional plan** – Unlimited agents, priority support
-- **Enterprise plan** – Dedicated infrastructure, custom integrations
-
-Read our [Introduction](/introduction) for the full story.
-</Update>
-
-<Update label="May 2024" tags={["Improvements"]}>
-## Bug Fixes & Performance
-
-Continuous improvements to stability and performance.
-
-### Fixed
-- Excel files with 100,000+ rows now load without timeout
-- Formula cells update correctly when agent writes to worksheet
-- PDF extraction handles rotated pages properly
-- Timezone issues in scheduled triggers resolved
-- Memory leaks in long-running agents eliminated
-
-### Improved
-- Agent instruction editor autosaves every 30 seconds
-- Source indexing 3x faster for large PDFs
-- Worksheet auto-save reduced from 15s to 5s intervals
-- Better error messages with actionable suggestions
-- Run logs now show AI reasoning with proper formatting
+More details coming soon!
 </Update>
 
 ---
