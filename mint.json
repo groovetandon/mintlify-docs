@@ -48,6 +48,12 @@
       ]
     },
     {
+      "group": "Integrations",
+      "pages": [
+        "integrations"
+      ]
+    },
+    {
       "group": "User Guides",
       "pages": [
         "guides/agents",
