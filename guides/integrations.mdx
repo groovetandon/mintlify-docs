@@ -1,0 +1,821 @@
+---
+title: "Integrations"
+description: "Connect external services to your automation workflows"
+---
+
+## What Are Integrations?
+
+**Integrations connect Decisional to external services**, allowing your agents to send emails, update CRMs, post to Slack, query databases, and more.
+
+<Card title="Why Integrations Matter" icon="lightbulb">
+  Agents without integrations can only work with worksheet data. Integrations let agents interact with the real world - sending emails, updating records, fetching live data.
+</Card>
+
+---
+
+## Available Integrations
+
+### Communication
+
+<CardGroup cols={2}>
+  <Card title="Gmail" icon="envelope">
+    **What it does:**
+    - Send emails
+    - Read inbox
+    - Search messages
+    - Attach files
+
+    **Use cases:**
+    - Send quotes to customers
+    - Email notifications
+    - Process incoming requests
+  </Card>
+
+  <Card title="Outlook" icon="microsoft">
+    **What it does:**
+    - Send emails (Office 365)
+    - Access calendar
+    - Read messages
+
+    **Use cases:**
+    - Corporate email automation
+    - Meeting scheduling
+    - Email-based workflows
+  </Card>
+
+  <Card title="Slack" icon="slack">
+    **What it does:**
+    - Post messages to channels
+    - Send direct messages
+    - Create threads
+    - Upload files
+
+    **Use cases:**
+    - Team notifications
+    - Alert on errors
+    - Share reports
+  </Card>
+
+  <Card title="Discord" icon="discord">
+    **What it does:**
+    - Post to channels
+    - Send messages
+    - Create embeds
+
+    **Use cases:**
+    - Community updates
+    - Bot interactions
+    - Notifications
+  </Card>
+
+  <Card title="Microsoft Teams" icon="users">
+    **What it does:**
+    - Post to channels
+    - Send messages
+    - Create adaptive cards
+
+    **Use cases:**
+    - Enterprise notifications
+    - Team collaboration
+    - Workflow updates
+  </Card>
+
+  <Card title="Telegram" icon="telegram">
+    **What it does:**
+    - Send messages
+    - Create bots
+    - Notifications
+
+    **Use cases:**
+    - Personal notifications
+    - Bot commands
+    - Alerts
+  </Card>
+</CardGroup>
+
+### CRM & Sales
+
+<CardGroup cols={2}>
+  <Card title="HubSpot" icon="hubspot">
+    **What it does:**
+    - Create/update contacts
+    - Manage deals
+    - Log activities
+    - Custom properties
+
+    **Use cases:**
+    - Auto-update deal stages
+    - Enrich contact data
+    - Log quote sent activities
+  </Card>
+
+  <Card title="Salesforce" icon="salesforce">
+    **What it does:**
+    - CRUD operations on objects
+    - Query SOQL
+    - Update opportunities
+    - Custom fields
+
+    **Use cases:**
+    - Sync quotes to opportunities
+    - Update account data
+    - Log interactions
+  </Card>
+
+  <Card title="Attio" icon="database">
+    **What it does:**
+    - Manage records
+    - Update lists
+    - Custom fields
+
+    **Use cases:**
+    - Modern CRM automation
+    - Flexible data models
+  </Card>
+
+  <Card title="Pipedrive" icon="chart-line">
+    **What it does:**
+    - Manage deals
+    - Update stages
+    - Add activities
+
+    **Use cases:**
+    - Sales pipeline automation
+    - Deal tracking
+  </Card>
+
+  <Card title="Close" icon="phone">
+    **What it does:**
+    - Manage leads
+    - Log calls
+    - Send emails
+
+    **Use cases:**
+    - Sales automation
+    - Lead tracking
+  </Card>
+</CardGroup>
+
+### Storage & Files
+
+<CardGroup cols={2}>
+  <Card title="Google Drive" icon="google-drive">
+    **What it does:**
+    - Upload files
+    - Read files
+    - Organize folders
+    - Share links
+
+    **Use cases:**
+    - Save generated reports
+    - Read source documents
+    - Backup data
+  </Card>
+
+  <Card title="OneDrive" icon="cloud">
+    **What it does:**
+    - Upload/download files
+    - SharePoint access
+    - Folder management
+
+    **Use cases:**
+    - Corporate file storage
+    - SharePoint integration
+  </Card>
+
+  <Card title="Dropbox" icon="dropbox">
+    **What it does:**
+    - File operations
+    - Folder sync
+
+    **Use cases:**
+    - File storage
+    - Team folders
+  </Card>
+
+  <Card title="Amazon S3" icon="aws">
+    **What it does:**
+    - Upload objects
+    - Download files
+    - Bucket operations
+
+    **Use cases:**
+    - Large file storage
+    - Data archiving
+    - Static hosting
+  </Card>
+</CardGroup>
+
+### Databases
+
+<CardGroup cols={2}>
+  <Card title="PostgreSQL" icon="database">
+    **What it does:**
+    - Run SQL queries
+    - Insert/update records
+    - Read tables
+
+    **Use cases:**
+    - Sync to production DB
+    - Query live data
+    - Write results
+  </Card>
+
+  <Card title="MySQL" icon="database">
+    **What it does:**
+    - Execute queries
+    - CRUD operations
+
+    **Use cases:**
+    - Legacy system integration
+    - Data sync
+  </Card>
+
+  <Card title="Snowflake" icon="snowflake">
+    **What it does:**
+    - Data warehouse queries
+    - Large dataset operations
+
+    **Use cases:**
+    - Analytics queries
+    - Data pipeline
+  </Card>
+
+  <Card title="BigQuery" icon="chart-bar">
+    **What it does:**
+    - Run queries
+    - Access datasets
+
+    **Use cases:**
+    - Google Cloud data
+    - Analytics
+  </Card>
+
+  <Card title="Microsoft SQL Server" icon="database">
+    **What it does:**
+    - T-SQL queries
+    - Stored procedures
+
+    **Use cases:**
+    - Enterprise databases
+    - Windows environments
+  </Card>
+</CardGroup>
+
+### Payments & Finance
+
+<CardGroup cols={2}>
+  <Card title="Stripe" icon="stripe">
+    **What it does:**
+    - Create invoices
+    - Process payments
+    - Manage customers
+
+    **Use cases:**
+    - Auto-invoice customers
+    - Payment tracking
+  </Card>
+
+  <Card title="Bill.com" icon="receipt">
+    **What it does:**
+    - Create bills
+    - Manage vendors
+    - Approve payments
+
+    **Use cases:**
+    - AP automation
+    - Vendor management
+  </Card>
+</CardGroup>
+
+### Calendar
+
+<CardGroup cols={2}>
+  <Card title="Google Calendar" icon="calendar">
+    **What it does:**
+    - Create events
+    - Check availability
+    - Send invites
+
+    **Use cases:**
+    - Schedule meetings
+    - Block time
+  </Card>
+
+  <Card title="Outlook Calendar" icon="calendar-days">
+    **What it does:**
+    - Manage events
+    - Corporate calendars
+
+    **Use cases:**
+    - Meeting automation
+    - Enterprise scheduling
+  </Card>
+</CardGroup>
+
+### Custom
+
+<CardGroup cols={2}>
+  <Card title="Webhooks" icon="webhook">
+    **What it does:**
+    - Trigger agents from external events
+    - Send data to your API
+
+    **Use cases:**
+    - Custom integrations
+    - Real-time triggers
+  </Card>
+
+  <Card title="REST API" icon="code">
+    **What it does:**
+    - Call any HTTP API
+    - Custom headers/auth
+
+    **Use cases:**
+    - Internal tools
+    - Third-party APIs
+  </Card>
+</CardGroup>
+
+---
+
+## Connecting an Integration
+
+<Steps>
+  <Step title="Navigate to Integrations">
+    Go to **Settings → Integrations** from the sidebar
+  </Step>
+
+  <Step title="Find Your Service">
+    Browse or search for the integration you want (e.g., "Gmail")
+  </Step>
+
+  <Step title="Click Add Integration">
+    Click the **Add Integration** button
+  </Step>
+
+  <Step title="Authorize Access">
+    **For OAuth (Gmail, Slack, HubSpot, etc.):**
+    1. A popup window opens
+    2. Sign in to the service
+    3. Review permissions
+    4. Click "Allow" or "Authorize"
+
+    **For API Key (databases, webhooks):**
+    1. Enter your API key, host, credentials
+    2. Test connection
+    3. Save
+
+  </Step>
+
+  <Step title="Configure Settings">
+    Some integrations have additional settings:
+    - **Gmail**: Choose which email to send from
+    - **Slack**: Select default workspace
+    - **Database**: Set connection pool size
+  </Step>
+
+  <Step title="Test Connection">
+    Click **Test Connection** to verify it works
+
+    **Success:** Green checkmark, "Connected"
+
+    **Failure:** Error message with details
+  </Step>
+</Steps>
+
+<Tip>
+  You can connect multiple accounts of the same integration (e.g., personal Gmail and work Gmail)
+</Tip>
+
+---
+
+## Using Integrations in Agents
+
+Once connected, reference integrations in your agent instructions.
+
+### Email Example
+
+```markdown
+Agent Instructions:
+
+When a quote is generated:
+1. Create a PDF of the quote
+2. Send an email via Gmail to the customer:
+   - To: Customer email from worksheet
+   - Subject: "Your Quote from Acme Corp"
+   - Body: "Thank you for your interest..."
+   - Attach the quote PDF
+3. Mark the row as "Sent"
+```
+
+**The agent will automatically:**
+- Use your connected Gmail account
+- Compose the email
+- Attach files
+- Send it
+- Handle errors (e.g., invalid email address)
+
+### CRM Example
+
+```markdown
+Agent Instructions:
+
+For each processed quote:
+1. Look up the contact in HubSpot by email
+2. If found:
+   - Update the deal stage to "Quote Sent"
+   - Add a note: "Quote #[ID] sent on [date]"
+   - Set custom property "Last Quote Amount" to [total]
+3. If not found:
+   - Create a new contact
+   - Create a new deal
+   - Set initial stage to "Quote Sent"
+```
+
+### Slack Example
+
+```markdown
+Agent Instructions:
+
+If a quote total exceeds $50,000:
+1. Mark as "Needs Approval"
+2. Post to #sales-leadership Slack channel:
+   - Message: "High-value quote pending approval"
+   - Include: Customer, amount, quote ID
+   - Tag: @sales-manager
+3. Wait for manual approval before sending
+```
+
+---
+
+## Integration Settings
+
+Manage integration-specific settings.
+
+### Access Control
+
+<Tabs>
+  <Tab title="Workspace-Wide">
+    **Everyone in the workspace can use this integration**
+
+    **Best for:**
+    - Shared team accounts (e.g., company Gmail)
+    - Company Slack workspace
+    - Shared CRM
+
+    **How to set:**
+    - Toggle "Share with workspace" ON
+  </Tab>
+
+  <Tab title="Private">
+    **Only you can use this integration**
+
+    **Best for:**
+    - Personal accounts
+    - Testing integrations
+    - Sensitive credentials
+
+    **How to set:**
+    - Toggle "Share with workspace" OFF (default)
+  </Tab>
+</Tabs>
+
+### Rate Limits
+
+Some integrations have rate limits:
+
+| Integration | Limit | What Happens When Exceeded |
+|-------------|-------|----------------------------|
+| **Gmail** | 500 emails/day (free accounts) | Error: "Rate limit exceeded" |
+| **HubSpot** | 100 API calls/10 sec | Automatic retry with backoff |
+| **Slack** | 1 message/second per channel | Queued and sent when available |
+| **Databases** | Varies by plan | Connection pool exhaustion |
+
+**Best practices:**
+- Batch operations when possible
+- Add delays between API calls
+- Monitor usage in integration settings
+
+---
+
+## Advanced Configuration
+
+### Custom API Integration
+
+For services without native integration:
+
+<Steps>
+  <Step title="Add Custom API">
+    Click **Add Integration → Custom API**
+  </Step>
+
+  <Step title="Configure Endpoint">
+    **Basic settings:**
+    - Name: "My Internal API"
+    - Base URL: https://api.mycompany.com
+    - Authentication: Bearer token, API key, or OAuth
+
+    **Headers (optional):**
+    ```json
+    {
+      "Content-Type": "application/json",
+      "X-Custom-Header": "value"
+    }
+    ```
+  </Step>
+
+  <Step title="Test Request">
+    Make a test API call:
+    ```
+    GET /health
+    ```
+
+    Verify you get expected response.
+  </Step>
+
+  <Step title="Use in Agent">
+    ```markdown
+    Call My Internal API:
+    - Endpoint: POST /customers
+    - Body: {
+        "name": "[customer name]",
+        "email": "[customer email]"
+      }
+    ```
+  </Step>
+</Steps>
+
+### Database Connections
+
+For secure database access:
+
+<AccordionGroup>
+  <Accordion title="PostgreSQL Setup" icon="database">
+    **Connection details:**
+    - Host: db.mycompany.com
+    - Port: 5432
+    - Database: production
+    - User: decisional_agent
+    - Password: [secure password]
+    - SSL: Required (recommended)
+
+    **Grant permissions (on your DB):**
+    ```sql
+    CREATE USER decisional_agent WITH PASSWORD 'secure_password';
+    GRANT SELECT, INSERT, UPDATE ON schema.table TO decisional_agent;
+    ```
+
+    **In agent instructions:**
+    ```markdown
+    Query PostgreSQL database:
+    SELECT customer_id, total_orders
+    FROM customers
+    WHERE created_at >= '2025-01-01'
+    ```
+  </Accordion>
+
+  <Accordion title="MySQL Setup" icon="database">
+    **Connection string:**
+    ```
+    mysql://user:password@host:3306/database?ssl=true
+    ```
+
+    **Best practices:**
+    - Use read-only user for queries
+    - Create dedicated user for Decisional
+    - Enable SSL
+    - Whitelist Decisional IPs (Enterprise)
+  </Accordion>
+
+  <Accordion title="Snowflake Setup" icon="snowflake">
+    **Account details:**
+    - Account: xyz12345.us-east-1
+    - Username: DECISIONAL_AGENT
+    - Password: [secure password]
+    - Warehouse: DECISIONAL_WH
+    - Database: ANALYTICS
+    - Role: DECISIONAL_ROLE
+
+    **Grant permissions (in Snowflake):**
+    ```sql
+    CREATE ROLE DECISIONAL_ROLE;
+    GRANT USAGE ON WAREHOUSE DECISIONAL_WH TO ROLE DECISIONAL_ROLE;
+    GRANT SELECT ON DATABASE ANALYTICS TO ROLE DECISIONAL_ROLE;
+    CREATE USER DECISIONAL_AGENT PASSWORD='...' DEFAULT_ROLE=DECISIONAL_ROLE;
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Webhook Setup
+
+Create custom event triggers:
+
+<Steps>
+  <Step title="Create Webhook">
+    Go to **Integrations → Add Integration → Webhook**
+  </Step>
+
+  <Step title="Copy Webhook URL">
+    You'll get a unique URL:
+    ```
+    https://api.decisional.com/webhooks/wh_abc123xyz
+    ```
+  </Step>
+
+  <Step title="Configure Source">
+    In the external service (Typeform, Stripe, etc.):
+    - Add webhook URL
+    - Select events to send
+    - Configure payload
+
+    **Example: Stripe**
+    - Event: `invoice.payment_succeeded`
+    - Endpoint: [your webhook URL]
+  </Step>
+
+  <Step title="Set Trigger">
+    In your agent:
+    - Trigger: Webhook
+    - Webhook: [select the one you created]
+
+    Agent runs whenever the webhook receives data.
+  </Step>
+</Steps>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Integration disconnected" icon="plug-circle-xmark">
+    **Symptoms:**
+    - "Integration not found" error
+    - "Authentication expired" message
+
+    **Causes:**
+    - Token expired (OAuth)
+    - Password changed
+    - Integration deleted
+    - Permissions revoked
+
+    **Fix:**
+    1. Go to Settings → Integrations
+    2. Find the disconnected integration (red warning icon)
+    3. Click **Reconnect**
+    4. Re-authorize
+  </Accordion>
+
+  <Accordion title="Permission denied" icon="lock">
+    **Error:** `Permission denied: Cannot send emails`
+
+    **Causes:**
+    - Integration not shared with workspace
+    - Your account lacks permissions in the service
+    - OAuth scope missing
+
+    **Fix:**
+    1. **Check workspace sharing:** Integration owner should enable "Share with workspace"
+    2. **Check service permissions:** Ensure your account has required permissions (e.g., can send emails in Gmail)
+    3. **Re-authorize with correct scopes:** Disconnect and reconnect, ensuring all permissions are granted
+  </Accordion>
+
+  <Accordion title="Rate limit exceeded" icon="gauge-high">
+    **Error:** `Rate limit exceeded: 100 calls/minute`
+
+    **Causes:**
+    - Too many API calls in short time
+    - Multiple agents using same integration
+    - Exceeding service's free tier limits
+
+    **Fix:**
+    1. **Add delays:** In instructions, add "Wait 1 second between each email"
+    2. **Batch operations:** Process fewer items per run
+    3. **Upgrade plan:** Service may have higher limits on paid tiers
+    4. **Use multiple accounts:** Distribute load across accounts
+  </Accordion>
+
+  <Accordion title="API error: 400/401/403/500" icon="triangle-exclamation">
+    **400 Bad Request:**
+    - Invalid data format
+    - Fix: Check payload structure, required fields
+
+    **401 Unauthorized:**
+    - Invalid credentials
+    - Fix: Reconnect integration
+
+    **403 Forbidden:**
+    - Insufficient permissions
+    - Fix: Grant required permissions in the service
+
+    **500 Internal Server Error:**
+    - Service is down
+    - Fix: Wait and retry, or contact service support
+  </Accordion>
+
+  <Accordion title="Webhook not triggering" icon="webhook">
+    **Symptoms:**
+    - Event happens in external service
+    - Agent doesn't run
+
+    **Debug steps:**
+    1. **Check webhook URL:** Ensure it's correctly configured in external service
+    2. **Check webhook logs:** Settings → Integrations → [Webhook] → View Logs
+    3. **Verify event type:** Make sure you're listening to correct events
+    4. **Test webhook:** Use external service's "Test webhook" feature
+
+    **Common issues:**
+    - Webhook URL copied incorrectly
+    - Event type mismatch (listening to `payment_succeeded` but service sends `payment.succeeded`)
+    - Firewall blocking incoming requests (Enterprise: whitelist Decisional IPs)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Security Best Practices
+
+<Check>
+  **Use least privilege:** Grant only necessary permissions (e.g., read-only for data queries)
+</Check>
+
+<Check>
+  **Create dedicated accounts:** Use service accounts, not personal accounts, for integrations
+</Check>
+
+<Check>
+  **Enable 2FA:** On all connected accounts where possible
+</Check>
+
+<Check>
+  **Rotate credentials:** Change API keys and passwords periodically
+</Check>
+
+<Check>
+  **Audit access:** Review integration logs monthly for unexpected activity
+</Check>
+
+<Check>
+  **Revoke unused integrations:** Disconnect integrations you're no longer using
+</Check>
+
+<Check>
+  **Use SSL/TLS:** Always enable encrypted connections for databases
+</Check>
+
+---
+
+## Integration Limits by Plan
+
+| Feature | Free | Professional | Enterprise |
+|---------|------|--------------|------------|
+| **Max integrations** | 5 | Unlimited | Unlimited |
+| **Custom API** | ❌ | ✅ | ✅ |
+| **Database connections** | ❌ | ✅ | ✅ |
+| **Webhooks** | 1 | 10 | Unlimited |
+| **OAuth apps** | Standard | Standard | Custom (white-label) |
+| **IP whitelisting** | ❌ | ❌ | ✅ |
+| **Dedicated credentials** | ❌ | ❌ | ✅ |
+
+---
+
+## Request New Integrations
+
+Don't see the integration you need?
+
+<Card title="Request Integration" icon="plus" href="mailto:support@decisional.com?subject=Integration Request">
+  Email us at support@decisional.com with:
+  - Service name
+  - What you want to automate
+  - API documentation link (if available)
+</Card>
+
+**Popular requested integrations:**
+- Airtable
+- Notion
+- QuickBooks
+- NetSuite
+- Zendesk
+- Intercom
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Working with Agents" icon="robot" href="/guides/agents">
+    Learn how to use integrations in agent instructions
+  </Card>
+
+  <Card title="Setup Guide" icon="gear" href="/setup">
+    Step-by-step integration setup walkthrough
+  </Card>
+
+  <Card title="Webhooks Tutorial" icon="webhook" href="/workflows/operations/webhook-automation">
+    Build event-driven workflows
+  </Card>
+
+  <Card title="API Reference" icon="code" href="/api-reference/introduction">
+    Programmatic integration management
+  </Card>
+</CardGroup>

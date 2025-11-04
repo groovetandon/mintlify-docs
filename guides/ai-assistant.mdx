@@ -1,0 +1,641 @@
+---
+title: "AI Assistant"
+description: "Use the interactive chat to test, debug, and iterate on your agents"
+---
+
+## What is the AI Assistant?
+
+The **AI Assistant** is an interactive chat interface that lets you test your agent in real-time, debug issues, and iterate on your workflow before automating it.
+
+<Card title="Key Difference" icon="lightbulb">
+  **Agent** = Automated execution (runs on schedule or trigger)
+
+  **AI Assistant** = Interactive testing (you chat with the agent)
+</Card>
+
+---
+
+## Where to Find It
+
+The AI Assistant panel appears on the **right side** of your agent page.
+
+<Steps>
+  <Step title="Open Your Agent">
+    Click any agent from your home page
+  </Step>
+
+  <Step title="Look Right">
+    The AI Assistant chat panel is on the right side of the screen
+  </Step>
+
+  <Step title="Start Chatting">
+    Type a message and hit Enter to interact with your agent
+  </Step>
+</Steps>
+
+<Tip>
+  You can collapse/expand the AI Assistant panel with the toggle button in the top-right.
+</Tip>
+
+---
+
+## How It Works
+
+The AI Assistant uses the **same AI engine** as your automated agent, with access to:
+- Your agent's instructions
+- All uploaded sources
+- Your worksheet data
+- Connected integrations
+
+**The difference:** Instead of running automatically, you control it through conversation.
+
+---
+
+## Testing Your Agent
+
+Use the AI Assistant to test your agent before going live.
+
+### Basic Testing Workflow
+
+<Steps>
+  <Step title="Prepare Test Data">
+    Add a few sample rows to your worksheet (e.g., 3-5 test cases)
+  </Step>
+
+  <Step title="Give a Command">
+    In the AI Assistant, type:
+    ```
+    Process the first 3 rows in the worksheet
+    ```
+  </Step>
+
+  <Step title="Watch It Work">
+    The AI Assistant will:
+    - Read the instructions
+    - Search relevant sources
+    - Process the data
+    - Show its reasoning step-by-step
+    - Update the worksheet
+  </Step>
+
+  <Step title="Review Results">
+    Switch to the Worksheet tab to see the output
+  </Step>
+
+  <Step title="Iterate">
+    If results aren't perfect, refine instructions and test again
+  </Step>
+</Steps>
+
+### Example Test Commands
+
+<Tabs>
+  <Tab title="Quote Generation">
+    **Simple test:**
+    ```
+    Generate a quote for Acme Corp.
+    They need 10x Product A and 5x Product B.
+    Apply a 10% discount.
+    ```
+
+    **Batch test:**
+    ```
+    Process all rows in the "Quote Requests" sheet
+    where Status = "Pending"
+    ```
+
+    **Edge case test:**
+    ```
+    What happens if a customer requests a product
+    that's not in the price list?
+    ```
+  </Tab>
+
+  <Tab title="Invoice Processing">
+    **Test with example:**
+    ```
+    I'm going to upload an invoice PDF.
+    Extract the key details and add to the worksheet.
+    ```
+
+    **Test validation:**
+    ```
+    Process the invoice in row 5.
+    Make sure the total matches the sum of line items.
+    ```
+
+    **Test error handling:**
+    ```
+    What would you do if the vendor is not found
+    in the vendor list?
+    ```
+  </Tab>
+
+  <Tab title="Data Enrichment">
+    **Test enrichment:**
+    ```
+    Take the company in row 1 and enrich it with:
+    - Industry
+    - Employee count
+    - Revenue estimate
+    - Key contacts
+    ```
+
+    **Test source usage:**
+    ```
+    Which sources would you use to enrich this lead?
+    ```
+
+    **Test output format:**
+    ```
+    Show me what the enriched row will look like
+    before writing to the worksheet.
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Debugging with AI Assistant
+
+When your agent doesn't behave as expected, the AI Assistant helps you debug.
+
+### Common Debugging Scenarios
+
+<AccordionGroup>
+  <Accordion title="Agent isn't using sources" icon="folder">
+    **Ask:**
+    ```
+    What sources do you have access to?
+    Can you show me what's in the "Price List" source?
+    ```
+
+    **The assistant will:**
+    - List all available sources
+    - Confirm they're indexed
+    - Show sample content from the source
+
+    **If source is missing:**
+    - Go to Sources tab
+    - Upload the missing document
+    - Wait for indexing to complete
+    - Test again
+  </Accordion>
+
+  <Accordion title="Output format is wrong" icon="table">
+    **Ask:**
+    ```
+    Show me exactly what you would write to row 10
+    of the worksheet, but don't write it yet.
+    ```
+
+    **The assistant will:**
+    - Show the exact values for each column
+    - Explain its reasoning
+    - Let you verify before actually writing
+
+    **Fix format issues:**
+    - Add examples to instructions
+    - Specify exact column names
+    - Show desired output format
+  </Accordion>
+
+  <Accordion title="Agent misunderstands instructions" icon="face-confused">
+    **Ask:**
+    ```
+    Can you explain your understanding of your job?
+    What are you supposed to do?
+    ```
+
+    **The assistant will:**
+    - Summarize its understanding
+    - Show what it thinks it should do
+    - Reveal any misinterpretations
+
+    **Refine instructions:**
+    - Clarify ambiguous parts
+    - Add specific examples
+    - Break complex steps into simpler ones
+  </Accordion>
+
+  <Accordion title="Data isn't being found" icon="magnifying-glass">
+    **Ask:**
+    ```
+    Can you see the data in the "Customers" sheet?
+    Show me the first 3 rows.
+    ```
+
+    **The assistant will:**
+    - Confirm if it can access the sheet
+    - Show sample data
+    - Reveal any access issues
+
+    **Common fixes:**
+    - Check sheet name spelling in instructions
+    - Verify worksheet is saved
+    - Refresh the page if data was just added
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Interactive Iteration
+
+The AI Assistant excels at iterative refinement.
+
+### Iteration Pattern
+
+<Steps>
+  <Step title="Initial Attempt">
+    ```
+    Generate a quote for this customer
+    ```
+
+    *Reviews output - not quite right*
+  </Step>
+
+  <Step title="Refine Request">
+    ```
+    Actually, can you format the quote like the example
+    in the "Quote Template.pdf" source?
+    ```
+
+    *Better, but missing something*
+  </Step>
+
+  <Step title="Add Details">
+    ```
+    Also include a breakdown showing:
+    - Subtotal
+    - Discount amount
+    - Tax
+    - Grand total
+    ```
+
+    *Perfect!*
+  </Step>
+
+  <Step title="Update Instructions">
+    Copy the working approach into your agent instructions
+  </Step>
+</Steps>
+
+### Example Iteration Session
+
+**You:**
+```
+Process the first customer request
+```
+
+**AI Assistant:**
+```
+I've generated a quote for Acme Corp:
+- 10x Widget A at $50 = $500
+- Total: $500
+
+Added to row 10 of the Quotes sheet.
+```
+
+**You:**
+```
+Wait, you forgot to apply the 10% discount they requested
+```
+
+**AI Assistant:**
+```
+You're right! Let me recalculate:
+- Subtotal: $500
+- 10% discount: -$50
+- Total: $450
+
+Should I update row 10 with the corrected total?
+```
+
+**You:**
+```
+Yes, and also show the discount as a separate line item
+```
+
+**AI Assistant:**
+```
+Updated row 10:
+- Subtotal: $500
+- Discount: -$50 (10%)
+- Total: $450
+
+I'll remember to always show discounts separately.
+```
+
+---
+
+## Advanced Features
+
+### Multi-Turn Conversations
+
+The AI Assistant maintains context across messages:
+
+```
+You: "Find all customers with pending quotes"
+AI: "Found 5 customers: Acme Corp, TechCo..."
+
+You: "Generate quotes for the first 3"
+AI: "Processing Acme Corp, TechCo, StartupXYZ..."
+
+You: "Send the quotes via email"
+AI: "Sending emails via Gmail integration..."
+```
+
+### Ask Questions
+
+Get clarification on your workflow:
+
+<Tabs>
+  <Tab title="About Instructions">
+    ```
+    What should I do if a product is out of stock?
+    ```
+
+    ```
+    How do I handle customers who request custom pricing?
+    ```
+
+    ```
+    What information do you need to generate a quote?
+    ```
+  </Tab>
+
+  <Tab title="About Data">
+    ```
+    How many pending requests are in the worksheet?
+    ```
+
+    ```
+    Which customer has the highest order value?
+    ```
+
+    ```
+    Are there any duplicates in the customer list?
+    ```
+  </Tab>
+
+  <Tab title="About Sources">
+    ```
+    What pricing information is in the Price List?
+    ```
+
+    ```
+    Can you find the discount policy in the uploaded documents?
+    ```
+
+    ```
+    What's the standard quote format based on past examples?
+    ```
+  </Tab>
+</Tabs>
+
+### Dry Runs
+
+Test without making changes:
+
+```
+Show me what would happen if I processed all pending rows,
+but don't actually write anything to the worksheet yet.
+```
+
+The AI Assistant will simulate the execution and show you the results before committing.
+
+---
+
+## Best Practices
+
+<Check>
+  **Start small:** Test with 1-2 rows before processing hundreds
+</Check>
+
+<Check>
+  **Use specific commands:** "Process row 5" is clearer than "do the thing"
+</Check>
+
+<Check>
+  **Ask for explanations:** "Why did you choose that value?" helps debug
+</Check>
+
+<Check>
+  **Iterate incrementally:** Make one change at a time, test, repeat
+</Check>
+
+<Check>
+  **Save working approaches:** When something works well, copy it into your instructions
+</Check>
+
+<Check>
+  **Use dry runs:** Preview results before actually writing to worksheets
+</Check>
+
+---
+
+## AI Assistant vs. Automated Runs
+
+Understanding when to use each:
+
+| Feature | AI Assistant | Automated Run |
+|---------|-------------|---------------|
+| **Control** | Interactive, step-by-step | Fully automated |
+| **Speed** | Manual, real-time | Scheduled or triggered |
+| **Testing** | ✅ Perfect for testing | ❌ Not for testing |
+| **Debugging** | ✅ See reasoning live | View logs after |
+| **Iteration** | ✅ Instant feedback | Run, review, modify, repeat |
+| **Scale** | ❌ Manual for each task | ✅ Processes batches |
+| **Production** | ❌ Not for production | ✅ For production |
+
+**Workflow:**
+1. Build and test with **AI Assistant**
+2. Once working, automate with **Runs**
+3. Debug issues with **AI Assistant**
+4. Optimize and return to **Runs**
+
+---
+
+## Common Use Cases
+
+<AccordionGroup>
+  <Accordion title="Testing New Agents" icon="flask">
+    Before your agent runs automatically, test it thoroughly:
+
+    1. **Test with sample data:** 3-5 representative rows
+    2. **Test edge cases:** Missing data, unusual values, errors
+    3. **Test integrations:** Verify emails send, CRM updates work
+    4. **Verify output:** Check worksheet updates are correct
+    5. **Refine instructions:** Based on test results
+  </Accordion>
+
+  <Accordion title="Debugging Failures" icon="bug">
+    When an automated run fails:
+
+    1. **Review run logs** to see what went wrong
+    2. **Recreate the scenario** in AI Assistant
+    3. **Ask questions:** "Why did you fail on row 10?"
+    4. **Test fixes:** Try different approaches interactively
+    5. **Update instructions** once working
+    6. **Re-run** the automated agent
+  </Accordion>
+
+  <Accordion title="One-Off Tasks" icon="hand-pointer">
+    For tasks you only need to do once:
+
+    ```
+    Generate a summary report of all quotes from Q4 2024
+    ```
+
+    ```
+    Find all invoices from vendor "Acme Corp" and calculate total spent
+    ```
+
+    ```
+    Enrich the top 10 leads with industry and employee count
+    ```
+
+    No need to create a fully automated agent - just chat with the AI Assistant!
+  </Accordion>
+
+  <Accordion title="Data Exploration" icon="chart-mixed">
+    Explore your data interactively:
+
+    ```
+    What's the average order value in the worksheet?
+    ```
+
+    ```
+    Show me the top 5 customers by revenue
+    ```
+
+    ```
+    Are there any patterns in which products are frequently ordered together?
+    ```
+
+    The AI Assistant can analyze and summarize your data on the fly.
+  </Accordion>
+
+  <Accordion title="Instruction Writing" icon="pen">
+    Use the AI Assistant to help write better instructions:
+
+    ```
+    I want to create an agent that processes invoices.
+    What information should I include in the instructions?
+    ```
+
+    ```
+    Can you suggest a good structure for my invoice processing workflow?
+    ```
+
+    ```
+    What edge cases should I account for?
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Tips & Tricks
+
+### Get Better Responses
+
+<CardGroup cols={2}>
+  <Card title="Be Specific" icon="bullseye">
+    **Instead of:** "Do the thing"
+
+    **Try:** "Generate a quote for the customer in row 5"
+  </Card>
+
+  <Card title="Ask Why" icon="question">
+    **Instead of:** Accepting wrong output
+
+    **Try:** "Why did you calculate the total as $500?"
+  </Card>
+
+  <Card title="Show Examples" icon="image">
+    **Instead of:** Vague descriptions
+
+    **Try:** "Format it like this: [example]"
+  </Card>
+
+  <Card title="Test Edge Cases" icon="triangle-exclamation">
+    **Instead of:** Only happy paths
+
+    **Try:** "What if the customer field is empty?"
+  </Card>
+</CardGroup>
+
+### Conversation Starters
+
+Not sure what to ask? Try these:
+
+**Understanding:**
+- "Explain your job in your own words"
+- "What are the main steps in your workflow?"
+- "What data do you have access to?"
+
+**Testing:**
+- "Process the first row and show your work"
+- "What would you do in this scenario: [describe edge case]"
+- "Show me sample output before writing to the worksheet"
+
+**Debugging:**
+- "Why did the last run fail?"
+- "What sources did you use for that decision?"
+- "Can you walk me through your reasoning?"
+
+**Optimization:**
+- "How can I improve these instructions?"
+- "What's the fastest way to process 1,000 rows?"
+- "Are there any bottlenecks in the workflow?"
+
+---
+
+## Limitations
+
+<Warning>
+  The AI Assistant has the same limitations as your automated agent:
+  - Can only access uploaded sources (can't browse the web unless you add links)
+  - Respects your integration permissions
+  - Limited by rate limits of external APIs
+  - Can't execute code or install packages
+</Warning>
+
+### What AI Assistant CAN'T Do
+
+❌ Run on a schedule (use automated runs for that)
+❌ Process data while you're away (use triggers)
+❌ Handle thousands of items efficiently (use batch runs)
+❌ Make changes without your permission (you control each step)
+
+### What AI Assistant CAN Do
+
+✅ Test workflows before automation
+✅ Debug failed runs interactively
+✅ Explore and analyze data
+✅ Answer questions about your workflow
+✅ Generate one-off outputs
+✅ Help refine instructions
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Working with Agents" icon="robot" href="/guides/agents">
+    Learn how to create and configure agents
+  </Card>
+
+  <Card title="Monitoring Runs" icon="play" href="/guides/runs">
+    Understand automated execution and logs
+  </Card>
+
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Build your first agent with AI Assistant
+  </Card>
+
+  <Card title="FAQ" icon="circle-question" href="/reference/faq">
+    Common questions and troubleshooting
+  </Card>
+</CardGroup>

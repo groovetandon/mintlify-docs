@@ -1,0 +1,748 @@
+---
+title: "Monitoring Runs"
+description: "Track, debug, and optimize your agent executions"
+---
+
+## What Are Runs?
+
+A **run** is a single execution of your agent's workflow. Every time your agent performs its task—whether triggered manually, by schedule, or by event—that's a run.
+
+<CardGroup cols={2}>
+  <Card title="Manual Run" icon="hand-pointer">
+    You click "Test Run" button
+  </Card>
+  <Card title="Scheduled Run" icon="clock">
+    Runs at 9 AM every day
+  </Card>
+  <Card title="Event Run" icon="bolt">
+    Triggered by new email or webhook
+  </Card>
+  <Card title="API Run" icon="code">
+    Executed via API call
+  </Card>
+</CardGroup>
+
+---
+
+## Run Statuses
+
+Every run has a status that tells you what's happening:
+
+<AccordionGroup>
+  <Accordion title="Running" icon="spinner">
+    **What it means:** The agent is currently executing
+
+    **What you see:**
+    - Real-time progress in the run log
+    - AI reasoning step-by-step
+    - Updates as data is processed
+
+    **Actions:**
+    - Watch live progress
+    - Cancel if needed
+  </Accordion>
+
+  <Accordion title="Completed" icon="circle-check">
+    **What it means:** The agent finished successfully
+
+    **What you see:**
+    - Full execution log
+    - All outputs written
+    - Summary of what was done
+
+    **Indicators:**
+    - Green checkmark icon
+    - "Completed" badge
+    - Final timestamp
+
+    **Actions:**
+    - Review results
+    - Download logs
+    - Re-run if needed
+  </Accordion>
+
+  <Accordion title="Failed" icon="circle-xmark">
+    **What it means:** The agent encountered an error
+
+    **What you see:**
+    - Error message
+    - Stack trace (if available)
+    - Where it failed in the workflow
+
+    **Indicators:**
+    - Red X icon
+    - "Failed" badge
+    - Error details in logs
+
+    **Actions:**
+    - Read error message
+    - Debug the issue
+    - Fix and retry
+  </Accordion>
+
+  <Accordion title="Needs Review" icon="pause">
+    **What it means:** The agent is waiting for human approval (human-in-the-loop)
+
+    **What you see:**
+    - What the agent wants to do
+    - Why it needs approval
+    - Options to approve/reject/modify
+
+    **Indicators:**
+    - Yellow pause icon
+    - "Needs Review" badge
+    - Notification sent (if configured)
+
+    **Actions:**
+    - Review the decision
+    - Approve to continue
+    - Reject to stop
+    - Modify and approve
+  </Accordion>
+
+  <Accordion title="Canceled" icon="ban">
+    **What it means:** You or another user stopped the run
+
+    **What you see:**
+    - Partial results (what was done before cancellation)
+    - "Canceled by [user]" message
+    - Timestamp of cancellation
+
+    **Indicators:**
+    - Gray ban icon
+    - "Canceled" badge
+
+    **Actions:**
+    - Review partial work
+    - Start a new run if needed
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Viewing Run History
+
+Access all past runs from the **Runs** tab.
+
+<Steps>
+  <Step title="Navigate to Runs">
+    In your agent page, click the **Runs** tab in the left sidebar
+  </Step>
+
+  <Step title="Browse History">
+    See a list of all executions sorted by date (newest first)
+  </Step>
+
+  <Step title="Filter & Search">
+    Use filters to find specific runs:
+    - Status (Completed, Failed, etc.)
+    - Date range
+    - Trigger type
+  </Step>
+
+  <Step title="Click for Details">
+    Click any run to see full logs and details
+  </Step>
+</Steps>
+
+### Run List View
+
+Each run in the list shows:
+
+| Column | Description |
+|--------|-------------|
+| **Status** | Visual indicator (✅❌⏸️) |
+| **Start Time** | When the run began |
+| **Duration** | How long it took (or "In progress...") |
+| **Trigger** | Manual, Schedule, Event, API |
+| **Items Processed** | How many rows/items (if applicable) |
+| **User** | Who triggered it (for manual runs) |
+
+---
+
+## Understanding Run Logs
+
+Logs show you exactly what your agent did and why.
+
+### Log Structure
+
+<Tabs>
+  <Tab title="Execution Timeline">
+    **Chronological view of all actions:**
+
+    ```
+    [09:00:01] Run started (Manual trigger by john@acme.com)
+    [09:00:02] Reading instructions...
+    [09:00:03] Loading worksheet "Quote Requests"
+    [09:00:05] Found 10 rows with Status = "Pending"
+    [09:00:07] Processing row 1: Acme Corp
+    [09:00:09]   - Searching Price List for Product A
+    [09:00:10]   - Found price: $50.00
+    [09:00:11]   - Calculating total: 10 × $50 = $500
+    [09:00:12]   - Applying 10% discount: $500 - $50 = $450
+    [09:00:13]   - Writing to row 1 of Quotes sheet
+    [09:00:14] Processing row 2: TechCo
+    ...
+    [09:02:30] All items processed successfully
+    [09:02:31] Run completed (Duration: 2m 30s)
+    ```
+  </Tab>
+
+  <Tab title="AI Reasoning">
+    **Step-by-step thought process:**
+
+    ```
+    Reasoning for row 1 (Acme Corp):
+
+    1. Customer request:
+       - Product: Widget A
+       - Quantity: 10
+       - Special request: 10% volume discount
+
+    2. Looking up pricing:
+       - Searched "Price List" source
+       - Found Widget A: $50.00 per unit
+       - Citation: Price List.xlsx, Sheet1, Row 15
+
+    3. Calculating:
+       - Subtotal: 10 × $50.00 = $500.00
+       - Discount: 10% of $500.00 = $50.00
+       - Total: $500.00 - $50.00 = $450.00
+
+    4. Validation:
+       - Total > $0 ✓
+       - Customer exists in database ✓
+       - Product available ✓
+
+    5. Output:
+       - Quote ID: Q-2025-001
+       - Total: $450.00
+       - Status: Generated
+    ```
+  </Tab>
+
+  <Tab title="Source Citations">
+    **Which documents were used:**
+
+    ```
+    Sources referenced in this run:
+
+    📄 Price List.xlsx
+       - Page: Sheet1, Row 15
+       - Used for: Product A pricing
+       - Citation: "$50.00 per unit"
+
+    📄 Discount Policy.pdf
+       - Page: 3, Paragraph 2
+       - Used for: Volume discount rules
+       - Citation: "10% discount for orders over 5 units"
+
+    📄 Quote Template.pdf
+       - Page: 1
+       - Used for: Output formatting
+       - Citation: Quote structure and layout
+    ```
+
+    Click any citation to see the exact location in the source document.
+  </Tab>
+
+  <Tab title="Integration Activity">
+    **External actions taken:**
+
+    ```
+    Integrations used:
+
+    📧 Gmail Integration
+       - Action: Sent email
+       - To: customer@acmecorp.com
+       - Subject: "Your Quote from Decisional"
+       - Attachment: Quote-Q-2025-001.pdf
+       - Status: ✅ Sent successfully
+
+    💼 HubSpot Integration
+       - Action: Updated deal
+       - Deal ID: 12345
+       - Field updated: Deal Stage → "Quote Sent"
+       - Status: ✅ Updated successfully
+
+    💬 Slack Integration
+       - Action: Posted message
+       - Channel: #sales
+       - Message: "New quote Q-2025-001 sent to Acme Corp"
+       - Status: ✅ Posted successfully
+    ```
+  </Tab>
+</Tabs>
+
+### Log Details
+
+Click any log entry to expand and see:
+- **Full context**: What led to this action
+- **Input data**: What the agent received
+- **Output data**: What the agent produced
+- **Timing**: How long this step took
+- **Citations**: Which sources were used
+
+---
+
+## Debugging Failed Runs
+
+When a run fails, follow these steps to identify and fix the issue.
+
+### Debugging Workflow
+
+<Steps>
+  <Step title="Read the Error Message">
+    The error message tells you what went wrong:
+
+    **Common errors:**
+    - "Source not found" → Source was deleted or renamed
+    - "Column 'XYZ' not found" → Column name changed or misspelled
+    - "API rate limit exceeded" → Too many requests to external service
+    - "Formula error in cell B5" → Worksheet formula is broken
+  </Step>
+
+  <Step title="Find Where It Failed">
+    Look at the execution timeline to see the last successful step before failure.
+
+    **Example:**
+    ```
+    [09:00:10] Processing row 5: StartupXYZ ✓
+    [09:00:12] Processing row 6: GlobalCorp ✓
+    [09:00:14] Processing row 7: FailCo ❌
+                Error: Product "Widget Z" not found in Price List
+    ```
+
+    Row 7 is the problem.
+  </Step>
+
+  <Step title="Reproduce in AI Assistant">
+    Use the AI Assistant to test the failing scenario:
+
+    ```
+    Process row 7 only and show me what happens
+    ```
+
+    This lets you debug interactively.
+  </Step>
+
+  <Step title="Identify Root Cause">
+    Common causes:
+
+    **Data issues:**
+    - Missing required fields
+    - Invalid formats (wrong date format, non-numeric text)
+    - Unexpected values
+
+    **Configuration issues:**
+    - Source deleted or renamed
+    - Integration disconnected
+    - Column names changed
+
+    **Logic issues:**
+    - Instructions don't handle edge case
+    - Missing validation rules
+    - Incorrect formula in worksheet
+  </Step>
+
+  <Step title="Fix the Issue">
+    Based on root cause:
+
+    **Data issues:** Clean the data, add validation
+    **Configuration issues:** Reconnect integration, re-upload source
+    **Logic issues:** Update instructions, add error handling
+  </Step>
+
+  <Step title="Retry the Run">
+    Click **Retry** on the failed run to re-execute with the fix
+  </Step>
+</Steps>
+
+### Common Failures & Solutions
+
+<AccordionGroup>
+  <Accordion title="Source not found" icon="folder-xmark">
+    **Error:** `Source "Price List 2024.xlsx" not found`
+
+    **Cause:** Source was deleted, renamed, or never uploaded
+
+    **Solution:**
+    1. Go to Sources tab
+    2. Check if source exists
+    3. If renamed, update instructions with new name
+    4. If deleted, re-upload the source
+  </Accordion>
+
+  <Accordion title="Column not found" icon="table">
+    **Error:** `Column "Customer Name" not found in worksheet`
+
+    **Cause:** Column was renamed, deleted, or misspelled in instructions
+
+    **Solution:**
+    1. Open the worksheet
+    2. Verify column name (check spelling and case)
+    3. Update instructions to match exact column name
+    4. Or rename column to match instructions
+  </Accordion>
+
+  <Accordion title="Integration error" icon="plug">
+    **Error:** `Gmail integration failed: Authentication expired`
+
+    **Cause:** Integration was disconnected or credentials expired
+
+    **Solution:**
+    1. Go to Settings → Integrations
+    2. Find the failing integration
+    3. Click **Reconnect**
+    4. Authorize again
+    5. Retry the run
+  </Accordion>
+
+  <Accordion title="Formula error" icon="function">
+    **Error:** `Formula error in cell E5: #DIV/0!`
+
+    **Cause:** Worksheet formula dividing by zero or referencing invalid cells
+
+    **Solution:**
+    1. Open worksheet and navigate to cell E5
+    2. Check the formula
+    3. Fix the formula (e.g., add IF check for zero)
+    4. Save worksheet
+    5. Retry run
+  </Accordion>
+
+  <Accordion title="Timeout error" icon="clock">
+    **Error:** `Run timed out after 10 minutes`
+
+    **Cause:** Processing too much data or very slow external API
+
+    **Solution:**
+    1. **Process in smaller batches** (e.g., 100 rows at a time)
+    2. **Optimize sources** (remove unnecessary documents)
+    3. **Simplify instructions** (fewer complex steps)
+    4. **Check external APIs** (slow response times)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Run Actions
+
+### Manual Run
+
+Click **Test Run** to execute your agent immediately.
+
+**Use when:**
+- Testing new agent
+- Processing one-off task
+- Debugging an issue
+- Verifying a fix
+
+### Retry Run
+
+Click **Retry** on a completed or failed run to execute again with the same inputs.
+
+**Use when:**
+- Run failed due to temporary issue (API downtime)
+- You fixed the problem and want to reprocess
+- Testing if your fix worked
+
+**Note:** Retry uses current instructions, not the instructions from the original run.
+
+### Cancel Run
+
+Click **Cancel** while a run is in progress to stop execution.
+
+**What happens:**
+- Agent stops processing
+- Partial results may be saved
+- Run marked as "Canceled"
+
+**Use when:**
+- Realized you need to make a change
+- Processing wrong data
+- Emergency stop needed
+
+<Warning>
+  Canceling is immediate and cannot be undone. Some changes (like sent emails) cannot be reversed.
+</Warning>
+
+### Download Logs
+
+Click **Download Logs** to export the full execution log as a text file.
+
+**Use when:**
+- Sharing with support team
+- Archiving for compliance
+- Detailed offline analysis
+- Debugging complex issues
+
+---
+
+## Performance Monitoring
+
+Track your agent's performance over time.
+
+### Key Metrics
+
+<CardGroup cols={2}>
+  <Card title="Success Rate" icon="percent">
+    **Formula:** (Completed runs / Total runs) × 100%
+
+    **Good:** > 95%
+    **Needs attention:** < 90%
+
+    **Improve by:**
+    - Better error handling
+    - Data validation
+    - More robust instructions
+  </Card>
+
+  <Card title="Average Duration" icon="stopwatch">
+    **What to track:** Median run time
+
+    **Benchmarks:**
+    - Simple tasks: < 30 seconds
+    - Medium complexity: 1-3 minutes
+    - Complex workflows: 5-10 minutes
+
+    **Improve by:**
+    - Reduce source count
+    - Optimize worksheet structure
+    - Process in parallel
+  </Card>
+
+  <Card title="Items Per Run" icon="layer-group">
+    **What to track:** How many items processed per run
+
+    **Benchmarks:**
+    - Small batches: 10-50 items
+    - Medium batches: 50-500 items
+    - Large batches: 500+ items
+
+    **Optimize by:**
+    - Batch processing
+    - Parallel execution
+    - Efficient data structure
+  </Card>
+
+  <Card title="Manual Review Rate" icon="user-check">
+    **Formula:** (Runs needing review / Total runs) × 100%
+
+    **Good:** < 10% (for most workflows)
+    **Too high:** > 30% (agent isn't confident)
+
+    **Improve by:**
+    - Better training data
+    - Clearer instructions
+    - More comprehensive sources
+  </Card>
+</CardGroup>
+
+### Viewing Performance Trends
+
+<Tabs>
+  <Tab title="Success Rate Over Time">
+    Track success rate weekly or monthly:
+
+    ```
+    Week 1: 85% (testing phase)
+    Week 2: 92% (refined instructions)
+    Week 3: 97% (stable)
+    Week 4: 98% (optimized)
+    ```
+
+    **Goal:** Upward trend toward 95%+
+  </Tab>
+
+  <Tab title="Duration Trends">
+    Monitor if runs are getting slower:
+
+    ```
+    Jan: Average 2m 15s
+    Feb: Average 2m 45s (slower - investigate!)
+    Mar: Average 1m 50s (optimized sources)
+    ```
+
+    **Warning sign:** Increasing duration over time
+  </Tab>
+
+  <Tab title="Failure Patterns">
+    Identify common failure reasons:
+
+    ```
+    Integration errors: 45%
+    Data validation: 30%
+    Source issues: 15%
+    Other: 10%
+    ```
+
+    **Action:** Focus on top failure cause first
+  </Tab>
+</Tabs>
+
+---
+
+## Advanced Run Management
+
+### Scheduled Runs
+
+View upcoming and past scheduled executions.
+
+**Upcoming runs:**
+- Next execution time
+- Trigger configuration
+- Expected duration (based on history)
+
+**Past scheduled runs:**
+- Filter by "Scheduled" trigger type
+- See execution pattern (daily, weekly, etc.)
+- Identify missed runs (if any)
+
+### Bulk Actions
+
+Manage multiple runs at once:
+
+- **Retry all failed runs** from the past 24 hours
+- **Download logs** for all runs in a date range
+- **Export run data** to CSV for analysis
+
+### Run Notifications
+
+Get alerted when important events happen:
+
+<AccordionGroup>
+  <Accordion title="Email Notifications" icon="envelope">
+    Configure in Settings → Notifications:
+
+    **Options:**
+    - Run completed (all runs or only failures)
+    - Run needs review (human-in-the-loop)
+    - Run duration exceeds threshold
+    - Run failed after 3 retries
+
+    **Recipient:** Your email or team distribution list
+  </Accordion>
+
+  <Accordion title="Slack Notifications" icon="message">
+    Post to Slack channel when:
+
+    **Options:**
+    - Agent completes run
+    - Agent fails
+    - Agent needs approval
+    - Daily summary (runs completed, failed, avg duration)
+
+    **Setup:**
+    1. Connect Slack integration
+    2. Go to Settings → Notifications
+    3. Enable "Send to Slack"
+    4. Choose channel
+  </Accordion>
+
+  <Accordion title="Webhook Notifications" icon="webhook">
+    Call your API when runs complete:
+
+    **Payload:**
+    ```json
+    {
+      "event": "run.completed",
+      "run_id": "run_abc123",
+      "agent_id": "agent_xyz",
+      "status": "completed",
+      "duration_ms": 45000,
+      "items_processed": 100,
+      "timestamp": "2025-01-15T09:30:00Z"
+    }
+    ```
+
+    **Use case:** Integrate with your own monitoring/alerting system
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Best Practices
+
+<Check>
+  **Monitor regularly:** Check run history at least weekly
+</Check>
+
+<Check>
+  **Investigate failures immediately:** Don't let failed runs accumulate
+</Check>
+
+<Check>
+  **Track trends:** Look for patterns (time of day, specific data causing issues)
+</Check>
+
+<Check>
+  **Set up notifications:** Don't rely on manually checking
+</Check>
+
+<Check>
+  **Archive old logs:** Download and store logs for compliance/audit
+</Check>
+
+<Check>
+  **Test before scheduling:** Always manually test before enabling schedule
+</Check>
+
+<Check>
+  **Document fixes:** When you debug an issue, note the solution for future reference
+</Check>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Runs not appearing in history" icon="eye-slash">
+    **Possible causes:**
+    1. **Filter applied:** Clear all filters
+    2. **Wrong agent:** Make sure you're viewing correct agent
+    3. **Date range:** Expand date range to "All time"
+
+    **Still missing?** Contact support with agent ID and approximate run time.
+  </Accordion>
+
+  <Accordion title="Can't cancel running agent" icon="ban">
+    **Possible causes:**
+    1. **Already completing:** Agent is finishing up
+    2. **Permission issue:** You need Editor role or higher
+    3. **Browser issue:** Refresh page and try again
+
+    **Stuck?** Runs auto-timeout after 10 minutes if no response.
+  </Accordion>
+
+  <Accordion title="Logs not showing details" icon="file-slash">
+    **Possible causes:**
+    1. **Old run:** Logs older than 90 days are archived (Enterprise has longer retention)
+    2. **Log level:** Some details hidden based on plan
+    3. **Incomplete run:** Run was canceled before logging completed
+
+    **Need archived logs?** Contact support to retrieve.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Working with Agents" icon="robot" href="/guides/agents">
+    Learn how to optimize agent instructions
+  </Card>
+
+  <Card title="AI Assistant" icon="message" href="/guides/ai-assistant">
+    Debug runs interactively with chat
+  </Card>
+
+  <Card title="Integrations" icon="plug" href="/guides/integrations">
+    Connect services for notifications and actions
+  </Card>
+
+  <Card title="API Reference" icon="code" href="/api-reference/runs/list">
+    Programmatic access to run data
+  </Card>
+</CardGroup>

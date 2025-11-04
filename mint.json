@@ -7,12 +7,12 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#6366F1",
-    "light": "#818CF8",
-    "dark": "#4F46E5",
+    "primary": "#3E0D77",
+    "light": "#6B2A9E",
+    "dark": "#230D39",
     "anchors": {
-      "from": "#6366F1",
-      "to": "#818CF8"
+      "from": "#3E0D77",
+      "to": "#6B2A9E"
     }
   },
   "topbarLinks": [
@@ -23,7 +23,7 @@
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://app.decisional.com"
+    "url": "https://agents.decisional.com"
   },
   "anchors": [
     {
