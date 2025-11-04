@@ -35,6 +35,11 @@
       "name": "Blog",
       "icon": "newspaper",
       "url": "https://www.decisional.com/blog"
+    },
+    {
+      "name": "Changelog",
+      "icon": "list",
+      "url": "https://docs.decisional.com/reference/changelog"
     }
   ],
   "navigation": [
