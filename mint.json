@@ -66,11 +66,16 @@
       ]
     },
     {
+      "group": "Changelog",
+      "pages": [
+        "reference/changelog"
+      ]
+    },
+    {
       "group": "Reference",
       "pages": [
         "reference/glossary",
-        "reference/faq",
-        "reference/changelog"
+        "reference/faq"
       ]
     }
   ],
