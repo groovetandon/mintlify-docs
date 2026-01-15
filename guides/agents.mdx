@@ -13,6 +13,35 @@ description: "Master agent creation, configuration, and optimization"
 
 ---
 
+## Agent lifecycle
+
+Internal statuses (backend workflow granularity):
+- **init**, **active**, **inactive** - platform-level flags, not part of the setup wizard flow
+- **draft → connecting → connected → building → built → testing → tested → live ↔ paused** - setup + execution lifecycle
+
+External statuses (user-visible UI):
+- **draft** - any pre-tested state (draft/connecting/connected/building/built/testing)
+- **ready** - tested
+- **live** - agent is running
+- **paused** - agent paused; no runs execute until resumed
+
+Internal state diagram:
+```mermaid
+stateDiagram-v2
+  [*] --> draft
+  draft --> connecting
+  connecting --> connected
+  connected --> building
+  building --> built
+  built --> testing
+  testing --> tested
+  tested --> live
+  live --> paused
+  paused --> live
+```
+
+---
+
 ## Creating Your First Agent
 
 <Steps>
