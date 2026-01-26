@@ -39,6 +39,58 @@ The AI Assistant panel appears on the **right side** of your agent page.
 
 ---
 
+## Slash Commands
+
+Use slash commands to quickly execute agent actions directly from the chat input.
+
+### Available Commands
+
+| Command | Description | When Available |
+|---------|-------------|----------------|
+| `/connect` | Open integrations panel | Draft status |
+| `/build` | Build agent workflow | After connecting integrations |
+| `/test` | Test the agent | After building |
+| `/edit` | Return to draft mode | After testing or when live |
+| `/retest` | Re-run tests | After testing |
+| `/publish` | Publish agent to live | After testing |
+
+### How to Use
+
+<Steps>
+  <Step title="Type a slash">
+    Type `/` in the chat input to open the command picker
+  </Step>
+
+  <Step title="Navigate commands">
+    Use **arrow keys** to navigate through available commands
+  </Step>
+
+  <Step title="Filter commands">
+    Type to filter (e.g., `/con` shows only `/connect`)
+  </Step>
+
+  <Step title="Execute">
+    Press **Enter** to execute the selected command, or **Escape** to dismiss
+  </Step>
+</Steps>
+
+<Tip>
+  Commands are context-aware—only actions valid for your agent's current status are enabled. Disabled commands appear grayed out.
+</Tip>
+
+### Command Availability by Status
+
+| Agent Status | Available Commands |
+|--------------|-------------------|
+| **Draft** | `/connect` |
+| **Connected** | `/build`, `/connect` |
+| **Built** | `/test` |
+| **Tested** | `/edit`, `/retest`, `/publish` |
+| **Live** | `/edit` |
+| **Paused** | `/edit`, `/publish` |
+
+---
+
 ## How It Works
 
 The AI Assistant uses the **same AI engine** as your automated agent, with access to:
