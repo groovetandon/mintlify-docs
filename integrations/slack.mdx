@@ -9,7 +9,7 @@ icon: 'slack'
 Decisional offers two ways to work with Slack:
 
 1. **Slack Integration** — Connect your Slack account so agents can post messages, read channels, and interact with your workspace on your behalf
-2. **Slack DM Sync** — Chat with your agents directly from Slack DMs instead of the Decisional app
+2. **Slack Connection** — Chat with your agents directly from Slack DMs instead of the Decisional app
 
 These are independent features. You can use one, both, or neither depending on your needs.
 
@@ -83,9 +83,9 @@ You can also revoke access from Slack's App Management settings.
 
 ---
 
-## Slack DM Sync
+## Slack Connection
 
-Slack DM Sync lets you chat with your Decisional agents directly from Slack. Instead of switching to the Decisional app, just message the bot and your agent responds right in Slack.
+Slack Connection lets you chat with your Decisional agents directly from Slack. Instead of switching to the Decisional app, just message the bot and your agent responds right in Slack.
 
 ### How It Works
 
@@ -96,9 +96,9 @@ Slack DM Sync lets you chat with your Decisional agents directly from Slack. Ins
 
 Messages you send appear as coming from you (not the bot), so the conversation feels natural. While your agent is thinking, you'll see a "Thinking..." indicator.
 
-### Setting Up DM Sync
+### Setting Up Slack Connection
 
-DM Sync requires two steps: installing the bot (admin), then connecting your account (each user).
+Slack Connection requires two steps: installing the bot (admin), then connecting your account (each user).
 
 #### Step 1: Install the Slack Bot (Admin Only)
 
@@ -122,18 +122,18 @@ Once installed, the bot can DM any member of your Slack workspace.
 After the bot is installed, each user connects their account:
 
 1. Go to **Settings**
-2. Find the **Slack DM Sync** card
+2. Find the **Slack Slack Connection** card
 3. Click **Connect Slack**
 4. Sign in to Slack if prompted
 5. Click **Allow** to authorize
 
 Your Slack username appears once connected.
 
-#### Step 3: Enable DM Sync
+#### Step 3: Enable Slack Connection
 
-Toggle on DM Sync to start syncing messages:
+Toggle on Slack Connection to start syncing messages:
 
-1. In the **Slack DM Sync** card, flip the toggle to enable
+1. In the **Slack Slack Connection** card, flip the toggle to enable
 2. Open Slack and find **Decisional** in your DMs
 3. Send a message — it will appear in your Decisional workspace
 
@@ -166,13 +166,13 @@ Some agent responses include interactive elements:
 
 Click buttons directly in Slack to interact with your agent.
 
-### Managing DM Sync
+### Managing Slack Connection
 
 **To view status:** Go to **Settings** and check the Slack cards
 
-**To disable sync:** Toggle off DM Sync in Settings (keeps your account connected)
+**To disable sync:** Toggle off Slack Connection in Settings (keeps your account connected)
 
-**To disconnect:** Click **Disconnect** in the Slack DM Sync card
+**To disconnect:** Click **Disconnect** in the Slack Slack Connection card
 
 **To remove the bot (admin):** Click **Disconnect** in the Slack Workspace card
 
@@ -182,9 +182,9 @@ Click buttons directly in Slack to interact with your agent.
 
 ---
 
-## Integration vs DM Sync
+## Integration vs Slack Connection
 
-| Feature | Slack Integration | Slack DM Sync |
+| Feature | Slack Integration | Slack Slack Connection |
 |---------|-------------------|---------------|
 | **Purpose** | Agents take actions in Slack | You chat with agents via Slack |
 | **Setup** | Connect via Integrations page | Install bot + connect in Settings |
@@ -194,7 +194,7 @@ Click buttons directly in Slack to interact with your agent.
 
 **Use Integration when:** Your agents need to post messages, read channels, or automate Slack workflows
 
-**Use DM Sync when:** You want to chat with your agents from Slack instead of the Decisional app
+**Use Slack Connection when:** You want to chat with your agents from Slack instead of the Decisional app
 
 ---
 
@@ -214,10 +214,10 @@ Click buttons directly in Slack to interact with your agent.
 - Verify the connection is Active in Integrations
 - Check the run details for error messages
 
-### DM Sync Issues
+### Slack Connection Issues
 
 **Bot not responding**
-- Check DM Sync is enabled in Settings
+- Check Slack Connection is enabled in Settings
 - Verify your agent is published and live
 - Try the Decisional app — if it works there, the issue is Slack-specific
 
@@ -239,7 +239,7 @@ Click buttons directly in Slack to interact with your agent.
 - Only you (or teammates if shared) can use your connection
 - Revoke access anytime from Integrations or Slack settings
 
-**For DM Sync:**
+**For Slack Connection:**
 - The bot only accesses DMs with itself — not your other conversations
 - Messages sync only to your Decisional workspace
 - Tokens are encrypted at rest
