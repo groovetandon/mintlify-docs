@@ -1,0 +1,144 @@
+---
+title: 'Scheduling Agents'
+description: 'Run your agents automatically on a schedule'
+icon: 'clock'
+---
+
+## Overview
+
+Schedule your agents to run automatically at specific times or intervals. Perfect for recurring tasks like daily reports, weekly data syncs, or hourly monitoring.
+
+## Setting Up a Schedule
+
+1. Open your agent
+2. Navigate to the **Triggers** tab
+3. Click **Add Trigger**
+4. Select **Schedule**
+5. Configure frequency and time
+6. Save the trigger
+
+## Schedule Options
+
+### Hourly
+
+Run every hour at a specific minute:
+
+- "Every hour at :00" (on the hour)
+- "Every hour at :30" (half past)
+- Custom minute selection
+
+### Daily
+
+Run once per day:
+
+- Select the time (e.g., 9:00 AM)
+- Choose your timezone
+- Runs every day at that time
+
+### Weekly
+
+Run on specific days:
+
+- Select days of the week (Mon, Tue, Wed, etc.)
+- Choose the time
+- Can select multiple days
+
+<Tip>
+  Schedule agents during off-hours to avoid interfering with manual work on the same data.
+</Tip>
+
+## Timezone Handling
+
+All schedules use your selected timezone:
+
+- Set in your account settings
+- Displayed next to schedule times
+- Automatically handles daylight saving time
+
+## Viewing Scheduled Runs
+
+### Upcoming Runs
+
+See when your next scheduled run will occur:
+
+1. Open the agent
+2. Check the **Triggers** tab
+3. "Next run" shows the upcoming execution
+
+### Run History
+
+View past scheduled executions:
+
+1. Navigate to the **Runs** tab
+2. Filter by trigger type: "Scheduled"
+3. Review execution history
+
+## Managing Schedules
+
+### Pausing a Schedule
+
+Temporarily stop scheduled runs:
+
+1. Open the trigger settings
+2. Toggle **Active** off
+3. Schedule pauses but configuration is preserved
+
+### Editing a Schedule
+
+Change frequency or timing:
+
+1. Click on the schedule trigger
+2. Modify settings
+3. Save changes
+
+Changes take effect for the next scheduled run.
+
+### Deleting a Schedule
+
+Remove the schedule entirely:
+
+1. Click on the schedule trigger
+2. Click **Delete**
+3. Confirm deletion
+
+## Best Practices
+
+### Choose Appropriate Frequency
+
+- **Hourly**: Real-time monitoring, frequent data syncs
+- **Daily**: Reports, digest emails, data cleanup
+- **Weekly**: Summaries, audits, batch processing
+
+### Stagger Multiple Agents
+
+If you have multiple scheduled agents:
+
+- Don't schedule all at the same time
+- Stagger by 5-10 minutes
+- Reduces system load and potential conflicts
+
+### Monitor Early Runs
+
+When first setting up a schedule:
+
+- Watch the first few executions
+- Verify outputs are correct
+- Adjust timing if needed
+
+<Warning>
+  Scheduled runs count toward your usage limits. Monitor your usage if running agents frequently.
+</Warning>
+
+## Troubleshooting
+
+### Scheduled Run Didn't Execute
+
+- Check if the agent is paused
+- Verify the schedule is active
+- Review the runs tab for any errors
+
+### Wrong Time Execution
+
+- Verify your timezone setting
+- Check for daylight saving time transitions
+- Ensure the schedule shows the expected next run

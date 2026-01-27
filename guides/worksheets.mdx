@@ -1,0 +1,107 @@
+---
+title: 'Worksheets'
+description: 'Work with spreadsheet data in your agents'
+icon: 'table'
+---
+
+## Overview
+
+Worksheets are the spreadsheet interface in Decisional. They let you view, edit, and manage the data your agents work with. Think of them as smart spreadsheets that your AI agents can read from and write to.
+
+## Worksheet Types
+
+### Agent Worksheet
+
+The primary worksheet for each agent:
+
+- Contains the data your agent processes
+- Agent can read from and write to this worksheet
+- Locked during active runs to prevent conflicts
+
+### User Worksheets
+
+Additional worksheets you create:
+
+- Upload your own data files
+- Reference data that doesn't change often
+- Agent has read-only access
+
+## Creating Worksheets
+
+### From Scratch
+
+1. Click **Add Worksheet** in the sources panel
+2. Select **Blank Worksheet**
+3. Name your worksheet
+4. Start entering data or paste from another source
+
+### From File Upload
+
+1. Click **Add Worksheet**
+2. Select **Upload File**
+3. Choose a CSV, Excel, or Google Sheets file
+4. Map columns if needed
+5. Click **Import**
+
+<Tip>
+  Worksheets auto-detect column types (text, number, date) from your data.
+</Tip>
+
+## Working with Worksheets
+
+### Editing Data
+
+Click any cell to edit. Standard spreadsheet shortcuts work:
+
+- `Enter` to confirm and move down
+- `Tab` to move right
+- `Escape` to cancel editing
+- `Cmd/Ctrl + Z` to undo
+
+### Tabbed Interface
+
+Multiple worksheets open as tabs:
+
+- Click tabs to switch between worksheets
+- Drag tabs to reorder
+- Right-click for more options (rename, duplicate, delete)
+
+### AI Editing Indicator
+
+When your agent is modifying a worksheet, you'll see:
+
+- A shimmer animation over affected cells
+- "AI Editing" indicator in the tab
+- Real-time updates as changes are made
+
+## Worksheet Locking
+
+During agent runs:
+
+- The worksheet shows a **LOCKED** status
+- You cannot edit locked worksheets
+- Prevents conflicts between your edits and agent changes
+- Automatically unlocks when the run completes
+
+<Warning>
+  Don't close the browser during a run. Wait for the worksheet to unlock before making manual changes.
+</Warning>
+
+## Data Validation
+
+Worksheets support basic validation:
+
+- Required columns
+- Data type enforcement
+- Unique value constraints
+
+Configure validation in worksheet settings.
+
+## Exporting Data
+
+Export worksheet data at any time:
+
+1. Click the **...** menu on the worksheet tab
+2. Select **Export**
+3. Choose format (CSV, Excel, JSON)
+4. Download the file

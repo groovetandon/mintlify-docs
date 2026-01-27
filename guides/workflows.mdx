@@ -1,0 +1,108 @@
+---
+title: 'Workflow Viewer'
+description: 'Visualize and understand your agent workflows'
+icon: 'diagram-project'
+---
+
+## Overview
+
+The Workflow Viewer shows a visual representation of how your agent processes data. Each workflow is a directed graph of nodes that execute in sequence or parallel.
+
+## Understanding the Workflow
+
+### Nodes
+
+Each box in the workflow represents a step:
+
+- **Input Node** - Where data enters the workflow
+- **Processing Nodes** - Transform or analyze data
+- **Integration Nodes** - Interact with external services
+- **Output Node** - Final result of the workflow
+
+### Connections
+
+Lines between nodes show data flow:
+
+- Data flows from top to bottom (or left to right)
+- Parallel branches execute simultaneously
+- All branches must complete before convergence
+
+### Node Status
+
+During and after runs, nodes show their status:
+
+| Status | Indicator |
+|--------|-----------|
+| Pending | Gray outline |
+| Running | Blue pulse animation |
+| Success | Green checkmark |
+| Failed | Red X |
+| Skipped | Gray with dash |
+
+## Viewing Workflows
+
+### In the Agent Editor
+
+1. Open your agent
+2. Click **View Workflow** in the assistant panel
+3. The workflow appears in a modal or side panel
+
+### In Run Details
+
+1. Open a completed run
+2. Navigate to the **Workflow** tab
+3. See the workflow with execution status for each node
+
+## Workflow Features
+
+### Zoom and Pan
+
+- Scroll to zoom in/out
+- Click and drag to pan
+- Use the zoom controls in the corner
+
+### Node Details
+
+Click on any node to see:
+
+- Node type and description
+- Input/output schemas
+- For completed runs: actual data processed
+
+### Integration Icons
+
+Nodes that use integrations display the integration logo:
+
+- Slack nodes show the Slack icon
+- Google Sheets nodes show the Sheets icon
+- Makes it easy to identify what each step does
+
+<Tip>
+  Integration logos appear in color to make the workflow easier to scan at a glance.
+</Tip>
+
+## Scheduled Triggers in Workflows
+
+If your agent has scheduled triggers, they appear at the top of the workflow:
+
+- Shows the schedule (e.g., "Daily at 9am")
+- Indicates when the next run will occur
+- Click to edit trigger settings
+
+## Hierarchical Layout
+
+Workflows use intelligent positioning:
+
+- Related nodes are grouped together
+- Clear visual hierarchy from input to output
+- Parallel branches are evenly spaced
+- Minimal crossing lines for readability
+
+## Exporting Workflows
+
+For documentation or sharing:
+
+1. Open the workflow viewer
+2. Click the **...** menu
+3. Select **Export as Image**
+4. Choose PNG or SVG format

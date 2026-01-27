@@ -1,31 +1,35 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Decisional Docs",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#0f172a",
+    "light": "#475569",
+    "dark": "#0f172a",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#0f172a",
+      "to": "#475569"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:support@decisional.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.decisional.com"
   },
   "tabs": [
+    {
+      "name": "Integrations",
+      "url": "integrations"
+    },
     {
       "name": "API Reference",
       "url": "api-reference"
@@ -33,19 +37,14 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Changelog",
+      "icon": "list",
+      "url": "https://www.decisional.com/changelog"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Contact Us",
+      "icon": "envelope",
+      "url": "mailto:support@decisional.com"
     }
   ],
   "navigation": [
@@ -53,39 +52,43 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "quickstart"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Guides",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "guides/agents",
+        "guides/building",
+        "guides/workflows",
+        "guides/runs",
+        "guides/worksheets",
+        "guides/file-uploads",
+        "guides/triggers",
+        "guides/scheduling",
+        "guides/credentials",
+        "guides/workspaces",
+        "guides/templates",
+        "guides/keyboard-shortcuts",
+        "guides/developer-mode"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Integrations",
+      "pages": [
+        "integrations/index",
+        "integrations/slack"
+      ]
+    },
+    {
+      "group": "API Reference",
       "pages": [
         "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/decisloops",
+    "linkedin": "https://linkedin.com/company/decisional"
   }
 }

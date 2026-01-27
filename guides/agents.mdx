@@ -1,0 +1,104 @@
+---
+title: 'Managing Agents'
+description: 'Create, organize, and manage your AI agents'
+icon: 'robot'
+---
+
+## Overview
+
+Agents are the core of Decisional. Each agent automates a specific workflow, from data entry to document processing to outbound communications.
+
+## Creating an Agent
+
+1. Click **New Agent** from your workspace
+2. Describe what you want the agent to do in plain English
+3. The AI assistant will help refine your instructions
+4. Connect any required integrations
+5. Build and test your agent
+
+## Agent Views
+
+### List View
+
+The default view showing all agents in a table format with:
+
+- Agent name and description
+- Status (Draft, Ready, Live, Paused)
+- Last run date
+- Quick actions
+
+### Kanban View
+
+Visual board organized by status:
+
+- **Draft** - Agents still being configured
+- **Ready** - Tested and ready to go live
+- **Live** - Currently active and running
+- **Paused** - Temporarily disabled
+
+Drag and drop agents between columns to change their status.
+
+<Tip>
+  Use Kanban view to get a quick overview of your automation pipeline and identify bottlenecks.
+</Tip>
+
+## Agent Statuses
+
+| Status | Description |
+|--------|-------------|
+| Draft | Agent is being configured, not ready to run |
+| Ready | Agent has been tested and is ready to go live |
+| Live | Agent is active and will respond to triggers |
+| Paused | Agent is temporarily disabled, no runs will execute |
+
+## Agent Lifecycle
+
+```
+Draft → Ready → Live ↔ Paused
+```
+
+1. **Draft**: Configure instructions, connect integrations
+2. **Ready**: Test thoroughly, verify outputs
+3. **Live**: Agent runs automatically based on triggers
+4. **Paused**: Temporarily stop without losing configuration
+
+## Editing Agents
+
+Click on any agent to open the editor:
+
+- **Instructions** - What the agent should do
+- **Integrations** - Connected services
+- **Triggers** - What starts the agent
+- **Runs** - Execution history
+
+## Agent Templates
+
+Start faster with pre-built templates:
+
+1. Click **New Agent**
+2. Select **Use Template**
+3. Browse categories (Data Entry, Outbound, Processing)
+4. Click **Use This Template**
+5. Customize for your needs
+
+## Duplicating Agents
+
+To create a copy of an existing agent:
+
+1. Open the agent
+2. Click the **...** menu
+3. Select **Duplicate**
+4. Give the copy a new name
+
+<Warning>
+  Duplicated agents don't copy credentials. You'll need to reconnect integrations.
+</Warning>
+
+## Deleting Agents
+
+1. Open the agent
+2. Click the **...** menu
+3. Select **Delete**
+4. Confirm deletion
+
+Deleted agents cannot be recovered. Consider pausing instead if you might need the agent later.

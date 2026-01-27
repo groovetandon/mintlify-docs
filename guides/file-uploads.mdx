@@ -1,0 +1,113 @@
+---
+title: 'Uploading Files'
+description: 'Add files and documents to your agent context'
+icon: 'upload'
+---
+
+## Overview
+
+Upload files to give your agents additional context. Whether it's a spreadsheet of data, a PDF document, or reference materials, file uploads help your agents understand and process your specific information.
+
+## Supported File Types
+
+| Type | Extensions | Use Case |
+|------|------------|----------|
+| Spreadsheets | .csv, .xlsx, .xls | Data to process, reference tables |
+| Documents | .pdf, .docx, .doc | Contracts, invoices, forms |
+| Text | .txt, .md | Instructions, notes |
+| Images | .png, .jpg, .jpeg | Screenshots, diagrams |
+
+## Uploading Files
+
+### In the Chat
+
+1. Click the **attachment** icon in the message input
+2. Select your file
+3. Add context about the file in your message
+4. Send to the agent
+
+### In the Initial Prompt
+
+When creating a new agent:
+
+1. Click **Upload File** in the prompt area
+2. Select your file
+3. Describe what you want the agent to do with it
+
+### To Worksheets
+
+1. Click **Add Worksheet** in the sources panel
+2. Select **Upload File**
+3. Choose your spreadsheet file
+4. Review the import preview
+5. Click **Import**
+
+<Tip>
+  For spreadsheets, upload directly to worksheets for the best experience. The agent can then reference specific cells and columns.
+</Tip>
+
+## File Size Limits
+
+| File Type | Maximum Size |
+|-----------|--------------|
+| Spreadsheets | 50 MB |
+| Documents | 25 MB |
+| Images | 10 MB |
+
+## Upload Progress
+
+Large files show a progress indicator:
+
+- Progress bar during upload
+- Processing indicator while the file is being analyzed
+- Success confirmation when ready
+
+## Using Uploaded Files
+
+### In Agent Instructions
+
+Reference uploaded files in your instructions:
+
+> "Use the price list I uploaded to generate quotes"
+
+> "Extract data from the attached invoices"
+
+### As Reference Data
+
+Upload files that the agent should reference but not modify:
+
+- Price lists
+- Product catalogs
+- Policy documents
+
+### As Input Data
+
+Upload files containing data to be processed:
+
+- Lead lists to enrich
+- Invoices to extract
+- Forms to parse
+
+## File Security
+
+- Files are encrypted at rest and in transit
+- Files are only accessible within your workspace
+- Files are automatically deleted after 90 days of inactivity
+
+<Warning>
+  Don't upload files containing passwords, API keys, or other secrets. Use the credentials system for authentication.
+</Warning>
+
+## Troubleshooting
+
+### Upload Failed
+
+- Check file size limits
+- Verify file format is supported
+- Try a different browser
+
+### File Not Processing
+
+- Large files take longer to process
+- Complex PDFs may need more time
+- Refresh the page if stuck

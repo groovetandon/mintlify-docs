@@ -1,0 +1,87 @@
+---
+title: 'Managing Runs'
+description: 'Monitor, filter, and debug your agent executions'
+icon: 'play'
+---
+
+## Overview
+
+Every time your agent executes, it creates a run. Runs are immutable records that show exactly what happened during execution, including inputs, outputs, and any errors.
+
+## Viewing Runs
+
+Navigate to your agent and click the **Runs** tab to see all executions. Each run shows:
+
+- **Status** - Success, Failed, Running, or Cancelled
+- **Type** - Test or Live
+- **Started** - When the run began
+- **Duration** - How long it took
+- **Trigger** - What initiated the run (manual, scheduled, or integration)
+
+## Filtering Runs
+
+Use the filter controls to find specific runs:
+
+| Filter | Options |
+|--------|---------|
+| Status | All, Success, Failed, Running |
+| Type | All, Test, Live |
+| Date Range | Last 24h, 7 days, 30 days, Custom |
+
+<Tip>
+  Use the Test/Live filter to quickly separate your test runs from production executions.
+</Tip>
+
+## Run Details
+
+Click on any run to see detailed information:
+
+### Overview Tab
+
+- Run metadata (ID, duration, trigger)
+- Final status and any error messages
+- Input data that was provided
+
+### Workflow Tab
+
+Visual representation of the executed workflow showing:
+
+- Each node and its status
+- Execution order
+- Time spent on each step
+
+### Data Tab
+
+- Input and output data for each node
+- Before/after spreadsheet snapshots
+- Any files that were generated
+
+## Live Runs
+
+Runs that are currently executing show a **Live** badge. You can:
+
+- Watch progress in real-time
+- See which node is currently executing
+- Cancel the run if needed
+
+## Debugging Failed Runs
+
+When a run fails:
+
+1. Click on the failed run
+2. Check the error message in the Overview tab
+3. Navigate to the Workflow tab to see which node failed
+4. Use the Data tab to inspect inputs that caused the failure
+5. Enable **Developer Mode** to see the underlying code
+
+<Warning>
+  Failed runs still count toward your usage. Check the error carefully before re-running.
+</Warning>
+
+## Downloading Run Data
+
+For advanced debugging, you can download:
+
+- **Debug JSON** - Complete run data including all node inputs/outputs
+- **Workflow Code** - Python code that was executed
+- **Output Files** - Any files generated during the run
