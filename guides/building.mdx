@@ -1,0 +1,151 @@
+---
+title: 'Building Agents'
+description: 'How agents are built and what happens behind the scenes'
+icon: 'hammer'
+---
+
+## Overview
+
+When you describe what you want your agent to do, Decisional's AI analyzes your instructions and builds a workflow that executes your automation. This guide explains what happens during the build process.
+
+## The Build Process
+
+### 1. Instruction Analysis
+
+The AI reads your natural language instructions and identifies:
+
+- What data needs to be processed
+- What integrations are required
+- What transformations should happen
+- What outputs should be produced
+
+### 2. Workflow Generation
+
+Based on the analysis, the AI generates:
+
+- A directed graph of processing nodes
+- Data transformations between nodes
+- Integration API calls
+- Error handling logic
+
+### 3. Validation
+
+Before completing the build:
+
+- Checks all referenced integrations exist
+- Validates data flows between nodes
+- Ensures required credentials are connected
+- Identifies potential issues
+
+### 4. Testing
+
+Optionally run a test execution to verify:
+
+- Workflow executes without errors
+- Outputs match expectations
+- Integration calls work correctly
+
+## Build Logs
+
+Watch the build process in real-time:
+
+1. Open your agent
+2. Click **Build** in the assistant panel
+3. Live logs stream as the build progresses
+
+Log entries include:
+
+- Instruction parsing progress
+- Node generation status
+- Validation checks
+- Any warnings or errors
+
+<Tip>
+  Build logs help you understand what the AI is doing and identify any issues early.
+</Tip>
+
+## Rebuild vs Incremental Updates
+
+### Full Rebuild
+
+Triggered when you:
+
+- Significantly change instructions
+- Add or remove integrations
+- Click "Rebuild" manually
+
+Creates a new workflow from scratch.
+
+### Incremental Updates
+
+Triggered when you:
+
+- Make minor instruction tweaks
+- Adjust parameters
+- Fix small issues
+
+Only updates affected nodes.
+
+## Build Errors
+
+### Missing Integration
+
+```
+Error: Integration "slack" referenced but not connected
+```
+
+**Fix**: Connect the required integration in the Integrations panel.
+
+### Invalid Tool Reference
+
+```
+Error: Tool "send_email" not found in connected integrations
+```
+
+**Fix**: Verify the integration is connected and supports the action you're trying to use.
+
+### Circular Dependency
+
+```
+Error: Circular dependency detected between nodes
+```
+
+**Fix**: Simplify your instructions to avoid loops, or explicitly describe the order of operations.
+
+## Build Best Practices
+
+### Be Specific
+
+Vague instructions lead to unexpected workflows:
+
+- **Vague**: "Process the data"
+- **Specific**: "For each row in the spreadsheet, extract the email and company name"
+
+### Start Simple
+
+Build incrementally:
+
+1. Start with core functionality
+2. Test that it works
+3. Add additional features
+4. Test again
+
+### Check Validations
+
+Pay attention to validation warnings:
+
+- Yellow warnings are suggestions
+- Red errors must be fixed
+- Address warnings to avoid runtime issues
+
+<Warning>
+  Always test after building. A successful build doesn't guarantee correct behavior.
+</Warning>
+
+## Versioning
+
+Each build creates a snapshot:
+
+- Version number increments (v1, v2, v3...)
+- Previous versions preserved in run history
+- Can view which version each run used

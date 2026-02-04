@@ -1,0 +1,71 @@
+---
+title: 'Triggers'
+description: 'Automate your agents with event-driven and scheduled triggers'
+icon: 'bolt'
+---
+
+## Overview
+
+Triggers let your agents run automatically based on events or schedules. Instead of manually clicking "Run," you can set up triggers that execute your agents when specific conditions are met.
+
+## Types of Triggers
+
+### Scheduled Triggers
+
+Run your agents on a recurring schedule:
+
+- **Hourly** - Run every hour at a specific minute
+- **Daily** - Run once per day at a specific time
+- **Weekly** - Run on specific days of the week
+
+### Integration Triggers
+
+Run your agents when events happen in connected apps:
+
+- **Slack** - New message in channel, DM received, reaction added
+- **HubSpot** - New contact created, deal stage changed
+- **Google Sheets** - Row added or modified
+- **Email** - New email received matching criteria
+
+## Setting Up a Trigger
+
+1. Open your agent and navigate to the **Triggers** tab
+2. Click **Add Trigger**
+3. Select the trigger type (scheduled or integration)
+4. Configure the trigger settings
+5. Save and activate
+
+<Tip>
+  Test your trigger configuration with a test run before going live to ensure everything works as expected.
+</Tip>
+
+## Trigger Settings
+
+Each trigger type has specific configuration options:
+
+### Scheduled Trigger Settings
+
+| Setting | Description |
+|---------|-------------|
+| Frequency | How often to run (hourly, daily, weekly) |
+| Time | When to run (timezone-aware) |
+| Days | For weekly triggers, which days to run |
+
+### Integration Trigger Settings
+
+| Setting | Description |
+|---------|-------------|
+| Integration | Which connected app to monitor |
+| Event | Which event type to listen for |
+| Filters | Optional conditions to narrow the trigger |
+
+## Managing Triggers
+
+- **Pause/Resume** - Temporarily disable a trigger without deleting it
+- **Edit** - Modify trigger settings at any time
+- **Delete** - Remove a trigger permanently
+- **View History** - See past trigger activations and their results
+
+<Warning>
+  When your agent goes live, credentials used by triggers are locked to prevent accidental disconnections.
+</Warning>

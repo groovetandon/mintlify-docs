@@ -1,0 +1,246 @@
+---
+title: 'Slack'
+description: 'Connect Slack to let agents post messages and chat with you via DMs'
+icon: 'slack'
+---
+
+## Overview
+
+Decisional offers two ways to work with Slack:
+
+1. **Slack Integration** — Connect your Slack account so agents can post messages, read channels, and interact with your workspace on your behalf
+2. **Slack Connection** — Chat with your agents directly from Slack DMs instead of the Decisional app
+
+These are independent features. You can use one, both, or neither depending on your needs.
+
+---
+
+## Slack Integration
+
+The Slack integration lets your agents take actions in Slack — posting messages, reading channels, and more. This is useful for automations like posting daily reports, sending alerts, or responding to channel activity.
+
+### Connecting Your Slack Account
+
+1. Go to **Integrations** in the left sidebar
+2. Find **Slack** in the list of available integrations
+3. Click **Connect**
+4. Select your Slack workspace and sign in if prompted
+5. Review the permissions and click **Allow**
+6. Name your connection (e.g., "Work Slack" or "Marketing Team")
+
+Your connected account appears in your integrations list with an **Active** status.
+
+<Tip>
+  You can connect multiple Slack accounts or workspaces. Each connection is separate and can be used by different agents.
+</Tip>
+
+### Using Slack in Your Agents
+
+After connecting, you can use Slack actions in your agents:
+
+1. Open your agent in the builder
+2. In the **Connections** section, find the Slack toolkit
+3. Select which connected account to use
+4. Reference Slack actions in your agent instructions
+
+**Available actions include:**
+- **Send Message** — Post a message to a channel or DM
+- **Read Channel** — Get recent messages from a channel
+- **Reply in Thread** — Respond to an existing message
+- **List Channels** — Get channels the bot can access
+
+### Example: Daily Summary Agent
+
+```
+Every day at 9am:
+1. Pull sales data from the CRM
+2. Summarize key metrics
+3. Post the summary to #sales-updates using <slack-send-message>
+```
+
+### Sharing Connections
+
+By default, your Slack connection is private. To let teammates use it:
+
+1. Go to **Integrations**
+2. Click on your Slack connection
+3. Toggle **Share with workspace**
+
+Shared connections appear under "Shared Credentials" when teammates configure their agents.
+
+<Warning>
+  Shared connections let others send messages as you. Only share with trusted teammates.
+</Warning>
+
+### Managing Connections
+
+**To disconnect:**
+1. Go to **Integrations**
+2. Find your Slack connection
+3. Click the menu (⋮) and select **Delete**
+
+You can also revoke access from Slack's App Management settings.
+
+---
+
+## Slack Connection
+
+Slack Connection lets you chat with your Decisional agents directly from Slack. Instead of switching to the Decisional app, just message the bot and your agent responds right in Slack.
+
+### How It Works
+
+1. **You message the Decisional bot** in Slack
+2. **Your message syncs** to your Decisional workspace as a new thread
+3. **Your agent processes** the message and generates a response
+4. **The response appears** back in your Slack DM
+
+Messages you send appear as coming from you (not the bot), so the conversation feels natural. While your agent is thinking, you'll see a "Thinking..." indicator.
+
+### Setting Up Slack Connection
+
+Slack Connection requires two steps: installing the bot (admin), then connecting your account (each user).
+
+#### Step 1: Install the Slack Bot (Admin Only)
+
+A workspace admin must first install the Decisional bot:
+
+1. Go to **Settings** (click your profile in the top-right)
+2. Scroll to the **Messaging Platforms** section
+3. Find the **Slack Workspace** card
+4. Click **Install Slack**
+5. Select your Slack workspace
+6. Review the permissions and click **Allow**
+
+Once installed, the bot can DM any member of your Slack workspace.
+
+<Warning>
+  Only workspace admins can install the Slack bot. If you don't see the Install button, contact your admin.
+</Warning>
+
+#### Step 2: Connect Your Slack Account
+
+After the bot is installed, each user connects their account:
+
+1. Go to **Settings**
+2. Find the **Slack Connection** card
+3. Click **Connect Slack**
+4. Sign in to Slack if prompted
+5. Click **Allow** to authorize
+
+Your Slack username appears once connected.
+
+#### Step 3: Enable Slack Connection
+
+Toggle on Slack Connection to start syncing messages:
+
+1. In the **Slack Connection** card, flip the toggle to enable
+2. Open Slack and find **Decisional** in your DMs
+3. Send a message — it will appear in your Decisional workspace
+
+<Tip>
+  You can toggle Slack Connection on and off anytime without disconnecting your account.
+</Tip>
+
+### Chatting with Agents
+
+#### Starting a Conversation
+
+1. Open Slack
+2. Find **Decisional** in your Direct Messages (or search for it)
+3. Type your message and send
+4. Wait for the agent to respond
+
+Your message creates a new thread in Decisional. The agent's response appears both in Decisional and back in Slack.
+
+#### Continuing a Conversation
+
+Reply in the same Slack DM thread to continue the conversation. Each Slack thread maps to a single Decisional thread, so context is preserved.
+
+#### Interactive Messages
+
+Some agent responses include interactive elements:
+
+- **Action buttons** — Click to trigger agent actions
+- **Question options** — Select answers to clarifying questions
+- **Status indicators** — See the current state of workflows
+
+Click buttons directly in Slack to interact with your agent.
+
+### Managing Slack Connection
+
+**To view status:** Go to **Settings** and check the Slack cards
+
+**To disable sync:** Toggle off Slack Connection in Settings (keeps your account connected)
+
+**To disconnect:** Click **Disconnect** in the Slack Connection card
+
+**To remove the bot (admin):** Click **Disconnect** in the Slack Workspace card
+
+<Warning>
+  Removing the workspace bot disconnects all users. Individual users can disconnect their own accounts without affecting others.
+</Warning>
+
+---
+
+## Integration vs Slack Connection
+
+| Feature | Slack Integration | Slack Connection |
+|---------|-------------------|---------------|
+| **Purpose** | Agents take actions in Slack | You chat with agents via Slack |
+| **Setup** | Connect via Integrations page | Install bot + connect in Settings |
+| **Who uses it** | Your agents | You |
+| **Example** | Agent posts report to #channel | You ask agent a question via DM |
+| **Requires** | Composio OAuth | Bot installation + user connection |
+
+**Use Integration when:** Your agents need to post messages, read channels, or automate Slack workflows
+
+**Use Slack Connection when:** You want to chat with your agents from Slack instead of the Decisional app
+
+---
+
+## Troubleshooting
+
+### Integration Issues
+
+**Connection shows "Expired"**
+- Go to Integrations and reconnect your Slack account
+- Re-authorize the permissions
+
+**Agent can't post to a channel**
+- Ensure the Slack bot is added to the channel
+- Check that the correct connection is selected in the agent
+
+**Messages not sending**
+- Verify the connection is Active in Integrations
+- Check the run details for error messages
+
+### Slack Connection Issues
+
+**Bot not responding**
+- Check Slack Connection is enabled in Settings
+- Verify your agent is published and live
+- Try the Decisional app — if it works there, the issue is Slack-specific
+
+**Messages not syncing**
+- Reconnect your account in Settings
+- Ensure you authorized all requested permissions
+
+**"Thinking..." never updates**
+- Wait a moment for complex requests
+- Check the Decisional app for the response
+- Send a new message to create a fresh thread
+
+---
+
+## Privacy & Security
+
+**For Integration:**
+- OAuth tokens are encrypted at rest
+- Only you (or teammates if shared) can use your connection
+- Revoke access anytime from Integrations or Slack settings
+
+**For Slack Connection:**
+- The bot only accesses DMs with itself — not your other conversations
+- Messages sync only to your Decisional workspace
+- Tokens are encrypted at rest
+- Disconnect anytime from Settings

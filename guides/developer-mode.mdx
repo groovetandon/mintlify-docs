@@ -1,0 +1,89 @@
+---
+title: 'Developer Mode'
+description: 'Inspect the code behind your agent workflows'
+icon: 'code'
+---
+
+## Overview
+
+Developer Mode gives you visibility into the Python code that powers your agent workflows. This is useful for debugging, understanding how your agent works, and advanced troubleshooting.
+
+## Enabling Developer Mode
+
+1. Open any agent run
+2. Navigate to the **Workflow** tab
+3. Toggle **Developer Mode** in the top-right corner
+
+## What You Can See
+
+### Workflow Code
+
+The complete Python code that defines your workflow, including:
+
+- Node definitions and their dependencies
+- Data transformations between steps
+- Integration API calls
+- Error handling logic
+
+### Node Details
+
+Click on any node to see:
+
+- **Input Schema** - What data the node expects
+- **Output Schema** - What data the node produces
+- **Code** - The Python function for that specific node
+
+### Execution Data
+
+For each node in a completed run:
+
+- **Input Data** - Actual values passed to the node
+- **Output Data** - Values returned by the node
+- **Execution Time** - How long the node took
+- **Logs** - Any console output or errors
+
+## Code Panel Features
+
+| Feature | Description |
+|---------|-------------|
+| Copy Code | Copy the workflow code to clipboard |
+| Resize Panel | Drag to adjust the code panel width |
+| Syntax Highlighting | Python code with full highlighting |
+| Line Numbers | Easy reference for debugging |
+
+<Tip>
+  Use the copy feature to share code snippets when asking for help or reporting issues.
+</Tip>
+
+## Debugging with Developer Mode
+
+1. **Find the failing node** - Look for nodes with error indicators
+2. **Check the input data** - Verify the node received expected inputs
+3. **Read the error message** - Usually indicates the specific issue
+4. **Review the code** - Understand what the node is trying to do
+5. **Download debug JSON** - Get complete data for offline analysis
+
+## Debug JSON
+
+The debug JSON file contains:
+
+```json
+{
+  "run_id": "...",
+  "workflow_version": "...",
+  "nodes": [
+    {
+      "id": "...",
+      "type": "...",
+      "inputs": {...},
+      "outputs": {...},
+      "status": "...",
+      "error": null
+    }
+  ]
+}
+```
+
+<Warning>
+  Debug JSON may contain sensitive data from your integrations. Handle it carefully and don't share publicly.
+</Warning>
