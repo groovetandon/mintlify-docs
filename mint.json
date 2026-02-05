@@ -1,86 +1,94 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Decisional Documentation",
+  "name": "Decisional Docs",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#3E0D77",
-    "light": "#6B2A9E",
-    "dark": "#230D39",
+    "primary": "#0f172a",
+    "light": "#475569",
+    "dark": "#0f172a",
     "anchors": {
-      "from": "#3E0D77",
-      "to": "#6B2A9E"
+      "from": "#0f172a",
+      "to": "#475569"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:founders@decisional.com"
+      "url": "mailto:support@decisional.com"
     }
   ],
   "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://agents.decisional.com"
+    "name": "Dashboard",
+    "url": "https://app.decisional.com"
   },
+  "tabs": [
+    {
+      "name": "Integrations",
+      "url": "integrations"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
   "anchors": [
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://discord.gg/DwPDS5Prk2"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.decisional.com/blog"
-    },
     {
       "name": "Changelog",
       "icon": "list",
-      "url": "https://docs.decisional.com/reference/changelog"
+      "url": "https://www.decisional.com/changelog"
+    },
+    {
+      "name": "Contact Us",
+      "icon": "envelope",
+      "url": "mailto:support@decisional.com"
     }
   ],
   "navigation": [
     {
-      "group": "Getting Started",
+      "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "core-concepts",
-        "setup"
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/agents",
+        "guides/building",
+        "guides/workflows",
+        "guides/runs",
+        "guides/worksheets",
+        "guides/file-uploads",
+        "guides/triggers",
+        "guides/scheduling",
+        "guides/credentials",
+        "guides/workspaces",
+        "guides/templates",
+        "guides/keyboard-shortcuts",
+        "guides/developer-mode"
       ]
     },
     {
       "group": "Integrations",
       "pages": [
-        "integrations"
+        "integrations/index",
+        "integrations/slack"
       ]
     },
     {
-      "group": "User Guides",
+      "group": "API Reference",
       "pages": [
-        "guides/agents",
-        "guides/worksheets",
-        "guides/sources",
-        "guides/ai-assistant",
-        "guides/runs",
-        "guides/integrations",
-        "guides/workspaces"
-      ]
-    },
-    {
-      "group": "Reference",
-      "pages": [
-        "reference/glossary",
-        "reference/faq",
-        "reference/changelog"
+        "api-reference/introduction"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/getdecisional",
-    "linkedin": "https://www.linkedin.com/company/decisional-ai/"
+    "x": "https://x.com/decisloops",
+    "linkedin": "https://linkedin.com/company/decisional"
   }
 }

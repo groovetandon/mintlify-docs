@@ -1,0 +1,111 @@
+---
+title: 'Integrations Overview'
+description: 'Connect your agents to the tools you use every day'
+icon: 'plug'
+---
+
+## Overview
+
+Integrations let your agents interact with external services. Connect your email, CRM, spreadsheets, messaging apps, and more to automate workflows across your entire tech stack.
+
+## Available Integrations
+
+### Communication
+
+| Integration | Capabilities |
+|-------------|--------------|
+| **Slack** | Chat with agents via DM sync, interactive messages |
+| **Email (Gmail/Outlook)** | Send emails, read inbox, manage drafts |
+| **Microsoft Teams** | Post messages, create channels |
+
+### CRM & Sales
+
+| Integration | Capabilities |
+|-------------|--------------|
+| **HubSpot** | Manage contacts, deals, companies |
+| **Salesforce** | CRUD operations on any object |
+| **Pipedrive** | Manage deals and contacts |
+
+### Spreadsheets & Data
+
+| Integration | Capabilities |
+|-------------|--------------|
+| **Google Sheets** | Read/write cells, create sheets |
+| **Airtable** | Manage bases and records |
+| **Excel Online** | Read/write workbooks |
+
+### Productivity
+
+| Integration | Capabilities |
+|-------------|--------------|
+| **Google Drive** | Upload, download, organize files |
+| **Notion** | Create and update pages |
+| **Asana** | Manage tasks and projects |
+
+### Developer
+
+| Integration | Capabilities |
+|-------------|--------------|
+| **Webhooks** | Send/receive HTTP requests |
+| **Custom API** | Connect any REST API |
+
+<Tip>
+  Don't see your integration? [Contact us](mailto:support@decisional.com) to request new integrations.
+</Tip>
+
+## Connecting an Integration
+
+1. Open your agent or go to **Workspace Settings** > **Integrations**
+2. Find the integration you want
+3. Click **Connect**
+4. Authorize access (OAuth) or enter credentials (API key)
+5. Name your connection for easy reference
+
+## Managing Connections
+
+### Viewing Connections
+
+Go to **Workspace Settings** > **Integrations** to see:
+
+- All connected integrations
+- Connection status (active, expired, error)
+- Which agents use each connection
+
+### Reconnecting
+
+If a connection expires or has issues:
+
+1. Click on the connection
+2. Click **Reconnect**
+3. Re-authorize with the service
+
+### Sharing Connections
+
+By default, connections are private. To share with your workspace:
+
+1. Click on the connection
+2. Toggle **Share with workspace**
+3. All workspace members can now use this connection
+
+## Integration Security
+
+- OAuth tokens are encrypted at rest
+- Tokens are never exposed in logs or UI
+- You can revoke access from Decisional or the service
+- Minimal permissions requested (only what's needed)
+
+## Rate Limits
+
+Integrations have rate limits set by the external service:
+
+| Service | Typical Limit |
+|---------|---------------|
+| Slack | 1 message/second |
+| HubSpot | 100 requests/10 seconds |
+| Google Sheets | 100 requests/minute |
+
+Agents automatically handle rate limits with retries and backoff.
+
+<Warning>
+  Heavy automation may hit rate limits. Contact the service provider to increase limits if needed.
+</Warning>
