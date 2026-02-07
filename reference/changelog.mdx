@@ -3,6 +3,52 @@ title: "Changelog"
 description: "Latest updates and improvements to Decisional"
 ---
 
+<Update label="February 6, 2026" tags={["New features", "Improvements"]}>
+  ## Skills
+
+  Upload markdown files to give your agents specialized knowledge, instructions, or playbooks. Agents reference these skills during builds and conversations.
+
+  - Upload, view, and delete `.md` skill files per agent
+  - Toggle between **Preview** (rendered markdown) and **Raw** (source text) views
+
+  ## Platform Tools for Workflows
+
+  Two new built-in tools available inside workflow node code:
+
+  | Tool | Description |
+  |------|-------------|
+  | `call_ai_tool(prompt)` | Run AI-powered processing within any workflow step |
+  | `query_knowledge_base(query)` | Search your agent's knowledge base from workflow code |
+
+  ## File Uploads in Chat
+
+  You can now upload files directly to your agent during conversations for processing.
+
+  ## Redesigned Home Page
+
+  Clean, centered layout with a collapsible sidebar for a more focused experience.
+
+  ## Chat-Driven Build & Test
+
+  Building and testing agents now happens through natural chat messages instead of separate buttons — making the entire agent creation feel like a conversation.
+
+  ## Pre-Execution Approval
+
+  Action nodes in test runs now pause **before** executing, giving you full control to approve or reject each action.
+
+  ## Improved Sandbox Reliability
+
+  Agents automatically recover from inactive sandbox states, so conversations always work — even after extended breaks.
+
+  ### Other Improvements
+
+  - **Browser notifications** when agent builds complete
+  - **Higher character limits** in the prompt input box
+  - **Better thought labels** — clearer display of what your agent is doing (e.g., "Searching Web", "Fetching Page")
+  - **Sandbox setup loader** — animated UI while your agent's environment initializes
+
+</Update>
+
 <Update label="January 26, 2026" tags={["New features", "Improvements"]}>
   ## Slash Commands in AI Assistant
 
