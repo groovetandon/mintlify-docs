@@ -1,30 +1,30 @@
 ---
 title: "Core Concepts"
-description: "Understanding the key building blocks of Decisional"
+description: "The building blocks of Decisional"
 ---
 
 ## Overview
 
-Decisional is built around a few core concepts that work together to automate your business workflows. Understanding these concepts will help you get the most out of the platform.
+Decisional is built around a few core concepts. Understanding these will help you get the most out of the platform.
 
 <CardGroup cols={2}>
   <Card title="Agents" icon="robot">
-    Autonomous AI workers that execute your workflows
+    AI workers that build and run your workflows
   </Card>
-  <Card title="Worksheets" icon="table">
-    Your data layer - spreadsheets where agents read and write
-  </Card>
-  <Card title="Sources" icon="folder-open">
-    Context for your agents (PDFs, documents, links)
-  </Card>
-  <Card title="Runs" icon="play">
-    Executions of your agent workflows
+  <Card title="Workflows" icon="diagram-project">
+    The step-by-step plans your agents create and execute
   </Card>
   <Card title="Integrations" icon="plug">
-    Connected services (CRM, email, databases)
+    The apps your agents connect to and work with
+  </Card>
+  <Card title="Runs" icon="play">
+    Every time your agent executes its workflow
+  </Card>
+  <Card title="Sources" icon="folder-open">
+    Documents and files that give your agents context
   </Card>
   <Card title="Workspaces" icon="users">
-    Team collaboration and organization
+    Where your team organizes agents and collaborates
   </Card>
 </CardGroup>
 
@@ -32,323 +32,147 @@ Decisional is built around a few core concepts that work together to automate yo
 
 ## Agents
 
-**Agents are autonomous AI workers** that understand instructions, process documents, and complete tasks.
+Agents are the core of Decisional. Each agent is an AI worker that owns a specific workflow and runs it for you.
 
-### What Makes an Agent?
+You create an agent by describing what you want it to do. It builds its own workflow, connects to the right tools, and tests itself. Once live, it runs on autopilot and you manage it by talking to it in chat.
 
-<AccordionGroup>
-  <Accordion title="Instructions" icon="file-lines">
-    Natural language description of what the agent should do. Write instructions like you're training a new team member.
+### What Makes Up an Agent
 
-    **Example:**
-    ```
-    You are an Invoice Processing Agent.
-    Review uploaded invoices, extract key information,
-    and update the tracking spreadsheet.
-    ```
-  </Accordion>
+- **Instructions** — what you told the agent to do, written in plain English
+- **Workflow** — the step-by-step plan the agent built to carry out your instructions
+- **Integrations** — the apps your agent connects to (Slack, HubSpot, Gmail, etc.)
+- **Sources** — documents and files that give your agent context
+- **Triggers** — how your agent gets activated (schedule, event, or manual)
 
-  <Accordion title="Worksheet" icon="table-cells">
-    The spreadsheet where your agent reads input data and writes results.
-  </Accordion>
+### Agent States
 
-  <Accordion title="Sources" icon="folder">
-    Documents that provide context:
-    - PDFs (contracts, invoices, forms)
-    - CSVs (price lists, templates)
-    - Web links (documentation, APIs)
-  </Accordion>
+Your agent moves through these states as you set it up:
 
-  <Accordion title="Integrations" icon="link">
-    Connected services the agent can interact with:
-    - Send emails (Gmail, Outlook)
-    - Update CRM (HubSpot, Salesforce)
-    - Post to Slack
-    - Query databases
-  </Accordion>
-
-  <Accordion title="Triggers" icon="clock">
-    How the agent gets activated:
-    - **Time-based**: Every day at 9 AM
-    - **Event-based**: When new data arrives
-    - **Manual**: Click "Run" button
-  </Accordion>
-</AccordionGroup>
-
-### Agent Lifecycle
-
-```mermaid
-graph LR
-    A[Create Agent] --> B[Configure Instructions]
-    B --> C[Add Sources]
-    C --> D[Connect Integrations]
-    D --> E[Test Run]
-    E --> F{Works?}
-    F -->|No| B
-    F -->|Yes| G[Publish]
-    G --> H[Schedule/Trigger]
-    H --> I[Monitor Runs]
-```
+- **Draft** — still being configured or built
+- **Ready** — tested and ready to go live
+- **Live** — running on autopilot
+- **Paused** — temporarily stopped, can be resumed anytime
 
 ---
 
-## Worksheets
+## Workflows
 
-**Worksheets are your data layer** - they're spreadsheets where your agents read input and write output.
+When you describe what you want, your agent creates a workflow — a series of steps it follows to get the job done.
 
-### Key Features
+Each step in the workflow is a **node**. Nodes can do things like:
 
-<CardGroup cols={2}>
-  <Card title="Familiar Interface" icon="table">
-    Full-featured spreadsheet editor (powered by SpreadJS)
-  </Card>
-  <Card title="Formulas & Functions" icon="function">
-    All standard Excel formulas work
-  </Card>
-  <Card title="Charts & Viz" icon="chart-line">
-    Create visualizations of your data
-  </Card>
-  <Card title="Auto-Save" icon="floppy-disk">
-    Changes sync automatically
-  </Card>
-</CardGroup>
+- Read data from a spreadsheet
+- Call an API or integration
+- Process a document
+- Run AI reasoning
+- Write results back
 
-### Supported Formats
+You don't need to build the workflow yourself. Your agent figures out the steps, the order, and the logic. If you want to change something, just tell your agent in the chat and it updates the workflow.
 
-- **CSV**: Simple comma-separated values
-- **XLSX**: Excel workbooks (multiple sheets)
-- **XLS**: Legacy Excel format
-- **Google Sheets**: Import directly (coming soon)
+### Workflow Viewer
 
-<Tip>
-  **Pro Tip:** Structure your worksheet with clear column headers. This helps agents understand your data better.
-</Tip>
-
-### Example Worksheet Structure
-
-| Quote ID | Date | Customer | Product | Quantity | Unit Price | Total | Status |
-|----------|------|----------|---------|----------|------------|-------|--------|
-| Q-001 | 2025-01-15 | Acme Corp | Widget A | 10 | $50 | $500 | Sent |
-| Q-002 | 2025-01-16 | TechCo | Widget B | 5 | $100 | $500 | Draft |
-
----
-
-## Sources
-
-**Sources provide context** to your agents so they can make informed decisions.
-
-### Types of Sources
-
-<Tabs>
-  <Tab title="Documents">
-    Upload files for your agent to reference:
-
-    - **PDFs**: Contracts, invoices, forms, statements
-    - **Word Docs**: Policies, templates, procedures
-    - **Excel**: Historical data, price lists, catalogs
-    - **Images**: Forms, receipts (with OCR)
-
-    **Example use case:**
-    Upload past quotes so your agent can match the style and formatting.
-  </Tab>
-
-  <Tab title="Web Links">
-    Add URLs for your agent to monitor or reference:
-
-    - Company websites
-    - Documentation pages
-    - API endpoints
-    - News sources
-
-    **Example use case:**
-    Monitor competitor pricing pages to keep your quotes competitive.
-  </Tab>
-
-  <Tab title="Integrations">
-    Connect live data sources:
-
-    - CRM records (HubSpot, Salesforce)
-    - Email threads (Gmail, Outlook)
-    - Database queries (PostgreSQL, Snowflake)
-    - File storage (Google Drive, OneDrive)
-
-    **Example use case:**
-    Pull customer data from Salesforce to personalize quotes.
-  </Tab>
-</Tabs>
-
-### How Agents Use Sources
-
-Decisional uses **Retrieval-Augmented Generation (RAG)** to help agents understand your documents:
-
-1. **Indexing**: Documents are processed and indexed
-2. **Retrieval**: When needed, relevant sections are retrieved
-3. **Citation**: Agents cite specific pages/sections they reference
-4. **Bounding Boxes**: Exact locations in PDFs are highlighted
-
-<Check>
-  Your agent can understand and reference thousands of pages of documentation!
-</Check>
-
----
-
-## Runs
-
-**Runs are executions of your agent workflow**. Each time your agent performs its task, that's a run.
-
-### Run Status
-
-<ResponseField name="Running" type="status" color="blue">
-  Agent is currently executing the workflow
-</ResponseField>
-
-<ResponseField name="Completed" type="status" color="green">
-  Workflow finished successfully
-</ResponseField>
-
-<ResponseField name="Failed" type="status" color="red">
-  Workflow encountered an error
-</ResponseField>
-
-<ResponseField name="Needs Review" type="status" color="yellow">
-  Agent needs human approval to proceed
-</ResponseField>
-
-### What's in a Run?
-
-Every run includes:
-
-- **Start Time**: When it began
-- **Duration**: How long it took
-- **Inputs**: Data the agent received
-- **Outputs**: Results the agent produced
-- **Logs**: Detailed execution trace
-- **AI Reasoning**: Agent's thought process
-
-### Monitoring Runs
-
-View run history in the **Runs** tab:
-
-- Filter by status, date range
-- See activity charts and trends
-- Click any run for detailed logs
-- Retry failed runs
-- Cancel running workflows
+You can see your agent's workflow visually at any time. It shows every node, how they connect, and the status of each step during a run.
 
 ---
 
 ## Integrations
 
-**Integrations connect external services** to your agents.
+Integrations are the apps your agents connect to and work with. When your agent needs to send a Slack message, update a HubSpot deal, or read from Google Sheets, it uses an integration.
 
-### Available Integrations
+### How Integrations Work
 
-<CardGroup cols={3}>
-  <Card title="Email" icon="envelope">
-    Gmail, Outlook, SMTP
-  </Card>
-  <Card title="CRM" icon="address-book">
-    HubSpot, Salesforce, Attio
-  </Card>
-  <Card title="Calendar" icon="calendar">
-    Google Calendar, Outlook
-  </Card>
-  <Card title="Storage" icon="hard-drive">
-    Google Drive, OneDrive, S3
-  </Card>
-  <Card title="Communication" icon="message">
-    Slack, Microsoft Teams
-  </Card>
-  <Card title="Databases" icon="database">
-    PostgreSQL, MySQL, Snowflake
-  </Card>
-  <Card title="Payments" icon="credit-card">
-    Stripe, Bill.com
-  </Card>
-  <Card title="APIs" icon="code">
-    Custom webhooks, REST APIs
-  </Card>
-  <Card title="More" icon="ellipsis">
-    And many more...
-  </Card>
-</CardGroup>
+1. Your agent identifies which apps it needs based on your instructions
+2. You authorize access to each app
+3. Your agent uses them automatically in its workflow
 
-### Using Integrations
+Integrations can be shared across your workspace or kept private to specific agents.
 
-1. **Connect**: Authorize the integration in your workspace
-2. **Reference**: Mention it in agent instructions
-3. **Trigger**: Set up event-based triggers
-4. **Act**: Agent can read from and write to the service
+<Tip>
+  You can browse and connect integrations anytime from the **Integrations** page in the sidebar.
+</Tip>
 
-<Warning>
-  Integrations can be shared across your workspace or kept private to specific agents.
-</Warning>
+---
+
+## Runs
+
+Every time your agent executes its workflow, that's a run. You can see all your agent's runs from the **Runs** tab.
+
+### Run Statuses
+
+- **Running** — your agent is executing right now
+- **Completed** — finished successfully
+- **Failed** — something went wrong
+- **Needs Approval** — your agent is waiting for you to approve an action
+
+### What's in a Run
+
+Each run shows you:
+
+- A step-by-step breakdown of what happened at each node
+- The input and output data for each step
+- Files your agent produced
+- How long it took
+
+If a run fails, you can see exactly which step broke and why.
+
+---
+
+## Sources
+
+Sources are documents and files you upload to give your agents context. Think of them as reference material your agent can look up when it needs to.
+
+### What You Can Upload
+
+- **PDFs** — contracts, invoices, forms, statements
+- **Spreadsheets** — price lists, templates, historical data
+- **Word docs** — policies, procedures, playbooks
+- **Images** — forms and receipts (your agent can read these with OCR)
+
+### How Agents Use Sources
+
+Decisional uses retrieval-augmented generation (RAG) to help your agent understand documents. When your agent needs information from a source, it retrieves only the relevant sections instead of trying to process the entire file. This works even across hundreds of pages.
 
 ---
 
 ## Workspaces
 
-**Workspaces organize your team and agents**.
+Workspaces are where your team organizes agents, integrations, and credentials.
 
-### What's a Workspace?
+### What's in a Workspace
 
-A workspace is a container for:
-- Agents
-- Worksheets
-- Sources
-- Integrations
-- Team members
+- Your agents
+- Connected integrations and credentials
+- Team members and their permissions
+- Sources and documents
 
-### Workspace Roles
+### Team Access
 
-| Role | Create | Edit | Run | Invite | Delete |
-|------|--------|------|-----|--------|--------|
-| **Owner** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Admin** | ✅ | ✅ | ✅ | ✅ | ❌ |
-| **Editor** | ✅ | ✅ | ✅ | ❌ | ❌ |
-| **Viewer** | ❌ | ❌ | ✅ | ❌ | ❌ |
+Invite members from your organization into your workspace. Workspace owners control who can view, edit, and manage agents.
 
-### Organizations
-
-If you sign up with a **company email** (not Gmail, Yahoo, etc.), you'll automatically join your organization's workspace.
-
-Example:
-- `john@acme.com` → Joins "Acme" organization
-- `sarah@gmail.com` → Creates personal workspace
+If you sign up with a company email, you'll automatically join your organization's workspace. Personal email addresses get their own workspace.
 
 ---
 
-## How It All Works Together
-
-Here's how these concepts combine in a real workflow:
+## How It All Fits Together
 
 <Steps>
-  <Step title="Create Agent">
-    You create a "Quote Generation Agent" in your **Workspace**
+  <Step title="Describe What You Want">
+    Tell Decisional what you want automated in plain English
   </Step>
-
-  <Step title="Upload Worksheet">
-    Upload a price list **Worksheet** (Excel file)
+  <Step title="Agent Builds a Workflow">
+    Your agent creates a step-by-step plan and connects to the right apps
   </Step>
-
-  <Step title="Add Sources">
-    Upload past quotes (PDFs) as **Sources** for reference
+  <Step title="Add Sources for Context">
+    Upload any documents your agent needs to reference
   </Step>
-
-  <Step title="Connect Integration">
-    Connect Gmail **Integration** to send quotes
+  <Step title="Test and Approve">
+    Run a test, review each step, approve actions
   </Step>
-
-  <Step title="Write Instructions">
-    Tell the **Agent** how to generate quotes
+  <Step title="Go Live">
+    Set a schedule or trigger, and your agent runs on autopilot
   </Step>
-
-  <Step title="Set Trigger">
-    Configure to run daily or when new requests arrive
-  </Step>
-
-  <Step title="Monitor Runs">
-    Check **Runs** tab to see execution history
+  <Step title="Manage Through Chat">
+    Need changes? Just tell your agent what to update
   </Step>
 </Steps>
 
@@ -358,18 +182,9 @@ Here's how these concepts combine in a real workflow:
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Build your first agent in 5 minutes
+    Build your first agent in minutes
   </Card>
-
   <Card title="Working with Agents" icon="robot" href="/guides/agents">
-    Deep dive into agent configuration
-  </Card>
-
-  <Card title="Workflow Tutorials" icon="graduation-cap" href="/workflows/finance/quote-generation">
-    Step-by-step guides for common workflows
-  </Card>
-
-  <Card title="API Reference" icon="code" href="/api-reference/introduction">
-    Programmatic access to Decisional
+    Deep dive into agent configuration and management
   </Card>
 </CardGroup>

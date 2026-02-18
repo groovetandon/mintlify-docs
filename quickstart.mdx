@@ -1,239 +1,95 @@
 ---
 title: "Quickstart"
-description: "Create your first agent and automate your first workflow in under 5 minutes"
+description: "Build your first agent in minutes"
 ---
 
-## What You'll Build
+## Before You Start
 
-In this quickstart, you'll create a simple **Quote Generation Agent** that:
-- Takes a spreadsheet of products and pricing
-- Generates customized quotes based on customer requirements
-- Outputs results back to your spreadsheet
+You'll need a Decisional account. [Sign up here](https://agents.decisional.com/sign-up) if you haven't already.
 
-<Note>
-  **Prerequisites:** You'll need a Decisional account. [Sign up here](https://agents.decisional.com/sign-up) if you haven't already.
-</Note>
+## Step 1: Describe What You Want
 
-## Step 1: Sign In
+Go to [agents.decisional.com](https://agents.decisional.com) and sign in. You'll see a prompt box on the home page.
 
-Go to [agents.decisional.com](https://agents.decisional.com) and sign in with your account.
+Tell Decisional what you want your agent to do in plain English. For example:
 
-## Step 2: Create Your First Agent
+```
+Every morning, check my HubSpot for new deals that closed yesterday,
+pull the contract PDF from each deal, extract the key terms,
+and add a row to my spreadsheet with the deal name, value, and renewal date.
+```
 
-<Steps>
-  <Step title="Navigate to Home">
-    From the sidebar, click **Home**. You'll see the automation prompt input.
-  </Step>
+You can also upload files for context — spreadsheets, PDFs, price lists, templates — whatever your agent needs to understand the job.
 
-  <Step title="Describe Your Workflow">
-    In the prompt box, type:
-    ```
-    I want to generate quotes for customers based on a price list.
-    The agent should take customer requirements and create a customized quote.
-    ```
-  </Step>
+<Tip>
+  Be specific about what you want the outcome to look like. The more detail you give, the better your agent will be.
+</Tip>
 
-  <Step title="Upload Your Spreadsheet">
-    Click **Upload Spreadsheet** and select a CSV or Excel file with your price list.
+## Step 2: Your Agent Builds Itself
 
-    Don't have one? Download our [sample price list](/examples/price-list.csv).
+Once you submit, Decisional starts building your agent through a conversation. You'll see it:
 
-    Your spreadsheet should have columns like:
-    - Product Name
-    - Unit Price
-    - Description
-    - Category
-  </Step>
+1. Break your request into a workflow of steps
+2. Identify which integrations it needs
+3. Generate the logic for each step
+4. Test everything automatically
 
-  <Step title="Submit">
-    Click **Create Agent** and wait a few seconds while Decisional sets up your agent.
-  </Step>
-</Steps>
+You can follow along in the chat as it works. If something doesn't look right, just tell it to change it.
 
-## Step 3: Configure Your Agent
+## Step 3: Connect Your Integrations
 
-You'll be taken to the **Agent page** with three sections:
+Your agent will ask you to connect any apps it needs — Slack, HubSpot, Gmail, Google Sheets, etc.
 
-<Tabs>
-  <Tab title="Instructions">
-    ### Writing Agent Instructions
+Click the integration link, authorize access, and you're connected. Your agent handles the rest.
 
-    In the Instructions tab, you'll see a rich text editor where you can refine what your agent should do.
-
-    **Example instructions:**
-    ```
-    You are a Quote Generation Agent. Your job is to:
-
-    1. Review the price list spreadsheet
-    2. When given customer requirements, select appropriate products
-    3. Calculate total pricing including any discounts
-    4. Generate a professional quote
-    5. Save the quote to a new row in the spreadsheet
-
-    Always include:
-    - Quote ID (auto-generated)
-    - Date
-    - Customer name
-    - List of products with quantities
-    - Subtotal, taxes, and total
-    ```
-
-    <Tip>
-      Write instructions in natural language. The AI understands context and intent.
-    </Tip>
-  </Tab>
-
-  <Tab title="Worksheet">
-    ### Your Data Layer
-
-    Click the **Worksheet** tab to see your uploaded spreadsheet. You can:
-    - Edit data directly
-    - Add new columns
-    - Create formulas
-    - Format cells
-
-    This is where your agent will read data from and write results to.
-  </Tab>
-
-  <Tab title="Sources">
-    ### Add Context (Optional)
-
-    Click **Sources** in the left sidebar to upload additional context:
-    - Quote templates (PDF)
-    - Past quotes (for reference)
-    - Company pricing policies
-
-    Your agent will understand these documents and use them to make better decisions.
-  </Tab>
-</Tabs>
+<Tip>
+  You can connect integrations at any time from the **Integrations** page in the sidebar.
+</Tip>
 
 ## Step 4: Test Your Agent
 
-<Steps>
-  <Step title="Open the AI Assistant">
-    On the right side of the screen, you'll see the **AI Assistant** panel.
+Before going live, run a test to make sure everything works.
 
-    This is where you interact with your agent in real-time.
-  </Step>
+Your agent will walk through its workflow step by step. For action nodes (things that write data, send emails, etc.), it pauses and asks for your approval before executing.
 
-  <Step title="Give Your Agent a Task">
-    Type a message like:
-    ```
-    Generate a quote for Acme Corp. They need:
-    - 10x Product A
-    - 5x Product B
-    - 3x Product C
+Review the results, check the output, and if something needs tweaking — just tell your agent in the chat.
 
-    Apply a 10% volume discount.
-    ```
-  </Step>
+## Step 5: Go Live
 
-  <Step title="Watch It Work">
-    Your agent will:
-    1. Read the price list from your worksheet
-    2. Calculate pricing
-    3. Apply the discount
-    4. Generate the quote
-    5. Add it to your worksheet
+When you're happy with the test, set your agent live. You can configure it to run:
 
-    You'll see the agent's reasoning in the chat as it works.
-  </Step>
+- **On a schedule** — every morning, every hour, weekly, whatever you need
+- **On triggers** — when a Slack message comes in, a form is submitted, or an event fires in a connected app
+- **On demand** — run it manually anytime
 
-  <Step title="Review Results">
-    Switch to the **Worksheet** tab to see the generated quote added to your spreadsheet!
-  </Step>
-</Steps>
+## Step 6: Monitor and Manage
 
-## Step 5: Run It Automatically
+Once live, you can see all your agent's runs from the **Runs** tab. Each run shows:
 
-<AccordionGroup>
-  <Accordion title="Schedule Recurring Runs">
-    Want your agent to check for new quote requests daily?
+- Status (Running, Completed, Failed, Needs Approval)
+- What happened at each step
+- The files and data your agent produced
 
-    1. Click the **calendar icon** in the Instructions tab
-    2. Set a schedule (e.g., "Every day at 9 AM")
-    3. Your agent will run automatically
-  </Accordion>
-
-  <Accordion title="Trigger on Events">
-    You can also trigger your agent when:
-    - A new row is added to your spreadsheet
-    - An email is received
-    - A form is submitted
-    - A webhook is called
-
-    Connect integrations in the **Integrations** page to enable event triggers.
-  </Accordion>
-
-  <Accordion title="Run Manually">
-    Click **Test Run** anytime to execute your agent manually.
-  </Accordion>
-</AccordionGroup>
-
-## Step 6: Monitor Runs
-
-<Steps>
-  <Step title="View Run History">
-    Click the **Runs** tab to see all past executions.
-  </Step>
-
-  <Step title="Check Status">
-    Each run shows:
-    - Status (Running, Completed, Failed, Needs Review)
-    - Duration
-    - Timestamp
-    - Output
-  </Step>
-
-  <Step title="Debug Issues">
-    Click on any run to see detailed logs and fix any issues.
-  </Step>
-</Steps>
-
-## What You've Learned
-
-<Check>
-  ✅ Created your first agent
-</Check>
-<Check>
-  ✅ Uploaded a spreadsheet
-</Check>
-<Check>
-  ✅ Wrote agent instructions
-</Check>
-<Check>
-  ✅ Tested your agent
-</Check>
-<Check>
-  ✅ Monitored run history
-</Check>
+Need to change something? Open the chat and tell your agent what to update. It modifies its own workflow based on your instructions.
 
 ## Next Steps
 
 <CardGroup cols={2}>
   <Card title="Core Concepts" icon="book" href="/core-concepts">
-    Learn about Agents, Worksheets, Sources, and Runs
+    Learn about Agents, Workflows, Integrations, and Runs
   </Card>
-
   <Card title="Working with Agents" icon="robot" href="/guides/agents">
-    Deep dive into agent configuration
-  </Card>
-
-  <Card title="Workflow Tutorials" icon="graduation-cap" href="/workflows/finance/quote-generation">
-    Follow step-by-step tutorials for common workflows
-  </Card>
-
-  <Card title="API Reference" icon="code" href="/api-reference/introduction">
-    Programmatic access to Decisional
+    Deep dive into agent configuration and management
   </Card>
 </CardGroup>
 
 ## Need Help?
 
-<Card title="Join Our Community" icon="discord" href="https://discord.gg/DwPDS5Prk2">
-  Get help from our team and other users on Discord
-</Card>
-
-<Card title="Contact Support" icon="life-ring" href="mailto:founders@decisional.com">
-  Reach out to our support team
-</Card>
+<CardGroup cols={2}>
+  <Card title="Join Our Community" icon="discord" href="https://discord.gg/DwPDS5Prk2">
+    Get help from our team and other users on Discord
+  </Card>
+  <Card title="Contact Support" icon="life-ring" href="mailto:founders@decisional.com">
+    Reach out to our support team
+  </Card>
+</CardGroup>
