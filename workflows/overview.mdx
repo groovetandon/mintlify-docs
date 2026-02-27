@@ -1,0 +1,92 @@
+---
+title: "Workflows"
+description: "Understand how your agent's workflow is structured"
+---
+
+## What Is a Workflow?
+
+A workflow is the step-by-step plan your agent follows to complete a task. When you describe what you want and hit **Build**, Decisional generates a workflow — a directed graph of **nodes** connected by **edges**.
+
+Each node represents one step in the process. Edges define the order of execution.
+
+## Node Types
+
+Workflows are made up of different node types, each handling a specific kind of work:
+
+<CardGroup cols={2}>
+  <Card title="Trigger Node" icon="bolt">
+    The starting point of every workflow. Defines how the agent gets activated — manual run, schedule, webhook, or an event from a connected app.
+  </Card>
+  <Card title="Task Node" icon="list-check">
+    The core workhorse. Reads data, processes information, makes decisions, and produces output. Most of your workflow logic lives here.
+  </Card>
+  <Card title="Action Node" icon="paper-plane">
+    Takes an action in an external app — sends an email, posts a Slack message, updates a CRM record, writes to a database. Action nodes are flagged during testing so you can approve before they execute.
+  </Card>
+  <Card title="AI Node" icon="microchip-ai">
+    Runs an AI model to process, classify, or summarize data. Use this when you need the agent to reason over content, categorize items, or generate text.
+  </Card>
+  <Card title="RAG Node" icon="magnifying-glass">
+    Searches your uploaded sources using Retrieval-Augmented Generation. Pulls the most relevant chunks from your documents so other nodes can use that context.
+  </Card>
+</CardGroup>
+
+## Viewing Your Workflow
+
+After your agent builds, click the **Workflow** tab to see the visual graph. Each node is displayed with:
+
+- Its **name** and a short description of what it does
+- Its **type** (trigger, task, action, AI, RAG)
+- **Connections** showing the flow of data between steps
+
+You can zoom, pan, and click on any node to see its details and the code it runs.
+
+## AI Nodes
+
+AI Nodes let your agent call an AI model as a step in the workflow. This is useful for:
+
+- **Classification** — categorize emails, tickets, or documents into types
+- **Summarization** — condense long content into key points
+- **Extraction** — pull structured data from unstructured text
+- **Generation** — write responses, draft emails, or create content
+
+The AI Node takes an input (text, data, or context from previous nodes) and produces an output that flows to the next step.
+
+## RAG Nodes
+
+RAG Nodes connect your workflow to your uploaded **Sources**. When a RAG Node runs, it:
+
+1. Takes a query (from the current context or a previous node)
+2. Searches your indexed documents for the most relevant chunks
+3. Returns the matching content with citations
+
+This lets your agent pull real information from your documents mid-workflow — pricing from a price list, terms from a contract, procedures from an SOP.
+
+<Tip>
+  RAG Nodes work best when your sources are well-organized and your agent's instructions reference specific documents by name.
+</Tip>
+
+## How Workflows Get Built
+
+You don't need to design workflows manually. Here's the process:
+
+1. **You describe** what you want in plain English
+2. **Decisional generates** the workflow automatically — choosing the right node types, wiring them together, and writing the logic
+3. **You review** the workflow in the visual viewer
+4. **You can modify** by telling your agent in the chat what to change
+
+If you need to make changes after building, just tell your agent — for example, "add a step to send a Slack notification after the email is sent" — and it will update the workflow.
+
+## Action Node Approvals
+
+Action nodes are special because they affect external systems (sending emails, updating CRMs, posting messages). During testing:
+
+- Your agent **pauses** before executing each action node
+- You see a **preview** of what the action will do
+- You can **approve** or **reject** each action individually
+
+This gives you full control before anything touches your real data or apps.
+
+<Warning>
+  When your agent is live, action nodes execute automatically unless you've configured human-in-the-loop approval in your instructions.
+</Warning>

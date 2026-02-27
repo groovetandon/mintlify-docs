@@ -39,7 +39,7 @@
     {
       "name": "Changelog",
       "icon": "list",
-      "url": "https://docs.decisional.com/reference/changelog"
+      "url": "https://www.decisional.com/changelog"
     }
   ],
   "navigation": [
@@ -47,35 +47,108 @@
       "group": "Getting Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "core-concepts",
-        "setup"
+        {
+          "group": "Setup",
+          "expanded": false,
+          "icon": "rocket",
+          "pages": [
+            "quickstart",
+            "core-concepts",
+            "setup"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Agents",
+      "pages": [
+        {
+          "group": "Building Agents",
+          "expanded": false,
+          "icon": "robot",
+          "pages": [
+            "guides/agents",
+            "guides/ai-assistant"
+          ]
+        },
+        {
+          "group": "Agent Features",
+          "expanded": false,
+          "icon": "puzzle-piece",
+          "pages": [
+            "agents/versioning",
+            "agents/sources"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Workflows",
+      "pages": [
+        {
+          "group": "Understanding Workflows",
+          "expanded": false,
+          "icon": "diagram-project",
+          "pages": [
+            "workflows/overview"
+          ]
+        }
       ]
     },
     {
       "group": "Integrations",
       "pages": [
-        "integrations"
+        {
+          "group": "Connect Your Apps",
+          "expanded": false,
+          "icon": "plug",
+          "pages": [
+            "integrations",
+            "guides/integrations"
+          ]
+        }
       ]
     },
     {
-      "group": "User Guides",
+      "group": "Data",
       "pages": [
-        "guides/agents",
-        "guides/worksheets",
-        "guides/sources",
-        "guides/ai-assistant",
-        "guides/runs",
-        "guides/integrations",
-        "guides/workspaces"
+        {
+          "group": "Worksheets & Sources",
+          "expanded": false,
+          "icon": "table",
+          "pages": [
+            "guides/worksheets",
+            "guides/sources"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Operations",
+      "pages": [
+        {
+          "group": "Runs & Monitoring",
+          "expanded": false,
+          "icon": "chart-line",
+          "pages": [
+            "guides/runs",
+            "guides/workspaces"
+          ]
+        }
       ]
     },
     {
       "group": "Reference",
       "pages": [
-        "reference/glossary",
-        "reference/faq",
-        "reference/changelog"
+        {
+          "group": "Resources",
+          "expanded": false,
+          "icon": "book",
+          "pages": [
+            "reference/glossary",
+            "reference/faq"
+          ]
+        }
       ]
     }
   ],

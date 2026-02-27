@@ -11,6 +11,10 @@ You'll need a Decisional account. [Sign up here](https://agents.decisional.com/s
 
 Go to [agents.decisional.com](https://agents.decisional.com) and sign in. You'll see a prompt box on the home page.
 
+<Frame>
+  <img src="/images/guides/home-page.png" alt="Decisional home page with the agent builder prompt" />
+</Frame>
+
 Tell Decisional what you want your agent to do in plain English. For example:
 
 ```
@@ -27,34 +31,66 @@ You can also upload files for context — spreadsheets, PDFs, price lists, templ
 
 ## Step 2: Your Agent Builds Itself
 
-Once you submit, Decisional starts building your agent through a conversation. You'll see it:
+Once you submit, Decisional starts a conversation to understand what you need. Your agent may ask a few clarifying questions, then it selects the right integrations and tools for the job.
 
-1. Break your request into a workflow of steps
-2. Identify which integrations it needs
-3. Generate the logic for each step
-4. Test everything automatically
+<Frame>
+  <img src="/images/guides/clarification-mode.png" alt="Agent asking clarifying questions before building" />
+</Frame>
 
-You can follow along in the chat as it works. If something doesn't look right, just tell it to change it.
+After that, your agent writes up a set of **instructions** — a plain-English summary of exactly what it will do, step by step. You'll get to review these instructions before anything is built. If something's off, just tell it to change it.
 
-## Step 3: Connect Your Integrations
+<Frame>
+  <img src="/images/guides/instructions-review.png" alt="Reviewing your agent's instructions before building" />
+</Frame>
 
-Your agent will ask you to connect any apps it needs — Slack, HubSpot, Gmail, Google Sheets, etc.
+## Step 3: Build Your Workflow
 
-Click the integration link, authorize access, and you're connected. Your agent handles the rest.
+Once you approve the instructions, hit **Build** and your agent generates a full workflow automatically. It breaks your instructions into individual steps, writes the logic for each one, and wires everything together.
+
+You can watch it build in real time from the **Workflow** tab. When it's done, you'll see the complete workflow laid out as a visual graph — each node representing a step your agent will execute.
+
+<Frame>
+  <img src="/images/guides/building-workflow.png" alt="Agent building its workflow in real time" style={{ maxWidth: '400px', margin: '0 auto' }} />
+</Frame>
+
+<Frame>
+  <img src="/images/guides/workflow-viewer.png" alt="The completed workflow displayed as a visual graph" />
+</Frame>
+
+## Step 4: Connect Your Integrations
+
+Your agent needs access to the apps in your workflow. There are two ways to connect them:
+
+- **View Connections** — Click the **View Connections** button on your agent page to see which integrations are needed and connect them directly.
+- **Ask your agent** — Just tell your agent to connect an integration in the chat (e.g. "connect my Gmail") and it will walk you through it.
+
+Once you click connect, you'll authorize access through the app's standard OAuth flow. Your agent handles the rest.
+
+<Frame>
+  <img src="/images/guides/view-connections.png" alt="View Connections panel showing connected integrations" />
+</Frame>
 
 <Tip>
-  You can connect integrations at any time from the **Integrations** page in the sidebar.
+  Hover over any tool or trigger in the connections panel to see exactly where it's used in your agent's workflow.
 </Tip>
 
-## Step 4: Test Your Agent
+<Tip>
+  You can also manage all your integrations from the **Integrations** page in the sidebar.
+</Tip>
+
+## Step 5: Test Your Agent
 
 Before going live, run a test to make sure everything works.
 
 Your agent will walk through its workflow step by step. For action nodes (things that write data, send emails, etc.), it pauses and asks for your approval before executing.
 
+<Frame>
+  <img src="/images/guides/test-run.png" alt="Testing a workflow with an action node pending approval" />
+</Frame>
+
 Review the results, check the output, and if something needs tweaking — just tell your agent in the chat.
 
-## Step 5: Go Live
+## Step 6: Go Live
 
 When you're happy with the test, set your agent live. You can configure it to run:
 
@@ -62,13 +98,17 @@ When you're happy with the test, set your agent live. You can configure it to ru
 - **On triggers** — when a Slack message comes in, a form is submitted, or an event fires in a connected app
 - **On demand** — run it manually anytime
 
-## Step 6: Monitor and Manage
+## Step 7: Monitor and Manage
 
 Once live, you can see all your agent's runs from the **Runs** tab. Each run shows:
 
 - Status (Running, Completed, Failed, Needs Approval)
 - What happened at each step
 - The files and data your agent produced
+
+<Frame>
+  <img src="/images/guides/runs-tab.png" alt="Runs tab showing agent run activity and history" />
+</Frame>
 
 Need to change something? Open the chat and tell your agent what to update. It modifies its own workflow based on your instructions.
 
