@@ -1,0 +1,82 @@
+---
+title: "Sources"
+description: "Give your agents context with documents, files, and web links"
+---
+
+## What Are Sources?
+
+Sources are documents and files that give your agent the context it needs to do its job. Think of them as the reference materials you'd hand a new team member — price lists, SOPs, contracts, policies, or any document your agent needs to reason over.
+
+<Card title="How It Works" icon="brain">
+  When you upload a source, Decisional indexes it using **Retrieval-Augmented Generation (RAG)**. Your agent can then search and retrieve relevant information from your documents at runtime.
+</Card>
+
+## Supported File Types
+
+<CardGroup cols={3}>
+  <Card title="PDFs" icon="file-pdf">
+    Contracts, invoices, forms, reports, SOPs (up to 50MB, OCR supported)
+  </Card>
+  <Card title="Documents" icon="file-word">
+    Policies, templates, procedures (Word, PowerPoint)
+  </Card>
+  <Card title="Images" icon="image">
+    Receipts, forms, diagrams (PNG, JPG, TIFF up to 20MB with OCR)
+  </Card>
+  <Card title="Text Files" icon="file-lines">
+    Code, configs, raw text, JSON, XML
+  </Card>
+</CardGroup>
+
+## Adding Sources
+
+<Steps>
+  <Step title="Open the Sources Tab">
+    In your agent page, click **Sources** in the left sidebar.
+  </Step>
+
+  <Step title="Upload Files or Add Links">
+    Click **Add Source** and choose:
+    - **Upload File** — drag and drop files (up to 50MB each)
+    - **Add Link** — paste a URL and Decisional will fetch and index the content
+  </Step>
+
+  <Step title="Wait for Processing">
+    Decisional indexes your source (usually 10 seconds to 3 minutes depending on size). Once indexed, your agent can use it.
+  </Step>
+
+  <Step title="Reference in Instructions">
+    Tell your agent when to use specific sources:
+
+    ```
+    Reference the "Q4 Price List.pdf" for current pricing.
+    Use the "Vendor Catalog.xlsx" to validate vendor names.
+    ```
+  </Step>
+</Steps>
+
+## How RAG Works
+
+When your agent runs, it doesn't read every document end to end. Instead, it uses RAG to find the most relevant sections:
+
+1. **Indexing** — your documents are chunked and semantically indexed when uploaded
+2. **Retrieval** — at runtime, the agent searches for sections relevant to the current task
+3. **Generation** — the agent uses the retrieved context to reason and produce output
+4. **Citation** — the agent cites the specific pages and sections it referenced
+
+## Bounding Box Citations
+
+For PDFs, Decisional shows you the **exact location** the agent read — including the page number, paragraph, and a highlighted bounding box around the text. This makes it easy to verify your agent's reasoning.
+
+## Tips for Better Source Quality
+
+- **Use text-based PDFs** — scanned images work (via OCR) but text-based PDFs are faster and more accurate
+- **Remove irrelevant pages** — cover pages, blank pages, and appendices add noise
+- **Use clear formatting** — documents with headers and sections are easier for agents to navigate
+- **Keep documents focused** — one topic per file works better than large catch-all documents
+- **Use descriptive filenames** — "Q4 2025 Price List" is better than "pricelist_final_v3.xlsx"
+- **10-20 sources is the sweet spot** — too many sources can slow retrieval
+
+<Tip>
+  Start with fewer, high-quality sources and add more as needed. Quality beats quantity.
+</Tip>

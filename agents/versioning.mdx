@@ -1,0 +1,72 @@
+---
+title: "Agent Versioning"
+description: "Switch between versions, edit drafts safely, and restore previous configurations"
+---
+
+## Why Versioning?
+
+When your agent is live and running, you don't want to break it while making changes. Agent versioning lets you edit a draft copy of your agent without affecting the live version. When you're happy with the changes, publish the new version.
+
+## How It Works
+
+Every time you publish an agent, Decisional saves a snapshot of its configuration — instructions, workflow, integrations, and triggers. This becomes a **version**.
+
+- **Live version** — the version currently running in production
+- **Draft version** — your working copy where you make changes safely
+
+<Card title="Key Principle" icon="shield">
+  Changes to a live agent are always made in a draft first. Nothing goes live until you explicitly publish.
+</Card>
+
+## Editing a Live Agent
+
+When you want to update a live agent:
+
+<Steps>
+  <Step title="Open Your Agent">
+    Navigate to the agent you want to edit. You'll see its current live version.
+  </Step>
+
+  <Step title="Make Changes in Draft">
+    Any edits you make — updating instructions, changing integrations, modifying the workflow — are saved as a draft. Your live agent keeps running the previous version untouched.
+  </Step>
+
+  <Step title="Test Your Changes">
+    Run a test on the draft version to make sure everything works as expected.
+  </Step>
+
+  <Step title="Publish">
+    When you're satisfied, hit **Build** and then **Publish** to push the new version live. Your agent immediately starts using the updated configuration.
+  </Step>
+</Steps>
+
+## Switching Between Versions
+
+Use the **version selector** on the agent page to browse your version history. You can:
+
+- **View any past version** — see exactly what instructions, workflow, and integrations were active at that point
+- **Restore a previous version** — roll back to an earlier configuration if something goes wrong
+- **Compare versions** — understand what changed between versions
+
+<Tip>
+  If a new version causes issues, you can quickly restore the previous version to get your agent back to a working state.
+</Tip>
+
+## What Gets Versioned
+
+Each version captures a full snapshot of your agent:
+
+| Component | Versioned? |
+|-----------|-----------|
+| Instructions | Yes |
+| Workflow (nodes & edges) | Yes |
+| Integration connections | Yes |
+| Triggers & schedules | Yes |
+| Worksheet | Yes |
+
+## Best Practices
+
+- **Test before publishing** — always run a test on your draft before pushing it live
+- **Make incremental changes** — small, focused updates are easier to debug than large rewrites
+- **Use versions as checkpoints** — before a major change, make sure your current working version is published so you can roll back
+- **Copy your Agent ID** — you can copy your agent ID from the page header for debugging and API integration
