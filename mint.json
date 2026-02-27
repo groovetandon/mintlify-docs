@@ -49,7 +49,6 @@
         "introduction",
         {
           "group": "Setup",
-          "expanded": false,
           "icon": "rocket",
           "pages": [
             "quickstart",
@@ -64,7 +63,6 @@
       "pages": [
         {
           "group": "Building Agents",
-          "expanded": false,
           "icon": "robot",
           "pages": [
             "guides/agents",
@@ -73,7 +71,6 @@
         },
         {
           "group": "Agent Features",
-          "expanded": false,
           "icon": "puzzle-piece",
           "pages": [
             "agents/versioning",
@@ -87,7 +84,6 @@
       "pages": [
         {
           "group": "Understanding Workflows",
-          "expanded": false,
           "icon": "diagram-project",
           "pages": [
             "workflows/overview"
@@ -100,7 +96,6 @@
       "pages": [
         {
           "group": "Connect Your Apps",
-          "expanded": false,
           "icon": "plug",
           "pages": [
             "integrations",
@@ -114,7 +109,6 @@
       "pages": [
         {
           "group": "Worksheets & Sources",
-          "expanded": false,
           "icon": "table",
           "pages": [
             "guides/worksheets",
@@ -128,7 +122,6 @@
       "pages": [
         {
           "group": "Runs & Monitoring",
-          "expanded": false,
           "icon": "chart-line",
           "pages": [
             "guides/runs",
@@ -142,7 +135,6 @@
       "pages": [
         {
           "group": "Resources",
-          "expanded": false,
           "icon": "book",
           "pages": [
             "reference/glossary",
