@@ -47,115 +47,51 @@
       "group": "Getting Started",
       "pages": [
         "introduction",
-        {
-          "group": "Setup",
-          "icon": "rocket",
-          "pages": [
-            "quickstart",
-            "core-concepts",
-            "setup"
-          ]
-        }
+        "quickstart",
+        "core-concepts",
+        "setup"
+      ]
+    },
+    {
+      "group": "Dex",
+      "pages": [
+        "agents/modes",
+        "guides/ai-assistant"
       ]
     },
     {
       "group": "Agents",
       "pages": [
-        {
-          "group": "Building Agents",
-          "icon": "robot",
-          "pages": [
-            "guides/agents",
-            "guides/ai-assistant"
-          ]
-        },
-        {
-          "group": "Operating Agents",
-          "icon": "message",
-          "pages": [
-            "agents/modes",
-            "agents/approvals"
-          ]
-        },
-        {
-          "group": "Agent Features",
-          "icon": "puzzle-piece",
-          "pages": [
-            "agents/versioning",
-            "agents/sources"
-          ]
-        }
+        "guides/agents",
+        "workflows/overview",
+        "agents/versioning",
+        "agents/sources",
+        "guides/runs",
+        "agents/approvals"
       ]
     },
     {
-      "group": "Workflows",
+      "group": "Data & Integrations",
       "pages": [
-        {
-          "group": "Understanding Workflows",
-          "icon": "diagram-project",
-          "pages": [
-            "workflows/overview"
-          ]
-        }
+        "integrations",
+        "guides/integrations",
+        "guides/worksheets",
+        "guides/sources"
       ]
     },
     {
-      "group": "Integrations",
+      "group": "Platform",
       "pages": [
-        {
-          "group": "Connect Your Apps",
-          "icon": "plug",
-          "pages": [
-            "integrations",
-            "guides/integrations"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Data",
-      "pages": [
-        {
-          "group": "Worksheets & Sources",
-          "icon": "table",
-          "pages": [
-            "guides/worksheets",
-            "guides/sources"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Operations",
-      "pages": [
-        {
-          "group": "Runs & Monitoring",
-          "icon": "chart-line",
-          "pages": [
-            "guides/runs",
-            "guides/workspaces"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Security",
-      "pages": [
+        "guides/workspaces",
         "security"
       ]
     },
     {
       "group": "Reference",
       "pages": [
-        {
-          "group": "Resources",
-          "icon": "book",
-          "pages": [
-            "reference/glossary",
-            "reference/changelog",
-            "reference/faq"
-          ]
-        }
+        "reference/glossary",
+        "reference/faq",
+        "reference/changelog"
       ]
     }
   ],
