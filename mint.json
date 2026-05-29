@@ -74,7 +74,6 @@
       "group": "Data & Integrations",
       "pages": [
         "integrations",
-        "guides/integrations",
         "guides/worksheets",
         "guides/sources"
       ]
