@@ -1,0 +1,128 @@
+---
+title: "Approvals and Policy"
+description: "Control when agents pause, ask for review, bypass approvals, or block actions"
+---
+
+## Overview
+
+Approvals are Decisional's human-in-the-loop control system. They let an agent prepare work, show the relevant context, and pause before a sensitive action proceeds.
+
+Approvals can appear during automated runs, Chat Mode write actions, Run Mode flows, and workflow gates. They are especially useful when an agent is about to send information, update a system, make a decision with business impact, or continue past a manual review point.
+
+## Where approvals appear
+
+<CardGroup cols={2}>
+  <Card title="Action approvals" icon="paper-plane">
+    The agent pauses before an action that writes, sends, updates, creates, or deletes information.
+  </Card>
+  <Card title="Gate nodes" icon="user-check">
+    A workflow can pause at an explicit review step before moving to the next node.
+  </Card>
+  <Card title="Chat write approvals" icon="message">
+    If an agent wants to take a write action during chat, it can ask for approval before executing.
+  </Card>
+  <Card title="Public approval links" icon="link">
+    Stakeholders can review context and approve or reject without needing the full builder interface.
+  </Card>
+</CardGroup>
+
+## What an approval contains
+
+An approval should give the reviewer enough context to make a decision without digging through logs.
+
+Approvals typically include:
+
+- The action the agent wants to take
+- The relevant run, node, or chat context
+- Inputs and generated outputs
+- Files or records involved in the decision
+- Approve and reject controls
+- Any notes the reviewer adds before continuing
+
+When an approval is accepted, the run continues. When it is rejected, the agent stops, routes to the configured rejection path, or asks for a correction depending on the workflow.
+
+## Approval layers
+
+Approval behavior comes from multiple layers working together.
+
+| Layer | What it controls | Typical options |
+|-------|------------------|-----------------|
+| **Global approval mode** | The account default used when an agent has no override | Ask approvals or Bypass approvals |
+| **Agent approval mode** | Whether a specific agent inherits the default or overrides it | Use account default, Ask for this agent, or Bypass for this agent |
+| **Tool approval policy** | How toolkit read/write tools and per-tool overrides behave | Always allow, Needs approval, or Blocked |
+| **Workflow gates** | Manual review points designed into the workflow | Approver list, quorum, approve, reject |
+
+Use these layers together. For example, a low-risk reporting agent might bypass eligible approval prompts, while a finance agent can keep write tools on **Needs approval** and add gate nodes for final review.
+
+## Ask approvals
+
+**Ask approvals** means the agent pauses before eligible sensitive actions. A reviewer sees what the agent wants to do and chooses whether to approve or reject.
+
+Use Ask approvals when:
+
+- The agent is new or still being tuned
+- Outputs leave your company or affect customers
+- The workflow changes records in important systems
+- A human needs accountability for the final decision
+- You want an audit trail of manual sign-off
+
+## Bypass approvals
+
+**Bypass approvals** means eligible approval prompts are approved automatically so the run can continue without waiting for a human click.
+
+Bypass approvals are useful for stable, low-risk workflows where the agent's behavior is well understood. Bypass does not turn blocked tools into allowed tools. A blocked action remains blocked, and tool policy should still be used for actions that must never run.
+
+Use bypass carefully:
+
+- Start new agents with Ask approvals until the workflow is predictable
+- Keep destructive or externally visible actions behind tool policy or explicit review
+- Review run history after enabling bypass
+- Prefer bypass for repeatable internal tasks with clear inputs and low blast radius
+
+## Settings and global policy
+
+The Settings page contains the global approval default that agents inherit by default.
+
+From Settings, admins can manage:
+
+- The default approval mode used when an agent has no override
+- Toolkit defaults for read tools and write tools
+- Per-tool overrides for actions that should always be allowed, require approval, or be blocked
+- Team access and workspace configuration that affects who can approve or operate agents
+
+Agent builders can then choose whether an agent follows the default policy or overrides it with Ask approvals or Bypass approvals. The effective behavior is the combination of the global default, the agent override, tool policy, and any workflow gates.
+
+<Warning>
+  Bypass approvals should be treated as an operating policy, not a shortcut around governance. Keep blocked tools blocked, and keep human review on workflows where the business risk requires it.
+</Warning>
+
+## Recommended rollout
+
+<Steps>
+  <Step title="Start with Ask approvals">
+    Keep new agents in Ask approvals while you test the workflow, review outputs, and tune instructions.
+  </Step>
+  <Step title="Set tool policies">
+    In the toolkit tools view, allow safe read actions, require approval for sensitive write actions, and block tools the workspace should not use.
+  </Step>
+  <Step title="Add gates where judgment matters">
+    Put explicit workflow gates before final send, publish, payment, record update, or escalation steps.
+  </Step>
+  <Step title="Bypass only the predictable work">
+    Once a workflow is stable, enable Bypass approvals for agents where waiting for human review is no longer necessary.
+  </Step>
+  <Step title="Monitor runs">
+    Review run history, failures, and approval outcomes to keep the policy aligned with the workflow's risk.
+  </Step>
+</Steps>
+
+## Related docs
+
+<CardGroup cols={2}>
+  <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+    See how approvals behave across Chat Mode, Operator Mode, and Run Mode.
+  </Card>
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
+    Learn where action nodes and gate nodes fit inside a workflow.
+  </Card>
+</CardGroup>

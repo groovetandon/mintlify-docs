@@ -5,15 +5,49 @@ description: "Master agent creation, configuration, and optimization"
 
 ## What Are Agents?
 
-**Agents are autonomous AI workers** that execute your business workflows. Think of them as digital team members who follow your instructions, understand context from documents, and complete tasks automatically.
+**Agents are AI workers** that execute business workflows. They follow your instructions, use configured tools and sources, and produce runs you can inspect.
 
 <Card title="Core Principle" icon="lightbulb">
-  Agents combine **your instructions** + **your data** + **your context** to automate complex workflows that typically require human judgment.
+  Agents combine **your instructions** + **your tools** + **your sources** + **approval policy** to automate workflows while keeping runs reviewable.
+</Card>
+
+<Frame>
+  <video controls playsInline muted preload="metadata" src="/videos/pmm/agents-listing.mp4" />
+</Frame>
+
+## Agents as top-level objects
+
+Agents are the main objects you create, operate, and share in Decisional. Dex can help you build or change them, but the agent is the durable worker that owns the process.
+
+Each agent has:
+
+- A plain-English job description
+- A workflow that carries out that job
+- Tools, sources, and triggers for the systems it can access
+- Runs and logs that show what happened
+- Approval policy that controls when the agent pauses, asks for review, bypasses eligible approvals, or blocks an action
+
+<Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+  Learn how Dex works with agents across Chat Mode, Operator Mode, and Run Mode.
 </Card>
 
 ---
 
-## Agent lifecycle
+## Operating modes
+
+Use the mode picker to match the agent surface to the job:
+
+| Mode | Best for |
+|------|----------|
+| **Chat Mode** | Conversational requests, one-off work, explanations, and follow-up questions |
+| **Operator Mode** | Changing instructions, workflows, tools, triggers, sources, skills, and approval behavior |
+| **Run Mode** | Sharing a public run page with people who should not edit the agent |
+
+Configuration changes belong in Operator Mode. Run Mode is for running or reviewing a public agent, not rebuilding it.
+
+---
+
+## Agent Lifecycle
 
 Internal statuses (backend workflow granularity):
 - **init**, **active**, **inactive** - platform-level flags, not part of the setup wizard flow
@@ -64,43 +98,46 @@ stateDiagram-v2
   </Step>
 
   <Step title="Connect Integrations">
-    Your agent selects the right tools and integrations. Click **View Connections** to connect any apps it needs, or ask the agent to connect them for you in the chat.
+    Your agent identifies the required tools and integrations. Open the connections panel to connect any apps it needs, or ask Dex to start the connection flow.
   </Step>
 
   <Step title="Build & Test">
-    Hit **Build** and your agent generates a full workflow. Test it to make sure everything works — action nodes pause for your approval before executing.
+    Build the workflow, then test it to make sure everything works. Action nodes can pause for approval depending on the agent and tool policy.
   </Step>
 </Steps>
 
 <Tip>
-  Start with a simple workflow, test it, then gradually add complexity. Agents are iterative — just tell yours what to change.
+  Start with a simple workflow, test it, then gradually add complexity. Use Dex for change requests and Operator Mode for configuration-level edits.
 </Tip>
 
 ---
 
 ## Agent Components
 
-Every agent has five key components:
+Every agent has six key components:
 
 <CardGroup cols={2}>
   <Card title="Instructions" icon="file-lines">
     Natural language description of what the agent should do
   </Card>
-  <Card title="Worksheet" icon="table">
-    The spreadsheet where your agent reads and writes data
+  <Card title="Workflow" icon="diagram-project">
+    The graph of nodes the agent executes to complete the work
   </Card>
   <Card title="Sources" icon="folder">
     Documents that provide context (PDFs, links, files)
   </Card>
   <Card title="Integrations" icon="plug">
-    Connected services (email, CRM, Slack, etc.)
+    Connected services such as email, CRM, team chat, and spreadsheets
   </Card>
   <Card title="Triggers" icon="clock">
     How the agent gets activated (schedule, event, manual)
   </Card>
+  <Card title="Approval Policy" icon="user-check">
+    Rules for review, bypass approvals, and blocked actions
+  </Card>
 </CardGroup>
 
-Let's dive into each component:
+The sections below cover the setup details you will tune most often.
 
 ---
 
@@ -478,7 +515,7 @@ Triggers control **when your agent runs**.
     - Ad-hoc workflows
 
     **How to use:**
-    Click **Test Run** in the agent page
+    Click **Run Agent** or start a manual run from Run Mode
   </Tab>
 
   <Tab title="Schedule">
@@ -541,7 +578,7 @@ Triggers control **when your agent runs**.
       -d '{"input": "your input data"}'
     ```
 
-    See [API Reference →](/api-reference/introduction)
+	    Contact support if you need programmatic access for this workflow.
   </Tab>
 </Tabs>
 
@@ -562,7 +599,7 @@ Before going live, always test your agent thoroughly.
   </Step>
 
   <Step title="Run Test">
-    Click **Test Run** and watch the AI Assistant panel for real-time reasoning
+    Start a manual run and review the run details, node logs, outputs, and approvals
   </Step>
 
   <Step title="Review Output">
@@ -791,11 +828,11 @@ Track your agent's performance:
     Learn advanced document processing and RAG
   </Card>
 
-  <Card title="AI Assistant" icon="robot" href="/guides/ai-assistant">
+  <Card title="Dex" icon="robot" href="/guides/ai-assistant">
     Use the chat interface to debug and iterate
   </Card>
 
-  <Card title="Workflow Tutorials" icon="graduation-cap" href="/workflows/finance/quote-generation">
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
     Follow step-by-step guides for common workflows
   </Card>
 </CardGroup>

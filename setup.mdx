@@ -25,16 +25,42 @@ Invite members from your organization directly into your workspace from the sett
 
 Your agents will ask you to connect apps as they need them, but you can also set them up ahead of time.
 
-Go to **Integrations** in the sidebar, pick the app you want to connect, and follow the authorization flow. Common first integrations:
+Go to **Integrations** in the sidebar, pick the app you want to connect, and follow the authorization flow. Common first integration categories:
 
-- **Slack** — for notifications and triggers
-- **Gmail** — for sending and reading emails
-- **HubSpot** — for CRM data
-- **Google Sheets** — for spreadsheet access
+- **Team chat** — for notifications and triggers
+- **Email** — for sending and reading messages
+- **CRM** — for customer and deal data
+- **Spreadsheets** — for tabular data and lightweight operations
 
 <Tip>
   Integrations can be shared across your workspace or kept private to specific agents.
 </Tip>
+
+### Configure Approval Policy
+
+The Settings page is where admins define the default approval mode that agents inherit when they do not have an override.
+
+<Steps>
+  <Step title="Choose the default approval mode">
+    Set whether agents should ask for approvals by default or bypass eligible approval prompts. Individual agents can still inherit this default or override it.
+  </Step>
+
+  <Step title="Review tool policies">
+    In each toolkit's tools view, review the read/write defaults and any per-tool overrides: always allowed, needs approval, or blocked.
+  </Step>
+
+  <Step title="Tune per-agent behavior">
+    In Operator Mode, set an agent to use the account default, ask for this agent, or bypass for this agent depending on the workflow's risk and maturity.
+  </Step>
+</Steps>
+
+<Tip>
+  Start new agents with Ask approvals, then use Bypass approvals only after the workflow is predictable and low risk.
+</Tip>
+
+<Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+  Learn how global settings, per-agent overrides, tool policies, and workflow gates work together.
+</Card>
 
 ## Troubleshooting
 

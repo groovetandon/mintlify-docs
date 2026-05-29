@@ -1,6 +1,6 @@
 ---
 title: "Welcome to Decisional"
-description: "The most magical way to build agents that work with the apps you use"
+description: "Build and operate agents that work with the apps you use"
 ---
 
 <Frame>
@@ -9,70 +9,74 @@ description: "The most magical way to build agents that work with the apps you u
 
 ## What is Decisional?
 
-Decisional helps you build agents for specific workflows, but 10x easier to setup and maintain. You just ask for an agent in natural language, it builds and tests its own workflow that it runs constantly, and you can manage it by just talking to it.
+Decisional helps you build and operate AI agents for business workflows. You describe the work in natural language, Dex helps turn that intent into an agent, and the agent builds, tests, runs, monitors, and repairs workflows across the apps and data you authorize.
 
 <Card title="Core Philosophy" icon="lightbulb">
-  **Describe what you want automated, and your agent figures out the rest.** It builds its own workflow, connects to your tools, tests itself, and runs on autopilot. When something needs to change, just tell it.
+  **Describe what you want automated, then keep the work inspectable.** Agents build workflows, connect to tools, test before they go live, and expose runs, nodes, files, approvals, and tool activity so you can see what happened.
 </Card>
+
+## Dex and agents
+
+<CardGroup cols={2}>
+  <Card title="Dex" icon="message">
+    Dex is the conversational operator for your workspace. Use Dex for one-off work, questions, agent creation, workflow changes, and run review.
+  </Card>
+  <Card title="Agents" icon="robot">
+    Agents are the durable workers. Each one owns instructions, workflow, tools, sources, triggers, runs, and approval policy.
+  </Card>
+</CardGroup>
+
+<Frame>
+  <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-overview.mp4" />
+</Frame>
 
 ## Why Decisional?
 
 <CardGroup cols={2}>
   <Card title="Just Talk to It" icon="message">
-    Describe what you want in plain English. Your agent builds its own workflow, no dragging blocks or writing code.
+    Describe what you want in plain English. Dex can handle one-off work or help create an agent for recurring work.
   </Card>
   <Card title="Works with Your Apps" icon="plug">
-    Connects to Slack, HubSpot, Gmail, Google Sheets, and more. Your agent uses the tools you already use.
+    Connect your business tools, files, and triggers. Agents use the systems you authorize.
   </Card>
   <Card title="Runs End to End" icon="check">
-    Unlike tools that get you 70% there, your agent completes the entire workflow from start to finish.
+    Agents can build, test, run, monitor, and repair purpose-built workflows with visible run history.
   </Card>
   <Card title="Understands Your Documents" icon="brain">
-    Upload PDFs, contracts, spreadsheets. Your agent reads and reasons over them to get the job done.
+    Upload documents and spreadsheets as sources so agents can use the right context for the job.
   </Card>
 </CardGroup>
 
 ## How It Works
 
 <Steps>
-  <Step title="Describe Your Agent">
-    Tell Decisional what you want automated in plain English. Upload any relevant documents or spreadsheets for context.
+  <Step title="Describe the Work">
+    Tell Dex what you want automated in plain English. Upload relevant documents or spreadsheets for context.
   </Step>
-  <Step title="Your Agent Builds Itself">
-    Decisional generates a workflow, connects to your integrations, and tests everything automatically.
+  <Step title="Build the Workflow">
+    Decisional creates an inspectable workflow, connects the right tools, and tests the workflow before it goes live.
   </Step>
-  <Step title="Review and Approve">
-    See exactly what your agent will do before it goes live. Approve actions, tweak instructions, or ask it to change things.
+  <Step title="Review Policy and Approvals">
+    See exactly what your agent will do before it goes live. Approve actions, set approval policy, or ask Dex to change the workflow.
   </Step>
   <Step title="Let It Run">
-    Your agent runs on autopilot with triggers, schedules, or on demand. Monitor progress and manage it through chat.
+    Your agent can run from triggers, schedules, public run links, or on demand. Monitor progress through runs, node logs, outputs, and chat.
   </Step>
 </Steps>
 
 ## What Makes Decisional Different
 
-| | Traditional Automation | Decisional |
-| --------------- | ---------------------------- | -------------------------------------- |
-| **Setup** | Drag blocks, configure each step | Describe what you want in plain English |
-| **Maintenance** | Rebuild when things break | Tell your agent what to change |
-| **Flexibility** | Rigid, pre-defined actions | Agents reason through edge cases |
-| **Documents** | Limited to API data | Reads and understands your files |
-| **Completion** | Gets you partway there | Finishes the entire workflow |
-
-<AccordionGroup>
-  <Accordion title="Agents Build Their Own Workflows">
-    You don't need to map out every step. Describe the outcome you want and your agent figures out how to get there, including which tools to use and what order to do things in.
-  </Accordion>
-  <Accordion title="Manages Itself Through Chat">
-    Need to change something? Just tell your agent. No need to dig into settings or rebuild workflows. It updates itself based on your instructions.
-  </Accordion>
-  <Accordion title="Reads and Reasons Over Documents">
-    Upload any document and your agent understands it. PDFs, contracts, spreadsheets, emails. It uses retrieval-augmented generation to pull the right context when it needs it.
-  </Accordion>
-  <Accordion title="Connects to the Apps You Use">
-    Slack, HubSpot, Gmail, Google Sheets, and more. Your agent works with your existing tools so nothing changes about how your team operates.
-  </Accordion>
-</AccordionGroup>
+<CardGroup cols={3}>
+  <Card title="Powerful" icon="bolt">
+    Dex handles one-off work and helps build agents for recurring workflows. Agents can use connected tools, files, triggers, and skills to read, write, generate outputs, and keep work moving across business systems.
+  </Card>
+  <Card title="Reliable" icon="shield-check">
+    Decisional pairs AI judgment with inspectable workflow steps. Agents build and test workflows before they go live, show node-level execution, and can diagnose failed runs, retry transient errors, patch code-level issues, or ask for missing human input.
+  </Card>
+  <Card title="Auditable" icon="clipboard-check">
+    Every run leaves a trail. Teams can review run history, workflow steps, node logs, files, approvals, tool calls, usage, and agent-level credit activity, then adjust the automation from the same workspace.
+  </Card>
+</CardGroup>
 
 ## Who Uses Decisional?
 
@@ -120,6 +124,9 @@ Ready to build your first agent?
 <CardGroup cols={2}>
   <Card title="Core Concepts" icon="book" href="/core-concepts">
     Learn about Agents, Workflows, Integrations, and more
+  </Card>
+  <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+    Learn when to use Chat Mode, Operator Mode, and Run Mode
   </Card>
   <Card title="Support" icon="life-ring" href="mailto:founders@decisional.com">
     Get help from our team

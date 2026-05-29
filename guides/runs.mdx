@@ -9,7 +9,7 @@ A **run** is a single execution of your agent's workflow. Every time your agent 
 
 <CardGroup cols={2}>
   <Card title="Manual Run" icon="hand-pointer">
-    You click "Test Run" button
+    You start a run manually from the agent page or Run Mode
   </Card>
   <Card title="Scheduled Run" icon="clock">
     Runs at 9 AM every day
@@ -316,8 +316,8 @@ When a run fails, follow these steps to identify and fix the issue.
     Row 7 is the problem.
   </Step>
 
-  <Step title="Reproduce in AI Assistant">
-    Use the AI Assistant to test the failing scenario:
+  <Step title="Reproduce in Dex">
+    Use Dex to test the failing scenario:
 
     ```
     Process row 7 only and show me what happens
@@ -430,7 +430,7 @@ When a run fails, follow these steps to identify and fix the issue.
 
 ### Manual Run
 
-Click **Test Run** to execute your agent immediately.
+Start a manual run to execute your agent immediately.
 
 **Use when:**
 - Testing new agent
@@ -734,7 +734,7 @@ Get alerted when important events happen:
     Learn how to optimize agent instructions
   </Card>
 
-  <Card title="AI Assistant" icon="message" href="/guides/ai-assistant">
+  <Card title="Dex" icon="message" href="/guides/ai-assistant">
     Debug runs interactively with chat
   </Card>
 
@@ -742,7 +742,7 @@ Get alerted when important events happen:
     Connect services for notifications and actions
   </Card>
 
-  <Card title="API Reference" icon="code" href="/api-reference/runs/list">
-    Programmatic access to run data
-  </Card>
+	  <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+	    Understand pending approvals and review states
+	  </Card>
 </CardGroup>

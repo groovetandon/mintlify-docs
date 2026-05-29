@@ -1,478 +1,135 @@
 ---
 title: "Integrations"
-description: "Connect your agents to the apps you already use"
+description: "Connect agents to the apps, triggers, and outputs used by Decisional templates"
 ---
 
-## Available Integrations
+## Integrations power agent templates
 
-Your agents connect to external apps to read data, take actions, and respond to events. Decisional supports **130+ integrations** across every major category.
+Decisional integrations are not just app connections. They are the read tools, write tools, triggers, files, and approval surfaces that let an agent complete a workflow end to end.
 
----
+The public template library shows the pattern clearly: each template combines a trigger, one or more connected systems, AI or data-processing steps, and a final output that is ready for review or downstream use.
 
-## Google Workspace
+<Card title="Browse Agent Templates" icon="copy" href="https://www.decisional.com/templates">
+  See the live template library on decisional.com.
+</Card>
 
-<CardGroup cols={3}>
-  <Card title="Gmail" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/gmail" alt="Gmail" className="h-12 w-12 mb-2" />
-    Send, read, and respond to emails
-  </Card>
-  <Card title="Google Sheets" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googlesheets" alt="Google Sheets" className="h-12 w-12 mb-2" />
-    Read from and write to spreadsheets
-  </Card>
-  <Card title="Google Drive" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googledrive" alt="Google Drive" className="h-12 w-12 mb-2" />
-    Access and manage files
-  </Card>
-  <Card title="Google Docs" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googledocs" alt="Google Docs" className="h-12 w-12 mb-2" />
-    Create and edit documents
-  </Card>
-  <Card title="Google Calendar" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googlecalendar" alt="Google Calendar" className="h-12 w-12 mb-2" />
-    Manage events and scheduling
-  </Card>
-  <Card title="Google Slides" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googleslides" alt="Google Slides" className="h-12 w-12 mb-2" />
-    Create and edit presentations
-  </Card>
-  <Card title="Google Meet" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googlemeet" alt="Google Meet" className="h-12 w-12 mb-2" />
-    Video conferencing and meetings
-  </Card>
-  <Card title="Google Analytics" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googleanalytics" alt="Google Analytics" className="h-12 w-12 mb-2" />
-    Website analytics and reporting
-  </Card>
-  <Card title="Google Ads" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googleads" alt="Google Ads" className="h-12 w-12 mb-2" />
-    Ad campaign management
-  </Card>
-  <Card title="Google Tasks" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googletasks" alt="Google Tasks" className="h-12 w-12 mb-2" />
-    Task management
-  </Card>
-  <Card title="Google BigQuery" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googlebigquery" alt="Google BigQuery" className="h-12 w-12 mb-2" />
-    Data warehouse queries and analytics
-  </Card>
-  <Card title="Google Search Console" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/googlesearchconsole" alt="Google Search Console" className="h-12 w-12 mb-2" />
-    Search performance and indexing
-  </Card>
-</CardGroup>
-
----
-
-## Microsoft
-
-<CardGroup cols={3}>
-  <Card title="Outlook" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/outlook" alt="Outlook" className="h-12 w-12 mb-2" />
-    Email and calendar management
-  </Card>
-  <Card title="OneDrive" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/onedrive" alt="OneDrive" className="h-12 w-12 mb-2" />
-    Access and manage files
-  </Card>
-  <Card title="Excel" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/excel" alt="Excel" className="h-12 w-12 mb-2" />
-    Read and write spreadsheets
-  </Card>
-  <Card title="Microsoft Teams" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/microsoftteams" alt="Microsoft Teams" className="h-12 w-12 mb-2" />
-    Team messaging and collaboration
-  </Card>
-  <Card title="SharePoint" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/sharepoint" alt="SharePoint" className="h-12 w-12 mb-2" />
-    Document management and intranet
-  </Card>
-  <Card title="Dynamics 365" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/dynamics365" alt="Dynamics 365" className="h-12 w-12 mb-2" />
-    CRM and business applications
-  </Card>
-</CardGroup>
-
----
-
-## CRM & Sales
-
-<CardGroup cols={3}>
-  <Card title="HubSpot" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/hubspot" alt="HubSpot" className="h-12 w-12 mb-2" />
-    Manage deals, contacts, and pipelines
-  </Card>
-  <Card title="Salesforce" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/salesforce" alt="Salesforce" className="h-12 w-12 mb-2" />
-    Sync leads, deals, and customer records
-  </Card>
-  <Card title="Attio" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/attio" alt="Attio" className="h-12 w-12 mb-2" />
-    Manage relationships and workflows
-  </Card>
-  <Card title="Close" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/close" alt="Close" className="h-12 w-12 mb-2" />
-    CRM with calling and email automation
-  </Card>
-  <Card title="Zoho" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/zoho" alt="Zoho" className="h-12 w-12 mb-2" />
-    CRM, sales automation, and analytics
-  </Card>
-  <Card title="Capsule CRM" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/capsule" alt="Capsule CRM" className="h-12 w-12 mb-2" />
-    Contact and sales pipeline management
-  </Card>
-  <Card title="Intercom" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/intercom" alt="Intercom" className="h-12 w-12 mb-2" />
-    Customer messaging and support
-  </Card>
-  <Card title="Zendesk" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/zendesk" alt="Zendesk" className="h-12 w-12 mb-2" />
-    Customer support and ticketing
-  </Card>
-  <Card title="Gorgias" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/gorgias" alt="Gorgias" className="h-12 w-12 mb-2" />
-    Ecommerce customer support
-  </Card>
-</CardGroup>
-
----
-
-## Communication
-
-<CardGroup cols={3}>
-  <Card title="Slack" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/slack" alt="Slack" className="h-12 w-12 mb-2" />
-    Send messages, receive triggers, chat with agents
-  </Card>
-  <Card title="WhatsApp" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/whatsapp" alt="WhatsApp" className="h-12 w-12 mb-2" />
-    Send and receive messages
-  </Card>
-  <Card title="Discord" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/discord" alt="Discord" className="h-12 w-12 mb-2" />
-    Server messaging and community management
-  </Card>
-  <Card title="SendGrid" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/sendgrid" alt="SendGrid" className="h-12 w-12 mb-2" />
-    Transactional and marketing emails
-  </Card>
-  <Card title="Mailchimp" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/mailchimp" alt="Mailchimp" className="h-12 w-12 mb-2" />
-    Email marketing and campaigns
-  </Card>
-</CardGroup>
-
----
-
-## Project Management
-
-<CardGroup cols={3}>
-  <Card title="Notion" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/notion" alt="Notion" className="h-12 w-12 mb-2" />
-    Read and update pages, databases, and wikis
-  </Card>
-  <Card title="Linear" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/linear" alt="Linear" className="h-12 w-12 mb-2" />
-    Create and manage issues and projects
-  </Card>
-  <Card title="Trello" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/trello" alt="Trello" className="h-12 w-12 mb-2" />
-    Manage boards, lists, and cards
-  </Card>
-  <Card title="Airtable" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/airtable" alt="Airtable" className="h-12 w-12 mb-2" />
-    Read and write to bases and tables
-  </Card>
-  <Card title="Asana" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/asana" alt="Asana" className="h-12 w-12 mb-2" />
-    Task and project tracking
-  </Card>
-  <Card title="ClickUp" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/clickup" alt="ClickUp" className="h-12 w-12 mb-2" />
-    Project management and collaboration
-  </Card>
-  <Card title="Monday" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/monday" alt="Monday" className="h-12 w-12 mb-2" />
-    Work management and workflows
-  </Card>
-  <Card title="Basecamp" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/basecamp" alt="Basecamp" className="h-12 w-12 mb-2" />
-    Team project management
-  </Card>
-  <Card title="Wrike" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/wrike" alt="Wrike" className="h-12 w-12 mb-2" />
-    Work management and collaboration
-  </Card>
-  <Card title="Miro" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/miro" alt="Miro" className="h-12 w-12 mb-2" />
-    Visual collaboration and whiteboarding
-  </Card>
-  <Card title="Confluence" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/confluence" alt="Confluence" className="h-12 w-12 mb-2" />
-    Team documentation and knowledge base
-  </Card>
-  <Card title="Todoist" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/todoist" alt="Todoist" className="h-12 w-12 mb-2" />
-    Personal and team task management
-  </Card>
-</CardGroup>
-
----
-
-## Finance & Accounting
-
-<CardGroup cols={3}>
-  <Card title="Stripe" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/stripe" alt="Stripe" className="h-12 w-12 mb-2" />
-    Invoices, payments, and subscriptions
-  </Card>
-  <Card title="Bill.com" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/bill" alt="Bill.com" className="h-12 w-12 mb-2" />
-    Accounts payable and receivable
-  </Card>
-  <Card title="QuickBooks" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/quickbooks" alt="QuickBooks" className="h-12 w-12 mb-2" />
-    Accounting, invoices, and expenses
-  </Card>
-  <Card title="Sage" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/sage" alt="Sage" className="h-12 w-12 mb-2" />
-    Accounting and payroll
-  </Card>
-  <Card title="Xero" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/xero" alt="Xero" className="h-12 w-12 mb-2" />
-    Cloud accounting and bookkeeping
-  </Card>
-  <Card title="FreshBooks" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/freshbooks" alt="FreshBooks" className="h-12 w-12 mb-2" />
-    Invoicing and expense management
-  </Card>
-  <Card title="Zoho Books" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/zohobooks" alt="Zoho Books" className="h-12 w-12 mb-2" />
-    Accounting and financial management
-  </Card>
-  <Card title="Square" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/square" alt="Square" className="h-12 w-12 mb-2" />
-    Payments and point of sale
-  </Card>
-  <Card title="Harvest" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/harvest" alt="Harvest" className="h-12 w-12 mb-2" />
-    Time tracking and invoicing
-  </Card>
-</CardGroup>
-
----
-
-## Storage
-
-<CardGroup cols={3}>
-  <Card title="Dropbox" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/dropbox" alt="Dropbox" className="h-12 w-12 mb-2" />
-    Access and manage files
-  </Card>
-  <Card title="Box" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/box" alt="Box" className="h-12 w-12 mb-2" />
-    Cloud content management
-  </Card>
-</CardGroup>
-
----
-
-## Dev & Engineering
-
-<CardGroup cols={3}>
-  <Card title="GitHub" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/github" alt="GitHub" className="h-12 w-12 mb-2" />
-    Issues, PRs, and repo events
-  </Card>
-  <Card title="GitLab" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/gitlab" alt="GitLab" className="h-12 w-12 mb-2" />
-    DevOps and source control
-  </Card>
-  <Card title="Bitbucket" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/bitbucket" alt="Bitbucket" className="h-12 w-12 mb-2" />
-    Git repositories and CI/CD
-  </Card>
-  <Card title="Supabase" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/supabase" alt="Supabase" className="h-12 w-12 mb-2" />
-    Database and auth operations
-  </Card>
-  <Card title="Snowflake" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/snowflake" alt="Snowflake" className="h-12 w-12 mb-2" />
-    Data warehouse queries and analytics
-  </Card>
-  <Card title="Sentry" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/sentry" alt="Sentry" className="h-12 w-12 mb-2" />
-    Error tracking and monitoring
-  </Card>
-  <Card title="DigitalOcean" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/digitalocean" alt="DigitalOcean" className="h-12 w-12 mb-2" />
-    Cloud infrastructure management
-  </Card>
-</CardGroup>
-
----
-
-## Data & Web
-
-<CardGroup cols={3}>
-  <Card title="FireCrawl" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/firecrawl" alt="FireCrawl" className="h-12 w-12 mb-2" />
-    Crawl websites and extract content
-  </Card>
-  <Card title="SerpAPI" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/serpapi" alt="SerpAPI" className="h-12 w-12 mb-2" />
-    Search engine results and SEO data
-  </Card>
-  <Card title="Exa" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/exa" alt="Exa" className="h-12 w-12 mb-2" />
-    AI-powered web search
-  </Card>
-  <Card title="Apify" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/apify" alt="Apify" className="h-12 w-12 mb-2" />
-    Web scraping and data extraction
-  </Card>
-</CardGroup>
-
----
-
-## SEO & Marketing
-
-<CardGroup cols={3}>
-  <Card title="Ahrefs" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/ahrefs" alt="Ahrefs" className="h-12 w-12 mb-2" />
-    Site audits, keyword research, and backlinks
-  </Card>
-  <Card title="Semrush" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/semrush" alt="Semrush" className="h-12 w-12 mb-2" />
-    Keyword research and competitor analysis
-  </Card>
-  <Card title="Klaviyo" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/klaviyo" alt="Klaviyo" className="h-12 w-12 mb-2" />
-    Email and SMS marketing automation
-  </Card>
-</CardGroup>
-
----
-
-## Social Media
-
-<CardGroup cols={3}>
-  <Card title="LinkedIn" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/linkedin" alt="LinkedIn" className="h-12 w-12 mb-2" />
-    Professional networking and outreach
-  </Card>
-  <Card title="X (Twitter)" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/twitter" alt="X (Twitter)" className="h-12 w-12 mb-2" />
-    Post updates and monitor mentions
-  </Card>
-  <Card title="Facebook" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/facebook" alt="Facebook" className="h-12 w-12 mb-2" />
-    Page management and messaging
-  </Card>
-  <Card title="Instagram" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/instagram" alt="Instagram" className="h-12 w-12 mb-2" />
-    Content publishing and analytics
-  </Card>
-  <Card title="YouTube" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/youtube" alt="YouTube" className="h-12 w-12 mb-2" />
-    Video management and analytics
-  </Card>
-  <Card title="Reddit" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/reddit" alt="Reddit" className="h-12 w-12 mb-2" />
-    Community monitoring and engagement
-  </Card>
-</CardGroup>
-
----
-
-## Documents & Signatures
-
-<CardGroup cols={3}>
-  <Card title="DocuSign" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/docusign" alt="DocuSign" className="h-12 w-12 mb-2" />
-    eSignatures and digital agreements
-  </Card>
-  <Card title="Dropbox Sign" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/dropboxsign" alt="Dropbox Sign" className="h-12 w-12 mb-2" />
-    Electronic signatures
-  </Card>
-  <Card title="Canva" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/canva" alt="Canva" className="h-12 w-12 mb-2" />
-    Design and visual content creation
-  </Card>
-</CardGroup>
-
----
-
-## Meetings & Scheduling
-
-<CardGroup cols={3}>
-  <Card title="Zoom" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/zoom" alt="Zoom" className="h-12 w-12 mb-2" />
-    Video conferencing and meeting data
-  </Card>
-  <Card title="Granola" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/granola" alt="Granola" className="h-12 w-12 mb-2" />
-    Meeting notes and action items
-  </Card>
-  <Card title="Cal.com" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/calcom" alt="Cal.com" className="h-12 w-12 mb-2" />
-    Open-source scheduling
-  </Card>
-  <Card title="Calendly" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/calendly" alt="Calendly" className="h-12 w-12 mb-2" />
-    Scheduling and appointment booking
-  </Card>
-</CardGroup>
-
----
-
-## eCommerce
-
-<CardGroup cols={3}>
-  <Card title="Shopify" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/shopify" alt="Shopify" className="h-12 w-12 mb-2" />
-    Store management and order processing
-  </Card>
-  <Card title="Gumroad" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/gumroad" alt="Gumroad" className="h-12 w-12 mb-2" />
-    Digital product sales
-  </Card>
-</CardGroup>
-
----
-
-## Forms
+## What agents connect
 
 <CardGroup cols={2}>
-  <Card title="Tally" href="https://agents.decisional.com">
-    <img src="https://logos.composio.dev/api/tally" alt="Tally" className="h-12 w-12 mb-2" />
-    Form responses and submissions
+  <Card title="Triggers" icon="bolt">
+    Start agents from schedules, integration events, webhooks, form submissions, chat requests, or manual runs.
+  </Card>
+  <Card title="Source systems" icon="database">
+    Pull context from inboxes, CRMs, spreadsheets, files, meeting notes, payment systems, issue trackers, and web sources.
+  </Card>
+  <Card title="Actions" icon="paper-plane">
+    Send messages, update records, create documents, write spreadsheets, archive files, comment on PRs, or notify reviewers.
+  </Card>
+  <Card title="Outputs" icon="file-lines">
+    Produce review packages, spreadsheets, documents, approval requests, summaries, exception notes, and audit-ready archives.
   </Card>
 </CardGroup>
 
----
+## Template-backed integration patterns
 
-## How to Connect
+Use these public templates as examples of how integrations work together in real workflows.
 
-Your agents will ask you to connect integrations as they need them. You can also set them up ahead of time:
+| Template | Workflow area | Trigger | Connected systems | Output |
+|----------|---------------|---------|-------------------|--------|
+| **Stripe Invoice Processor Agent** | Finance | Scheduled | Stripe, Google Drive, Google Sheets | Invoice PDF archive and summary spreadsheet |
+| **Stripe Outstanding Invoices Email** | Finance | On trigger | Stripe, Google Sheets, Gmail | Internal overdue invoice summary |
+| **Procurement Approval Agent** | Finance & operations | Request intake | Google Sheets, Slackbot | Logged procurement request and approval flow |
+| **Invoice Data Extraction Agent** | Finance | Email inbox | Gmail | Structured spreadsheet from invoice files |
+| **Trade Finance Underwriting Agent** | Finance | Integration trigger | Gmail | Underwriting review workflow |
+| **ETF News Summary Agent** | Wealth management | Scheduled or manual | Exa, Gmail, Slack, Google Drive | News summary and distribution package |
+| **Attio Follow-up Automation Agent** | Sales | Scheduled | Attio, Google Sheets, Google Docs, Slackbot | Follow-up draft package with sheet and doc links |
+| **HubSpot Follow-up with Specific Tone Agent** | Sales | Scheduled or task-based | HubSpot, Gmail, Google Sheets, Google Docs, Slackbot | Drafted follow-ups in the sender's tone |
+| **HOT Lead Enrichment & Scoring Pipeline** | GTM | Integration trigger | HubSpot, Slack, Google Sheets, Gmail, Firecrawl | HOT lead alert and scored lead record |
+| **Signed Up / Visited Email Sequence** | GTM | Product or visit event | Gmail | Four-step outreach sequence |
+| **Email to HubSpot Sync Agent** | GTM | Email event | Gmail, HubSpot, Slackbot | Synced CRM contact and notification |
+| **Market Data Enrichment Agent** | GTM research | Spreadsheet or manual run | Google Sheets, Exa, Firecrawl, Parallel, Apollo, Attio | Enriched lead and CRM record |
+| **GitHub PR Review Agent** | Product & engineering | Slack request or new PR | GitHub, Slackbot | PR review comments and thread summary |
+| **Weekly Shipping Report Agent** | Product & engineering | Scheduled | Linear, GitHub, Google Docs, Google Sheets, Slackbot | Weekly shipping report |
+| **Call Recording Analyzer Agent** | Product & engineering | Scheduled or integration trigger | Fathom, Slackbot, GitHub, Linear | Product issue summary from calls |
+| **Supabase Webhook Login Notifier Agent** | Product & engineering | Webhook | Slackbot | Signup notification |
+| **Supabase User Onboarding Agent** | Product & engineering | Webhook | Slackbot, Attio | CRM update and onboarding notification |
+| **Website Health Monitor Agent** | GTM | Scheduled | Ahrefs, Slackbot | Site health findings and alert |
+| **HVAC Quoting Agent** | SMB operations | Form or manual intake | Google Sheets, Gmail | Professional quote |
+| **Engineering Drawing Generator** | SMB operations | Email intake | Gmail, Google Drive | Generated drawing files |
+| **Email Filtering Agent** | Email triage | Scheduled or manual | Gmail | Labeled and filtered inbox items |
 
-1. Go to **Integrations** in the sidebar
-2. Pick the app you want to connect
-3. Follow the authorization flow
-4. Your agents can use it immediately
+## Common integration bundles
 
-<Tip>
-  Integrations can be shared across your workspace or kept private to specific agents.
-</Tip>
+Templates usually combine several integration types rather than relying on one tool alone.
 
----
+<AccordionGroup>
+  <Accordion title="Finance operations">
+    Finance templates often combine payment or invoice systems with spreadsheets, file storage, email, and approval messaging. This pattern is useful for invoice archiving, close support, procurement review, and exception handling.
+  </Accordion>
 
-## Need a Different Integration?
+  <Accordion title="Sales and GTM">
+    GTM templates combine CRM records, inbox context, enrichment tools, spreadsheets, documents, and chat notifications. This pattern is useful for lead scoring, follow-up drafting, account research, and CRM hygiene.
+  </Accordion>
 
-Don't see what you need? We're adding new integrations regularly.
+  <Accordion title="Product and engineering">
+    Product and engineering templates connect repositories, issue trackers, call transcripts, chat, docs, and spreadsheets. This pattern is useful for PR review, shipping reports, call issue detection, onboarding, and webhook-driven notifications.
+  </Accordion>
 
-<Card title="Request Integration" icon="plus" href="mailto:founders@decisional.com?subject=Integration Request">
-  Email us at founders@decisional.com with the service you'd like to connect.
+  <Accordion title="SMB and operations">
+    Operations templates combine email or forms with spreadsheets, file storage, and generated outputs. This pattern is useful for quotes, drawings, inbox routing, and lightweight back-office workflows.
+  </Accordion>
+</AccordionGroup>
+
+## Trigger types
+
+Templates use a small set of repeatable trigger patterns.
+
+| Trigger type | Use it when | Example templates |
+|--------------|-------------|-------------------|
+| **Scheduled trigger** | The work should run on a cadence | Stripe Invoice Processor, Weekly Shipping Report, Attio Follow-up Automation |
+| **Integration event** | A connected app event should start the workflow | HOT Lead Enrichment, Signed Up / Visited Email Sequence |
+| **Webhook** | Another system should call Decisional directly | Supabase Login Notifier, Supabase User Onboarding |
+| **Chat request** | A person should start work conversationally | GitHub PR Review Agent |
+| **Manual run** | A user should run the agent on demand | HVAC Quoting Agent, Market Data Enrichment Agent |
+| **Email intake** | New or recent email should be the input | Invoice Data Extraction, Email Filtering, Engineering Drawing Generator |
+
+## How to choose integrations
+
+<Steps>
+  <Step title="Start with the output">
+    Decide what the agent should produce: a spreadsheet, document, email, CRM update, approval request, archive, or notification.
+  </Step>
+
+  <Step title="Pick the trigger">
+    Choose whether the work should start on a schedule, from an app event, from a webhook, from chat, from email, or manually.
+  </Step>
+
+  <Step title="Add the source systems">
+    Connect the systems the agent needs to read from, such as inboxes, CRMs, spreadsheets, issue trackers, meeting tools, payment systems, or files.
+  </Step>
+
+  <Step title="Add the action systems">
+    Connect the systems the agent needs to write to, such as chat, email, spreadsheets, documents, file storage, CRMs, or code review tools.
+  </Step>
+
+  <Step title="Set approvals">
+    Use approval policy for write actions, customer-facing outputs, financial operations, and any step where a human should review before the agent proceeds.
+  </Step>
+</Steps>
+
+<Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+  Learn how tool policies, approval modes, and bypass approvals apply to integration actions.
 </Card>
+
+## Connect integrations
+
+You can connect tools ahead of time from the Integrations page in the app, or let Dex ask for the right connection while building or running an agent.
+
+<CardGroup cols={2}>
+  <Card title="Build from a template" icon="copy" href="https://www.decisional.com/templates">
+    Start from a public template and connect the required systems during setup.
+  </Card>
+  <Card title="Create your own agent" icon="robot" href="https://agents.decisional.com">
+    Tell Dex what workflow you want, then connect the apps it asks for.
+  </Card>
+</CardGroup>

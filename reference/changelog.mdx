@@ -3,116 +3,583 @@ title: "Changelog"
 description: "Latest updates and improvements to Decisional"
 ---
 
-<Update label="February 6, 2026" tags={["New features", "Improvements"]}>
-  ## Skills
+New features and improvements shipped every week.
 
-  Upload markdown files to give your agents specialized knowledge, instructions, or playbooks. Agents reference these skills during builds and conversations.
+## April 2026
 
-  - Upload, view, and delete `.md` skill files per agent
-  - Toggle between **Preview** (rendered markdown) and **Raw** (source text) views
+<Update label="v0.92 - Apr 26, 2026" tags={["Improvements", "Settings"]}>
+  ## Workspace Refresh & Node-Level Credits
 
-  ## Platform Tools for Workflows
+  A cleaner workspace with consistent backgrounds and tabbed settings, plus credits now meter and resume per node so long workflows do not stall silently when credits run low.
 
-  Two new built-in tools available inside workflow node code:
+  ### Improvements
 
-  | Tool | Description |
-  |------|-------------|
-  | `call_ai_tool(prompt)` | Run AI-powered processing within any workflow step |
-  | `query_knowledge_base(query)` | Search your agent's knowledge base from workflow code |
-
-  ## File Uploads in Chat
-
-  You can now upload files directly to your agent during conversations for processing.
-
-  ## Redesigned Home Page
-
-  Clean, centered layout with a collapsible sidebar for a more focused experience.
-
-  ## Chat-Driven Build & Test
-
-  Building and testing agents now happens through natural chat messages instead of separate buttons — making the entire agent creation feel like a conversation.
-
-  ## Pre-Execution Approval
-
-  Action nodes in test runs now pause **before** executing, giving you full control to approve or reject each action.
-
-  ## Improved Sandbox Reliability
-
-  Agents automatically recover from inactive sandbox states, so conversations always work — even after extended breaks.
-
-  ### Other Improvements
-
-  - **Browser notifications** when agent builds complete
-  - **Higher character limits** in the prompt input box
-  - **Better thought labels** — clearer display of what your agent is doing (e.g., "Searching Web", "Fetching Page")
-  - **Sandbox setup loader** — animated UI while your agent's environment initializes
-
+  - Workspace surfaces refreshed with consistent backgrounds, pill-style tabs, and a tabbed settings panel
+  - Runtime picker added to the home build prompt and single-panel build view
+  - Integrations catalog now focuses on connecting one toolkit at a time, with clearer setup steps
+  - Node-level credit metering lets workflows pause and resume cleanly when credits run low
 </Update>
 
-<Update label="January 26, 2026" tags={["New features", "Improvements"]}>
-  ## Slash Commands in AI Assistant
+<Update label="v0.91 - Apr 23, 2026" tags={["Improvements", "Reliability"]}>
+  ## Self-Healing Runs
 
-  You can now use **slash commands** in the AI Assistant chat to quickly execute agent actions without clicking buttons.
+  When a run fails, Decisional can diagnose the cause, retry transient issues, patch code-level bugs, or ask the workflow owner for missing details before resuming the run.
 
-  ### Available Commands
+  ### Improvements
 
-  | Command | Description |
-  |---------|-------------|
-  | `/connect` | Open the integrations panel to connect tools |
-  | `/build` | Build the agent workflow |
-  | `/test` | Test the agent |
-  | `/edit` | Return agent to draft mode for editing |
-  | `/retest` | Re-run tests after making changes |
-  | `/publish` | Publish the agent to live |
-
-  ### How to Use
-
-  1. Type `/` in the chat input to see available commands
-  2. Use arrow keys to navigate, Enter to select
-  3. Type to filter commands (e.g., `/con` shows only `/connect`)
-  4. Press Escape to dismiss
-
-  Commands are **context-aware**—only actions valid for your agent's current status are enabled. For example, `/publish` is only available after testing.
-
-  ### Other Improvements
-
-  - **Better text wrapping**: Long URLs and text now wrap properly in chat messages
-  - **Subtle scrollbars**: Cleaner, more minimal scrollbar styling throughout the app
-
+  - Self-healing for failed runs with automatic triage, patching, retries, and human escalation
+  - Slack clarification requests when a missing rule, mapping, or threshold blocks a run
+  - Reminder pings at 60 minutes, 2 hours, and 24 hours for stalled repair sessions
+  - Runtime picker redesigned as a logo dropdown across build modes
+  - Managed filter layer for triggers so incoming events can be narrowed before they launch work
 </Update>
 
-<Update label="November 15, 2025" tags={["New releases"]}>
-  ## Hello World
+<Update label="v0.90 - Apr 22, 2026" tags={["New features", "Agents"]}>
+  ## Multiple Modes, One Agent
 
-  We've launched Decisional to the world. Decisional is the easiest way to build powerful agents for automation using the familiarity of a spreadsheet!
+  Agents can switch between Chat, Operator, and Build modes from one picker without losing the current thread.
 
-  ### New Documentation
+  ### Improvements
 
-  - **Getting Started Guide** – Build your first agent in 5 minutes
-  - **Core Concepts** – Deep dive into agents, worksheets, sources, and runs
-  - **User Guides** – Complete guides for agents, worksheets, and sources
-  - **Glossary & FAQ** – Quick reference and common questions
+  - Mode switcher per agent for moving between Chat, Operator, and Build
+  - Unified promptbox across modes
+  - Smart thread resumption when switching modes mid-conversation
 
-  Visit our new [Introduction](/introduction) page to get started!
+  Learn more in [Dex and Agent Modes](/agents/modes).
 </Update>
 
+<Update label="v0.89 - Apr 21, 2026" tags={["New features", "Public runs"]}>
+  ## Public Run Chat & Workflow Viewer Polish
 
+  Public run pages gained a pinned chat overlay, authenticated viewers gained an in-app Dex overlay, and workflow viewing became tighter around run context.
+
+  ### Improvements
+
+  - Public run chat overlay pinned to the right of the page
+  - Dex chat overlay for authenticated viewers
+  - Workflow viewer keeps run context in the viewer and folds node tabs into one Configurations panel
+  - Sidebar pinned section with toolkit tiles and recent-agent ordering
+</Update>
+
+<Update label="v0.88 - Apr 20, 2026" tags={["Improvements", "Approvals"]}>
+  ## Credit Pricing Rebased + Unified Dashboard
+
+  Credit pricing became easier to reason about, dashboard usage became clearer, and approval handling became safer.
+
+  ### Improvements
+
+  - Credit pricing rebased with simpler math
+  - Growth plan now includes 75,000 credits per month
+  - Usage and Tool Calls merged into Dashboard tabs with per-user attribution and account type columns
+  - Approvals hardened to prevent double-approval, add a bypass toggle for solo runs, and surface pending state more clearly
+
+  Learn more in [Approvals and Policy](/agents/approvals).
+</Update>
+
+<Update label="v0.87 - Apr 17, 2026" tags={["Improvements", "Chat"]}>
+  ## Sidebar Refresh + Chat Mode in the Promptbox
+
+  A denser sidebar and a Chat mode in the home promptbox make it faster to pick up recent work.
+
+  ### Improvements
+
+  - Unified Sessions list for recent threads, runs, and builds
+  - Denser navigation with collapsible session groups
+  - Chat mode toggle in the home promptbox for switching from building automation to direct chat
+</Update>
+
+<Update label="v0.86 - Apr 16, 2026" tags={["New features", "Integrations"]}>
+  ## Platform Toolkits - Skip the Setup
+
+  Supported toolkits can use Decisional-managed credentials, reducing setup work for common capabilities.
+
+  ### Improvements
+
+  - Platform toolkit option for search, with usage metered through credits
+  - Platform credential option in the credential dropdown for supported toolkits
+</Update>
+
+<Update label="v0.85 - Apr 10, 2026" tags={["New features", "Approvals"]}>
+  ## Human Approvals Anywhere In Your Workflow
+
+  Workflows can pause for human review with Gate nodes, including public approval links for stakeholders who do not need a Decisional account.
+
+  ### Improvements
+
+  - Add a Gate node anywhere in a workflow to pause execution until a human approves or rejects
+  - Set quorum rules so any one approver or every listed approver must sign off
+  - Share public approval links with the full decision context
+
+  Learn more in [Approvals and Policy](/agents/approvals).
+</Update>
+
+<Update label="v0.84 - Apr 7, 2026" tags={["Improvements", "Fixes", "Integrations"]}>
+  ## Snowflake Integration & Bill.com Pagination
+
+  Agents can query warehouse data directly, and large Bill.com lists can be paginated beyond the first page.
+
+  ### Improvements
+
+  - Connect Snowflake as a data source to query your warehouse from an agent
+  - Paginate through large Bill.com lists to pull records beyond the first page
+
+  ### Fixes
+
+  - Fixed Snowflake credential setup so pasted private keys are accepted correctly
+  - Fixed Bill.com PDF document downloads failing for some invoices
+</Update>
+
+<Update label="v0.83 - Apr 3, 2026" tags={["Improvements", "Workflow viewer"]}>
+  ## Smoother Running-Node Animation
+
+  Active workflow nodes now use a cleaner shimmer sweep, with matching dark-mode polish across the workflow canvas.
+
+  ### Improvements
+
+  - Subtle shimmer sweep marks running workflow nodes
+  - Dark-mode polish across node states, edges, and selection highlights
+</Update>
+
+## March 2026
+
+<Update label="v0.82 - Mar 31, 2026" tags={["Improvements", "Runs"]}>
+  ## Live Agent Node Logs
+
+  Live execution logs now stream directly onto workflow nodes so you can see what each node is doing as it runs.
+
+  ### Improvements
+
+  - Live execution logs stream onto each workflow node during a run
+  - Structured log rendering groups tool calls and results into scannable entries
+  - Copy the full log output for any node with one click
+</Update>
+
+<Update label="v0.81 - Mar 24, 2026" tags={["Improvements", "Chat"]}>
+  ## Queue Follow-Ups While Streaming
+
+  You can queue the next prompt while the assistant is still replying, then reorder, remove, interrupt, or send follow-ups when ready.
+
+  ### Improvements
+
+  - Queue your next message while the assistant is streaming
+  - Reorder or remove queued follow-ups before they send
+  - Interrupt the current response and immediately send the next queued message
+  - Search the manual integration picker faster
+  - See timestamps on chat messages and build, run, and test cards
+  - Cleaner sidebar hierarchy and editor polish
+</Update>
+
+<Update label="v0.80 - Mar 22, 2026" tags={["Improvements", "Navigation"]}>
+  ## Navigate Faster With Command Palette
+
+  A searchable command menu lets you move through your workspace without digging through tabs and sidebars.
+
+  ### Improvements
+
+  - Open a command palette with Cmd/Ctrl+K
+  - Jump to Instructions, Workflow, Worksheet, All Runs, and Outputs for the current agent
+  - Open Files, Skills, Integrations, and Triggers from one menu
+  - Use single-key shortcuts after opening the palette
+  - Navigate globally to create agents, open All Agents, check Dashboard, or manage workspace integrations
+</Update>
+
+<Update label="v0.79 - Mar 18, 2026" tags={["Improvements", "Approvals", "Triggers"]}>
+  ## Slack Approvals & Smarter Triggers
+
+  Approvals can be handled from Slack, and trigger configuration now catches more problems before a live run starts.
+
+  ### Improvements
+
+  - Approve or reject workflow steps directly from Slack DMs with full context
+  - Trigger validation catches missing required fields before a live run starts
+  - Warnings surface when a trigger could fire on every event without filtering
+  - Clearer thought labels show which tool the agent is using during a run
+</Update>
+
+<Update label="v0.78 - Mar 15, 2026" tags={["Improvements", "Fixes", "Outputs"]}>
+  ## Outputs Overhaul & Credential Labels
+
+  Outputs are easier to browse, spreadsheets open inline, and credentials can be labeled for clearer tool selection.
+
+  ### Improvements
+
+  - Redesigned output folder view with nested navigation, file previews, and one-click downloads
+  - Spreadsheet outputs open directly as workspace tabs
+  - Credential labels help agents choose the right account
+  - Live status indicator shows when a workflow is rebuilding
+
+  ### Fixes
+
+  - Fixed tool connection badges showing stale status after switching agent versions
+  - Fixed the workflow viewer sometimes staying pinned to an older run
+  - Fixed shared credentials not being recognized
+</Update>
+
+<Update label="v0.77 - Mar 12, 2026" tags={["Improvements", "Fixes"]}>
+  ## Build First, Connect Later
+
+  Agent setup can start with building first, then connecting integrations when ready.
+
+  ### Improvements
+
+  - Build agents before connecting integrations
+
+  ### Fixes
+
+  - Fixed the arcade game locking you out of other tabs during a build
+</Update>
+
+<Update label="v0.76 - Mar 6, 2026" tags={["Improvements", "Fixes", "Dashboard"]}>
+  ## Dashboard Filters & Reliability
+
+  Dashboard filtering and run reliability improved across several surfaces.
+
+  ### Improvements
+
+  - Dashboard supports date-range filtering for 24 hours, 7 days, 14 days, 30 days, or custom ranges
+  - Filter sidebar on the agent listing page
+  - Run Now inherits trigger configuration so manual and scheduled runs behave consistently
+
+  ### Fixes
+
+  - Fixed stale node details and approvals panel requiring refresh
+  - Fixed approval cards reappearing after dismissal
+  - Fixed attachments being silently dropped in the assistant prompt box
+</Update>
+
+<Update label="v0.75 - Mar 3, 2026" tags={["Improvements", "Templates", "Workflow viewer"]}>
+  ## Templates, Excel & Workflow Viewer
+
+  Templates, Excel file support, and workflow run visualization improved.
+
+  ### Improvements
+
+  - Improved agent templates with better sharing, browsing, and cloning
+  - Upload and process Excel files directly in agent workflows
+  - Workflow viewer displays conditional branching nodes
+  - Workflow viewer shows the graph from historical runs
+  - Clicking a workflow node during a run opens details alongside the run panel
+</Update>
+
+## February 2026
+
+<Update label="v0.74 - Feb 25, 2026" tags={["Improvements", "Builds"]}>
+  ## Fun Builds & Faster Everything
+
+  Builds became more transparent and agent startup became faster.
+
+  ### Improvements
+
+  - Play a mini arcade game while an agent builds
+  - Watch workflows run step by step in a live viewer during test runs
+  - Test runs are clearly labeled
+  - Build progress shows real-time logs
+  - Agents start up nearly instantly with pre-warmed environments
+  - Resuming an agent is 15-20 seconds faster
+  - Upgraded to a more powerful AI model for better accuracy
+</Update>
+
+<Update label="v0.73 - Feb 20, 2026" tags={["Improvements", "Skills", "Integrations"]}>
+  ## Skills, Knowledge & Connections
+
+  Skills and knowledge base files became clearer to manage, and integration connection now happens inside the chat thread.
+
+  ### Improvements
+
+  - Separate upload dialogs for skills and knowledge base files
+  - Skills created during a run are automatically saved for future use
+  - New built-in email-writing skill
+  - Integration connection happens inside the chat thread as an interactive card
+  - Connect actions take you straight to the sign-in flow
+  - Warning before deleting an integration used by an agent
+  - Context usage bar shows agent memory usage in real time
+</Update>
+
+<Update label="v0.72 - Feb 18, 2026" tags={["Improvements", "Approvals"]}>
+  ## PDF Generation & Node Approvals
+
+  Agents can generate PDFs, and individual workflow nodes can be marked as requiring approval.
+
+  ### Improvements
+
+  - Agents can generate and export PDF files during runs
+  - Toggle "requires approval" on individual workflow nodes
+  - Dedicated approvals panel shows all nodes waiting for sign-off
+  - Scroll through previous conversation history with an agent
+</Update>
+
+<Update label="v0.71 - Feb 18, 2026" tags={["Improvements", "Outputs"]}>
+  ## Agent Outputs Viewer
+
+  Agent outputs can be browsed, previewed, and downloaded from a dedicated viewer.
+
+  ### Improvements
+
+  - Browse agent output files organized in virtual folders
+  - Preview JSON and text files directly in the sidebar
+  - Download any file produced by an agent with one click
+</Update>
+
+<Update label="v0.70 - Feb 17, 2026" tags={["Improvements", "Approvals"]}>
+  ## Smarter Approvals
+
+  Approval review became faster with bulk actions, generated previews, and a stacked card design.
+
+  ### Improvements
+
+  - Approve all pending actions in one click
+  - Approval cards show generated previews of the pending action
+  - Pending approvals stack visually so queued items are easier to scan
+</Update>
+
+<Update label="v0.69 - Feb 17, 2026" tags={["Improvements", "Prompting"]}>
+  ## Prompt Suggestions
+
+  The prompt box gained animated suggestions to help users get started.
+
+  ### Improvements
+
+  - Animated placeholder suggestions with integration icons in the prompt box
+</Update>
+
+<Update label="v0.68 - Feb 17, 2026" tags={["Improvements", "Runs"]}>
+  ## Quality-of-Life Upgrades
+
+  Run visibility, team invites, and agent wake-up behavior improved.
+
+  ### Improvements
+
+  - Run details show a step-by-step breakdown of what happened
+  - Download files produced during a run
+  - Invite members from your organization directly into a workspace
+  - Granola integration is live
+  - Tool connection failures show the actual error instead of a generic failure
+  - Agents hibernate instead of shutting down for faster wake-up
+</Update>
+
+<Update label="v0.67 - Feb 6, 2026" tags={["New features", "Workflow nodes"]}>
+  ## RAG Node & AI Node
+
+  Two new node types let workflows use AI reasoning and the agent knowledge base directly.
+
+  ### Improvements
+
+  - New AI Node for processing, summarization, extraction, and classification inside workflows
+  - New RAG Node for retrieving context from uploaded documents and knowledge bases
+  - RAG chunks large files, creates embeddings, and stores them in a vector index
+  - Supports PDFs, Word docs, CSVs, and plain text with overlapping chunks
+</Update>
+
+<Update label="v0.66 - Feb 6, 2026" tags={["Improvements", "Skills", "Builds"]}>
+  ## Skills, Chat-Driven Builds & UX Polish
+
+  Agents gained skill uploads, direct file uploads in chat, chat-driven build and test flows, and UX polish.
+
+  ### Improvements
+
+  - Upload markdown skill files with preview and raw viewing modes
+  - Upload files directly during chat conversations
+  - Build and test agents through natural chat messages
+  - Redesigned home page with centered layout and collapsible sidebar
+  - Action nodes in test runs pause before executing
+  - Agents recover from inactive states after extended breaks
+  - Browser notifications alert when agent builds complete
+  - Higher character limits in the prompt input
+  - Clearer thought labels for what the agent is doing
+  - Animated setup loader while the agent environment initializes
+</Update>
+
+## January 2026
+
+<Update label="v0.65 - Jan 31, 2026" tags={["Improvements", "Versioning"]}>
+  ## Agent Versioning & Easier Debugging
+
+  Versioning, Agent IDs, and schedule updates became easier to manage.
+
+  ### Improvements
+
+  - Version selector for switching between agent versions and restoring prior configurations
+  - Live agent edits save as a new draft until ready to publish
+  - Copy Agent IDs from the agent page header
+  - Schedule changes sync instantly across open tabs
+</Update>
+
+<Update label="v0.64 - Jan 27, 2026" tags={["Improvements", "Builds"]}>
+  ## Smarter Agent Building
+
+  Agents validate integration tool configuration before build errors happen.
+
+  ### Improvements
+
+  - Automatic tool validation checks that referenced integrations exist before building
+  - Clearer error messages show which tools are available
+  - Trigger configurations support custom input schemas
+</Update>
+
+<Update label="v0.63 - Jan 26, 2026" tags={["Improvements", "Workspace"]}>
+  ## Workspace Access
+
+  Workspace access requests made collaboration easier for teams with shared workspaces.
+
+  ### Improvements
+
+  - Request access to workspaces you do not have permission to view
+  - Workspace owners are notified about access requests
+  - Workspace access requests show names instead of cryptic IDs
+</Update>
+
+<Update label="v0.62 - Jan 24, 2026" tags={["Improvements", "Runs", "Chat"]}>
+  ## Slack Sync & Run Insights
+
+  Agents can sync Slack DM threads with the workspace, and runs gained deeper inspection tools.
+
+  ### Improvements
+
+  - Sync Slack DM threads with the workspace
+  - Thinking indicator while agents process Slack messages
+  - Rich messages for more interactive agent responses
+  - Filter runs by Test or Live
+  - Live badge for currently executing runs
+  - Detailed input and output data for each workflow node
+  - Developer mode for viewing node code
+  - Copy workflow code and resize the code panel
+  - Download debug JSON for troubleshooting
+</Update>
+
+<Update label="v0.61 - Jan 22, 2026" tags={["Improvements", "Triggers"]}>
+  ## Event-Driven Triggers
+
+  Agents can run automatically when events happen in connected apps.
+
+  ### Improvements
+
+  - Set up integration triggers from connected apps
+  - Trigger settings use dynamic forms that adapt to each integration
+  - Credentials lock when an agent goes live to prevent accidental disconnection
+  - Integration logos appear in color throughout the app
+</Update>
+
+<Update label="v0.60 - Jan 16, 2026" tags={["Improvements", "UX"]}>
+  ## Dex UX Overhaul
+
+  The agent building experience gained smoother auto-scroll, clearer action cards, and setup flow improvements.
+
+  ### Improvements
+
+  - Enhanced auto-scroll behavior in Dex
+  - Redesigned action cards with clearer hierarchy and better touch targets
+  - Improved setup wizard flow with progress indicators and contextual help
+</Update>
+
+<Update label="v0.59 - Jan 15, 2026" tags={["Improvements", "Agents"]}>
+  ## Kanban View & Dynamic Layouts
+
+  Agent visualization and workflow layout became easier to manage.
+
+  ### Improvements
+
+  - Kanban board view for the agents listing page with drag-and-drop support
+  - Intelligent node positioning for hierarchical workflow visualizations
+  - Integration toolkit logos on workflow nodes
+  - Agent runs pagination with status filtering
+  - Scheduled triggers visible in the workflow viewer
+</Update>
+
+<Update label="v0.58 - Jan 14, 2026" tags={["Improvements", "Worksheets"]}>
+  ## AI Editing Overlay & Tabbed Worksheets
+
+  Spreadsheet editing gained visual feedback, and worksheets moved into tabs.
+
+  ### Improvements
+
+  - Shimmer animation shows when AI is editing spreadsheets
+  - User worksheets open as tabs instead of side panels
+  - Workflow viewer improvements for node positioning and integration display
+  - Redesigned integration connection flow with spotlight overlay
+</Update>
+
+<Update label="v0.57 - Jan 13, 2026" tags={["Improvements", "Templates", "Integrations"]}>
+  ## Connect Panel & Templates
+
+  Integration management and starter templates improved.
+
+  ### Improvements
+
+  - Click-to-scroll, hover highlighting, and auto-expand for toolkits in the connection panel
+  - Action message history for Build, Test, and Connect actions
+  - 10 new agent templates for common automation patterns
+</Update>
+
+<Update label="v0.56 - Jan 12, 2026" tags={["Improvements", "Worksheets"]}>
+  ## Dual Worksheet System
+
+  Worksheet management became more flexible with auto-created worksheets and user worksheet support.
+
+  ### Improvements
+
+  - Auto-created worksheets with full user worksheet support
+  - Better file upload experience with progress animations
+</Update>
+
+<Update label="v0.55 - Jan 9, 2026" tags={["Improvements", "Scheduling"]}>
+  ## VS Code-Style Tabs & Scheduling
+
+  The app gained tabbed navigation and stronger run scheduling.
+
+  ### Improvements
+
+  - VS Code-style tabbed interface with performance optimizations
+  - Agent scheduling system for automated runs
+  - Run Now button for immediate execution
+  - Real-time run updates through WebSocket
+  - File upload in the initial prompt box
+  - Node title, description, and type visible in the job execution panel
+</Update>
+
+<Update label="v0.54 - Jan 8, 2026" tags={["Improvements", "Builds"]}>
+  ## Live Build Logs
+
+  Agent build progress can be watched in real time.
+
+  ### Improvements
+
+  - Real-time build logs stream to the screen as agents are built
+</Update>
+
+<Update label="v0.52 - Jan 6, 2026" tags={["Improvements", "Website"]}>
+  ## Blog & Templates Section
+
+  New content sections launched with full dark mode support.
+
+  ### Improvements
+
+  - Full dark mode across the app
+  - Templates section with pre-built agent templates
+</Update>
+
+<Update label="v0.51 - Jan 5, 2026" tags={["Improvements", "Setup"]}>
+  ## Setup Wizard Improvements
+
+  ### Improvements
+
+  - Setup wizard moved to the bottom of the chat thread for a cleaner flow
+</Update>
 
 ---
 
 ## Stay Updated
 
 <CardGroup cols={2}>
-  <Card title="Join Discord" icon="discord" href="https://discord.gg/DwPDS5Prk2">
-    Get the latest updates and discuss with the community
+  <Card title="Changelog" icon="list" href="https://www.decisional.com/changelog">
+    Read product-wide release notes on decisional.com
   </Card>
   <Card title="Follow on X" icon="x-twitter" href="https://x.com/getdecisional">
     Follow @getdecisional for product announcements
   </Card>
-  <Card title="Subscribe to Newsletter" icon="envelope" href="https://www.decisional.com/newsletter">
-    Monthly updates delivered to your inbox
-  </Card>
   <Card title="Read the Blog" icon="newspaper" href="https://www.decisional.com/blog">
     Deep dives on features and use cases
+  </Card>
+  <Card title="Support" icon="life-ring" href="mailto:founders@decisional.com">
+    Contact the team
   </Card>
 </CardGroup>
