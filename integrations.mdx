@@ -17,7 +17,7 @@ The public template library shows the pattern clearly: each template combines a 
 
 <CardGroup cols={2}>
   <Card title="Triggers" icon="bolt">
-    Start agents from schedules, integration events, webhooks, form submissions, chat commands, or manual runs.
+    Start agents from schedules, integration events, webhooks, form submissions, chat requests, or manual runs.
   </Card>
   <Card title="Source systems" icon="database">
     Pull context from inboxes, CRMs, spreadsheets, files, meeting notes, payment systems, issue trackers, and web sources.
@@ -48,7 +48,7 @@ Use these public templates as examples of how integrations work together in real
 | **Signed Up / Visited Email Sequence** | GTM | Product or visit event | Gmail | Four-step outreach sequence |
 | **Email to HubSpot Sync Agent** | GTM | Email event | Gmail, HubSpot, Slackbot | Synced CRM contact and notification |
 | **Market Data Enrichment Agent** | GTM research | Spreadsheet or manual run | Google Sheets, Exa, Firecrawl, Parallel, Apollo, Attio | Enriched lead and CRM record |
-| **GitHub PR Review Agent** | Product & engineering | Slack command or new PR | GitHub, Slackbot | PR review comments and thread summary |
+| **GitHub PR Review Agent** | Product & engineering | Slack request or new PR | GitHub, Slackbot | PR review comments and thread summary |
 | **Weekly Shipping Report Agent** | Product & engineering | Scheduled | Linear, GitHub, Google Docs, Google Sheets, Slackbot | Weekly shipping report |
 | **Call Recording Analyzer Agent** | Product & engineering | Scheduled or integration trigger | Fathom, Slackbot, GitHub, Linear | Product issue summary from calls |
 | **Supabase Webhook Login Notifier Agent** | Product & engineering | Webhook | Slackbot | Signup notification |
@@ -89,7 +89,7 @@ Templates use a small set of repeatable trigger patterns.
 | **Scheduled trigger** | The work should run on a cadence | Stripe Invoice Processor, Weekly Shipping Report, Attio Follow-up Automation |
 | **Integration event** | A connected app event should start the workflow | HOT Lead Enrichment, Signed Up / Visited Email Sequence |
 | **Webhook** | Another system should call Decisional directly | Supabase Login Notifier, Supabase User Onboarding |
-| **Chat command** | A person should start work conversationally | GitHub PR Review Agent |
+| **Chat request** | A person should start work conversationally | GitHub PR Review Agent |
 | **Manual run** | A user should run the agent on demand | HVAC Quoting Agent, Market Data Enrichment Agent |
 | **Email intake** | New or recent email should be the input | Invoice Data Extraction, Email Filtering, Engineering Drawing Generator |
 

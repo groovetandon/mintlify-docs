@@ -1,11 +1,11 @@
 ---
-title: "AI Assistant"
-description: "Use the interactive chat to test, debug, and iterate on your agents"
+title: "Dex"
+description: "Use Dex to test, debug, and iterate on your agents"
 ---
 
-## What is the AI Assistant?
+## What is Dex?
 
-The **AI Assistant** is the interactive chat interface for an agent. In the current product, this is the agent's **Chat Mode**: a conversational surface for testing, debugging, asking questions, and running one-off work.
+**Dex** is the interactive chat interface for an agent. In the current product, this is the agent's **Chat Mode**: a conversational surface for testing, debugging, asking questions, and running one-off work.
 
 <Card title="Key Difference" icon="lightbulb">
   **Agent** = Automated execution (runs on schedule or trigger)
@@ -21,7 +21,7 @@ The **AI Assistant** is the interactive chat interface for an agent. In the curr
 
 ## Where to Find It
 
-The AI Assistant panel appears on the **right side** of your agent page.
+Dex appears on the **right side** of your agent page.
 
 <Steps>
   <Step title="Open Your Agent">
@@ -29,7 +29,7 @@ The AI Assistant panel appears on the **right side** of your agent page.
   </Step>
 
   <Step title="Look Right">
-    The AI Assistant chat panel is on the right side of the screen
+    Dex chat is on the right side of the screen
   </Step>
 
   <Step title="Start Chatting">
@@ -38,66 +38,14 @@ The AI Assistant panel appears on the **right side** of your agent page.
 </Steps>
 
 <Tip>
-  You can collapse/expand the AI Assistant panel with the toggle button in the top-right.
+  You can collapse or expand Dex with the toggle button in the top-right.
 </Tip>
-
----
-
-## Slash Commands
-
-Use slash commands to quickly execute agent actions directly from the chat input.
-
-### Available Commands
-
-| Command | Description | When Available |
-|---------|-------------|----------------|
-| `/connect` | Open integrations panel | Draft status |
-| `/build` | Build agent workflow | After connecting integrations |
-| `/test` | Test the agent | After building |
-| `/edit` | Return to draft mode | After testing or when live |
-| `/retest` | Re-run tests | After testing |
-| `/publish` | Publish agent to live | After testing |
-
-### How to Use
-
-<Steps>
-  <Step title="Type a slash">
-    Type `/` in the chat input to open the command picker
-  </Step>
-
-  <Step title="Navigate commands">
-    Use **arrow keys** to navigate through available commands
-  </Step>
-
-  <Step title="Filter commands">
-    Type to filter (e.g., `/con` shows only `/connect`)
-  </Step>
-
-  <Step title="Execute">
-    Press **Enter** to execute the selected command, or **Escape** to dismiss
-  </Step>
-</Steps>
-
-<Tip>
-  Commands are context-aware—only actions valid for your agent's current status are enabled. Disabled commands appear grayed out.
-</Tip>
-
-### Command Availability by Status
-
-| Agent Status | Available Commands |
-|--------------|-------------------|
-| **Draft** | `/connect` |
-| **Connected** | `/build`, `/connect` |
-| **Built** | `/test` |
-| **Tested** | `/edit`, `/retest`, `/publish` |
-| **Live** | `/edit` |
-| **Paused** | `/edit`, `/publish` |
 
 ---
 
 ## How It Works
 
-The AI Assistant uses the **same AI engine** as your automated agent, with access to:
+Dex uses the **same AI engine** as your automated agent, with access to:
 - Your agent's instructions
 - All uploaded sources
 - Your worksheet data
@@ -109,7 +57,7 @@ The AI Assistant uses the **same AI engine** as your automated agent, with acces
 
 ## Testing Your Agent
 
-Use the AI Assistant to test your agent before going live.
+Use Dex to test your agent before going live.
 
 ### Basic Testing Workflow
 
@@ -118,15 +66,15 @@ Use the AI Assistant to test your agent before going live.
     Add a few sample rows to your worksheet (e.g., 3-5 test cases)
   </Step>
 
-  <Step title="Give a Command">
-    In the AI Assistant, type:
+  <Step title="Give Dex a prompt">
+    In Dex, type:
     ```
     Process the first 3 rows in the worksheet
     ```
   </Step>
 
   <Step title="Watch It Work">
-    The AI Assistant will:
+    Dex will:
     - Read the instructions
     - Search relevant sources
     - Process the data
@@ -143,7 +91,7 @@ Use the AI Assistant to test your agent before going live.
   </Step>
 </Steps>
 
-### Example Test Commands
+### Example Test Prompts
 
 <Tabs>
   <Tab title="Quote Generation">
@@ -212,9 +160,9 @@ Use the AI Assistant to test your agent before going live.
 
 ---
 
-## Debugging with AI Assistant
+## Debugging with Dex
 
-When your agent doesn't behave as expected, the AI Assistant helps you debug.
+When your agent doesn't behave as expected, Dex helps you debug.
 
 ### Common Debugging Scenarios
 
@@ -226,7 +174,7 @@ When your agent doesn't behave as expected, the AI Assistant helps you debug.
     Can you show me what's in the "Price List" source?
     ```
 
-    **The assistant will:**
+    **Dex will:**
     - List all available sources
     - Confirm they're indexed
     - Show sample content from the source
@@ -245,7 +193,7 @@ When your agent doesn't behave as expected, the AI Assistant helps you debug.
     of the worksheet, but don't write it yet.
     ```
 
-    **The assistant will:**
+    **Dex will:**
     - Show the exact values for each column
     - Explain its reasoning
     - Let you verify before actually writing
@@ -263,7 +211,7 @@ When your agent doesn't behave as expected, the AI Assistant helps you debug.
     What are you supposed to do?
     ```
 
-    **The assistant will:**
+    **Dex will:**
     - Summarize its understanding
     - Show what it thinks it should do
     - Reveal any misinterpretations
@@ -281,7 +229,7 @@ When your agent doesn't behave as expected, the AI Assistant helps you debug.
     Show me the first 3 rows.
     ```
 
-    **The assistant will:**
+    **Dex will:**
     - Confirm if it can access the sheet
     - Show sample data
     - Reveal any access issues
@@ -297,7 +245,7 @@ When your agent doesn't behave as expected, the AI Assistant helps you debug.
 
 ## Interactive Iteration
 
-The AI Assistant excels at iterative refinement.
+Dex excels at iterative refinement.
 
 ### Iteration Pattern
 
@@ -343,7 +291,7 @@ The AI Assistant excels at iterative refinement.
 Process the first customer request
 ```
 
-**AI Assistant:**
+**Dex:**
 ```
 I've generated a quote for Acme Corp:
 - 10x Widget A at $50 = $500
@@ -357,7 +305,7 @@ Added to row 10 of the Quotes sheet.
 Wait, you forgot to apply the 10% discount they requested
 ```
 
-**AI Assistant:**
+**Dex:**
 ```
 You're right! Let me recalculate:
 - Subtotal: $500
@@ -372,7 +320,7 @@ Should I update row 10 with the corrected total?
 Yes, and also show the discount as a separate line item
 ```
 
-**AI Assistant:**
+**Dex:**
 ```
 Updated row 10:
 - Subtotal: $500
@@ -388,17 +336,17 @@ I'll remember to always show discounts separately.
 
 ### Multi-Turn Conversations
 
-The AI Assistant maintains context across messages:
+Dex maintains context across messages:
 
 ```
 You: "Find all customers with pending quotes"
-AI: "Found 5 customers: Acme Corp, TechCo..."
+Dex: "Found 5 customers: Acme Corp, TechCo..."
 
 You: "Generate quotes for the first 3"
-AI: "Processing Acme Corp, TechCo, StartupXYZ..."
+Dex: "Processing Acme Corp, TechCo, StartupXYZ..."
 
 You: "Send the quotes via email"
-AI: "Sending emails via Gmail integration..."
+Dex: "Sending emails via Gmail integration..."
 ```
 
 ### Ask Questions
@@ -458,7 +406,7 @@ Show me what would happen if I processed all pending rows,
 but don't actually write anything to the worksheet yet.
 ```
 
-The AI Assistant will simulate the execution and show you the results before committing.
+Dex will simulate the execution and show you the results before committing.
 
 ---
 
@@ -469,7 +417,7 @@ The AI Assistant will simulate the execution and show you the results before com
 </Check>
 
 <Check>
-  **Use specific commands:** "Process row 5" is clearer than "do the thing"
+  **Use specific prompts:** "Process row 5" is clearer than "do the thing"
 </Check>
 
 <Check>
@@ -490,11 +438,11 @@ The AI Assistant will simulate the execution and show you the results before com
 
 ---
 
-## AI Assistant vs. Automated Runs
+## Dex vs. Automated Runs
 
 Understanding when to use each:
 
-| Feature | AI Assistant | Automated Run |
+| Feature | Dex | Automated Run |
 |---------|-------------|---------------|
 | **Control** | Interactive, step-by-step | Fully automated |
 | **Speed** | Manual, real-time | Scheduled or triggered |
@@ -505,9 +453,9 @@ Understanding when to use each:
 | **Production** | ❌ Not for production | ✅ For production |
 
 **Workflow:**
-1. Build and test with **AI Assistant**
+1. Build and test with **Dex**
 2. Once working, automate with **Runs**
-3. Debug issues with **AI Assistant**
+3. Debug issues with **Dex**
 4. Optimize and return to **Runs**
 
 ---
@@ -529,7 +477,7 @@ Understanding when to use each:
     When an automated run fails:
 
     1. **Review run logs** to see what went wrong
-    2. **Recreate the scenario** in AI Assistant
+    2. **Recreate the scenario** in Dex
     3. **Ask questions:** "Why did you fail on row 10?"
     4. **Test fixes:** Try different approaches interactively
     5. **Update instructions** once working
@@ -551,7 +499,7 @@ Understanding when to use each:
     Enrich the top 10 leads with industry and employee count
     ```
 
-    No need to create a fully automated agent - just chat with the AI Assistant!
+    No need to create a fully automated agent - just chat with Dex!
   </Accordion>
 
   <Accordion title="Data Exploration" icon="chart-mixed">
@@ -569,11 +517,11 @@ Understanding when to use each:
     Are there any patterns in which products are frequently ordered together?
     ```
 
-    The AI Assistant can analyze and summarize your data on the fly.
+    Dex can analyze and summarize your data on the fly.
   </Accordion>
 
   <Accordion title="Instruction Writing" icon="pen">
-    Use the AI Assistant to help write better instructions:
+    Use Dex to help write better instructions:
 
     ```
     I want to create an agent that processes invoices.
@@ -651,21 +599,21 @@ Not sure what to ask? Try these:
 ## Limitations
 
 <Warning>
-  The AI Assistant has the same limitations as your automated agent:
+  Dex has the same limitations as your automated agent:
   - Can only access uploaded sources (can't browse the web unless you add links)
   - Respects your integration permissions
   - Limited by rate limits of external APIs
   - Can't execute code or install packages
 </Warning>
 
-### What AI Assistant CAN'T Do
+### What Dex CAN'T Do
 
 ❌ Run on a schedule (use automated runs for that)
 ❌ Process data while you're away (use triggers)
 ❌ Handle thousands of items efficiently (use batch runs)
 ❌ Make changes without your permission (you control each step)
 
-### What AI Assistant CAN Do
+### What Dex CAN Do
 
 ✅ Test workflows before automation
 ✅ Debug failed runs interactively
@@ -688,7 +636,7 @@ Not sure what to ask? Try these:
   </Card>
 
   <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Build your first agent with AI Assistant
+    Build your first agent with Dex
   </Card>
 
   <Card title="FAQ" icon="circle-question" href="/reference/faq">
