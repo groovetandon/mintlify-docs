@@ -6,6 +6,12 @@ description: "Key terms and concepts in Decisional"
 ## Core Concepts
 
 <AccordionGroup>
+  <Accordion title="Dex" icon="message">
+    The conversational operator for Decisional. Dex helps you build agents, ask questions, change workflows, run one-off work, and monitor what happened.
+
+    **Example:** Ask Dex to create an agent for quote review, then later ask it to explain a failed run or adjust the approval policy.
+  </Accordion>
+
   <Accordion title="Agent" icon="robot">
     An autonomous AI worker that executes your business workflows. Agents understand natural language instructions, process documents, and complete tasks automatically.
 
@@ -37,15 +43,39 @@ description: "Key terms and concepts in Decisional"
   </Accordion>
 
   <Accordion title="Integration" icon="plug">
-    A connection to an external service that your agent can interact with. Integrations enable agents to send emails, update CRMs, post to Slack, query databases, and more.
+    A connection to an external service that your agent can interact with. Integrations enable agents to send emails, update CRMs, post to team chat, query databases, and more.
 
-    **Example:** Gmail integration allowing your agent to send quotes via email.
+    **Example:** An email integration allowing your agent to send quotes after approval.
+  </Accordion>
+
+  <Accordion title="Approval Policy" icon="user-check">
+    The set of rules that decides whether an agent can proceed, must ask for approval, can bypass eligible approvals, or is blocked from taking an action.
+
+    **Example:** A reporting agent can always read records but needs approval before sending a final customer-facing message.
   </Accordion>
 
   <Accordion title="Trigger" icon="clock">
     The mechanism that activates your agent. Triggers can be time-based (schedule), event-based (webhook, new data), manual (click Run button), or API-based (programmatic).
 
     **Example:** "Run every day at 9 AM" or "Run when a new row is added to the worksheet."
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Agent Modes
+
+<AccordionGroup>
+  <Accordion title="Chat Mode" icon="message">
+    The conversational mode for an agent. Use it to ask questions, run one-off work, inspect context, and iterate with the agent.
+  </Accordion>
+
+  <Accordion title="Operator Mode" icon="gear">
+    The configuration and monitoring mode for an agent. Use it to change instructions, workflow, tools, triggers, skills, sources, runs, and approval behavior.
+  </Accordion>
+
+  <Accordion title="Public Mode" icon="share-nodes">
+    The focused public run surface for an agent. Use it when someone should run or review an agent without accessing the full builder interface.
   </Accordion>
 </AccordionGroup>
 
@@ -110,7 +140,7 @@ description: "Key terms and concepts in Decisional"
   </Accordion>
 
   <Accordion title="Output Data" icon="right-from-bracket">
-    The results your agent produces. This is written to worksheets, sent via integrations (email, Slack), or returned via API.
+    The results your agent produces. This can be written to worksheets, sent via integrations, or returned to another system.
 
     **Example:** Generated quote with calculated prices, discounts, and total.
   </Accordion>
@@ -129,6 +159,18 @@ description: "Key terms and concepts in Decisional"
     A workflow pattern where the agent pauses for manual review before proceeding. Useful for high-stakes decisions.
 
     **Example:** "If quote exceeds $50,000, flag for manager approval before sending."
+  </Accordion>
+
+  <Accordion title="Bypass Approvals" icon="forward">
+    An approval mode where eligible approval prompts continue automatically instead of waiting for a human click. Blocked tools remain blocked.
+
+    **Example:** A stable internal report agent can bypass approvals for routine updates after it has been tested.
+  </Accordion>
+
+  <Accordion title="Gate Node" icon="user-check">
+    A workflow node that pauses execution for a human decision before the workflow continues.
+
+    **Example:** Require a manager to approve the final contract summary before the agent sends it.
   </Accordion>
 
   <Accordion title="Batch Processing" icon="layer-group">
@@ -300,7 +342,12 @@ description: "Key terms and concepts in Decisional"
 
 | Term | Category | Definition |
 |------|----------|------------|
+| **Dex** | Core | Conversational operator for agents |
 | **Agent** | Core | Autonomous AI worker |
+| **Chat Mode** | Agent Mode | Conversational surface for an agent |
+| **Operator Mode** | Agent Mode | Builder and control surface for an agent |
+| **Public Mode** | Agent Mode | Focused public run surface |
+| **Approval Policy** | Core | Rules for review, bypass, and blocked actions |
 | **Worksheet** | Core | Spreadsheet data layer |
 | **Source** | Core | Context document/file |
 | **Run** | Core | Single execution |
@@ -326,6 +373,10 @@ description: "Key terms and concepts in Decisional"
 
   <Card title="Working with Agents" icon="robot" href="/guides/agents">
     Detailed agent guide
+  </Card>
+
+  <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+    Approval modes, bypass approvals, and global policy
   </Card>
 
   <Card title="Support" icon="life-ring" href="mailto:founders@decisional.com">

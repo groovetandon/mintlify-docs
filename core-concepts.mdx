@@ -8,8 +8,11 @@ description: "The building blocks of Decisional"
 Decisional is built around a few core concepts. Understanding these will help you get the most out of the platform.
 
 <CardGroup cols={2}>
+  <Card title="Dex" icon="message">
+    The conversational operator that helps build, run, and change agents
+  </Card>
   <Card title="Agents" icon="robot">
-    AI workers that build and run your workflows
+    Durable AI workers that own repeatable workflows
   </Card>
   <Card title="Workflows" icon="diagram-project">
     The step-by-step plans your agents create and execute
@@ -23,6 +26,9 @@ Decisional is built around a few core concepts. Understanding these will help yo
   <Card title="Sources" icon="folder-open">
     Documents and files that give your agents context
   </Card>
+  <Card title="Approvals" icon="user-check">
+    Human review controls for sensitive actions and workflow gates
+  </Card>
   <Card title="Workspaces" icon="users">
     Where your team organizes agents and collaborates
   </Card>
@@ -30,9 +36,25 @@ Decisional is built around a few core concepts. Understanding these will help yo
 
 ---
 
+## Dex
+
+Dex is the conversational operator for Decisional. Use Dex to describe work, create agents, ask what happened in a run, change an existing workflow, or complete one-off tasks against the tools and context you have authorized.
+
+Dex helps route requests to the right place:
+
+- **Chat Mode** for questions, exploration, and one-off work
+- **Operator Mode** for changing an agent's configuration, workflow, tools, triggers, skills, and policy
+- **Public Mode** for focused run and review pages that can be shared without exposing the builder interface
+
+<Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+  Learn how Dex, agents, Chat Mode, Operator Mode, and Public Mode fit together.
+</Card>
+
+---
+
 ## Agents
 
-Agents are the core of Decisional. Each agent is an AI worker that owns a specific workflow and runs it for you.
+Agents are the core operating units in Decisional. Each agent is an AI worker that owns a specific workflow and runs it for you.
 
 You create an agent by describing what you want it to do. It builds its own workflow, connects to the right tools, and tests itself. Once live, it runs on autopilot and you manage it by talking to it in chat.
 
@@ -40,9 +62,18 @@ You create an agent by describing what you want it to do. It builds its own work
 
 - **Instructions** — what you told the agent to do, written in plain English
 - **Workflow** — the step-by-step plan the agent built to carry out your instructions
-- **Integrations** — the apps your agent connects to (Slack, HubSpot, Gmail, etc.)
+- **Integrations** — the apps and systems your agent connects to, such as email, CRM, team chat, and spreadsheets
 - **Sources** — documents and files that give your agent context
 - **Triggers** — how your agent gets activated (schedule, event, or manual)
+- **Approval policy** — when the agent pauses, asks for review, bypasses eligible approvals, or blocks an action
+
+### Agent Operating Modes
+
+| Mode | Purpose |
+|------|---------|
+| **Chat Mode** | Talk with the agent, ask questions, run one-off tasks, and inspect context |
+| **Operator Mode** | Configure instructions, workflow, tools, triggers, skills, sources, runs, and policy |
+| **Public Mode** | Share a focused run page with people who should run or review work without changing the agent |
 
 ### Agent States
 
@@ -77,7 +108,7 @@ You can see your agent's workflow visually at any time. It shows every node, how
 
 ## Integrations
 
-Integrations are the apps your agents connect to and work with. When your agent needs to send a Slack message, update a HubSpot deal, or read from Google Sheets, it uses an integration.
+Integrations are the apps your agents connect to and work with. When your agent needs to send a message, update a CRM record, or read from a spreadsheet, it uses an integration.
 
 ### How Integrations Work
 
@@ -114,6 +145,25 @@ Each run shows you:
 - How long it took
 
 If a run fails, you can see exactly which step broke and why.
+
+---
+
+## Approvals
+
+Approvals let agents pause before sensitive actions or manual decision points. A reviewer can see the context, approve the action, reject it, or route the workflow back for changes.
+
+Approval behavior comes from:
+
+- **Global approval mode** in Settings
+- **Agent-level approval mode** for a specific agent
+- **Tool approval policy** for connected tools and actions
+- **Workflow gates** placed directly in a workflow
+
+Use **Ask approvals** when you want a human review step. Use **Bypass approvals** only for stable workflows where eligible approval prompts can continue automatically.
+
+<Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+  Learn how approval modes, bypass approvals, tool policies, and global settings work.
+</Card>
 
 ---
 
@@ -157,7 +207,7 @@ If you sign up with a company email, you'll automatically join your organization
 
 <Steps>
   <Step title="Describe What You Want">
-    Tell Decisional what you want automated in plain English
+    Tell Dex what you want automated in plain English
   </Step>
   <Step title="Agent Builds a Workflow">
     Your agent creates a step-by-step plan and connects to the right apps
@@ -166,7 +216,7 @@ If you sign up with a company email, you'll automatically join your organization
     Upload any documents your agent needs to reference
   </Step>
   <Step title="Test and Approve">
-    Run a test, review each step, approve actions
+    Run a test, review each step, and set approval policy
   </Step>
   <Step title="Go Live">
     Set a schedule or trigger, and your agent runs on autopilot
@@ -183,6 +233,12 @@ If you sign up with a company email, you'll automatically join your organization
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="rocket" href="/quickstart">
     Build your first agent in minutes
+  </Card>
+  <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+    Understand Chat Mode, Operator Mode, and Public Mode
+  </Card>
+  <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+    Configure review, bypass, and global approval behavior
   </Card>
   <Card title="Working with Agents" icon="robot" href="/guides/agents">
     Deep dive into agent configuration and management

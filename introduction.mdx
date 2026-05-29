@@ -9,11 +9,26 @@ description: "The most magical way to build agents that work with the apps you u
 
 ## What is Decisional?
 
-Decisional helps you build agents for specific workflows, but 10x easier to setup and maintain. You just ask for an agent in natural language, it builds and tests its own workflow that it runs constantly, and you can manage it by just talking to it.
+Decisional helps you build and operate AI agents for business workflows. You describe the work in natural language, Dex turns that intent into an agent, and the agent builds, tests, and runs its workflow across the apps and data you authorize.
 
 <Card title="Core Philosophy" icon="lightbulb">
   **Describe what you want automated, and your agent figures out the rest.** It builds its own workflow, connects to your tools, tests itself, and runs on autopilot. When something needs to change, just tell it.
 </Card>
+
+## Dex and agents
+
+<CardGroup cols={2}>
+  <Card title="Dex" icon="message">
+    Dex is the conversational operator for your workspace. Use Dex to create agents, ask questions, change behavior, and monitor work.
+  </Card>
+  <Card title="Agents" icon="robot">
+    Agents are the durable workers. Each one owns instructions, workflow, integrations, sources, triggers, runs, and approval policy.
+  </Card>
+</CardGroup>
+
+<Frame>
+  <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-overview.mp4" />
+</Frame>
 
 ## Why Decisional?
 
@@ -22,7 +37,7 @@ Decisional helps you build agents for specific workflows, but 10x easier to setu
     Describe what you want in plain English. Your agent builds its own workflow, no dragging blocks or writing code.
   </Card>
   <Card title="Works with Your Apps" icon="plug">
-    Connects to Slack, HubSpot, Gmail, Google Sheets, and more. Your agent uses the tools you already use.
+    Connects to team chat, CRM, email, spreadsheets, and more. Your agent uses the tools you already use.
   </Card>
   <Card title="Runs End to End" icon="check">
     Unlike tools that get you 70% there, your agent completes the entire workflow from start to finish.
@@ -35,17 +50,17 @@ Decisional helps you build agents for specific workflows, but 10x easier to setu
 ## How It Works
 
 <Steps>
-  <Step title="Describe Your Agent">
-    Tell Decisional what you want automated in plain English. Upload any relevant documents or spreadsheets for context.
+  <Step title="Describe the Work">
+    Tell Dex what you want automated in plain English. Upload any relevant documents or spreadsheets for context.
   </Step>
   <Step title="Your Agent Builds Itself">
     Decisional generates a workflow, connects to your integrations, and tests everything automatically.
   </Step>
-  <Step title="Review and Approve">
-    See exactly what your agent will do before it goes live. Approve actions, tweak instructions, or ask it to change things.
+  <Step title="Review Policy and Approvals">
+    See exactly what your agent will do before it goes live. Approve actions, set approval policy, or ask Dex to change the workflow.
   </Step>
   <Step title="Let It Run">
-    Your agent runs on autopilot with triggers, schedules, or on demand. Monitor progress and manage it through chat.
+    Your agent runs on autopilot with triggers, schedules, public run links, or on demand. Monitor progress and manage it through chat.
   </Step>
 </Steps>
 
@@ -63,14 +78,20 @@ Decisional helps you build agents for specific workflows, but 10x easier to setu
   <Accordion title="Agents Build Their Own Workflows">
     You don't need to map out every step. Describe the outcome you want and your agent figures out how to get there, including which tools to use and what order to do things in.
   </Accordion>
-  <Accordion title="Manages Itself Through Chat">
-    Need to change something? Just tell your agent. No need to dig into settings or rebuild workflows. It updates itself based on your instructions.
+  <Accordion title="Dex Manages Agents Through Chat">
+    Need to change something? Tell Dex or the agent what should be different. Decisional routes that request to the right mode so simple requests stay conversational and configuration changes happen in the operator surface.
+  </Accordion>
+  <Accordion title="Modes Match the Job">
+    Use Chat Mode for conversation, Operator Mode for configuration, and Public Mode for focused run links that can be shared without exposing the builder interface.
+  </Accordion>
+  <Accordion title="Approvals Are Built In">
+    Agents can pause before sensitive actions, route review to a stakeholder, or bypass eligible approvals for stable low-risk work.
   </Accordion>
   <Accordion title="Reads and Reasons Over Documents">
     Upload any document and your agent understands it. PDFs, contracts, spreadsheets, emails. It uses retrieval-augmented generation to pull the right context when it needs it.
   </Accordion>
   <Accordion title="Connects to the Apps You Use">
-    Slack, HubSpot, Gmail, Google Sheets, and more. Your agent works with your existing tools so nothing changes about how your team operates.
+    Team chat, CRM, email, spreadsheets, and more. Your agent works with your existing tools so nothing changes about how your team operates.
   </Accordion>
 </AccordionGroup>
 
@@ -120,6 +141,9 @@ Ready to build your first agent?
 <CardGroup cols={2}>
   <Card title="Core Concepts" icon="book" href="/core-concepts">
     Learn about Agents, Workflows, Integrations, and more
+  </Card>
+  <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+    Learn when to use Chat Mode, Operator Mode, and Public Mode
   </Card>
   <Card title="Support" icon="life-ring" href="mailto:founders@decisional.com">
     Get help from our team

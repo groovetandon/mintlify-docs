@@ -11,9 +11,43 @@ description: "Master agent creation, configuration, and optimization"
   Agents combine **your instructions** + **your data** + **your context** to automate complex workflows that typically require human judgment.
 </Card>
 
+<Frame>
+  <video controls playsInline muted preload="metadata" src="/videos/pmm/agents-listing.mp4" />
+</Frame>
+
+## Agents as top-level objects
+
+Agents are the main objects you create, operate, and share in Decisional. Dex can help you build or change them, but the agent is the durable worker that owns the process.
+
+Each agent has:
+
+- A plain-English job description
+- A workflow that carries out that job
+- Tools, sources, and triggers for the systems it can access
+- Runs and logs that show what happened
+- Approval policy that controls when the agent pauses, asks for review, bypasses eligible approvals, or blocks an action
+
+<Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
+  Learn how Dex works with agents across Chat Mode, Operator Mode, and Public Mode.
+</Card>
+
 ---
 
-## Agent lifecycle
+## Operating modes
+
+Use the mode picker to match the agent surface to the job:
+
+| Mode | Best for |
+|------|----------|
+| **Chat Mode** | Conversational requests, one-off work, explanations, and follow-up questions |
+| **Operator Mode** | Changing instructions, workflows, tools, triggers, sources, skills, and approval behavior |
+| **Public Mode** | Sharing a focused run page with people who should not edit the agent |
+
+Configuration changes belong in Operator Mode. Public Mode is for running or reviewing an agent, not rebuilding it.
+
+---
+
+## Agent Lifecycle
 
 Internal statuses (backend workflow granularity):
 - **init**, **active**, **inactive** - platform-level flags, not part of the setup wizard flow
@@ -80,27 +114,30 @@ stateDiagram-v2
 
 ## Agent Components
 
-Every agent has five key components:
+Every agent has six key components:
 
 <CardGroup cols={2}>
   <Card title="Instructions" icon="file-lines">
     Natural language description of what the agent should do
   </Card>
-  <Card title="Worksheet" icon="table">
-    The spreadsheet where your agent reads and writes data
+  <Card title="Workflow" icon="diagram-project">
+    The graph of nodes the agent executes to complete the work
   </Card>
   <Card title="Sources" icon="folder">
     Documents that provide context (PDFs, links, files)
   </Card>
   <Card title="Integrations" icon="plug">
-    Connected services (email, CRM, Slack, etc.)
+    Connected services such as email, CRM, team chat, and spreadsheets
   </Card>
   <Card title="Triggers" icon="clock">
     How the agent gets activated (schedule, event, manual)
   </Card>
+  <Card title="Approval Policy" icon="user-check">
+    Rules for review, bypass approvals, and blocked actions
+  </Card>
 </CardGroup>
 
-Let's dive into each component:
+The sections below cover the setup details you will tune most often.
 
 ---
 
@@ -541,7 +578,7 @@ Triggers control **when your agent runs**.
       -d '{"input": "your input data"}'
     ```
 
-    See [API Reference →](/api-reference/introduction)
+	    Contact support if you need programmatic access for this workflow.
   </Tab>
 </Tabs>
 
@@ -795,7 +832,7 @@ Track your agent's performance:
     Use the chat interface to debug and iterate
   </Card>
 
-  <Card title="Workflow Tutorials" icon="graduation-cap" href="/workflows/finance/quote-generation">
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
     Follow step-by-step guides for common workflows
   </Card>
 </CardGroup>

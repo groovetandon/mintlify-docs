@@ -3,6 +3,109 @@ title: "Changelog"
 description: "Latest updates and improvements to Decisional"
 ---
 
+<Update label="April 26, 2026" tags={["Improvements", "Settings"]}>
+  ## Workspace Refresh and Node-Level Credits
+
+  A cleaner workspace experience with tabbed settings, more consistent surfaces, and more resilient metering for long-running workflows.
+
+  - Refreshed workspace backgrounds, tabs, and settings layout
+  - Runtime selection available from the build prompt and build view
+  - Integration setup flow focused around one toolkit at a time
+  - Node-level credit metering so long workflows can pause and resume cleanly when credits run low
+
+</Update>
+
+<Update label="April 23, 2026" tags={["Improvements", "Reliability"]}>
+  ## Self-Healing Runs
+
+  Failed runs now get a repair path instead of simply stopping. Decisional can diagnose the failure, retry transient issues, patch code-level problems, or ask the workflow owner for the missing business rule.
+
+  - Automatic triage for failed runs
+  - Retry behavior for transient failures
+  - Clarification requests when a missing rule, mapping, or threshold blocks the run
+  - Reminder pings so stalled runs do not get forgotten
+  - Runtime picker improvements across build modes
+
+</Update>
+
+<Update label="April 22, 2026" tags={["New features", "Agents"]}>
+  ## Multiple Modes, One Agent
+
+  Agents gained a clearer operating model. You can move between conversational use, operator configuration, and run-focused experiences without losing thread context.
+
+  - Mode switcher for agent surfaces
+  - Chat Mode for conversational work
+  - Operator Mode for configuration, workflow, tools, triggers, and policy
+  - Smart thread resumption when switching modes
+  - Unified prompt input across agent surfaces
+
+  Learn more in [Dex and Agent Modes](/agents/modes).
+
+</Update>
+
+<Update label="April 21, 2026" tags={["New features", "Public runs"]}>
+  ## Public Run Chat and Workflow Viewer Polish
+
+  Public run pages became more useful for stakeholders who need to understand or review a run without using the full builder interface.
+
+  - Public run chat overlay for questions about a run
+  - Authenticated chat overlay for viewers who need explanations and next steps
+  - Workflow viewer configuration panels tightened around run context
+  - Sidebar improvements for recent agents, sessions, and toolkit shortcuts
+
+</Update>
+
+<Update label="April 20, 2026" tags={["Improvements", "Approvals"]}>
+  ## Unified Dashboard and Approval Hardening
+
+  Usage and tool activity moved into a clearer dashboard, while approval behavior became safer and easier to inspect.
+
+  - Usage and tool activity grouped into dashboard tabs
+  - Per-user attribution for usage and tool calls
+  - Approval handling hardened against duplicate decisions
+  - Pending approval state made clearer
+  - Bypass approvals available for stable low-risk runs
+
+  Learn more in [Approvals and Policy](/agents/approvals).
+
+</Update>
+
+<Update label="April 17, 2026" tags={["Improvements", "Chat"]}>
+  ## Sidebar Refresh and Chat Mode in the Promptbox
+
+  The workspace navigation became denser and faster, and the home promptbox gained a direct Chat Mode path.
+
+  - Unified sessions list for recent threads, runs, and builds
+  - Collapsible session groups for long histories
+  - Chat Mode toggle in the home promptbox
+  - Faster return to active work without hunting through pages
+
+</Update>
+
+<Update label="April 16, 2026" tags={["New features", "Integrations"]}>
+  ## Platform Toolkits
+
+  Some toolkits can now be used with Decisional-managed credentials, reducing setup work for common agent capabilities.
+
+  - Platform-managed credential option for supported toolkits
+  - Usage metered through credits
+  - Cleaner credential selection during integration setup
+
+</Update>
+
+<Update label="April 10, 2026" tags={["New features", "Approvals"]}>
+  ## Human Approvals Anywhere in Your Workflow
+
+  Workflows gained explicit approval gates, making human review a first-class workflow step instead of only an instruction pattern.
+
+  - Gate nodes can pause a workflow until a reviewer approves or rejects
+  - Quorum rules let you require one approver or all listed approvers
+  - Public approval links let stakeholders review context without the full builder interface
+
+  Learn more in [Approvals and Policy](/agents/approvals).
+
+</Update>
+
 <Update label="February 6, 2026" tags={["New features", "Improvements"]}>
   ## Skills
 

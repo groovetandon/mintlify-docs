@@ -21,7 +21,10 @@ Workflows are made up of different node types, each handling a specific kind of 
     The core workhorse. Reads data, processes information, makes decisions, and produces output. Most of your workflow logic lives here.
   </Card>
   <Card title="Action Node" icon="paper-plane">
-    Takes an action in an external app — sends an email, posts a Slack message, updates a CRM record, writes to a database. Action nodes are flagged during testing so you can approve before they execute.
+    Takes an action in an external app or system of record. Action nodes are flagged during testing so you can approve before they execute.
+  </Card>
+  <Card title="Gate Node" icon="user-check">
+    Pauses the workflow for a human decision. Use gates before final sends, publishes, record updates, or other steps that require sign-off.
   </Card>
   <Card title="AI Node" icon="microchip-ai">
     Runs an AI model to process, classify, or summarize data. Use this when you need the agent to reason over content, categorize items, or generate text.
@@ -75,11 +78,11 @@ You don't need to design workflows manually. Here's the process:
 3. **You review** the workflow in the visual viewer
 4. **You can modify** by telling your agent in the chat what to change
 
-If you need to make changes after building, just tell your agent — for example, "add a step to send a Slack notification after the email is sent" — and it will update the workflow.
+If you need to make changes after building, just tell your agent — for example, "add a step to send a team-chat notification after the email is sent" — and it will update the workflow.
 
 ## Action Node Approvals
 
-Action nodes are special because they affect external systems (sending emails, updating CRMs, posting messages). During testing:
+Action nodes are special because they affect external systems or records. During testing and configured review flows:
 
 - Your agent **pauses** before executing each action node
 - You see a **preview** of what the action will do
@@ -87,6 +90,8 @@ Action nodes are special because they affect external systems (sending emails, u
 
 This gives you full control before anything touches your real data or apps.
 
-<Warning>
-  When your agent is live, action nodes execute automatically unless you've configured human-in-the-loop approval in your instructions.
-</Warning>
+Approval behavior is controlled by the agent's approval mode, workspace tool policy, and any explicit gate nodes in the workflow. A live agent can ask for approvals, bypass eligible approvals, or block actions depending on that policy.
+
+<Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+  Learn how Ask approvals, Bypass approvals, global settings, and tool policies work.
+</Card>
