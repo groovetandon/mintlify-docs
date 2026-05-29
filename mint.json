@@ -131,6 +131,12 @@
       ]
     },
     {
+      "group": "Security",
+      "pages": [
+        "security"
+      ]
+    },
+    {
       "group": "Reference",
       "pages": [
         {
