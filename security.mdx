@@ -1,0 +1,139 @@
+---
+title: "Security"
+description: "How Decisional protects agent execution, credentials, workspace data, and production infrastructure."
+icon: "shield-check"
+---
+
+<Frame>
+  <img src="/images/security/security-brief-000.png" alt="Decisional security architecture banner" />
+</Frame>
+
+Decisional agents execute real code against real business data. The security architecture is built around enforced boundaries: sandboxed execution, credential isolation, workspace-scoped access control, and hardened production infrastructure.
+
+Every control described here is implemented as an architecture-level constraint, not as a best-effort usage policy.
+
+<CardGroup cols={2}>
+  <Card title="Sandboxed execution" icon="box">
+    Every workflow execution runs inside short-lived compute boundaries, with additional isolation for code-execution steps.
+  </Card>
+  <Card title="Trustless credentials" icon="key">
+    Agent code calls tools through brokered IDs. Raw OAuth tokens and API keys never enter the sandbox.
+  </Card>
+  <Card title="Access control" icon="users-gear">
+    Workspace data is scoped by `workspace_id`, backed by role checks and invite-gated onboarding.
+  </Card>
+  <Card title="Infrastructure hardening" icon="server">
+    Encryption, container hardening, deployment safety, rate limiting, and structured logging protect production systems.
+  </Card>
+</CardGroup>
+
+## Sandboxed Execution
+
+Decisional treats containment as a non-negotiable invariant. Each execution is enclosed by multiple boundaries so a failure in one layer does not propagate beyond it.
+
+<Steps>
+  <Step title="Ephemeral execution containers">
+    Each workflow execution receives its own short-lived runtime, created on demand and destroyed after completion. Runtimes are resource-capped, run without elevated privileges, have no persistent storage, and access platform data only through authenticated API calls.
+  </Step>
+  <Step title="Isolated code sandboxes">
+    Code-execution steps run in separate ephemeral compute environments with their own lifecycle. Sandboxes have hard timeouts, are destroyed on completion, and receive execution-scoped identifiers rather than credentials.
+  </Step>
+  <Step title="Restricted execution namespace">
+    Inside the runner, user node code runs with only platform-provided functions in scope, such as `call_user_tool()`, `call_llm_text_tool()`, `state_get()`, and `state_set()`.
+  </Step>
+</Steps>
+
+<Tip>
+  If an execution runtime crashes mid-run, the run resumes from the last checkpoint. Completed nodes are not re-executed, with node-level semantics backed by database checkpoints and durable artifact recovery.
+</Tip>
+
+## Trustless Credentials
+
+The core credential guarantee is simple: agent code never sees raw credentials. Credentials are not placed in environment variables, function arguments, logs, or sandbox-visible state.
+
+### Credential Storage
+
+All integration credentials, including OAuth tokens and API keys, are encrypted at rest with AES-256-GCM authenticated encryption. Key versioning supports rotation without downtime: old keys remain available for decryption, while new encryptions use the current key version.
+
+Credentials are scoped to `workspace_id` and `user_id`, making them private by default with explicit sharing controls for team workflows.
+
+### Brokered Proxy Pattern
+
+Tool execution flows through a brokered chain where each layer sees only the minimum information it needs.
+
+```text
+Agent code -> Routing service -> Credential service -> External API
+ tool ID        credential UUIDs    decrypts in memory     executes call
+```
+
+1. Agent code calls a public tool ID with typed parameters, for example `call_user_tool("ut_abc123", {...})`.
+2. The routing service resolves the tool ID to provider configuration and credential UUIDs, never raw secrets.
+3. The credential service is the sole decryption point and holds decrypted material only in memory for a single outbound call.
+4. The provider adapter receives the live credential and executes against the upstream API. Nothing is serialized or stored after the call completes.
+
+<CardGroup cols={3}>
+  <Card title="Read tools" icon="eye">
+    Execute inside the workflow without human approval and are scoped to read-only operations.
+  </Card>
+  <Card title="Write tools" icon="pen-to-square">
+    Require explicit human approval before actions such as sending email or updating records proceed.
+  </Card>
+  <Card title="Audit trail" icon="clipboard-check">
+    Write approvals are recorded with acting identity, timestamp, run context, and operation metadata.
+  </Card>
+</CardGroup>
+
+## Access Control & Multi-Tenancy
+
+Each customer's data is isolated at the workspace layer. Agents, runs, credentials, files, schedules, and related entities carry a `workspace_id` foreign key, and protected data access is scoped through that workspace boundary.
+
+### Role Hierarchy
+
+| Role | View | Edit / Run | Manage Members | Delete Workspace |
+| --- | --- | --- | --- | --- |
+| Viewer | Yes | No | No | No |
+| Editor | Yes | Yes | No | No |
+| Admin | Yes | Yes | Yes | No |
+| Owner | Yes | Yes | Yes | Yes |
+
+Every protected endpoint performs two checks: membership in the target workspace, then role-level permission for the requested operation.
+
+<CardGroup cols={2}>
+  <Card title="Invite-gated onboarding" icon="ticket">
+    New users cannot access protected workspace resources until invited by an Admin or Owner. Invitations use non-guessable, time-limited tokens.
+  </Card>
+  <Card title="Credential visibility" icon="lock">
+    Credentials are private by default. Workspace sharing is opt-in and enforced at every credential access point.
+  </Card>
+  <Card title="API token security" icon="fingerprint">
+    `dex_`-prefixed tokens are hashed before storage, scoped to specific permissions, and tracked by last-used timestamp.
+  </Card>
+  <Card title="Public agent sharing" icon="share-nodes">
+    Agents are private by default. Public agents cannot access workspace credentials, and public endpoints are rate limited.
+  </Card>
+</CardGroup>
+
+## Infrastructure & Compliance
+
+Production infrastructure enforces the lower-level controls that support the agent runtime, credential model, and tenant boundary.
+
+<CardGroup cols={2}>
+  <Card title="Encryption" icon="shield-halved">
+    Credentials are encrypted at rest with AES-256-GCM. Production database connections enforce TLS, and service-to-service calls use HTTPS.
+  </Card>
+  <Card title="Container hardening" icon="cube">
+    Production containers use minimized images, non-root users, health checks, and path traversal protections.
+  </Card>
+  <Card title="Deployment safety" icon="code-branch">
+    Blue-green deployments validate health before traffic switches, with automatic rollback and graceful connection draining.
+  </Card>
+  <Card title="Rate limiting and logging" icon="gauge-high">
+    Distributed rate limiting protects public surfaces. Structured logs avoid credential values and record UUIDs plus metadata.
+  </Card>
+</CardGroup>
+
+### Sub-Processors
+
+Decisional uses vetted sub-processors for categories such as cloud infrastructure, authentication, model execution, sandboxed code execution, integration connectivity, observability, analytics, and payments.
+
+The current sub-processor list is maintained separately so it can stay accurate as vendors, regions, and processing purposes change. Customers can request the latest list during security review.
