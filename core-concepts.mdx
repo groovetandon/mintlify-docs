@@ -44,10 +44,10 @@ Dex helps route requests to the right place:
 
 - **Chat Mode** for questions, exploration, and one-off work
 - **Operator Mode** for changing an agent's configuration, workflow, tools, triggers, skills, and policy
-- **Public Mode** for focused run and review pages that can be shared without exposing the builder interface
+- **Run Mode** for public run links that can be shared without exposing the builder interface
 
 <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
-  Learn how Dex, agents, Chat Mode, Operator Mode, and Public Mode fit together.
+  Learn how Dex, agents, Chat Mode, Operator Mode, and Run Mode fit together.
 </Card>
 
 ---
@@ -56,7 +56,7 @@ Dex helps route requests to the right place:
 
 Agents are the core operating units in Decisional. Each agent is an AI worker that owns a specific workflow and runs it for you.
 
-You create an agent by describing what you want it to do. It builds its own workflow, connects to the right tools, and tests itself. Once live, it runs on autopilot and you manage it by talking to it in chat.
+You create an agent by describing what you want it to do. Dex helps turn that description into instructions, a workflow, required tool connections, and a testable agent. Once live, the agent runs from manual runs, schedules, triggers, or API calls, and you manage changes through the agent surfaces.
 
 ### What Makes Up an Agent
 
@@ -73,7 +73,7 @@ You create an agent by describing what you want it to do. It builds its own work
 |------|---------|
 | **Chat Mode** | Talk with the agent, ask questions, run one-off tasks, and inspect context |
 | **Operator Mode** | Configure instructions, workflow, tools, triggers, skills, sources, runs, and policy |
-| **Public Mode** | Share a focused run page with people who should run or review work without changing the agent |
+| **Run Mode** | Share a focused run page with people who should run or review work without changing the agent |
 
 ### Agent States
 
@@ -81,7 +81,7 @@ Your agent moves through these states as you set it up:
 
 - **Draft** — still being configured or built
 - **Ready** — tested and ready to go live
-- **Live** — running on autopilot
+- **Live** — available for scheduled, triggered, API, or manual runs
 - **Paused** — temporarily stopped, can be resumed anytime
 
 ---
@@ -98,7 +98,7 @@ Each step in the workflow is a **node**. Nodes can do things like:
 - Run AI reasoning
 - Write results back
 
-You don't need to build the workflow yourself. Your agent figures out the steps, the order, and the logic. If you want to change something, just tell your agent in the chat and it updates the workflow.
+You do not need to draw every workflow step by hand. Decisional generates the graph from your instructions, then you review and change it through Operator Mode or Dex.
 
 ### Workflow Viewer
 
@@ -114,7 +114,7 @@ Integrations are the apps your agents connect to and work with. When your agent 
 
 1. Your agent identifies which apps it needs based on your instructions
 2. You authorize access to each app
-3. Your agent uses them automatically in its workflow
+3. Your agent can use them in its workflow when the workflow calls for them
 
 Integrations can be shared across your workspace or kept private to specific agents.
 
@@ -210,7 +210,7 @@ If you sign up with a company email, you'll automatically join your organization
     Tell Dex what you want automated in plain English
   </Step>
   <Step title="Agent Builds a Workflow">
-    Your agent creates a step-by-step plan and connects to the right apps
+    Decisional creates an inspectable step-by-step plan and identifies the required tools
   </Step>
   <Step title="Add Sources for Context">
     Upload any documents your agent needs to reference
@@ -219,10 +219,10 @@ If you sign up with a company email, you'll automatically join your organization
     Run a test, review each step, and set approval policy
   </Step>
   <Step title="Go Live">
-    Set a schedule or trigger, and your agent runs on autopilot
+    Set a schedule, trigger, API call, public run link, or manual run path
   </Step>
   <Step title="Manage Through Chat">
-    Need changes? Just tell your agent what to update
+    Need changes? Use Dex for the request and Operator Mode for configuration changes
   </Step>
 </Steps>
 
@@ -235,7 +235,7 @@ If you sign up with a company email, you'll automatically join your organization
     Build your first agent in minutes
   </Card>
   <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
-    Understand Chat Mode, Operator Mode, and Public Mode
+    Understand Chat Mode, Operator Mode, and Run Mode
   </Card>
   <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
     Configure review, bypass, and global approval behavior

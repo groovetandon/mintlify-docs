@@ -73,10 +73,10 @@ Agent code -> Routing service -> Credential service -> External API
 
 <CardGroup cols={3}>
   <Card title="Read tools" icon="eye">
-    Execute inside the workflow without human approval and are scoped to read-only operations.
+    Are scoped to read-only operations. By default, read tools are allowed unless policy overrides require approval or block them.
   </Card>
   <Card title="Write tools" icon="pen-to-square">
-    Require explicit human approval before actions such as sending email or updating records proceed.
+    Can require explicit human approval before actions such as sending email or updating records proceed.
   </Card>
   <Card title="Audit trail" icon="clipboard-check">
     Write approvals are recorded with acting identity, timestamp, run context, and operation metadata.
@@ -109,7 +109,7 @@ Every protected endpoint performs two checks: membership in the target workspace
     `dex_`-prefixed tokens are hashed before storage, scoped to specific permissions, and tracked by last-used timestamp.
   </Card>
   <Card title="Public agent sharing" icon="share-nodes">
-    Agents are private by default. Public agents cannot access workspace credentials, and public endpoints are rate limited.
+    Agents are private by default. Public run surfaces remain separated from protected workspace endpoints and are still governed by agent and tool policy.
   </Card>
 </CardGroup>
 

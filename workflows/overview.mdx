@@ -71,14 +71,14 @@ This lets your agent pull real information from your documents mid-workflow — 
 
 ## How Workflows Get Built
 
-You don't need to design workflows manually. Here's the process:
+You do not need to design workflows manually. Here's the process:
 
 1. **You describe** what you want in plain English
-2. **Decisional generates** the workflow automatically — choosing the right node types, wiring them together, and writing the logic
+2. **Decisional generates** the workflow — choosing node types, wiring them together, and writing the logic
 3. **You review** the workflow in the visual viewer
-4. **You can modify** by telling your agent in the chat what to change
+4. **You can modify** the workflow through Dex and Operator Mode
 
-If you need to make changes after building, just tell your agent — for example, "add a step to send a team-chat notification after the email is sent" — and it will update the workflow.
+If you need to make changes after building, ask Dex for the change and use Operator Mode for configuration-level edits.
 
 ## Action Node Approvals
 
@@ -88,7 +88,7 @@ Action nodes are special because they affect external systems or records. During
 - You see a **preview** of what the action will do
 - You can **approve** or **reject** each action individually
 
-This gives you full control before anything touches your real data or apps.
+This gives you a review point before sensitive actions touch real data or apps.
 
 Approval behavior is controlled by the agent's approval mode, workspace tool policy, and any explicit gate nodes in the workflow. A live agent can ask for approvals, bypass eligible approvals, or block actions depending on that policy.
 

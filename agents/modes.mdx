@@ -8,7 +8,7 @@ description: "Understand Dex, agents, and the ways people operate agents"
 Decisional has two top-level concepts:
 
 - **Dex** is the conversational operator for your workspace. Use Dex to ask questions, build agents, change existing agents, run one-off work, and monitor what is happening.
-- **Agents** are durable AI workers. Each agent owns instructions, a workflow, integrations, sources, triggers, runs, and approval policy for a repeatable business process.
+- **Agents** are durable AI workers. Each agent owns instructions, a workflow, tools, sources, triggers, runs, and approval policy for a repeatable business process.
 
 Dex is how you steer the system. Agents are the operating units that run the work.
 
@@ -18,7 +18,7 @@ Dex is how you steer the system. Agents are the operating units that run the wor
 
 ## How they work together
 
-Dex can help you create a new agent, update an existing agent, or complete a task through conversation. When the work should happen repeatedly, Dex turns that intent into an agent with a workflow and operating policy. Once the agent exists, you can keep using Dex to ask what happened, inspect a run, change instructions, or route the agent into the right operating mode.
+Dex can help you create a new agent, update an existing agent, or complete a task through conversation. When the work should happen repeatedly, Dex helps turn that intent into an agent with a workflow and operating policy. Once the agent exists, you can keep using Dex to ask what happened, inspect a run, change instructions, or route the agent into the right operating mode.
 
 <Frame>
   <video controls playsInline muted preload="metadata" src="/videos/pmm/agents-listing.mp4" />
@@ -32,7 +32,7 @@ An agent can be used in different modes depending on who is using it and what th
 |------|------------|-------------------|
 | **Chat Mode** | Ask questions, run one-off tasks, inspect context, and iterate conversationally | Anyone collaborating with the agent |
 | **Operator Mode** | Configure instructions, workflow, tools, triggers, skills, sources, runs, and approval behavior | Owners and builders of the agent |
-| **Public Mode** | Give people a focused run page where they can start or inspect approved agent work | External stakeholders or internal users who do not need the builder surface |
+| **Run Mode** | Share a public link where people can view and run a public agent | External stakeholders or internal users who do not need the builder surface |
 
 ## Chat Mode
 
@@ -60,11 +60,11 @@ Operator Mode includes:
 
 Use Operator Mode for setup, debugging, and policy changes.
 
-## Public Mode
+## Run Mode
 
-Public Mode is the shareable run experience for an agent. When an agent is made public, anyone with the run link can access the focused public surface for that agent. In the product UI, this may appear as **Run Mode** because the public page is centered on running or viewing the agent rather than configuring it.
+Run Mode is the shareable run experience for an agent. When an agent is made public, anyone with the link can view and run that agent from the focused public surface.
 
-Public Mode is useful for:
+Run Mode is useful for:
 
 - Intake workflows
 - Customer-facing request flows
@@ -84,7 +84,7 @@ Public access does not remove the agent's approval policy. Tool policies, approv
     Use Operator Mode.
   </Card>
   <Card title="Need to share a run?" icon="share-nodes">
-    Use Public Mode.
+    Use Run Mode after making the agent public.
   </Card>
 </CardGroup>
 

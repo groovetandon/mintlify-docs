@@ -29,9 +29,9 @@ You can also upload files for context — spreadsheets, PDFs, price lists, templ
   Be specific about what you want the outcome to look like. The more detail you give, the better your agent will be.
 </Tip>
 
-## Step 2: Your Agent Builds Itself
+## Step 2: Review the Agent Plan
 
-Once you submit, Dex starts a conversation to understand what you need. Your agent may ask a few clarifying questions, then it selects the right integrations and tools for the job.
+Once you submit, Dex starts a conversation to understand what you need. The agent may ask clarifying questions, then identifies the integrations and tools required for the job.
 
 After that, your agent writes up a set of **instructions** — a plain-English summary of exactly what it will do, step by step. You'll get to review these instructions before anything is built. If something's off, just tell it to change it.
 
@@ -41,7 +41,7 @@ After that, your agent writes up a set of **instructions** — a plain-English s
 
 ## Step 3: Build Your Workflow
 
-Once you approve the instructions, hit **Build** and your agent generates a full workflow automatically. It breaks your instructions into individual steps, writes the logic for each one, and wires everything together.
+Once you approve the instructions, build the workflow. Decisional breaks your instructions into nodes, writes the logic for each step, and wires the graph together.
 
 You can watch it build in real time from the **Workflow** tab. When it's done, you'll see the complete workflow laid out as a visual graph — each node representing a step your agent will execute.
 
@@ -53,10 +53,10 @@ You can watch it build in real time from the **Workflow** tab. When it's done, y
 
 Your agent needs access to the apps in your workflow. There are two ways to connect them:
 
-- **View Connections** — Click the **View Connections** button on your agent page to see which integrations are needed and connect them directly.
+- **Connections** — Open the connections panel on your agent page to see which integrations are needed and connect them directly.
 - **Ask your agent** — Just tell your agent to connect an integration in the chat, such as "connect my email", and it will walk you through it.
 
-Once you click connect, you'll authorize access through the app's standard OAuth flow. Your agent handles the rest.
+Once you click connect, you'll authorize access through the app's standard OAuth flow. Decisional stores the connection and makes it available to the agent according to your workspace and tool policy.
 
 <Tip>
   Hover over any tool or trigger in the connections panel to see exactly where it's used in your agent's workflow.
@@ -94,7 +94,7 @@ Once live, you can see all your agent's runs from the **Runs** tab. Each run sho
 - What happened at each step
 - The files and data your agent produced
 
-Need to change something? Open the chat and tell your agent what to update. It modifies its own workflow based on your instructions.
+Need to change something? Ask Dex for the change, then use Operator Mode for configuration-level edits.
 
 ## Next Steps
 
@@ -106,7 +106,7 @@ Need to change something? Open the chat and tell your agent what to update. It m
     Deep dive into agent configuration and management
   </Card>
   <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
-    Understand Chat Mode, Operator Mode, and Public Mode
+    Understand Chat Mode, Operator Mode, and Run Mode
   </Card>
 </CardGroup>
 

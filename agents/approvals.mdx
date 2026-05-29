@@ -7,7 +7,7 @@ description: "Control when agents pause, ask for review, bypass approvals, or bl
 
 Approvals are Decisional's human-in-the-loop control system. They let an agent prepare work, show the relevant context, and pause before a sensitive action proceeds.
 
-Approvals can appear during automated runs, Chat Mode write actions, public run flows, and workflow gates. They are especially useful when an agent is about to send information, update a system, make a decision with business impact, or continue past a manual review point.
+Approvals can appear during automated runs, Chat Mode write actions, Run Mode flows, and workflow gates. They are especially useful when an agent is about to send information, update a system, make a decision with business impact, or continue past a manual review point.
 
 ## Where approvals appear
 
@@ -47,9 +47,9 @@ Approval behavior comes from multiple layers working together.
 
 | Layer | What it controls | Typical options |
 |-------|------------------|-----------------|
-| **Global approval mode** | The default behavior for your account or workspace settings | Ask approvals or Bypass approvals |
-| **Agent approval mode** | Whether a specific agent inherits the default or overrides it | Default, Ask approvals, or Bypass approvals |
-| **Tool approval policy** | What each connected tool or action is allowed to do | Always allow, Needs approval, or Blocked |
+| **Global approval mode** | The account default used when an agent has no override | Ask approvals or Bypass approvals |
+| **Agent approval mode** | Whether a specific agent inherits the default or overrides it | Use account default, Ask for this agent, or Bypass for this agent |
+| **Tool approval policy** | How toolkit read/write tools and per-tool overrides behave | Always allow, Needs approval, or Blocked |
 | **Workflow gates** | Manual review points designed into the workflow | Approver list, quorum, approve, reject |
 
 Use these layers together. For example, a low-risk reporting agent might bypass eligible approval prompts, while a finance agent can keep write tools on **Needs approval** and add gate nodes for final review.
@@ -81,13 +81,13 @@ Use bypass carefully:
 
 ## Settings and global policy
 
-The Settings page contains the global policy that agents inherit by default.
+The Settings page contains the global approval default that agents inherit by default.
 
 From Settings, admins can manage:
 
-- The default approval mode used when an agent is set to **Default**
-- Workspace-level tool policies for connected toolkits and individual actions
-- Which tools are always allowed, require approval, or are blocked
+- The default approval mode used when an agent has no override
+- Toolkit defaults for read tools and write tools
+- Per-tool overrides for actions that should always be allowed, require approval, or be blocked
 - Team access and workspace configuration that affects who can approve or operate agents
 
 Agent builders can then choose whether an agent follows the default policy or overrides it with Ask approvals or Bypass approvals. The effective behavior is the combination of the global default, the agent override, tool policy, and any workflow gates.
@@ -103,7 +103,7 @@ Agent builders can then choose whether an agent follows the default policy or ov
     Keep new agents in Ask approvals while you test the workflow, review outputs, and tune instructions.
   </Step>
   <Step title="Set tool policies">
-    In Settings, allow safe read actions, require approval for sensitive write actions, and block tools the workspace should not use.
+    In the toolkit tools view, allow safe read actions, require approval for sensitive write actions, and block tools the workspace should not use.
   </Step>
   <Step title="Add gates where judgment matters">
     Put explicit workflow gates before final send, publish, payment, record update, or escalation steps.
@@ -120,7 +120,7 @@ Agent builders can then choose whether an agent follows the default policy or ov
 
 <CardGroup cols={2}>
   <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
-    See how approvals behave across Chat Mode, Operator Mode, and Public Mode.
+    See how approvals behave across Chat Mode, Operator Mode, and Run Mode.
   </Card>
   <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
     Learn where action nodes and gate nodes fit inside a workflow.
