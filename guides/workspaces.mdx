@@ -5,7 +5,7 @@ description: "Collaborate with your team and manage access"
 
 ## What Are Workspaces?
 
-A **workspace** is your team's shared environment in Decisional. It contains all your agents, worksheets, sources, integrations, and team members.
+A **workspace** is your team's shared environment in Decisional. It contains your agents, sources, integrations, runs, settings, and team members.
 
 <Card title="Think of it like..." icon="lightbulb">
   A workspace is like a **Slack workspace** or **Google Workspace** - a shared space where your team collaborates on automation.
@@ -181,7 +181,7 @@ Decisional uses role-based access control (RBAC).
 | Permission | Owner | Admin | Editor | Viewer |
 |-----------|-------|-------|--------|--------|
 | **View agents** | ✅ | ✅ | ✅ | ✅ |
-| **View worksheets** | ✅ | ✅ | ✅ | ✅ |
+| **View sources** | ✅ | ✅ | ✅ | ✅ |
 | **View run history** | ✅ | ✅ | ✅ | ✅ |
 | **Run agents** | ✅ | ✅ | ✅ | ✅ |
 | **Create agents** | ✅ | ✅ | ✅ | ❌ |
@@ -260,7 +260,7 @@ Decisional uses role-based access control (RBAC).
 
     **Permissions:**
     - View all agents
-    - View worksheets
+    - View sources
     - Run agents
     - View run history
 
@@ -480,7 +480,7 @@ Manage your workspace subscription.
     - After 90 days of inactivity, workspace is archived
 
     **Before canceling:**
-    - Download all worksheets
+    - Export run records
     - Export agent configurations
     - Save any important data
   </Tab>
@@ -610,7 +610,7 @@ Track all activity in your workspace (Professional/Enterprise only).
 - Role changes
 - Agent created/edited/deleted
 - Integration connected/disconnected
-- Worksheet uploaded/modified
+- Source uploaded/modified
 - Settings changed
 
 **View logs:**
@@ -619,7 +619,7 @@ Track all activity in your workspace (Professional/Enterprise only).
    - Date range
    - Member
    - Action type
-   - Resource (agent, worksheet, etc.)
+   - Resource (agent, source, integration, etc.)
 3. Export to CSV
 
 **Example log entry:**
@@ -647,7 +647,7 @@ If you're a member of multiple workspaces:
   </Step>
 
   <Step title="Context Switches">
-    All agents, worksheets, and settings now reflect the selected workspace
+    All agents, sources, integrations, and settings now reflect the selected workspace
   </Step>
 </Steps>
 
@@ -709,7 +709,6 @@ If you're a member of multiple workspaces:
   <Step title="Understand Consequences">
     **What gets deleted:**
     - All agents (permanently)
-    - All worksheets (permanently)
     - All sources (permanently)
     - All run history (permanently)
     - All team members removed
@@ -720,7 +719,6 @@ If you're a member of multiple workspaces:
 
   <Step title="Export Your Data">
     **Before deleting, download:**
-    - All worksheets (Settings → Export Data)
     - Agent configurations (Export as JSON)
     - Run logs (if needed for compliance)
   </Step>
@@ -765,7 +763,7 @@ If you're a member of multiple workspaces:
 </Check>
 
 <Check>
-  **Backup critical data:** Download worksheets and agent configs regularly
+  **Backup critical data:** Export agent configs, sources, and run records regularly
 </Check>
 
 ---

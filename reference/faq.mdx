@@ -89,11 +89,11 @@ description: "Common questions about Decisional"
 
     1. **Clear instructions**: Specific, detailed instructions → better results
     2. **Quality sources**: Clean, relevant documents → higher accuracy
-    3. **Good data structure**: Well-organized worksheets → fewer errors
+    3. **Good data structure**: Clean source data and clear fields → fewer errors
 
     **Tips for maximum accuracy:**
     - Test with real data before going live
-    - Use data validation in worksheets
+    - Validate input data before the agent runs
     - Add verification steps in your workflow
     - Review run logs regularly
 
@@ -126,7 +126,7 @@ description: "Common questions about Decisional"
 
     **Best practices for large volumes:**
     - Process in batches (e.g., 500 at a time)
-    - Use efficient worksheet structures
+    - Use efficient source data structures
     - Run during off-peak hours if time isn't critical
   </Accordion>
 
@@ -136,80 +136,6 @@ description: "Common questions about Decisional"
     - **Pause**: Coming soon
 
     If you need to modify the agent, cancel the current run, make your changes, and start a new run.
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Worksheets & Data
-
-<AccordionGroup>
-  <Accordion title="What spreadsheet features are supported?" icon="table-cells">
-    **Almost all Excel features are supported**, powered by SpreadJS:
-
-    ✅ **Formulas**: SUM, VLOOKUP, IF, INDEX/MATCH, and 400+ functions
-    ✅ **Formatting**: Cell colors, fonts, borders, number formats
-    ✅ **Charts**: Bar, line, pie, scatter, and more
-    ✅ **Multiple sheets**: Work with multiple tabs in one workbook
-    ✅ **Data validation**: Dropdowns, number ranges, custom rules
-    ✅ **Conditional formatting**: Rules-based cell formatting
-    ✅ **Freeze panes**: Lock headers while scrolling
-    ✅ **Filters and sorting**: Standard Excel filtering
-
-    ❌ **Not supported**: Macros (VBA), Pivot Tables (coming soon)
-  </Accordion>
-
-  <Accordion title="Can I import Google Sheets?" icon="sheet-plastic">
-    **Coming soon!** We're working on native Google Sheets integration.
-
-    **For now**, you can:
-    1. Download your Google Sheet as Excel (.xlsx)
-    2. Upload to Decisional
-    3. Make edits
-    4. Download and re-upload to Google Sheets
-
-    Or use our API to sync programmatically.
-  </Accordion>
-
-  <Accordion title="Is there a limit on spreadsheet size?" icon="ruler">
-    **Soft limit: 50MB per file**
-
-    **For optimal performance:**
-    - Recommended: Under 10,000 rows per sheet
-    - Maximum: 100,000 rows (may be slower)
-
-    **If you have larger datasets:**
-    - Split into multiple worksheets
-    - Use database integrations (PostgreSQL, Snowflake)
-    - Process in batches
-    - Archive old data to separate files
-  </Accordion>
-
-  <Accordion title="Can multiple people edit a worksheet at once?" icon="users">
-    **Not yet.** Real-time collaboration is coming soon.
-
-    **Current behavior:**
-    - Multiple people can view at once
-    - Only one person can edit at a time (last save wins)
-    - Version history lets you restore previous versions
-
-    **Tip:** Use workspaces to organize team access and assign clear ownership.
-  </Accordion>
-
-  <Accordion title="Can I export my data?" icon="download">
-    **Yes! You own your data.** Export anytime:
-
-    **Formats:**
-    - **XLSX**: Full workbook with formulas and formatting
-    - **CSV**: Plain data (one sheet only)
-    - **PDF**: Static snapshot
-
-    **How:**
-    1. Open the worksheet
-    2. Click **File → Download**
-    3. Choose format
-
-    You can also sync to Google Drive, OneDrive, or pull via API.
   </Accordion>
 </AccordionGroup>
 
@@ -503,19 +429,6 @@ description: "Common questions about Decisional"
     Still stuck? Email us the error message: [founders@decisional.com](mailto:founders@decisional.com)
   </Accordion>
 
-  <Accordion title="Worksheet not loading" icon="triangle-exclamation">
-    **Quick fixes:**
-
-    1. **Refresh the page** (Cmd+R / Ctrl+R)
-    2. **Clear browser cache** and reload
-    3. **Try different browser**
-    4. **Check file size** (50MB limit)
-
-    **If the worksheet is corrupted:**
-    - Download the last working version from version history
-    - Re-upload a clean copy
-  </Accordion>
-
   <Accordion title="Lost access to my workspace" icon="lock">
     **Possible reasons:**
 
@@ -524,7 +437,7 @@ description: "Common questions about Decisional"
     3. **Workspace deleted** → Cannot be recovered (contact owner)
     4. **Account locked** → Contact support
 
-    **Prevention:** Regular backups! Download worksheets and export agent configs.
+    **Prevention:** Regular backups! Export agent configs, sources, and run records.
   </Accordion>
 </AccordionGroup>
 
@@ -584,7 +497,6 @@ description: "Common questions about Decisional"
     3. **Day 30:** Permanent deletion - all data erased
 
     **Before deleting:**
-    - Export all worksheets
     - Download agent configs (JSON export)
     - Back up sources
 

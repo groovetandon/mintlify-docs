@@ -1,12 +1,12 @@
 # Decisional Documentation
 
-Official documentation for [Decisional](https://www.decisional.com) - the spreadsheet-native automation platform.
+Official documentation for [Decisional](https://www.decisional.com).
 
 ## What's Included
 
 - **Getting Started** - Quickstart, core concepts, and setup
-- **User Guides** - Comprehensive guides for agents, worksheets, sources, AI assistant, runs, integrations, and workspaces
-- **Reference** - Glossary, FAQ, and changelog
+- **User Guides** - Comprehensive guides for agents, sources, Dex, runs, integrations, and workspaces
+- **Reference** - Glossary and FAQ
 - **Branding** - Custom Decisional purple theme (#3E0D77)
 
 ## Development
@@ -43,7 +43,6 @@ Changes are automatically deployed to production when pushed to the `main` branc
 ├── setup.mdx                 # Account and workspace setup
 ├── guides/
 │   ├── agents.mdx            # Working with agents
-│   ├── worksheets.mdx        # Spreadsheet operations
 │   ├── sources.mdx           # Document processing and RAG
 │   ├── ai-assistant.mdx      # Interactive testing
 │   ├── runs.mdx              # Monitoring and debugging
@@ -52,7 +51,7 @@ Changes are automatically deployed to production when pushed to the `main` branc
 └── reference/
     ├── glossary.mdx          # Key terms
     ├── faq.mdx               # Common questions
-    └── changelog.mdx         # Product updates
+    └── changelog.mdx         # Product updates, unlisted in docs navigation
 ```
 
 ## Troubleshooting

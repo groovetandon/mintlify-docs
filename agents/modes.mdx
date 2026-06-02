@@ -1,24 +1,17 @@
 ---
-title: "Dex and Agent Modes"
-description: "Understand Dex, agents, and the ways people operate agents"
+title: "Agent Modes"
+description: "Understand Chat Mode, Operator Mode, and Run Mode for agents"
 ---
 
-## Dex and agents
+## Agent modes
 
-Decisional has two top-level concepts:
+Agents can be used through different surfaces depending on the job:
 
-- **Dex** is the conversational operator for your workspace. Use Dex to ask questions, build agents, change existing agents, run one-off work, and monitor what is happening.
-- **Agents** are durable AI workers. Each agent owns instructions, a workflow, tools, sources, triggers, runs, and approval policy for a repeatable business process.
+- **Chat Mode** is for conversation, one-off work, explanations, and follow-up questions.
+- **Operator Mode** is for changing how the agent works.
+- **Run Mode** is for public run links where someone can run or review the agent without the builder surface.
 
-Dex is how you steer the system. Agents are the operating units that run the work.
-
-<Frame>
-  <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-overview.mp4" />
-</Frame>
-
-## How they work together
-
-Dex can help you create a new agent, update an existing agent, or complete a task through conversation. When the work should happen repeatedly, Dex helps turn that intent into an agent with a workflow and operating policy. Once the agent exists, you can keep using Dex to ask what happened, inspect a run, change instructions, or route the agent into the right operating mode.
+Each agent owns instructions, a workflow, tools, sources, triggers, runs, and approval policy. The mode picker controls which surface you use for that agent.
 
 <Frame>
   <video controls playsInline muted preload="metadata" src="/videos/pmm/agents-listing.mp4" />
@@ -39,10 +32,6 @@ An agent can be used in different modes depending on who is using it and what th
 Chat Mode is the everyday conversational surface for an agent. It is best when you want to ask the agent to explain a result, process a small request, answer questions over its sources, or continue an existing thread.
 
 Chat Mode keeps configuration changes controlled. If a request requires editing integrations, workflow structure, triggers, or other operator-level settings, the agent will route you to Operator Mode.
-
-<Frame>
-  <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-in-slack.mp4" />
-</Frame>
 
 ## Operator Mode
 
