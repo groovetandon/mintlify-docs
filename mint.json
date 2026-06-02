@@ -81,6 +81,7 @@
       "group": "Platform",
       "pages": [
         "guides/workspaces",
+        "guides/credentials",
         "security"
       ]
     },

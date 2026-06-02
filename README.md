@@ -5,7 +5,7 @@ Official documentation for [Decisional](https://www.decisional.com).
 ## What's Included
 
 - **Getting Started** - Quickstart, core concepts, and setup
-- **User Guides** - Comprehensive guides for agents, sources, Dex, runs, integrations, and workspaces
+- **User Guides** - Comprehensive guides for agents, sources, Dex, runs, integrations, credentials, and workspaces
 - **Reference** - Glossary and FAQ
 - **Branding** - Custom Decisional purple theme (#3E0D77)
 
