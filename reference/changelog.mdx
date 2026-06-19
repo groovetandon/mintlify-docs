@@ -45,7 +45,7 @@ New features and improvements shipped every week.
   - Unified promptbox across modes
   - Smart thread resumption when switching modes mid-conversation
 
-  Learn more in [Dex and Agent Modes](/agents/modes).
+  Learn more in [Agent Modes](/agents/modes).
 </Update>
 
 <Update label="v0.89 - Apr 21, 2026" tags={["New features", "Public runs"]}>
@@ -177,7 +177,7 @@ New features and improvements shipped every week.
   ### Improvements
 
   - Open a command palette with Cmd/Ctrl+K
-  - Jump to Instructions, Workflow, Worksheet, All Runs, and Outputs for the current agent
+  - Jump to Instructions, Workflow, All Runs, and Outputs for the current agent
   - Open Files, Skills, Integrations, and Triggers from one menu
   - Use single-key shortcuts after opening the palette
   - Navigate globally to create agents, open All Agents, check Dashboard, or manage workspace integrations
@@ -358,16 +358,14 @@ New features and improvements shipped every week.
 </Update>
 
 <Update label="v0.67 - Feb 6, 2026" tags={["New features", "Workflow nodes"]}>
-  ## RAG Node & AI Node
+  ## AI Node and Agent Node
 
-  Two new node types let workflows use AI reasoning and the agent knowledge base directly.
+  Workflows gained dedicated model and agentic execution steps.
 
   ### Improvements
 
-  - New AI Node for processing, summarization, extraction, and classification inside workflows
-  - New RAG Node for retrieving context from uploaded documents and knowledge bases
-  - RAG chunks large files, creates embeddings, and stores them in a vector index
-  - Supports PDFs, Word docs, CSVs, and plain text with overlapping chunks
+  - New AI Node for bounded model steps like summarization, extraction, classification, and generation
+  - New Agent Node for model-backed reasoning, tool use, computer work, and multi-step execution inside workflows
 </Update>
 
 <Update label="v0.66 - Feb 6, 2026" tags={["Improvements", "Skills", "Builds"]}>
@@ -485,19 +483,6 @@ New features and improvements shipped every week.
   - Scheduled triggers visible in the workflow viewer
 </Update>
 
-<Update label="v0.58 - Jan 14, 2026" tags={["Improvements", "Worksheets"]}>
-  ## AI Editing Overlay & Tabbed Worksheets
-
-  Spreadsheet editing gained visual feedback, and worksheets moved into tabs.
-
-  ### Improvements
-
-  - Shimmer animation shows when AI is editing spreadsheets
-  - User worksheets open as tabs instead of side panels
-  - Workflow viewer improvements for node positioning and integration display
-  - Redesigned integration connection flow with spotlight overlay
-</Update>
-
 <Update label="v0.57 - Jan 13, 2026" tags={["Improvements", "Templates", "Integrations"]}>
   ## Connect Panel & Templates
 
@@ -508,17 +493,6 @@ New features and improvements shipped every week.
   - Click-to-scroll, hover highlighting, and auto-expand for toolkits in the connection panel
   - Action message history for Build, Test, and Connect actions
   - 10 new agent templates for common automation patterns
-</Update>
-
-<Update label="v0.56 - Jan 12, 2026" tags={["Improvements", "Worksheets"]}>
-  ## Dual Worksheet System
-
-  Worksheet management became more flexible with auto-created worksheets and user worksheet support.
-
-  ### Improvements
-
-  - Auto-created worksheets with full user worksheet support
-  - Better file upload experience with progress animations
 </Update>
 
 <Update label="v0.55 - Jan 9, 2026" tags={["Improvements", "Scheduling"]}>

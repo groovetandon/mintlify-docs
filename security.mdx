@@ -1,6 +1,6 @@
 ---
-title: "Security"
-description: "How Decisional protects agent execution, credentials, workspace data, and production infrastructure."
+title: "Security Policy"
+description: "How Decisional protects agent execution, credentials, workspace data, production infrastructure, and customer data processing."
 icon: "shield-check"
 ---
 
@@ -11,6 +11,10 @@ icon: "shield-check"
 Decisional agents execute real code against real business data. The security architecture is built around enforced boundaries: sandboxed execution, credential isolation, workspace-scoped access control, and hardened production infrastructure.
 
 Every control described here is implemented as an architecture-level constraint, not as a best-effort usage policy.
+
+<Info>
+  **No AI model training:** Decisional does not use client data, Customer Personal Data, prompts, files, integration records, agent inputs, or agent outputs to train AI models. Decisional also does not permit third-party model providers to train their models on customer data submitted through Decisional.
+</Info>
 
 <CardGroup cols={2}>
   <Card title="Sandboxed execution" icon="box">
@@ -39,7 +43,7 @@ Decisional treats containment as a non-negotiable invariant. Each execution is e
     Code-execution steps run in separate ephemeral compute environments with their own lifecycle. Sandboxes have hard timeouts, are destroyed on completion, and receive execution-scoped identifiers rather than credentials.
   </Step>
   <Step title="Restricted execution namespace">
-    Inside the runner, user node code runs with only platform-provided functions in scope, such as `call_user_tool()`, `call_llm_text_tool()`, `state_get()`, and `state_set()`.
+    Workflow code runs with least-privilege access to authorized service interfaces only. It cannot directly access underlying credentials, platform databases, host infrastructure, or unrelated customer workspaces.
   </Step>
 </Steps>
 
@@ -53,23 +57,25 @@ The core credential guarantee is simple: agent code never sees raw credentials. 
 
 ### Credential Storage
 
-All integration credentials, including OAuth tokens and API keys, are encrypted at rest with AES-256-GCM authenticated encryption. Key versioning supports rotation without downtime: old keys remain available for decryption, while new encryptions use the current key version.
+Connected-app access tokens and integration credentials are maintained by Composio, Decisional's integrations provider. Decisional stores brokered references to those credentials, not raw connected-app secrets, and agent code receives tool IDs instead of credentials.
 
-Credentials are scoped to `workspace_id` and `user_id`, making them private by default with explicit sharing controls for team workflows.
+For credentials and secrets Decisional stores directly, values are encrypted at rest with AES-256-GCM authenticated encryption. Key versioning supports rotation without downtime: old keys remain available for decryption, while new encryptions use the current key version.
+
+Credential access is scoped to `workspace_id` and `user_id`, making credentials private by default with explicit sharing controls for team workflows.
 
 ### Brokered Proxy Pattern
 
 Tool execution flows through a brokered chain where each layer sees only the minimum information it needs.
 
 ```text
-Agent code -> Routing service -> Credential service -> External API
- tool ID        credential UUIDs    decrypts in memory     executes call
+Agent code -> Routing service -> Composio / credential provider -> External API
+ tool ID        credential refs       decrypts in memory       executes call
 ```
 
-1. Agent code calls a public tool ID with typed parameters, for example `call_user_tool("ut_abc123", {...})`.
-2. The routing service resolves the tool ID to provider configuration and credential UUIDs, never raw secrets.
-3. The credential service is the sole decryption point and holds decrypted material only in memory for a single outbound call.
-4. The provider adapter receives the live credential and executes against the upstream API. Nothing is serialized or stored after the call completes.
+1. Agent code requests an authorized tool action using an internal tool identifier and structured parameters.
+2. The routing service resolves the tool ID to provider configuration and credential references, never raw secrets.
+3. Composio or the relevant credential provider is the decryption point for connected-app calls and holds decrypted material only as needed to execute the outbound call.
+4. The provider adapter receives the live credential and executes against the upstream API. Raw connected-app credentials are not serialized into agent state, prompts, run logs, or sandbox-visible storage.
 
 <CardGroup cols={3}>
   <Card title="Read tools" icon="eye">
@@ -132,8 +138,200 @@ Production infrastructure enforces the lower-level controls that support the age
   </Card>
 </CardGroup>
 
+### Security Review Clarifications
+
+| Review question | Decisional answer |
+| --- | --- |
+| What is the "Security Policy" referenced by the DPA? | This page is Decisional's Security Policy for the DPA. The public URL is [https://docs.decisional.com/security](https://docs.decisional.com/security). |
+| Is there a SOC 2 report or trust center for integration credentials? | Connected-app access tokens and credentials are maintained by Composio, Decisional's integrations provider. Composio's Trust Center, including SOC 2 materials, is available at [https://trust.composio.dev](https://trust.composio.dev). |
+| Are credentials encrypted? | Composio maintains integration credentials for connected apps. Decisional does not expose raw connected-app credentials to agents, sandboxes, prompts, logs, or run state. Credentials Decisional stores directly are encrypted at rest with AES-256-GCM, and service communication uses TLS/HTTPS. |
+| Where is the current subprocessor list? | The maintained subprocessor list is the source of truth and is available at [Decisional Sub-Processors](https://app.notion.com/p/decisional/Decisional-Sub-Processors-12559fcfa75c80c7a954f514d08694b3). |
+| Will customer data train AI models? | No. Client data, Customer Personal Data, prompts, files, integration records, agent inputs, agent outputs, and customer information are not used to train Decisional or third-party AI models. |
+| Can customers object to material processing changes? | Yes. Decisional can add the material-change objection and termination language below to the DPA or customer agreement. |
+| Can customers get specific deletion timing? | Yes. Decisional can add the 30-day during-term deletion timing language below to the DPA or customer agreement. |
+
+### Data Processing Agreement
+
+Decisional supports customer security and privacy reviews through a standard Data Processing Agreement based on the [Common Paper Data Processing Agreement Standard Terms v1.0](https://commonpaper.com/standards/data-processing-agreement/1.0).
+
+The DPA has two parts: the customer-specific Cover Page and the Common Paper DPA Standard Terms. The Cover Page completes the agreement details, including the governing sales agreement, approved subprocessors, provider security contact, restricted transfer details, and the Annex I and Annex II processing information. If a signed DPA or customer agreement differs from this page, the executed agreement controls.
+
+### DPA Clause Map
+
+| DPA clause | What it means for Decisional customers |
+| --- | --- |
+| Cover Page, "Using this DPA" | The Cover Page controls if it conflicts with the standard terms. Capitalized terms are defined by the Cover Page, the DPA Standard Terms, or the customer agreement. |
+| Cover Page, Annex II | Technical and organizational security measures are tied to the Security Policy referenced by the agreement. This page summarizes those controls. |
+| Cover Page, Service Provider Relationship | Where CCPA applies, Decisional acts as a service provider for a limited and specified business purpose. Decisional does not sell or share Personal Data provided by the customer and does not retain, use, or disclose it except as needed to provide the service, as stated in the agreement, or as permitted by applicable data protection law. |
+| Sections 1.1 and 1.2 | Decisional is a Processor when the customer is a Controller, and a Subprocessor when the customer is a Processor. |
+| Sections 2.2 and 2.3 | Decisional processes Customer Personal Data only to provide and maintain the service, as configured through customer use of the service, as documented in the agreement, or under other written customer instructions acknowledged by Decisional. |
+| Section 2.3 addendum | Customers may request a right to object to material service updates that increase privacy, security, or compliance risk. Pending resolution, Decisional will not implement the change for that Customer Data if the addendum language below is included in the agreement. |
+| Section 2.6 | Subprocessors must be approved, listed with identity, country, and processing tasks, and bound by written obligations that limit access and use to the subcontracted service obligations. |
+| Section 3 | Restricted transfers are supported through appropriate safeguards, including EEA SCCs, the UK Addendum, and Swiss transfer adjustments where applicable. |
+| Section 4 | Security Incident notice is provided without undue delay where feasible and no later than 72 hours after Decisional becomes aware of the incident. |
+| Sections 5.1 through 5.3 | Customers can request information reasonably necessary to verify DPA compliance, including security reports where available and reasonable written security due diligence requests. DPA compliance records are maintained for 3 years after the DPA ends. |
+| Sections 6.1 and 6.2 | Decisional assists with third-party inquiries, data subject requests, DPIAs, and DTIAs where required by applicable data protection law and consistent with the DPA. |
+| Sections 7.1 and 7.2 | Customers can delete Customer Personal Data through service functionality. After DPA expiration, Decisional returns or deletes Customer Personal Data at customer instruction unless further retention is required or authorized by law. Customers may request the 30-day during-term deletion timing language below. |
+| Section 9 | If documents conflict, the order of precedence is: EEA SCCs or UK Addendum, then the DPA, then the customer agreement. |
+| Section 10 | DPA obligations continue until the customer stops transferring Customer Personal Data to Decisional and Decisional stops processing it. |
+
+### Available DPA Addendum Language
+
+Decisional can include the following language in a customer DPA or agreement when requested.
+
+**Material processing changes**
+
+Where Decisional updates the Service and, by notice to Customer, changes the categories of data subjects, personal data, special category data, frequency of transfer, nature or purpose of processing, or duration of processing, Customer shall have the right to object to any such change that materially increases privacy, security, or compliance risk to Customer or to data subjects. Customer must raise such objection in writing within thirty (30) days of receiving Decisional's notice. The parties shall negotiate in good faith to resolve the objection within thirty (30) days. If the parties are unable to resolve the objection within that period, Customer may terminate the affected Service (or this Agreement in whole) without penalty upon written notice, and Decisional shall return or delete the affected Customer Data in accordance with the Deletion and Return of Customer Data section. Pending resolution, Decisional shall not implement the change with respect to Customer Data.
+
+**During-term deletion timing**
+
+During the Term, Decisional shall delete Customer Data no later than thirty (30) days after such data is no longer required for the purpose for which it was processed, or earlier upon Customer's written instruction, except to the extent retention is required by applicable law.
+
+<CardGroup cols={2}>
+  <Card title="Processing role" icon="diagram-project">
+    Where the customer is a Controller, Decisional acts as a Processor for Customer Personal Data. Where the customer is a Processor, Decisional acts as a Subprocessor.
+  </Card>
+  <Card title="Service scope" icon="cloud">
+    The standard service scope covers Decisional's hosted SaaS product, including the web app, AI agents, APIs, integrations, workflow automation features, Dex, and associated services.
+  </Card>
+  <Card title="Personal data categories" icon="id-card">
+    Standard processing covers customer end users or customers, including user activity and analysis data such as device information, IP address, and location information.
+  </Card>
+  <Card title="Special category data" icon="ban">
+    The standard DPA does not contemplate processing GDPR Article 9 special category data unless separately agreed in writing.
+  </Card>
+</CardGroup>
+
+### Processing Activities
+
+Decisional processes Customer Personal Data only to provide, maintain, secure, and improve the contracted service according to customer instructions and the applicable agreement. The standard cover page describes the following processing details.
+
+| Activity | Examples |
+| --- | --- |
+| Receiving data | Collection, access, retrieval, recording, and data entry |
+| Holding data | Storage, organization, and structuring |
+| Using data | Analysis, consultation, testing, automated decision-making, and profiling as configured through the service |
+| Protecting data | Access restrictions, encryption, monitoring, and security testing |
+
+For standard configurations, data transfer frequency is batch sync every 24 hours or as otherwise agreed with the customer. Processing continues for as long as needed to provide the service, follow documented customer instructions, or comply with applicable law.
+
+### International Transfers
+
+The standard DPA includes transfer mechanics for restricted transfers under GDPR and UK GDPR. Where required, the EEA Standard Contractual Clauses and UK Addendum are incorporated through the DPA and completed by the customer-specific Cover Page.
+
+The standard Cover Page identifies the Netherlands for EEA transfers and England and Wales for UK transfers. Customer-specific agreements may change those details.
+
+### Customer Data Use Limits
+
+Decisional's standard DPA and service provider terms limit how Customer Personal Data can be used.
+
+<CardGroup cols={2}>
+  <Card title="No model training" icon="brain-circuit">
+    Client data, Customer Personal Data, prompts, files, integration records, agent inputs, and agent outputs are not used to train Decisional or third-party AI models.
+  </Card>
+  <Card title="No sale or sharing" icon="handshake-slash">
+    Where CCPA applies, Decisional does not sell or share Personal Data provided by the customer.
+  </Card>
+  <Card title="Limited use" icon="filter">
+    Decisional does not retain, use, or disclose Personal Data except as necessary to provide the service, as stated in the agreement, or as permitted by applicable data protection law.
+  </Card>
+  <Card title="Instruction-bound processing" icon="list-check">
+    Processing follows the customer's documented instructions, service configuration, the agreement, and any additional written instructions acknowledged by Decisional.
+  </Card>
+</CardGroup>
+
+### Security Incidents, Deletion, and Review
+
+<CardGroup cols={2}>
+  <Card title="Security incident response" icon="triangle-exclamation">
+    Upon becoming aware of a Security Incident, Decisional notifies the customer without undue delay when feasible and no later than 72 hours after awareness, then provides timely information and takes reasonable containment and investigation steps.
+  </Card>
+  <Card title="Deletion" icon="trash">
+    Customers can delete Customer Personal Data through service functionality. After DPA expiration, Decisional returns or deletes covered data at the customer's instruction unless further retention is required or authorized by applicable law.
+  </Card>
+  <Card title="Security due diligence" icon="clipboard-question">
+    Decisional responds to reasonable written security, privacy, due diligence, and audit questionnaire requests according to the DPA and applicable confidentiality obligations.
+  </Card>
+  <Card title="Security reports" icon="file-shield">
+    Where available and appropriate, Decisional provides security report summaries or additional information under confidentiality so customers can verify security controls.
+  </Card>
+</CardGroup>
+
+For compliance reviews, contact [founders@decisional.com](mailto:founders@decisional.com).
+
 ### Sub-Processors
 
 Decisional uses vetted sub-processors for categories such as cloud infrastructure, authentication, model execution, sandboxed code execution, integration connectivity, observability, analytics, and payments.
 
-The current sub-processor list is maintained separately so it can stay accurate as vendors, regions, and processing purposes change. Customers can request the latest list during security review.
+Approved subprocessors are listed in the applicable DPA cover page or maintained subprocessor list so vendor names, locations, and processing purposes can stay accurate as the service evolves. The maintained Notion list is the source of truth: [Decisional Sub-Processors](https://app.notion.com/p/decisional/Decisional-Sub-Processors-12559fcfa75c80c7a954f514d08694b3).
+
+Under Section 2.6 of the reviewed DPA, Decisional:
+
+- provides advance written notice of intended subprocessor additions or replacements before beginning use of the new subprocessor;
+- gives customers information needed to exercise their objection rights during the advance notice period;
+- keeps written agreements requiring subprocessors to access and use Customer Personal Data only as needed for the subcontracted obligations and consistently with the agreement;
+- imposes GDPR Article 28-style data protection obligations on subprocessors where GDPR applies;
+- shares subprocessor agreements on request where required by the DPA, subject to redactions for confidential information, business secrets, and personal data; and
+- remains responsible for subcontracted processing obligations, including subprocessor acts and omissions.
+
+If a customer objects to a new subprocessor, the reviewed DPA provides cure paths such as canceling use of the subprocessor for that customer's data, offering an alternative service path, taking corrective steps, or disabling the affected service feature. If the objection remains unresolved and no commercially feasible alternative exists, the DPA allows termination of the affected subscriptions, order forms, or usage with refund of applicable prepaid fees for unused periods.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What is the Security Policy referenced by the DPA?">
+    This page is Decisional's Security Policy for the DPA and is available at [https://docs.decisional.com/security](https://docs.decisional.com/security). It summarizes Decisional's technical and organizational measures, including sandboxed execution, credential isolation, access control, encryption, subprocessors, incident response, deletion, and DPA commitments.
+  </Accordion>
+
+  <Accordion title="Do you have a SOC 2 report or trust center?">
+    Connected-app access tokens and credentials are maintained by Composio, Decisional's integrations provider. Composio's Trust Center, including SOC 2 materials, is available at [https://trust.composio.dev](https://trust.composio.dev). Decisional can provide additional security due diligence responses under the applicable agreement and confidentiality obligations.
+  </Accordion>
+
+  <Accordion title="Where are access tokens and integration credentials stored?">
+    Connected-app access tokens and integration credentials are maintained by Composio. Decisional stores brokered references to credentials, not raw connected-app secrets, and agent code receives tool IDs instead of credentials. Raw connected-app credentials are not serialized into agent state, prompts, run logs, or sandbox-visible storage.
+  </Accordion>
+
+  <Accordion title="Are credentials encrypted?">
+    Composio maintains connected-app credentials for integration calls. For credentials and secrets Decisional stores directly, values are encrypted at rest with AES-256-GCM authenticated encryption. Production database connections enforce TLS, and service-to-service calls use HTTPS.
+  </Accordion>
+
+  <Accordion title="Will our data be used to train AI models?">
+    No. Client data, Customer Personal Data, prompts, files, integration records, agent inputs, agent outputs, and customer information are not used to train Decisional or third-party AI models.
+  </Accordion>
+
+  <Accordion title="Who are Decisional's subprocessors?">
+    The maintained Notion list is the source of truth for current subprocessors, including provider names, processing activities, locations, and implementation dates. It is available at [Decisional Sub-Processors](https://app.notion.com/p/decisional/Decisional-Sub-Processors-12559fcfa75c80c7a954f514d08694b3).
+  </Accordion>
+
+  <Accordion title="Do all subprocessors receive Customer Personal Data?">
+    No. The maintained subprocessor list identifies each provider's role and processing activity. Service providers used only for business operations may receive limited account information and usage data rather than Customer Personal Data.
+  </Accordion>
+
+  <Accordion title="Can we object to new subprocessors?">
+    Yes, subject to the applicable DPA. Under Section 2.6 of the reviewed DPA, Decisional provides advance written notice of intended subprocessor additions or replacements, gives customers information needed to exercise objection rights, and works through the cure paths described in the DPA if a customer objects.
+  </Accordion>
+
+  <Accordion title="Can we object to material processing changes?">
+    Yes, Decisional can add the material processing change language shown above to the DPA or customer agreement. The clause gives customers 30 days to object to changes that materially increase privacy, security, or compliance risk, requires good-faith negotiation, and allows termination of the affected service if the objection is unresolved.
+  </Accordion>
+
+  <Accordion title="How quickly will Decisional delete Customer Data?">
+    The reviewed DPA requires deletion through service functionality and return or deletion at DPA expiration at customer instruction unless further retention is required or authorized by law. Decisional can also add the 30-day during-term deletion timing language shown above to the DPA or customer agreement.
+  </Accordion>
+
+  <Accordion title="Does Decisional process special category data?">
+    The standard DPA does not contemplate processing GDPR Article 9 special category data unless separately agreed in writing.
+  </Accordion>
+
+  <Accordion title="How quickly does Decisional notify customers of a Security Incident?">
+    Under Section 4 of the reviewed DPA, Decisional notifies customers without undue delay where feasible and no later than 72 hours after becoming aware of a Security Incident, then provides timely information and takes reasonable containment and investigation steps.
+  </Accordion>
+
+  <Accordion title="How are international transfers handled?">
+    The standard DPA includes transfer mechanics for restricted transfers under GDPR and UK GDPR. Where required, the EEA Standard Contractual Clauses and UK Addendum are incorporated through the DPA and completed by the customer-specific Cover Page.
+  </Accordion>
+
+  <Accordion title="Who should we contact for compliance review?">
+    Contact [founders@decisional.com](mailto:founders@decisional.com) for compliance reviews, security due diligence, subprocessor questions, DPA edits, or security report requests.
+  </Accordion>
+</AccordionGroup>

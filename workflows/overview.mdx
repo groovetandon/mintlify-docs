@@ -5,11 +5,17 @@ description: "Understand how your agent's workflow is structured"
 
 ## What Is a Workflow?
 
-A workflow is the step-by-step plan your agent follows to complete a task. When you describe what you want and hit **Build**, Decisional generates a workflow — a directed graph of **nodes** connected by **edges**.
+A workflow is the step-by-step plan your agent follows to complete a task. When you describe what you want and hit **Build**, Decisional turns it into a sequence of steps that run one after another.
 
-Each node represents one step in the process. Edges define the order of execution.
+Each step is a node. Each node is connected to the next step by an edge, which shows what happens next.
 
-## Node Types
+## Nodes
+
+Nodes are the building blocks of a workflow. Each node owns one piece of work: starting the run, reading or transforming data, calling an app, asking for a decision, or generating output.
+
+When an agent runs, Decisional executes the nodes in order and passes data from one step to the next through the workflow edges. This keeps the agent's process inspectable: you can see what each step did, what it received, what it produced, and where the run paused or failed.
+
+### Node Types
 
 Workflows are made up of different node types, each handling a specific kind of work:
 
@@ -27,10 +33,10 @@ Workflows are made up of different node types, each handling a specific kind of 
     Pauses the workflow for a human decision. Use gates before final sends, publishes, record updates, or other steps that require sign-off.
   </Card>
   <Card title="AI Node" icon="microchip-ai">
-    Runs an AI model to process, classify, or summarize data. Use this when you need the agent to reason over content, categorize items, or generate text.
+    Runs a bounded AI model step to classify, summarize, extract, transform, or generate content from inputs passed through the workflow.
   </Card>
-  <Card title="RAG Node" icon="magnifying-glass">
-    Searches your uploaded sources using Retrieval-Augmented Generation. Pulls the most relevant chunks from your documents so other nodes can use that context.
+  <Card title="Agent Node" icon="robot">
+    Runs an agentic step inside a managed computer with model access, tools, files, and the right harness for the task. Use this when a workflow step needs judgment, tool use, or multi-step reasoning.
   </Card>
 </CardGroup>
 
@@ -39,35 +45,62 @@ Workflows are made up of different node types, each handling a specific kind of 
 After your agent builds, click the **Workflow** tab to see the visual graph. Each node is displayed with:
 
 - Its **name** and a short description of what it does
-- Its **type** (trigger, task, action, AI, RAG)
+- Its **type** (trigger, task, action, AI, agent, gate)
 - **Connections** showing the flow of data between steps
 
 You can zoom, pan, and click on any node to see its details and the code it runs.
 
+## Agent Nodes
+
+Agent Nodes let a workflow run an agentic step, not just call a model. The node gives the model a harness: instructions, context, files, compute, and the tools it needs to complete that part of the workflow.
+
+This is useful for:
+
+- **Tool-backed reasoning** — inspect files, call tools, compare results, and decide what should happen next
+- **Computer work** — operate in a managed environment with files, code, and execution context
+- **Multi-step investigation** — break down an ambiguous task, gather missing context, and produce a decision or artifact
+- **Workflow repair** — diagnose why a step failed and attempt the next best fix when the issue is technical
+
+The Agent Node takes input from previous nodes, works inside its harness, and produces output that flows to the next step.
+
 ## AI Nodes
 
-AI Nodes let your agent call an AI model as a step in the workflow. This is useful for:
+AI Nodes run a bounded model step inside the workflow. Use an AI Node when the job is clear, the required inputs are already available, and the step does not need an agent harness or tool use.
+
+This is useful for:
 
 - **Classification** — categorize emails, tickets, or documents into types
 - **Summarization** — condense long content into key points
 - **Extraction** — pull structured data from unstructured text
 - **Generation** — write responses, draft emails, or create content
 
-The AI Node takes an input (text, data, or context from previous nodes) and produces an output that flows to the next step.
+The AI Node takes input from previous nodes and returns model output that flows to the next step.
 
-## RAG Nodes
+## Gate Nodes
 
-RAG Nodes connect your workflow to your uploaded **Sources**. When a RAG Node runs, it:
+Gate Nodes are explicit human approval checkpoints in a workflow. They do not run code or produce new output fields. Instead, they pause the workflow before downstream nodes run, then pass the same input data forward after the gate is approved.
 
-1. Takes a query (from the current context or a previous node)
-2. Searches your indexed documents for the most relevant chunks
-3. Returns the matching content with citations
+Use a Gate Node when the workflow needs a named person or group to make a decision before continuing, such as manager approval before sending a customer email, finance approval before updating a record, or legal approval before publishing generated content.
 
-This lets your agent pull real information from your documents mid-workflow — pricing from a price list, terms from a contract, procedures from an SOP.
+Gate Nodes are different from approval flags on Action Nodes:
 
-<Tip>
-  RAG Nodes work best when your sources are well-organized and your agent's instructions reference specific documents by name.
-</Tip>
+| Approval type | How it works |
+|---------------|--------------|
+| **Action Node approval** | A simple approval pause attached to a specific action, often used before a write, send, publish, or external-system update. |
+| **Gate Node** | A standalone workflow checkpoint with designated owners, approval instructions, voting rules, and optional public approval links. |
+
+### Gate Owners
+
+Each Gate Node has one or more owners. Owners are the only people who can approve or reject that gate. The gate can be configured in two modes:
+
+| Owner mode | What happens |
+|------------|--------------|
+| **Any owner can approve** | The first owner approval resolves the gate and the workflow continues. A rejection fails the gate. |
+| **All owners must approve** | Every listed owner must approve before the workflow continues. A rejection from any owner fails the gate. |
+
+Gate settings can also include approval instructions, which are shown to approvers with the request, and shareable public links so external approvers can review without signing in.
+
+During build runs, Gate Nodes are skipped for observability. During test and live runs, they pause execution until the approval rule is satisfied or the gate is rejected.
 
 ## How Workflows Get Built
 

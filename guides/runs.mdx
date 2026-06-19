@@ -173,7 +173,7 @@ Logs show you exactly what your agent did and why.
     ```
     [09:00:01] Run started (Manual trigger by john@acme.com)
     [09:00:02] Reading instructions...
-    [09:00:03] Loading worksheet "Quote Requests"
+    [09:00:03] Loading source "Quote Requests"
     [09:00:05] Found 10 rows with Status = "Pending"
     [09:00:07] Processing row 1: Acme Corp
     [09:00:09]   - Searching Price List for Product A
@@ -299,7 +299,7 @@ When a run fails, follow these steps to identify and fix the issue.
     - "Source not found" → Source was deleted or renamed
     - "Column 'XYZ' not found" → Column name changed or misspelled
     - "API rate limit exceeded" → Too many requests to external service
-    - "Formula error in cell B5" → Worksheet formula is broken
+    - "Invalid value in field XYZ" → Input data has the wrong format
   </Step>
 
   <Step title="Find Where It Failed">
@@ -342,7 +342,7 @@ When a run fails, follow these steps to identify and fix the issue.
     **Logic issues:**
     - Instructions don't handle edge case
     - Missing validation rules
-    - Incorrect formula in worksheet
+    - Incorrect transformation logic
   </Step>
 
   <Step title="Fix the Issue">
@@ -373,16 +373,16 @@ When a run fails, follow these steps to identify and fix the issue.
     4. If deleted, re-upload the source
   </Accordion>
 
-  <Accordion title="Column not found" icon="table">
-    **Error:** `Column "Customer Name" not found in worksheet`
+  <Accordion title="Field not found" icon="table">
+    **Error:** `Field "Customer Name" not found`
 
-    **Cause:** Column was renamed, deleted, or misspelled in instructions
+    **Cause:** The field was renamed, removed, or misspelled in instructions
 
     **Solution:**
-    1. Open the worksheet
-    2. Verify column name (check spelling and case)
-    3. Update instructions to match exact column name
-    4. Or rename column to match instructions
+    1. Open the source or connected system
+    2. Verify the field name, spelling, and case
+    3. Update instructions to match the exact field name
+    4. Or rename the field in the source system
   </Accordion>
 
   <Accordion title="Integration error" icon="plug">
@@ -398,17 +398,16 @@ When a run fails, follow these steps to identify and fix the issue.
     5. Retry the run
   </Accordion>
 
-  <Accordion title="Formula error" icon="function">
-    **Error:** `Formula error in cell E5: #DIV/0!`
+  <Accordion title="Invalid calculation" icon="function">
+    **Error:** `Calculation failed: division by zero`
 
-    **Cause:** Worksheet formula dividing by zero or referencing invalid cells
+    **Cause:** A calculation step received invalid or missing input
 
     **Solution:**
-    1. Open worksheet and navigate to cell E5
-    2. Check the formula
-    3. Fix the formula (e.g., add IF check for zero)
-    4. Save worksheet
-    5. Retry run
+    1. Check the input values used by the calculation
+    2. Add validation or fallback logic
+    3. Update the agent instructions or workflow step
+    4. Retry run
   </Accordion>
 
   <Accordion title="Timeout error" icon="clock">
@@ -508,7 +507,7 @@ Track your agent's performance over time.
 
     **Improve by:**
     - Reduce source count
-    - Optimize worksheet structure
+    - Optimize data structure
     - Process in parallel
   </Card>
 

@@ -18,12 +18,6 @@ description: "Key terms and concepts in Decisional"
     **Example:** A Quote Generation Agent that creates customized quotes based on customer requirements.
   </Accordion>
 
-  <Accordion title="Worksheet" icon="table">
-    A full-featured spreadsheet where your agent reads input data and writes output. Worksheets are powered by SpreadJS and support all standard Excel features (formulas, charts, formatting, etc.).
-
-    **Example:** A price list where your agent looks up product prices and writes generated quotes.
-  </Accordion>
-
   <Accordion title="Sources" icon="folder">
     Documents, files, and links that provide context to your agents. Sources help agents make informed decisions by giving them access to company policies, examples, and reference materials.
 
@@ -37,7 +31,7 @@ description: "Key terms and concepts in Decisional"
   </Accordion>
 
   <Accordion title="Workspace" icon="users">
-    A container for your team's agents, worksheets, sources, and integrations. Workspaces can be personal (individual use) or organizational (team collaboration).
+    A container for your team's agents, sources, integrations, runs, and settings. Workspaces can be personal (individual use) or organizational (team collaboration).
 
     **Example:** "Acme Corp Sales" workspace containing all quote generation and CRM automation agents.
   </Accordion>
@@ -57,7 +51,7 @@ description: "Key terms and concepts in Decisional"
   <Accordion title="Trigger" icon="clock">
     The mechanism that activates your agent. Triggers can be time-based (schedule), event-based (webhook, new data), manual (click Run button), or API-based (programmatic).
 
-    **Example:** "Run every day at 9 AM" or "Run when a new row is added to the worksheet."
+    **Example:** "Run every day at 9 AM" or "Run when a new record is created in a connected system."
   </Accordion>
 </AccordionGroup>
 
@@ -111,10 +105,6 @@ description: "Key terms and concepts in Decisional"
     - Avoid skewed or rotated pages
   </Accordion>
 
-  <Accordion title="SpreadJS" icon="table-cells">
-    The professional-grade spreadsheet engine powering Decisional worksheets. SpreadJS provides full Excel compatibility including formulas, charts, conditional formatting, and more.
-  </Accordion>
-
   <Accordion title="Agentic Reasoning" icon="brain">
     The ability of AI agents to think through problems, handle edge cases, and adapt to new situations - not just follow rigid rules. Agentic reasoning allows Decisional agents to handle complex workflows that traditional automation can't.
 
@@ -134,13 +124,13 @@ description: "Key terms and concepts in Decisional"
 
 <AccordionGroup>
   <Accordion title="Input Data" icon="right-to-bracket">
-    The data your agent receives to process. This typically comes from worksheet rows, API calls, email triggers, or form submissions.
+    The data your agent receives to process. This typically comes from sources, API calls, email triggers, connected systems, or form submissions.
 
     **Example:** Customer name, product, and quantity from a "Quote Requests" spreadsheet.
   </Accordion>
 
   <Accordion title="Output Data" icon="right-from-bracket">
-    The results your agent produces. This can be written to worksheets, sent via integrations, or returned to another system.
+    The results your agent produces. This can be sent through integrations, written to a connected system, saved as a file, or returned to another application.
 
     **Example:** Generated quote with calculated prices, discounts, and total.
   </Accordion>
@@ -174,7 +164,7 @@ description: "Key terms and concepts in Decisional"
   </Accordion>
 
   <Accordion title="Batch Processing" icon="layer-group">
-    Processing multiple items in a single run. Agents can process entire worksheets or lists of items efficiently.
+    Processing multiple items in a single run. Agents can process lists, records, files, or batches efficiently.
 
     **Example:** Generate 100 quotes from 100 customer requests in one run.
   </Accordion>
@@ -183,36 +173,6 @@ description: "Key terms and concepts in Decisional"
     How your agent responds to problems. Good agents log errors, continue processing remaining items, and notify you of issues.
 
     **Example:** If one invoice fails to process, log it to an "Errors" sheet and continue with the rest.
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Data & Storage Terms
-
-<AccordionGroup>
-  <Accordion title="Sheet" icon="file">
-    A single tab within a worksheet (workbook). You can have multiple sheets for organizing data (e.g., "Requests", "Outputs", "Errors", "Reference Data").
-  </Accordion>
-
-  <Accordion title="Cell" icon="square">
-    A single box in a spreadsheet, identified by column letter and row number (e.g., A1, B5, Z100).
-  </Accordion>
-
-  <Accordion title="Formula" icon="function">
-    An Excel-style calculation (e.g., `=SUM(A1:A10)`, `=VLOOKUP(B2, Prices!A:B, 2, FALSE)`). Agents understand and respect formulas.
-  </Accordion>
-
-  <Accordion title="Named Range" icon="tag">
-    A friendly name for a group of cells (e.g., "CustomerNames" for cells B2:B100). Makes formulas more readable.
-  </Accordion>
-
-  <Accordion title="Data Validation" icon="circle-check">
-    Rules that constrain what can be entered in cells (e.g., dropdown lists, number ranges, date ranges). Helps ensure data quality.
-  </Accordion>
-
-  <Accordion title="Conditional Formatting" icon="palette">
-    Automatic cell formatting based on values (e.g., highlight cells red if value > 1000). Useful for visual alerts.
   </Accordion>
 </AccordionGroup>
 
@@ -270,7 +230,7 @@ description: "Key terms and concepts in Decisional"
   </Accordion>
 
   <Accordion title="Pending" icon="clock">
-    The item is waiting to be processed (e.g., a worksheet row with Status = "Pending").
+    The item is waiting to be processed.
   </Accordion>
 
   <Accordion title="Indexed" icon="database">
@@ -300,7 +260,7 @@ description: "Key terms and concepts in Decisional"
   </Accordion>
 
   <Accordion title="Viewer" icon="eye">
-    Read-only access. Can view agents and worksheets, run agents, but cannot create or edit anything.
+    Read-only access. Can view and run agents, but cannot create or edit anything.
   </Accordion>
 </AccordionGroup>
 
@@ -348,7 +308,6 @@ description: "Key terms and concepts in Decisional"
 | **Operator Mode** | Agent Mode | Builder and control surface for an agent |
 | **Run Mode** | Agent Mode | Focused public run surface |
 | **Approval Policy** | Core | Rules for review, bypass, and blocked actions |
-| **Worksheet** | Core | Spreadsheet data layer |
 | **Source** | Core | Context document/file |
 | **Run** | Core | Single execution |
 | **RAG** | Technical | Retrieval-Augmented Generation |
@@ -364,7 +323,7 @@ description: "Key terms and concepts in Decisional"
 
 <CardGroup cols={2}>
   <Card title="Core Concepts" icon="book" href="/core-concepts">
-    Learn about agents, worksheets, sources, and more
+    Learn about agents, sources, runs, and more
   </Card>
 
   <Card title="FAQ" icon="circle-question" href="/reference/faq">

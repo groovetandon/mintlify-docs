@@ -1,105 +1,61 @@
 ---
-title: "Dex"
-description: "Use Dex to talk with agents, start one-off work, and move into Operator Mode when configuration changes are needed"
+title: "Using Dex"
+description: "Start work, ask questions, and manage automation from the web app, Slack, email, or mobile"
 ---
 
-## What Dex is
+Dex is Decisional's conversational operator. Use it to ask questions about agents and runs, start one-off work, request workflow changes, and review approvals across the tools and context your workspace has authorized.
 
-Dex is Decisional's AI automation engineer. It handles one-off work across your tools and helps you build and manage agents for recurring business workflows.
+## What You Can Ask For
 
-In the app, Dex shows up through the agent chat surfaces. The main agent modes are:
-
-| Mode | What it is for |
-|------|----------------|
-| **Chat Mode** | Talk with an agent conversationally |
-| **Operator Mode** | Configure instructions, workflow, tools, triggers, skills, runs, node executions, and approvals |
-| **Run Mode** | Share a public run link for an agent that has been made public |
-
-<Card title="Dex and agents" icon="message">
-  Dex is the conversational operator. Agents are the durable workers that own instructions, workflows, tools, triggers, sources, runs, and approval policy.
-</Card>
-
-<Frame>
-  <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-overview.mp4" />
-</Frame>
-
-## Use Dex for
-
-- Asking questions about an agent, its sources, or a run
-- Running one-off work through an agent's available context and connected tools
-- Explaining what happened during a run
-- Iterating on a workflow in conversation
-- Moving into Operator Mode when the change affects configuration
-
-Dex is useful because you can start in natural language, then keep the agent's workflow inspectable and controlled through the product surfaces built for configuration, runs, and approvals.
-
-## Chat Mode
-
-Chat Mode is the conversational surface for an agent. Use it when you want to talk with the agent, ask follow-up questions, or start a one-off task.
-
-Configuration is intentionally controlled. If you ask to change integrations or agent configuration from Chat Mode, the app treats those areas as read-only and prompts you to open Operator Mode.
-
-Good Chat Mode requests:
-
-```text
-Summarize the last failed run and tell me which step broke.
-```
-
-```text
-Use the connected sources to answer this customer question.
-```
-
-```text
-Run this request once and show me the output before anything gets sent.
-```
-
-## Operator Mode
-
-Operator Mode is where you change how an agent works. Use it for setup, debugging, and policy changes.
-
-Operator Mode is the right place to manage:
-
-- Instructions and build context
-- Workflow structure and node configuration
-- Tools, triggers, skills, and sources
-- Runs, logs, failures, and node executions
-- Agent-level approval mode
-
-<Tip>
-  If a Chat Mode request needs access to read-only configuration or integration controls, open Operator Mode and make the change there.
-</Tip>
-
-## Run Mode
-
-Run Mode is the focused run surface for a public agent link. When an agent is made public, anyone with the link can view and run that agent from `/run/{agentId}`. Public links are for running or reviewing an agent, not rebuilding it.
-
-Public access does not remove policy. Approval mode, tool approval policy, blocked tools, and workflow gates still control what the agent can do.
-
-## Files, tools, and outputs
-
-Agents can use the context and capabilities you configure for them. Depending on the agent, that can include uploaded documents, spreadsheets, connected apps, triggers, skills, and generated output files.
-
-When an action writes, sends, updates, creates, or deletes information, approval policy decides whether the agent can continue automatically, must ask for review, or is blocked.
-
-## When to switch modes
-
-<CardGroup cols={3}>
-  <Card title="Need a conversation?" icon="message">
-    Use Chat Mode.
+<CardGroup cols={2}>
+  <Card title="Understand work" icon="message">
+    Ask about an agent, source, run, file, approval, or output without opening every underlying screen.
   </Card>
-  <Card title="Need to change the agent?" icon="gear">
-    Use Operator Mode.
+  <Card title="Run one-off tasks" icon="bolt">
+    Use an agent's available context and connected tools for work that does not need a reusable workflow.
   </Card>
-  <Card title="Need to share a runnable link?" icon="play">
-    Use Run Mode after making the agent public.
+  <Card title="Explain runs" icon="clipboard-check">
+    Summarize what happened, identify the step that broke, and surface the relevant logs, files, or outputs.
+  </Card>
+  <Card title="Change automations" icon="gear">
+    Request workflow, instruction, trigger, source, tool, or policy changes while keeping agent configuration controlled.
   </Card>
 </CardGroup>
+
+## Channels
+
+Dex can meet you where the work starts. Use it in the web app for full context, in Slack for team chat, over email for asynchronous requests and updates, and on mobile when you need to review or respond away from your desk.
+
+<CardGroup cols={2}>
+  <Card title="Web app" icon="globe">
+    Start new work, inspect runs, review files, and move into the right agent surface when configuration needs to change.
+  </Card>
+  <Card title="Slack" icon="slack">
+    Chat with Dex from team conversations, ask for updates, and keep work moving without leaving the thread where the request started.
+  </Card>
+  <Card title="Email" icon="envelope">
+    Send requests, receive summaries, and handle asynchronous follow-ups through email when a workflow needs a written trail.
+  </Card>
+  <Card title="Mobile" icon="phone">
+    Review updates, answer questions, and approve next steps from the same connected chat surfaces on your phone.
+  </Card>
+</CardGroup>
+
+<Frame>
+  <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-in-slack.mp4" />
+</Frame>
+
+## Relationship to Agents
+
+Dex is the conversational layer. Agents are the durable workers that own instructions, workflows, tools, triggers, sources, runs, files, outputs, and approval policy.
+
+Chat Mode, Operator Mode, and Run Mode are agent surfaces. Use them when you are working with a specific agent and need to talk to it, configure it, or share a public run link.
 
 ## Related docs
 
 <CardGroup cols={2}>
-  <Card title="Dex and Agent Modes" icon="message" href="/agents/modes">
-    Understand the three agent modes and how Dex fits with agents.
+  <Card title="Agent Modes" icon="robot" href="/agents/modes">
+    Understand Chat Mode, Operator Mode, and Run Mode for agents.
   </Card>
   <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
     Learn how ask, bypass, and tool policies control agent actions.
