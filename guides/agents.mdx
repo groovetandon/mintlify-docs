@@ -17,7 +17,7 @@ description: "Master agent creation, configuration, and optimization"
 
 ## How an Agent is Organized
 
-Agents are the main objects you create, operate, and share in Decisional. Dex can help you build or change them, but the agent is the durable worker that owns the process.
+Agents are the main objects you create, operate, and share in Decisional. Dex can run agents and show details about their runs, while configuration changes happen in the Decisional web app.
 
 Think about an agent in three layers:
 
@@ -127,11 +127,11 @@ The app shows the public state of each agent:
   </Step>
 
   <Step title="Review Instructions">
-    Decisional writes up a set of instructions — a plain-English summary of exactly what your agent will do. Review them and tell the agent to change anything that's off.
+    Decisional writes up a set of instructions — a plain-English summary of exactly what your agent will do. Review them and edit anything that's off in the Decisional web app.
   </Step>
 
   <Step title="Connect Integrations">
-    Your agent identifies the required tools and integrations. Open the connections panel to connect any apps it needs, or ask Dex to start the connection flow.
+    Your agent identifies the required tools and integrations. Open the connections panel to connect any apps it needs.
   </Step>
 
   <Step title="Build & Test">
@@ -140,7 +140,7 @@ The app shows the public state of each agent:
 </Steps>
 
 <Tip>
-  Start with a simple workflow, test it, then gradually add complexity. Use Dex for change requests and Operator Mode for configuration-level edits.
+  Start with a simple workflow, test it, then gradually add complexity. Use Operator Mode in the Decisional web app for configuration-level edits.
 </Tip>
 
 ## Writing Effective Instructions
@@ -610,7 +610,7 @@ Track your agent's performance:
   </Card>
 
   <Card title="Dex" icon="robot" href="/guides/ai-assistant">
-    Use the chat interface to debug and iterate
+    Ask questions about agents, runs, and approvals
   </Card>
 
   <Card title="Workflows" icon="diagram-project" href="/workflows/overview">

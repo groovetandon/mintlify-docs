@@ -41,18 +41,42 @@ Approvals typically include:
 
 When an approval is accepted, the run continues. When it is rejected, the agent stops, routes to the configured rejection path, or asks for a correction depending on the workflow.
 
+<Card title="Dex approval requests" icon="message" href="/guides/ai-assistant#approval-requests">
+  See how Dex asks for approval in Slack before creating a Linear issue.
+</Card>
+
 ## Approval layers
 
 Approval behavior comes from multiple layers working together.
 
 | Layer | What it controls | Typical options |
 |-------|------------------|-----------------|
-| **Global approval mode** | The account default used when an agent has no override | Ask approvals or Bypass approvals |
-| **Agent approval mode** | Whether a specific agent inherits the default or overrides it | Use account default, Ask for this agent, or Bypass for this agent |
+| **Workspace default approval mode** | The account default used when a runner is set to Default | Ask approvals or Bypass approvals |
+| **Runner approval picker** | The approval mode for the current chat or run prompt box | Default, Ask approvals, or Bypass approvals |
 | **Tool approval policy** | How toolkit read/write tools and per-tool overrides behave | Always allow, Needs approval, or Blocked |
 | **Workflow gates** | Manual review points designed into the workflow | Approver list, quorum, approve, reject |
 
 Use these layers together. For example, a low-risk reporting agent might bypass eligible approval prompts, while a finance agent can keep write tools on **Needs approval** and add gate nodes for final review.
+
+## Workspace default and runner picker
+
+The workspace default is the fallback approval mode. It is used only when the runner is set to **Default**.
+
+<Frame>
+  <img src="/images/agents/workspace-default-approval-mode.png" alt="Workspace settings showing the default approval mode" />
+</Frame>
+
+The prompt-box approval picker controls the runner you are about to use. The **Default** option shows the effective workspace default in parentheses. If the picker says **Default (Bypass approvals)**, choosing Default means eligible approval prompts will be bypassed.
+
+<Frame>
+  <img src="/images/agents/chat-approval-picker.png" alt="Chat prompt box permissions picker with Ask approvals selected" />
+</Frame>
+
+For live runs, choose **Ask approvals** in the runner picker when you want the agent to pause before eligible sensitive actions. If the live runner is set to **Default** and the effective default is bypass, the run continues without approval prompts.
+
+<Info>
+  Test runs are the best place to keep Ask approvals on while you review behavior. Live runs only pause for approval when the effective runner setting is Ask approvals, when tool policy requires approval, or when the workflow reaches an explicit gate.
+</Info>
 
 ## Ask approvals
 
@@ -79,18 +103,18 @@ Use bypass carefully:
 - Review run history after enabling bypass
 - Prefer bypass for repeatable internal tasks with clear inputs and low blast radius
 
-## Settings and global policy
+## Settings and workspace policy
 
-The Settings page contains the global approval default that agents inherit by default.
+The Settings page contains the workspace approval default that runners use when they are set to **Default**.
 
 From Settings, admins can manage:
 
-- The default approval mode used when an agent has no override
+- The default approval mode used when a runner has no override
 - Toolkit defaults for read tools and write tools
 - Per-tool overrides for actions that should always be allowed, require approval, or be blocked
 - Team access and workspace configuration that affects who can approve or operate agents
 
-Agent builders can then choose whether an agent follows the default policy or overrides it with Ask approvals or Bypass approvals. The effective behavior is the combination of the global default, the agent override, tool policy, and any workflow gates.
+The effective behavior is the combination of the workspace default, the runner picker, tool policy, and any workflow gates.
 
 <Warning>
   Bypass approvals should be treated as an operating policy, not a shortcut around governance. Keep blocked tools blocked, and keep human review on workflows where the business risk requires it.
