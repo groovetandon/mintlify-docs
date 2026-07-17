@@ -1,9 +1,9 @@
 ---
 title: "Using Dex"
-description: "Start work, ask questions, and manage automation from the web app, Slack, email, or mobile"
+description: "Start work, ask questions, run agents, and review approvals from the web app, Slack, email, or mobile"
 ---
 
-Dex is Decisional's conversational operator. Use it to ask questions about agents and runs, start one-off work, request workflow changes, and review approvals across the tools and context your workspace has authorized.
+Dex is Decisional's conversational operator. Use it to ask questions about agents and runs, start one-off work, run agents, view agent details, and review approvals across the tools and context your workspace has authorized.
 
 ## What You Can Ask For
 
@@ -17,8 +17,8 @@ Dex is Decisional's conversational operator. Use it to ask questions about agent
   <Card title="Explain runs" icon="clipboard-check">
     Summarize what happened, identify the step that broke, and surface the relevant logs, files, or outputs.
   </Card>
-  <Card title="Change automations" icon="gear">
-    Request workflow, instruction, trigger, source, tool, or policy changes while keeping agent configuration controlled.
+  <Card title="Run agents" icon="play">
+    Start an agent, check its details, or review recent runs without opening every underlying screen.
   </Card>
 </CardGroup>
 
@@ -28,7 +28,7 @@ Dex can meet you where the work starts. Use it in the web app for full context, 
 
 <CardGroup cols={2}>
   <Card title="Web app" icon="globe">
-    Start new work, inspect runs, review files, and move into the right agent surface when configuration needs to change.
+    Start new work, inspect runs, review files, and open the Decisional web app when configuration needs to change.
   </Card>
   <Card title="Slack" icon="slack">
     Chat with Dex from team conversations, ask for updates, and keep work moving without leaving the thread where the request started.
@@ -45,11 +45,25 @@ Dex can meet you where the work starts. Use it in the web app for full context, 
   <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-in-slack.mp4" />
 </Frame>
 
+## Approval requests
+
+When you ask Dex to perform a write action from Slack, such as creating a Linear issue, Dex can post an approval request before the action runs. The request summarizes the action, shows the app or record involved, includes an approval link, and keeps the review in the same thread as the original ask.
+
+<Frame>
+  <img src="/images/agents/dex-slack-approval-request.png" alt="Dex approval request in Slack before creating a Linear issue" />
+</Frame>
+
+In this example, Dex waits to create the Linear issue until someone selects **Approve creation**. The expiration timestamp limits how long the approval link can be used, and the thread keeps the request, approval, and resulting artifact together.
+
+<Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+  Learn how ask, bypass, and tool policies control agent actions.
+</Card>
+
 ## Relationship to Agents
 
-Dex is the conversational layer. Agents are the durable workers that own instructions, workflows, tools, triggers, sources, runs, files, outputs, and approval policy.
+Dex is where you ask for work and review what happened. Agents are saved automations with their own instructions, connected tools, schedules, files, run history, and approval settings.
 
-Chat Mode, Operator Mode, and Run Mode are agent surfaces. Use them when you are working with a specific agent and need to talk to it, configure it, or share a public run link.
+Use Dex to run an agent or inspect its details and runs. For configuration changes, Dex points you to the Decisional web app, where you can edit the agent's setup.
 
 ## Related docs
 

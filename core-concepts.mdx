@@ -9,7 +9,7 @@ Decisional is built around a few core concepts. Understanding these will help yo
 
 <CardGroup cols={2}>
   <Card title="Dex" icon="message">
-    The conversational operator that helps build, run, and change agents
+    The conversational operator for running agents and reviewing agent details
   </Card>
   <Card title="Agents" icon="robot">
     Durable AI workers that own repeatable workflows
@@ -38,7 +38,7 @@ Decisional is built around a few core concepts. Understanding these will help yo
 
 ## Dex
 
-Dex is the conversational operator for Decisional. Use Dex to describe work, create agents, ask what happened in a run, change an existing workflow, or complete one-off tasks against the tools and context you have authorized.
+Dex is the conversational operator for Decisional. Use Dex to run agents, ask what happened in a run, view agent details, review approvals, or complete one-off tasks against the tools and context you have authorized.
 
 <Card title="Dex" icon="message" href="/guides/ai-assistant">
   Learn how Dex works across the web app, Slack, email, and mobile.
@@ -50,7 +50,7 @@ Dex is the conversational operator for Decisional. Use Dex to describe work, cre
 
 Agents are the core operating units in Decisional. Each agent is an AI worker that owns a specific workflow and runs it for you.
 
-You create an agent by describing what you want it to do. Dex helps turn that description into instructions, a workflow, required tool connections, and a testable agent. Once live, the agent runs from manual runs, schedules, triggers, or API calls, and you manage changes through the agent surfaces.
+You create an agent by describing what you want it to do in the Decisional web app. Once live, the agent runs from manual runs, schedules, triggers, or API calls, and you manage changes through the agent surfaces.
 
 ### What Makes Up an Agent
 
@@ -96,7 +96,7 @@ Each step in the workflow is a **node**. Nodes can do things like:
 - Run AI reasoning
 - Write results back
 
-You do not need to draw every workflow step by hand. Decisional generates the graph from your instructions, then you review and change it through Operator Mode or Dex.
+You do not need to draw every workflow step by hand. Decisional generates the graph from your instructions, then you review and change it in Operator Mode.
 
 ### Workflow Viewer
 
@@ -205,7 +205,7 @@ If you sign up with a company email, you'll automatically join your organization
 
 <Steps>
   <Step title="Describe What You Want">
-    Tell Dex what you want automated in plain English
+    Describe what you want automated in the Decisional web app
   </Step>
   <Step title="Agent Builds a Workflow">
     Decisional creates an inspectable step-by-step plan and identifies the required tools
@@ -219,8 +219,8 @@ If you sign up with a company email, you'll automatically join your organization
   <Step title="Go Live">
     Set a schedule, trigger, API call, public run link, or manual run path
   </Step>
-  <Step title="Manage Through Chat">
-    Need changes? Use Dex for the request and Operator Mode for configuration changes
+  <Step title="Maintain the Agent">
+    Need changes? Open Operator Mode in the Decisional web app
   </Step>
 </Steps>
 
