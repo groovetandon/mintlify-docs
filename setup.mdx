@@ -38,28 +38,28 @@ Go to **Integrations** in the sidebar, pick the app you want to connect, and fol
 
 ### Configure Approval Policy
 
-The Settings page is where admins define the default approval mode that agents inherit when they do not have an override.
+The Settings page is where admins define the default approval mode used when a runner is set to **Default**.
 
 <Steps>
   <Step title="Choose the default approval mode">
-    Set whether agents should ask for approvals by default or bypass eligible approval prompts. Individual agents can still inherit this default or override it.
+    Set whether runners should ask for approvals by default or bypass eligible approval prompts when they use Default.
   </Step>
 
   <Step title="Review tool policies">
     In each toolkit's tools view, review the read/write defaults and any per-tool overrides: always allowed, needs approval, or blocked.
   </Step>
 
-  <Step title="Tune per-agent behavior">
-    In Operator Mode, set an agent to use the account default, ask for this agent, or bypass for this agent depending on the workflow's risk and maturity.
+  <Step title="Tune runner behavior">
+    In the prompt-box approval picker, choose Default, Ask approvals, or Bypass approvals for the runner you are about to use.
   </Step>
 </Steps>
 
 <Tip>
-  Start new agents with Ask approvals, then use Bypass approvals only after the workflow is predictable and low risk.
+  Start new agents with Ask approvals in test runs. For live runs that should pause, set the runner picker to Ask approvals before starting.
 </Tip>
 
 <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
-  Learn how global settings, per-agent overrides, tool policies, and workflow gates work together.
+  Learn how workspace defaults, runner picker settings, tool policies, and workflow gates work together.
 </Card>
 
 ## Troubleshooting
