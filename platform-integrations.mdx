@@ -1,0 +1,160 @@
+---
+title: "Platform Integrations"
+description: "Use Decisional-managed research and communication tools without connecting your own account"
+---
+
+## What Is a Platform Integration?
+
+A platform integration uses an account managed by Decisional. It lets an agent use supported tools without asking you to connect your own API key or external account.
+
+Look for the **Platform-provided** label when reviewing an agent's connections. The integration card shows whether calls use workspace credits and any current per-call charge.
+
+<Info>
+  Platform access may cover only part of an integration. For example, Decisional provides shared access to Apollo's read tools, but Apollo write actions require an Apollo account that you connect.
+</Info>
+
+## Available Platform Integrations
+
+| Integration | Use it for | Account setup |
+|-------------|------------|---------------|
+| **Apollo** | Finding and enriching people or companies | No account needed for supported read tools |
+| **Exa** | Researching the web and finding related pages | No account needed for supported Exa search tools |
+| **Agent Mail** | Giving an agent its own email inbox for outbound messages and replies | Create an inbox for the agent; no Gmail or Outlook connection needed |
+| **Linq SMS** | Sending SMS or iMessage from an organization-assigned number | No OAuth connection, but Decisional must assign a number to the organization |
+
+## How to Use a Platform Integration
+
+<Steps>
+  <Step title="Describe the job to Dex">
+    Say what you want to find or send, what information Dex should start with, and what the final result should contain.
+  </Step>
+  <Step title="Review the agent's connections">
+    Dex adds the required tools to the agent. A **Platform-provided** connection is ready without an API key when every selected tool is covered by Decisional's account.
+  </Step>
+  <Step title="Connect your own account only when needed">
+    If a tool or trigger is outside the platform-provided scope, Decisional asks you to connect an account. This commonly happens when you want an Apollo write action or a trigger from an external app.
+  </Step>
+  <Step title="Test and inspect the run">
+    Run the agent with a small example. Select the run on the workflow graph, then click the research or communication node to review its inputs, outputs, logs, and credit usage.
+  </Step>
+</Steps>
+
+## Apollo
+
+Use Apollo when a workflow needs structured information about prospects, contacts, or companies.
+
+### What You Can Do
+
+- Search for people by details such as role, seniority, location, industry, or company
+- Search for organizations and narrow the results to a target market
+- Enrich a known person or company with additional Apollo data
+- Enrich several people or organizations in one step
+- Read supported Apollo records and reference data
+
+The platform credential is **read-only**. Creating or updating Apollo records, changing sequences, or performing other Apollo write actions requires your own Apollo connection.
+
+### How to Ask Dex
+
+Give Dex clear search criteria and say which fields you want returned.
+
+```text
+Use Apollo to find up to 25 VP or Head of Finance contacts at US manufacturing
+companies with 100–1,000 employees. Return name, title, company, company domain,
+location, LinkedIn URL, and work email when Apollo provides one. Do not guess
+missing values.
+```
+
+For enrichment, provide a reliable starting point such as a company domain, LinkedIn URL, work email, or a person's name and company.
+
+```text
+Enrich these contacts with Apollo. Match each person using their work email or
+LinkedIn URL. Add current title, company, company domain, and location. Keep the
+original row when Apollo does not find a confident match.
+```
+
+<Note>
+  Apollo coverage varies. Treat missing data as unavailable and verify important contact details before using them in outreach. Platform-provided Apollo reads use workspace credits; the integration card shows the current charge.
+</Note>
+
+## Exa
+
+Use Exa when an agent needs current information from the public web rather than structured CRM data.
+
+### What You Can Do
+
+- Research a question and return an answer based on web sources
+- Find pages related to a known article, company page, or URL
+- Gather sources for market research, account research, news summaries, or competitive analysis
+
+### How to Ask Dex
+
+State the research question, the type of sources you want, and the final format.
+
+```text
+Use Exa to research the most important announcements from Acme Corp during the
+last 90 days. Focus on product launches, leadership changes, partnerships, and
+funding. Return a five-bullet summary with the source URL for every claim.
+```
+
+To find related pages, give Dex the starting URL and explain what “similar” means for your task.
+
+```text
+Use Exa to find pages similar to this customer case study. Prefer case studies
+from B2B software companies that discuss finance automation. Return the title,
+company, URL, and a one-sentence reason each result is relevant.
+```
+
+<Tip>
+  Exa is best for discovery and research. Use Apollo when you need structured people or company enrichment.
+</Tip>
+
+## Agent Mail
+
+Agent Mail gives an agent a dedicated email inbox. Use it when the agent should send from its own Decisional-managed address instead of a person's Gmail or Outlook mailbox.
+
+### How to Use It
+
+1. Ask Dex to add Agent Mail to the agent.
+2. Create or enable the inbox when the connection panel asks you to.
+3. Tell Dex who should receive the message, the subject, and what the email should say.
+4. If the workflow should continue after a reply, ask Dex to add an email reply trigger or an **Agentic Follow Up** Dex Node.
+
+```text
+Use the agent's Agent Mail inbox to email each approved contact. Include the
+account owner's name in the subject and attach the generated review file. Wait
+for a reply and pass the reply to the next workflow step.
+```
+
+Use Gmail or Outlook instead when the agent needs a person's mailbox history, existing threads, or attachments stored in that mailbox.
+
+## Linq SMS
+
+Linq SMS lets an agent send SMS or iMessage from a phone number assigned to your organization.
+
+### Before the Agent Can Send
+
+1. Ask Decisional to assign a Linq number to your organization if one is not already available.
+2. Add the recipient to the agent's SMS audience.
+3. Ask the recipient to text the assigned number once. This changes the recipient from **whitelisted** to **subscribed**.
+4. Send messages only after the recipient is subscribed.
+
+```text
+Add these phone numbers to the coaching agent's SMS audience. List anyone who
+has not subscribed yet. For subscribed recipients, send the approved coaching
+message and wait for their reply before continuing.
+```
+
+Use phone numbers in international format, such as `+15551234567`. A whitelisted person cannot receive an outbound message until they have texted the assigned number and become subscribed.
+
+## Platform Access and Your Own Accounts
+
+You can connect your own account when you need capabilities that the platform credential does not cover. A user or workspace credential takes priority when selected for a tool.
+
+Common reasons to connect your own account include:
+
+- Using Apollo write actions
+- Using a trigger tied to your external account
+- Accessing private data that belongs to your organization
+- Applying your own provider plan, limits, or permissions
+
+Platform integrations can change as Decisional adds new managed services. The **Platform-provided** label in the Integrations catalog is the source of truth for what is currently available without account setup.

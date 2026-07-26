@@ -62,6 +62,7 @@
       "group": "Agents",
       "pages": [
         "guides/agents",
+        "agents/instructions",
         "agents/modes",
         "workflows/overview",
         "agents/versioning",
@@ -74,12 +75,15 @@
       "group": "Data & Integrations",
       "pages": [
         "integrations",
+        "platform-integrations",
+        "custom-integrations",
         "guides/sources"
       ]
     },
     {
       "group": "Platform",
       "pages": [
+        "dashboards-and-usage",
         "guides/workspaces",
         "guides/credentials",
         "security"

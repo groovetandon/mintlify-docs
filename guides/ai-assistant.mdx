@@ -5,6 +5,16 @@ description: "Start work, ask questions, run agents, and review approvals from t
 
 Dex is Decisional's conversational operator. Use it to ask questions about agents and runs, start one-off work, run agents, view agent details, and review approvals across the tools and context your workspace has authorized.
 
+## How Dex Runs
+
+Each organization's Dex runs on its own dedicated orchestrator computer (VM). This long-running computer receives requests, keeps channel connections available, and carries out work using the tools and context your organization has authorized.
+
+Open **Settings → Organization** to see whether the computer is running. Organization owners and admins can open, stop, start, or delete it. They can also choose the model and runtime settings. Some settings changes briefly restart the computer while the new configuration is applied.
+
+<Frame caption="Organization settings show Dex's dedicated computer, model and runtime, and connected channels.">
+  <img src="/images/dex/dex-settings-channels.png" alt="Organization settings showing a running Dex orchestrator and channel options for Slack, SMS or iMessage, email, and Telegram" />
+</Frame>
+
 ## What You Can Ask For
 
 <CardGroup cols={2}>
@@ -24,7 +34,7 @@ Dex is Decisional's conversational operator. Use it to ask questions about agent
 
 ## Channels
 
-Dex can meet you where the work starts. Use it in the web app for full context, in Slack for team chat, over email for asynchronous requests and updates, and on mobile when you need to review or respond away from your desk.
+Dex can meet you where the work starts. You can connect several channels at the same time, such as Slack and email for the organization and SMS or iMessage for your own account. Requests from every connected channel are routed to the same organization Dex.
 
 <CardGroup cols={2}>
   <Card title="Web app" icon="globe">
@@ -36,10 +46,35 @@ Dex can meet you where the work starts. Use it in the web app for full context, 
   <Card title="Email" icon="envelope">
     Send requests, receive summaries, and handle asynchronous follow-ups through email when a workflow needs a written trail.
   </Card>
-  <Card title="Mobile" icon="phone">
-    Review updates, answer questions, and approve next steps from the same connected chat surfaces on your phone.
+  <Card title="SMS or iMessage" icon="phone">
+    Text Dex from your phone through a personal connection. You can optionally route that number to a specific agent.
+  </Card>
+  <Card title="Telegram" icon="paper-plane">
+    Connect a Telegram bot so people can talk to the organization Dex from Telegram.
+  </Card>
+  <Card title="Google Chat or Microsoft Teams" icon="comments">
+    Connect Dex to supported chats, spaces, or channels used by your team.
   </Card>
 </CardGroup>
+
+Configure these connections in **Settings → Organization → Channels**. Expand a channel to connect it or review its setup.
+
+### How channel scope works
+
+The scope label tells you who uses the connection:
+
+- **Org-wide** connections are shared by everyone in the organization. Slack, email, Telegram, Google Chat, and Microsoft Teams use this scope.
+- **Personal** connections belong only to the signed-in account. SMS or iMessage uses this scope, and each account can connect one number.
+
+The Settings tabs use the same idea:
+
+- **Account** contains settings that affect only you, such as your profile and notifications.
+- **Workspace** contains settings for the workspace selected in the top-left menu, such as members, access, and workspace keys.
+- **Organization** contains settings shared across the organization, including the dedicated Dex computer, model and runtime, channels, and audit log.
+
+<Note>
+  The selected workspace determines your current context and whether you have permission to manage the organization. It does not create a separate Dex computer for every workspace: the dedicated computer belongs to the organization.
+</Note>
 
 <Frame>
   <video controls playsInline muted preload="metadata" src="/videos/pmm/dex-in-slack.mp4" />

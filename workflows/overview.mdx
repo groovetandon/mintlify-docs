@@ -9,6 +9,18 @@ A workflow is the step-by-step plan your agent follows to complete a task. When 
 
 Each step is a node. Each node is connected to the next step by an edge, which shows what happens next.
 
+### Purpose of the Workflow Graph
+
+The workflow graph turns the agent's instructions into a plan you can see and inspect. It helps you understand what the agent will do before it runs and what happened after a run finishes.
+
+Use the graph to:
+
+- Follow the order of steps from the trigger to the final action
+- See how information moves from one step to the next
+- Tell which steps use fixed code and which steps use AI
+- Find where the workflow needs approval or is waiting for a person
+- Identify the step that failed and inspect what it received and returned
+
 In the image below, the **Workflow panel is on the right**. It shows how a scheduled trigger starts the workflow, data moves through each connected node, and the final Action Node uploads and emails the completed report.
 
 <Frame caption="The workflow is the connected sequence of nodes shown in the panel on the right.">
@@ -65,6 +77,27 @@ After your agent builds, click the **Workflow** tab to see the visual graph. Eac
 - **Connections** showing the flow of data between steps
 
 You can zoom, pan, and click on any node to see its details and the code it runs.
+
+### Inspect a Run on the Graph
+
+Select a run to see what happened on the workflow graph. The graph changes from a plan of what should happen into a record of what happened during that run.
+
+<Frame caption="A completed run selected on the workflow graph, with the run summary open on the right.">
+  <img src="/images/workflows/run-workflow-graph.png" alt="Completed workflow run with successful nodes highlighted in green and a run summary showing six of six steps completed" />
+</Frame>
+
+The run surface on the right shows the run ID, when it started, overall progress, and the number of steps that succeeded, are still running, or failed. Open **Run Outputs** to see files and other results created by the workflow.
+
+The graph shows the status of each node for the selected run. For example, a green outline and check mark mean the node completed successfully. A node can also show that it is running, failed, waiting for approval, skipped, or still pending. When a node processes several rows, its progress shows how many row executions completed.
+
+Click a node to open its **Executions** view. If the node ran once, Decisional opens that execution directly. If it ran more than once, select an execution from the list. The execution details show:
+
+- Whether the node succeeded, failed, or is still running
+- When it started, when it finished, and how long it took
+- The information the node received and the result it returned
+- Live logs, error details, approval information, and retries when available
+
+This lets you move from the run summary to the exact node execution that produced a result or caused a problem.
 
 ## Agent Nodes
 

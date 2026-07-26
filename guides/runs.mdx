@@ -26,97 +26,28 @@ A **run** is a single execution of your agent's workflow. Every time your agent 
 
 ## Run Statuses
 
-Every run has a status that tells you what's happening:
+Every run has a status that tells you whether it is queued, active, waiting for something, or finished.
 
-<AccordionGroup>
-  <Accordion title="Running" icon="spinner">
-    **What it means:** The agent is currently executing
+| Status | What it means | What you can do |
+|--------|---------------|-----------------|
+| **Pending** | The run was accepted and is waiting to start. No workflow node is running yet. | Wait for it to start, open the run to monitor it, or cancel an eligible test or live run. |
+| **Running** | One or more workflow nodes are currently executing. | Open the run surface to watch progress, click a node to inspect its execution, or cancel an eligible run. |
+| **Pending approval** | A node is paused until a person approves or rejects it. | Open the approval request, review the proposed work, and approve or reject it. |
+| **Needs credits** | The run paused before a metered AI or code-agent call because more credits or a higher agent spend limit are needed. | Add credits or raise the agent limit, then retry the affected node. You can also cancel the run. |
+| **Self-healing** | Decisional is diagnosing a failed execution and attempting an automatic repair. The run is still active. | Wait for the repair to finish, follow its progress, or cancel the run. |
+| **Waiting for input** | The repair process needs clarification from a person before it can continue. The run is still active. | Return to the chat, answer the question, or cancel the run. |
+| **Completed** | All required work finished successfully. | Review the workflow graph, node executions, run outputs, and generated files. |
+| **Partially completed** | Some work finished, but one or more parts of the run did not complete. | Inspect the affected node and resume an eligible test or live run after fixing the issue. |
+| **Failed** | The run stopped because a node could not complete. | Open the failed node to inspect its error, inputs, outputs, and logs. Fix the issue and resume an eligible test or live run. |
+| **Cancelled** | A user stopped the run before it finished. Work completed before cancellation is not automatically undone. | Review any partial results or external actions, then start a new run if needed. |
 
-    **What you see:**
-    - Real-time progress in the run log
-    - AI reasoning step-by-step
-    - Updates as data is processed
+<Info>
+  **Pending**, **Running**, **Pending approval**, **Needs credits**, **Self-healing**, and **Waiting for input** are active statuses and can still change. **Completed**, **Partially completed**, **Failed**, and **Cancelled** are final statuses.
+</Info>
 
-    **Actions:**
-    - Watch live progress
-    - Cancel if needed
-  </Accordion>
-
-  <Accordion title="Completed" icon="circle-check">
-    **What it means:** The agent finished successfully
-
-    **What you see:**
-    - Full execution log
-    - All outputs written
-    - Summary of what was done
-
-    **Indicators:**
-    - Green checkmark icon
-    - "Completed" badge
-    - Final timestamp
-
-    **Actions:**
-    - Review results
-    - Download logs
-    - Re-run if needed
-  </Accordion>
-
-  <Accordion title="Failed" icon="circle-xmark">
-    **What it means:** The agent encountered an error
-
-    **What you see:**
-    - Error message
-    - Stack trace (if available)
-    - Where it failed in the workflow
-
-    **Indicators:**
-    - Red X icon
-    - "Failed" badge
-    - Error details in logs
-
-    **Actions:**
-    - Read error message
-    - Debug the issue
-    - Fix and retry
-  </Accordion>
-
-  <Accordion title="Needs Review" icon="pause">
-    **What it means:** The agent is waiting for human approval (human-in-the-loop)
-
-    **What you see:**
-    - What the agent wants to do
-    - Why it needs approval
-    - Options to approve/reject/modify
-
-    **Indicators:**
-    - Yellow pause icon
-    - "Needs Review" badge
-    - Notification sent (if configured)
-
-    **Actions:**
-    - Review the decision
-    - Approve to continue
-    - Reject to stop
-    - Modify and approve
-  </Accordion>
-
-  <Accordion title="Canceled" icon="ban">
-    **What it means:** You or another user stopped the run
-
-    **What you see:**
-    - Partial results (what was done before cancellation)
-    - "Canceled by [user]" message
-    - Timestamp of cancellation
-
-    **Indicators:**
-    - Gray ban icon
-    - "Canceled" badge
-
-    **Actions:**
-    - Review partial work
-    - Start a new run if needed
-  </Accordion>
-</AccordionGroup>
+<Tip>
+  **Resume** is available for eligible test and live runs that are **Failed** or **Partially completed**. It continues incomplete work instead of starting the entire run again.
+</Tip>
 
 ---
 
