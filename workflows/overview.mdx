@@ -9,6 +9,22 @@ A workflow is the step-by-step plan your agent follows to complete a task. When 
 
 Each step is a node. Each node is connected to the next step by an edge, which shows what happens next.
 
+In the image below, the **Workflow panel is on the right**. It shows how a scheduled trigger starts the workflow, data moves through each connected node, and the final Action Node uploads and emails the completed report.
+
+<Frame caption="The workflow is the connected sequence of nodes shown in the panel on the right.">
+  <img src="/images/workflows/workflow-overview.png" alt="Decisional agent with the Workflow panel open on the right, showing a scheduled trigger, invoice data step, Agent Node, and final report action" />
+</Frame>
+
+Not every step works in the same way. Some steps run **code** to do predictable work, such as fetching records, calculating values, or formatting a report. Other steps use **AI** to understand information, make a judgment, write content, or complete an open-ended task.
+
+A workflow can combine both. Code steps handle work that should follow the same rules every time, while AI steps handle work that needs interpretation or flexibility.
+
+<Frame caption="A code-backed step with its configuration open.">
+  <img src="/images/workflows/code-backed-step.png" alt="Research Contact workflow step with its code configuration open in the right-hand panel" />
+</Frame>
+
+In this example, the **Research Contact** step is backed by code. The code defines what information the step receives, the instructions and connected tools it uses, and the result it must return. You can open a node to inspect how that individual step works.
+
 ## Nodes
 
 Nodes are the building blocks of a workflow. Each node owns one piece of work: starting the run, reading or transforming data, calling an app, asking for a decision, or generating output.
@@ -36,7 +52,7 @@ Workflows are made up of different node types, each handling a specific kind of 
     Runs a bounded AI model step to classify, summarize, extract, transform, or generate content from inputs passed through the workflow.
   </Card>
   <Card title="Agent Node" icon="robot">
-    Runs an agentic step inside a managed computer with model access, tools, files, and the right harness for the task. Use this when a workflow step needs judgment, tool use, or multi-step reasoning.
+    Gives an open-ended step to an AI agent that can use tools, make decisions, and work through several steps. Agent Nodes include the Dex Node.
   </Card>
 </CardGroup>
 
@@ -52,16 +68,55 @@ You can zoom, pan, and click on any node to see its details and the code it runs
 
 ## Agent Nodes
 
-Agent Nodes let a workflow run an agentic step, not just call a model. The node gives the model a harness: instructions, context, files, compute, and the tools it needs to complete that part of the workflow.
+An Agent Node gives one part of a workflow to an AI agent. Unlike a fixed step, the agent can decide which actions are needed to reach the goal.
 
 This is useful for:
 
-- **Tool-backed reasoning** — inspect files, call tools, compare results, and decide what should happen next
-- **Computer work** — operate in a managed environment with files, code, and execution context
-- **Multi-step investigation** — break down an ambiguous task, gather missing context, and produce a decision or artifact
-- **Workflow repair** — diagnose why a step failed and attempt the next best fix when the issue is technical
+- **Working with tools** — read files, use connected apps, compare results, and decide what to do next
+- **Computer work** — work with files, images, documents, and other information in a managed environment
+- **Multi-step tasks** — break a large task into smaller actions and work through them
+- **Problem solving** — investigate why something failed and try the next best fix
 
-The Agent Node takes input from previous nodes, works inside its harness, and produces output that flows to the next step.
+The Agent Node receives information from earlier nodes and passes its result to the next step when it finishes.
+
+### Dex Node: Agentic Follow Up
+
+A Dex Node is designed for **Agentic Follow Up**. This means Dex can take an action, wait for a reply or a later time, and continue the same work without making you restart it.
+
+You give Dex a goal in plain English and choose which connected tools it can use. Dex works through the goal, keeps the same context across turns, and reports back when the work is complete.
+
+<Frame>
+  <img src="/images/workflows/dex-node-agentic-follow-up.png" alt="Workflow showing a Coach via SMS Dex Node between the Whitelist New Numbers and Post Wrap-up action nodes" />
+</Frame>
+
+In this workflow, the Dex Node handles the coaching conversation between two fixed Action Nodes. It can use the connected tools shown on the node, message each recipient, and then pass the result to the final wrap-up step.
+
+#### What a Dex Node Can Do
+
+- **Use connected apps** — work with the exact email, Slack, CRM, SMS, or other tools assigned to the node
+- **Take several turns** — keep working when the goal needs more than one action or decision
+- **Wait until later** — pause until a time Dex chooses, then continue the same task with its earlier context
+- **Wait for a reply** — send a supported email or Slack message, pause the workflow, and continue when someone replies
+- **Return a result** — pass a summary and useful output to the next workflow step
+
+The rest of the workflow waits while the Dex Node is working or waiting. It continues only after Dex completes the step. You can also turn on **Require approval** if someone should review the step before Dex starts.
+
+#### What You See During a Run
+
+| Status | What it means |
+|--------|---------------|
+| **Dex queued** | The step is ready and waiting for Dex to start. |
+| **Dex running** | Dex is actively working on the goal. |
+| **Dex scheduled** | Dex paused until a later time and will continue automatically. |
+| **Dex waiting for reply** | Dex sent a message and is waiting for a response before continuing. |
+| **Dex completed** | Dex finished the step and passed its result forward. |
+| **Dex failed** | Dex could not finish the step. The run shows the reason. |
+
+<Info>
+  **Example:** Ask Dex to email a new customer about unfinished onboarding. If the customer does not reply, Dex can follow up two days later. When the reply arrives, Dex reads it, takes the next appropriate action, and completes the node only when the follow-up is finished.
+</Info>
+
+Use a Dex Node when the exact number of actions, timing, or replies cannot be known in advance. For a single fixed app action, use an Action Node. For a short task such as classification or summarization, use an AI Node.
 
 ## AI Nodes
 
@@ -88,6 +143,32 @@ Gate Nodes are different from approval flags on Action Nodes:
 |---------------|--------------|
 | **Action Node approval** | A simple approval pause attached to a specific action, often used before a write, send, publish, or external-system update. |
 | **Gate Node** | A standalone workflow checkpoint with designated owners, approval instructions, voting rules, and optional public approval links. |
+
+### Configure What Approvers Review
+
+Ask Dex to configure the Gate Node with the information a person needs to make the decision. It can use values created by the trigger or any earlier step in the workflow.
+
+You can organize the review page in a few simple ways:
+
+| Review section | Best for |
+|----------------|----------|
+| **Field cards** | Important details such as a job number, customer, location, total, or status |
+| **Table** | A list of repeated items, such as invoice lines with a description, quantity, rate, and amount |
+| **Checklist** | A short set of conditions the approver should confirm |
+
+For each item, you can choose a clear label, the value to show, and how it should look. For example, a number can be shown as currency, a date can be made easier to read, and a missing value can use a fallback such as “Not provided.” Only the fields configured for review are saved in the approval request.
+
+You can also configure the approval email separately. Add a short introduction and select a few summary fields so the approver understands the request before opening it. The **Review** button opens the full approval page.
+
+<Frame>
+  <img src="/images/workflows/gate-approval-email.png" alt="Gate approval email showing selected invoice fields and a Review button" />
+</Frame>
+
+The full page can show the Gate title and instructions, the workflow run, grouped review fields, tables, approver status, and an optional note. The approver can then **Approve** or **Reject** the request.
+
+<Frame>
+  <img src="/images/workflows/gate-approval-review-page.png" alt="Gate approval page showing invoice details, line items, approver status, a note field, and Approve or Reject buttons" />
+</Frame>
 
 ### Gate Owners
 
