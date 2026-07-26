@@ -1,0 +1,193 @@
+---
+title: "Dashboards and Usage"
+description: "Monitor agent health, troubleshoot tool calls, and understand credit usage"
+---
+
+## Operate Agents After They Go Live
+
+Building an agent is only the beginning. Once agents are running on schedules, webhooks, or requests, use Decisional's dashboards to answer three different questions:
+
+| View | Main question | Scope |
+|------|---------------|-------|
+| **Agent Dashboard** | Are my workspace agents running successfully and on schedule? | Current workspace |
+| **Tool Calls** | Which integration, toolkit, or tool is failing or taking too long? | Current account |
+| **Usage** | Where are credits being spent, and should I set a cap? | Current account |
+
+Start with the **Agent Dashboard** for overall health. Move to **Tool Calls** when an integration action is failing or slow. Use **Usage** to understand cost and control monthly agent spend.
+
+<Info>
+  The AI Usage and Tool Stats summaries on the Agent Dashboard are workspace-scoped. The full Usage and Tool Calls pages are account-wide. Check the account badge and use the same date range before comparing numbers across pages.
+</Info>
+
+## Agent Dashboard
+
+In **Agents** mode, select **Dashboard**. This is the day-to-day operating view for the selected workspace.
+
+<Frame caption="The Agent Dashboard combines agent status, recent run health, published agents, and upcoming schedules.">
+  <img src="/images/operations/agent-dashboard.png" alt="Agent Dashboard showing total and live agents, upcoming runs, Fixer-assisted runs, completed and failed runs, an activity chart, and published agents" />
+</Frame>
+
+### What the Summary Cards Mean
+
+| Card | What it tells you |
+|------|-------------------|
+| **Total Agents** | Number of agents in the workspace, with the number currently Live in parentheses |
+| **Upcoming Runs** | Scheduled executions that are expected to start next |
+| **Fixer-assisted runs** | Runs where Decisional's Fixer helped recover or repair execution during the selected period |
+| **Completed Runs** | Runs that finished successfully during the selected period |
+| **Failed Runs** | Runs that ended in failure during the selected period |
+
+The **Agent Run Activity** chart shows completed, failed, and currently running executions over time. Use the 30-day, 14-day, 7-day, 24-hour, or custom date filter to separate a one-time problem from a repeated pattern.
+
+Below the chart:
+
+- **Published Agents** shows the Live and Paused agents in the workspace
+- **Upcoming Runs** lists scheduled executions and their expected start time
+- **Past Runs** links recent executions to their agent and run status
+- **AI Usage** summarizes workspace model and Agent Node usage
+- **Tool Stats** summarizes workspace tool volume and success
+
+<Tip>
+  A small number of Fixer-assisted runs is not the same as a failed run—the Fixer may have recovered the execution. Repeated Fixer assistance on the same agent is still worth investigating because it can reveal a fragile instruction, changing data, or an unreliable integration.
+</Tip>
+
+### When Something Looks Wrong
+
+1. Open the affected run from **Past Runs**.
+2. Select the run on the workflow graph.
+3. Find the first failed, incomplete, or unusually slow node.
+4. If it is an integration action, open **Tool Calls** to compare it with other calls to the same tool.
+5. If it is an AI or Agent Node step, open **Usage** to review model, Agent Node, and per-agent activity.
+
+<Card title="Inspecting Runs" icon="magnifying-glass" href="/guides/runs">
+  Learn how to inspect node execution, inputs, outputs, logs, and failures on the workflow run surface.
+</Card>
+
+## Usage and Credits
+
+Open the full **Usage** page from the **AI Usage** section on the Agent Dashboard. The account badge shows whether the numbers belong to an organization or a personal account.
+
+<Frame caption="The Usage page shows the account balance, period spend, the default agent cap, and daily spend by resource type.">
+  <img src="/images/operations/usage-overview.png" alt="Usage dashboard showing available, reserved, total, and spent credits, the Agent Spend Default, and a Daily Usage chart" />
+</Frame>
+
+### Balance and Spend
+
+| Metric | Meaning |
+|--------|---------|
+| **Available** | Current credits available after active reservations |
+| **Reserved** | Credits temporarily set aside for active metered work |
+| **Total Balance** | Available and reserved credits combined |
+| **Spent** | Credits actually charged during the selected period |
+
+The **Daily Usage** chart groups credit-equivalent activity by resource type. Depending on the work performed, it can include:
+
+- **AI / LLM Calls** for model requests
+- **Agent Node** for sandboxed agent execution, including supported Claude Code, Codex, or Cursor runtimes
+- **Platform Tools** for metered platform-provided integration calls
+- **Workflow Runs**, **Agent Builds**, and **Storage** when those resource types apply
+
+<Note>
+  “Credit-equivalent” can include work paid for with a personal provider key. Personal-key usage is tracked so you can understand total activity, but it is not deducted from the Decisional credit balance. The **Spent** card and charged amounts exclude that personal-key portion.
+</Note>
+
+### Understand What Is Driving Spend
+
+Scroll down to compare models and agents.
+
+<Frame caption="Spend by Model explains model usage, while Agent Spend & Caps shows which agents consume credits and how close each one is to its monthly limit.">
+  <img src="/images/operations/usage-agent-spend.png" alt="Usage dashboard showing Spend by Model and Agent Spend and Caps tables with LLM spend, Agent Node spend, calls, averages, cap usage, remaining credits, and status" />
+</Frame>
+
+Use **Spend by Model** to compare:
+
+- Credits attributed to each model
+- Number of model calls
+- Input and output tokens
+- Average credits per call
+
+Use **Agent Spend & Caps** to compare:
+
+- LLM spend and Agent Node spend for each agent
+- Total calls and average credit use per model call
+- Monthly cap usage, active reservations, and remaining credits
+- Whether an agent is Live, at its cap, or blocked by its cap
+
+You can search by agent name, UUID, or `agt_` public ID. The **All time** option changes the spend columns, but cap usage always represents the current UTC month.
+
+### Set Monthly Agent Caps
+
+**Agent Spend Default** sets the account-wide monthly cap for workflow-run credits. Individual agents can inherit this default or use their own override.
+
+<Steps>
+  <Step title="Choose a default">
+    Enter a whole number of credits in **Monthly cap** and select **Save**. Leave the default clear when agents should be uncapped unless they have their own override.
+  </Step>
+  <Step title="Review current cap usage">
+    In **Agent Spend & Caps**, compare each agent's current-month usage with its effective cap and remaining credits.
+  </Step>
+  <Step title="Investigate before raising a cap">
+    Check the agent's model calls, Agent Node activity, and recent runs. A sudden increase may come from more work, repeated retries, unexpectedly large inputs, or a workflow loop.
+  </Step>
+  <Step title="Change the right limit">
+    Update the account default when the policy should change for many agents. Use an individual override when one agent has a different workload.
+  </Step>
+</Steps>
+
+The lower sections of the Usage page provide a full audit trail:
+
+- **Usage by Resource Type** summarizes where credits went
+- **Credit Grants** shows granted amounts, remaining balances, and expiration
+- **Active Reservations** shows credits currently held for work in progress
+- **Transaction Ledger** lists grants, debits, reservations, settlements, refunds, adjustments, and expirations
+
+## Tool Calls
+
+Open the full **Tool Calls** page from **Tool Stats** on the Agent Dashboard or from the Integrations area. Use it when a workflow reaches an integration step but the result is slow, missing, or incorrect.
+
+<Frame caption="The Tool Calls dashboard shows account-wide volume, reliability, latency, providers, and changes over time.">
+  <img src="/images/operations/tool-calls-dashboard.png" alt="Tool Calls dashboard showing total calls, success rate, average latency, provider count, calls over time, calls by provider, and top toolkits" />
+</Frame>
+
+### Read the Top-Level Metrics
+
+| Metric | Meaning |
+|--------|---------|
+| **Total tool calls** | Number of recorded tool operations in the selected period |
+| **Success rate** | Share of calls that completed successfully, with errors and timeouts shown underneath |
+| **Avg latency** | Average call duration; p95 shows the duration that 95 percent of calls completed within |
+| **Providers** | Number of tool providers with activity, with the busiest providers summarized underneath |
+
+The **Tool Calls Over Time** chart separates successful calls from errors and timeouts. A short error spike can indicate a provider incident. A steady error rate on one toolkit is more likely to point to credentials, permissions, inputs, or an API change.
+
+Continue down the page to compare:
+
+- Calls, errors, and average latency by provider
+- Top toolkits and individual tools
+- Agents generating the most tool activity
+- Recent individual tool calls
+
+Use the filters to narrow recent calls by provider, toolkit, status, caller, agent, thread, or search text. This lets you move from an account-wide spike to the exact agent and tool involved.
+
+<Warning>
+  Tool Calls covers recorded integration tools and supported Agent Node or orchestrator actions. Some internal workflow platform tools may be only partially represented, so the total is not necessarily the same as the number of workflow nodes executed.
+</Warning>
+
+## A Simple Weekly Review
+
+<Steps>
+  <Step title="Check run health">
+    Open the Agent Dashboard for each active workspace. Look for failed runs, recurring Fixer assistance, paused agents, and missed or unexpected schedules.
+  </Step>
+  <Step title="Investigate reliability">
+    Open Tool Calls when errors increase. Narrow the data from provider to toolkit to tool, then identify the affected agent and recent call.
+  </Step>
+  <Step title="Review spend">
+    Open Usage and compare the current period with the previous one. Check the resource, model, and agent tables for unexpected changes.
+  </Step>
+  <Step title="Adjust guardrails">
+    Review the default monthly cap and individual agent overrides. Raise a cap only after confirming the higher usage is expected.
+  </Step>
+</Steps>
+
+These views work together: the Agent Dashboard shows **what changed**, Tool Calls helps explain **why an integration step changed**, and Usage shows **what the work cost**.
