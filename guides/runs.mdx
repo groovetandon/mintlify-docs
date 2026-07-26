@@ -1,679 +1,187 @@
 ---
 title: "Monitoring Runs"
-description: "Track, debug, and optimize your agent executions"
+description: "Follow agent activity, inspect workflow steps, and recover incomplete work"
 icon: "play"
 ---
 
-## What Are Runs?
+A **run** is one execution of an agent. The Runs view shows what is active, what completed, and where an incomplete run needs attention.
 
-A **run** is a single execution of your agent's workflow. Every time your agent performs its task—whether triggered manually, by schedule, or by event—that's a run.
+## Open Agent Runs
 
-<CardGroup cols={2}>
-  <Card title="Manual Run" icon="hand-pointer">
-    You start a run manually from the agent page or Run Mode
-  </Card>
-  <Card title="Scheduled Run" icon="clock">
-    Runs at 9 AM every day
-  </Card>
-  <Card title="Event Run" icon="bolt">
-    Triggered by new email or webhook
-  </Card>
-  <Card title="API Run" icon="code">
-    Executed via API call
-  </Card>
-</CardGroup>
+Open an agent and choose **Runs** to see its execution history. If the agent has no runs yet, start a test or live run first.
 
----
+The Agent Runs page has three parts:
+
+- Summary cards for **Total Runs**, **Active Runs**, **Completed Runs**, and **Failed Runs**
+- An activity chart for the selected time period
+- A table of individual runs
+
+<Frame caption="Agent Runs combines activity totals, a trend chart, run filters, and execution history.">
+  <img src="/images/runs/agent-runs-dashboard.png" alt="Agent Runs dashboard with total, active, completed, and failed run cards, an activity chart, filters, and a run table" />
+</Frame>
+
+### Filter the run list
+
+Use the controls above the table to narrow the list:
+
+| Control | Available choices |
+|---|---|
+| **Time period** | 30 days, 14 days, 7 days, 24 hours, or a custom date range |
+| **Run type** | All, Test, Live, and Action. Build runs are also visible to administrators. |
+| **Status** | Any run status, including active, waiting, and final states |
+
+The run table shows the information that is available for every execution:
+
+| Column | What it shows |
+|---|---|
+| **Run ID** | The public identifier for the run |
+| **Type** | Test, Live, Action, or Build |
+| **Status** | The current run state |
+| **Started** | Start date and time, relative time, and the person who started it when available |
+| **Duration** | Elapsed execution time |
+| **Action** | Cancel or Resume when that action is available |
+
+<Note>
+  A schedule, webhook, API call, or manual request can start a run, but the run list groups executions by **Test**, **Live**, **Action**, and **Build** rather than by trigger source.
+</Note>
+
+## Select a Run
+
+Select a row to open that run in the agent workspace. Decisional places the workflow in run context and opens the run summary on the right.
+
+<Frame caption="A selected run shows execution state on the workflow graph and a run summary on the right.">
+  <img src="/images/workflows/run-workflow-graph.png" alt="Completed workflow run with successful nodes and a run summary showing outputs, progress, and step counts" />
+</Frame>
+
+### Read the workflow graph
+
+The graph shows which workflow path ran and the execution state of each node. During a run:
+
+- A running node shows active progress.
+- A successful node is marked as completed.
+- A failed or rejected node is marked as failed.
+- A node can show several executions when it runs once for each item or row.
+- A reused result is identified when a successful test execution was reused instead of running the node again.
+
+Select a node to review its executions. If the node ran more than once, choose the individual execution you want to inspect.
+
+### Read the run summary
+
+The run summary shows:
+
+- Run ID, type, and start time
+- Overall progress across the workflow
+- Total, succeeded, running, and failed step counts
+- A shortcut to pending approvals when a step needs review
+- A credit warning when a step is paused for credits
+- Run output files grouped by the node that created them
+
+Open **Run Outputs** to view or download an individual output file. Use **Back to chat** to return to the conversation without clearing the selected run.
+
+## Inspect a Node Execution
+
+Select a workflow node, open **Executions**, and choose an execution to see what happened at that step.
+
+The execution panel can include:
+
+| Section | What it contains |
+|---|---|
+| **Execution Info** | Node name and type, execution ID, status, duration, retry count, and timestamps |
+| **Error Details** | The error returned by a failed execution |
+| **Input Data** | The structured values the node received |
+| **Output Data** | The structured values the node produced |
+| **Live Logs** | Streaming or saved log lines, with an option to copy them |
+| **Live Browser** | A live browser preview when a running browser task provides one |
+| **Log Files** | Log artifacts that can be opened individually |
+| **Approval Info** | The reviewer and notes for an approval decision |
+| **Dex Status** | Follow-up state for a Dex node, including what it is waiting for when available |
+
+<Tip>
+  Start with **Error Details**, then compare **Input Data** and **Output Data**. Use **Live Logs** or **Log Files** when the error message alone does not explain the failure.
+</Tip>
 
 ## Run Statuses
 
 Every run has a status that tells you whether it is queued, active, waiting for something, or finished.
 
 | Status | What it means | What you can do |
-|--------|---------------|-----------------|
-| **Pending** | The run was accepted and is waiting to start. No workflow node is running yet. | Wait for it to start, open the run to monitor it, or cancel an eligible test or live run. |
-| **Running** | One or more workflow nodes are currently executing. | Open the run surface to watch progress, click a node to inspect its execution, or cancel an eligible run. |
-| **Pending approval** | A node is paused until a person approves or rejects it. | Open the approval request, review the proposed work, and approve or reject it. |
-| **Needs credits** | The run paused before a metered AI or code-agent call because more credits or a higher agent spend limit are needed. | Add credits or raise the agent limit, then retry the affected node. You can also cancel the run. |
-| **Self-healing** | Decisional is diagnosing a failed execution and attempting an automatic repair. The run is still active. | Wait for the repair to finish, follow its progress, or cancel the run. |
-| **Waiting for input** | The repair process needs clarification from a person before it can continue. The run is still active. | Return to the chat, answer the question, or cancel the run. |
-| **Completed** | All required work finished successfully. | Review the workflow graph, node executions, run outputs, and generated files. |
-| **Partially completed** | Some work finished, but one or more parts of the run did not complete. | Inspect the affected node and resume an eligible test or live run after fixing the issue. |
-| **Failed** | The run stopped because a node could not complete. | Open the failed node to inspect its error, inputs, outputs, and logs. Fix the issue and resume an eligible test or live run. |
-| **Cancelled** | A user stopped the run before it finished. Work completed before cancellation is not automatically undone. | Review any partial results or external actions, then start a new run if needed. |
+|---|---|---|
+| **Pending** | The run was accepted and is waiting to start. | Open it to monitor progress or cancel an eligible Live or Test run. |
+| **Running** | One or more workflow nodes are executing. | Watch the graph, inspect active nodes, or cancel an eligible Live or Test run. |
+| **Pending approval** | A node is paused until a person approves or rejects it. | Open the approval from the run summary or node, then approve or reject it. |
+| **Needs credits** | A node paused before a metered AI or code-agent call. | Add credits or raise the agent limit, then retry the affected node. |
+| **Self-healing** | Decisional is diagnosing a failed execution and attempting a repair. | Follow its progress or cancel an eligible run. |
+| **Waiting for input** | The repair process asked a person for clarification. | Return to chat, answer the question, or cancel an eligible run. |
+| **Completed** | All required work finished successfully. | Review the graph, node executions, outputs, and files. |
+| **Partially completed** | Some work finished, but one or more parts remain incomplete. | Inspect the affected node and Resume an eligible Live or Test run. |
+| **Failed** | The run stopped because required work could not complete. | Inspect the failed execution and Resume an eligible Live or Test run. |
+| **Cancelled** | A person stopped the run before it finished. | Review completed steps and any external actions before starting again. |
 
 <Info>
-  **Pending**, **Running**, **Pending approval**, **Needs credits**, **Self-healing**, and **Waiting for input** are active statuses and can still change. **Completed**, **Partially completed**, **Failed**, and **Cancelled** are final statuses.
+  **Pending**, **Running**, **Pending approval**, **Needs credits**, **Self-healing**, and **Waiting for input** can still change. **Completed**, **Partially completed**, **Failed**, and **Cancelled** are final states.
 </Info>
 
-<Tip>
-  **Resume** is available for eligible test and live runs that are **Failed** or **Partially completed**. It continues incomplete work instead of starting the entire run again.
-</Tip>
+## Run and Node Actions
 
----
+### Cancel a run
 
-## Viewing Run History
-
-Access all past runs from the **Runs** tab.
-
-<Steps>
-  <Step title="Navigate to Runs">
-    In your agent page, click the **Runs** tab in the left sidebar
-  </Step>
-
-  <Step title="Browse History">
-    See a list of all executions sorted by date (newest first)
-  </Step>
-
-  <Step title="Filter & Search">
-    Use filters to find specific runs:
-    - Status (Completed, Failed, etc.)
-    - Date range
-    - Trigger type
-  </Step>
-
-  <Step title="Click for Details">
-    Click any run to see full logs and details
-  </Step>
-</Steps>
-
-### Run List View
-
-Each run in the list shows:
-
-| Column | Description |
-|--------|-------------|
-| **Status** | Visual indicator (✅❌⏸️) |
-| **Start Time** | When the run began |
-| **Duration** | How long it took (or "In progress...") |
-| **Trigger** | Manual, Schedule, Event, API |
-| **Items Processed** | How many rows/items (if applicable) |
-| **User** | Who triggered it (for manual runs) |
-
----
-
-## Understanding Run Logs
-
-Logs show you exactly what your agent did and why.
-
-### Log Structure
-
-<Tabs>
-  <Tab title="Execution Timeline">
-    **Chronological view of all actions:**
-
-    ```
-    [09:00:01] Run started (Manual trigger by john@acme.com)
-    [09:00:02] Reading instructions...
-    [09:00:03] Loading source "Quote Requests"
-    [09:00:05] Found 10 rows with Status = "Pending"
-    [09:00:07] Processing row 1: Acme Corp
-    [09:00:09]   - Searching Price List for Product A
-    [09:00:10]   - Found price: $50.00
-    [09:00:11]   - Calculating total: 10 × $50 = $500
-    [09:00:12]   - Applying 10% discount: $500 - $50 = $450
-    [09:00:13]   - Writing to row 1 of Quotes sheet
-    [09:00:14] Processing row 2: TechCo
-    ...
-    [09:02:30] All items processed successfully
-    [09:02:31] Run completed (Duration: 2m 30s)
-    ```
-  </Tab>
-
-  <Tab title="AI Reasoning">
-    **Step-by-step thought process:**
-
-    ```
-    Reasoning for row 1 (Acme Corp):
-
-    1. Customer request:
-       - Product: Widget A
-       - Quantity: 10
-       - Special request: 10% volume discount
-
-    2. Looking up pricing:
-       - Searched "Price List" source
-       - Found Widget A: $50.00 per unit
-       - Citation: Price List.xlsx, Sheet1, Row 15
-
-    3. Calculating:
-       - Subtotal: 10 × $50.00 = $500.00
-       - Discount: 10% of $500.00 = $50.00
-       - Total: $500.00 - $50.00 = $450.00
-
-    4. Validation:
-       - Total > $0 ✓
-       - Customer exists in database ✓
-       - Product available ✓
-
-    5. Output:
-       - Quote ID: Q-2025-001
-       - Total: $450.00
-       - Status: Generated
-    ```
-  </Tab>
-
-  <Tab title="Source Citations">
-    **Which documents were used:**
-
-    ```
-    Sources referenced in this run:
-
-    📄 Price List.xlsx
-       - Page: Sheet1, Row 15
-       - Used for: Product A pricing
-       - Citation: "$50.00 per unit"
-
-    📄 Discount Policy.pdf
-       - Page: 3, Paragraph 2
-       - Used for: Volume discount rules
-       - Citation: "10% discount for orders over 5 units"
-
-    📄 Quote Template.pdf
-       - Page: 1
-       - Used for: Output formatting
-       - Citation: Quote structure and layout
-    ```
-
-    Click any citation to see the exact location in the source document.
-  </Tab>
-
-  <Tab title="Integration Activity">
-    **External actions taken:**
-
-    ```
-    Integrations used:
-
-    📧 Gmail Integration
-       - Action: Sent email
-       - To: customer@acmecorp.com
-       - Subject: "Your Quote from Decisional"
-       - Attachment: Quote-Q-2025-001.pdf
-       - Status: ✅ Sent successfully
-
-    💼 HubSpot Integration
-       - Action: Updated deal
-       - Deal ID: 12345
-       - Field updated: Deal Stage → "Quote Sent"
-       - Status: ✅ Updated successfully
-
-    💬 Slack Integration
-       - Action: Posted message
-       - Channel: #sales
-       - Message: "New quote Q-2025-001 sent to Acme Corp"
-       - Status: ✅ Posted successfully
-    ```
-  </Tab>
-</Tabs>
-
-### Log Details
-
-Click any log entry to expand and see:
-- **Full context**: What led to this action
-- **Input data**: What the agent received
-- **Output data**: What the agent produced
-- **Timing**: How long this step took
-- **Citations**: Which sources were used
-
----
-
-## Debugging Failed Runs
-
-When a run fails, follow these steps to identify and fix the issue.
-
-### Debugging Workflow
-
-<Steps>
-  <Step title="Read the Error Message">
-    The error message tells you what went wrong:
-
-    **Common errors:**
-    - "Source not found" → Source was deleted or renamed
-    - "Column 'XYZ' not found" → Column name changed or misspelled
-    - "API rate limit exceeded" → Too many requests to external service
-    - "Invalid value in field XYZ" → Input data has the wrong format
-  </Step>
-
-  <Step title="Find Where It Failed">
-    Look at the execution timeline to see the last successful step before failure.
-
-    **Example:**
-    ```
-    [09:00:10] Processing row 5: StartupXYZ ✓
-    [09:00:12] Processing row 6: GlobalCorp ✓
-    [09:00:14] Processing row 7: FailCo ❌
-                Error: Product "Widget Z" not found in Price List
-    ```
-
-    Row 7 is the problem.
-  </Step>
-
-  <Step title="Reproduce in Dex">
-    Use Dex to test the failing scenario:
-
-    ```
-    Process row 7 only and show me what happens
-    ```
-
-    This lets you debug interactively.
-  </Step>
-
-  <Step title="Identify Root Cause">
-    Common causes:
-
-    **Data issues:**
-    - Missing required fields
-    - Invalid formats (wrong date format, non-numeric text)
-    - Unexpected values
-
-    **Configuration issues:**
-    - Source deleted or renamed
-    - Integration disconnected
-    - Column names changed
-
-    **Logic issues:**
-    - Instructions don't handle edge case
-    - Missing validation rules
-    - Incorrect transformation logic
-  </Step>
-
-  <Step title="Fix the Issue">
-    Based on root cause:
-
-    **Data issues:** Clean the data, add validation
-    **Configuration issues:** Reconnect integration, re-upload source
-    **Logic issues:** Update instructions, add error handling
-  </Step>
-
-  <Step title="Retry the Run">
-    Click **Retry** on the failed run to re-execute with the fix
-  </Step>
-</Steps>
-
-### Common Failures & Solutions
-
-<AccordionGroup>
-  <Accordion title="Source not found" icon="folder-xmark">
-    **Error:** `Source "Price List 2024.xlsx" not found`
-
-    **Cause:** Source was deleted, renamed, or never uploaded
-
-    **Solution:**
-    1. Go to Sources tab
-    2. Check if source exists
-    3. If renamed, update instructions with new name
-    4. If deleted, re-upload the source
-  </Accordion>
-
-  <Accordion title="Field not found" icon="table">
-    **Error:** `Field "Customer Name" not found`
-
-    **Cause:** The field was renamed, removed, or misspelled in instructions
-
-    **Solution:**
-    1. Open the source or connected system
-    2. Verify the field name, spelling, and case
-    3. Update instructions to match the exact field name
-    4. Or rename the field in the source system
-  </Accordion>
-
-  <Accordion title="Integration error" icon="plug">
-    **Error:** `Gmail integration failed: Authentication expired`
-
-    **Cause:** Integration was disconnected or credentials expired
-
-    **Solution:**
-    1. Go to Settings → Integrations
-    2. Find the failing integration
-    3. Click **Reconnect**
-    4. Authorize again
-    5. Retry the run
-  </Accordion>
-
-  <Accordion title="Invalid calculation" icon="function">
-    **Error:** `Calculation failed: division by zero`
-
-    **Cause:** A calculation step received invalid or missing input
-
-    **Solution:**
-    1. Check the input values used by the calculation
-    2. Add validation or fallback logic
-    3. Update the agent instructions or workflow step
-    4. Retry run
-  </Accordion>
-
-  <Accordion title="Timeout error" icon="clock">
-    **Error:** `Run timed out after 10 minutes`
-
-    **Cause:** Processing too much data or very slow external API
-
-    **Solution:**
-    1. **Process in smaller batches** (e.g., 100 rows at a time)
-    2. **Optimize sources** (remove unnecessary documents)
-    3. **Simplify instructions** (fewer complex steps)
-    4. **Check external APIs** (slow response times)
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Run Actions
-
-### Manual Run
-
-Start a manual run to execute your agent immediately.
-
-**Use when:**
-- Testing new agent
-- Processing one-off task
-- Debugging an issue
-- Verifying a fix
-
-### Retry Run
-
-Click **Retry** on a completed or failed run to execute again with the same inputs.
-
-**Use when:**
-- Run failed due to temporary issue (API downtime)
-- You fixed the problem and want to reprocess
-- Testing if your fix worked
-
-**Note:** Retry uses current instructions, not the instructions from the original run.
-
-### Cancel Run
-
-Click **Cancel** while a run is in progress to stop execution.
-
-**What happens:**
-- Agent stops processing
-- Partial results may be saved
-- Run marked as "Canceled"
-
-**Use when:**
-- Realized you need to make a change
-- Processing wrong data
-- Emergency stop needed
+Cancel is available for eligible **Live** and **Test** runs while they are active or waiting. It is not offered for Build or Action runs from the run list.
 
 <Warning>
-  Canceling is immediate and cannot be undone. Some changes (like sent emails) cannot be reversed.
+  Cancelling stops remaining work. It does not reverse work that already completed, such as a message that was sent or a record that was updated.
 </Warning>
 
-### Download Logs
+### Resume incomplete work
 
-Click **Download Logs** to export the full execution log as a text file.
+Resume is available for eligible **Live** and **Test** runs in **Failed** or **Partially completed** status. It continues incomplete work instead of starting the entire run again.
 
-**Use when:**
-- Sharing with support team
-- Archiving for compliance
-- Detailed offline analysis
-- Debugging complex issues
+### Retry one node
 
----
+For a failed, retrying, or credit-blocked node execution, the execution panel can offer:
 
-## Performance Monitoring
+- **Retry** to run that node execution again
+- **Edit Code & Retry** to adjust the node code for this job and retry it
 
-Track your agent's performance over time.
+<Note>
+  Code entered through **Edit Code & Retry** applies only to that job. It does not update the agent's main workflow or other jobs.
+</Note>
 
-### Key Metrics
+## Investigate an Incomplete Run
+
+<Steps>
+  <Step title="Open the run">
+    Select the Failed or Partially completed run from Agent Runs.
+  </Step>
+  <Step title="Find the affected node">
+    Use the workflow graph and run summary to locate failed, rejected, waiting, or credit-blocked work.
+  </Step>
+  <Step title="Open the execution">
+    Select the node, open **Executions**, and choose the relevant execution.
+  </Step>
+  <Step title="Compare the evidence">
+    Read the error, input, output, logs, and approval or credit state shown for that execution.
+  </Step>
+  <Step title="Correct the cause">
+    Fix the underlying data, credential, integration, source, instruction, or workflow configuration.
+  </Step>
+  <Step title="Continue the right scope">
+    Retry the affected node when the execution panel offers it, or Resume the run when incomplete Live or Test work remains.
+  </Step>
+</Steps>
+
+## Related Docs
 
 <CardGroup cols={2}>
-  <Card title="Success Rate" icon="percent">
-    **Formula:** (Completed runs / Total runs) × 100%
-
-    **Good:** > 95%
-    **Needs attention:** < 90%
-
-    **Improve by:**
-    - Better error handling
-    - Data validation
-    - More robust instructions
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
+    Understand the graph and the nodes that execute during a run.
   </Card>
-
-  <Card title="Average Duration" icon="stopwatch">
-    **What to track:** Median run time
-
-    **Benchmarks:**
-    - Simple tasks: < 30 seconds
-    - Medium complexity: 1-3 minutes
-    - Complex workflows: 5-10 minutes
-
-    **Improve by:**
-    - Reduce source count
-    - Optimize data structure
-    - Process in parallel
+  <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
+    Learn how review steps pause and continue a run.
   </Card>
-
-  <Card title="Items Per Run" icon="layer-group">
-    **What to track:** How many items processed per run
-
-    **Benchmarks:**
-    - Small batches: 10-50 items
-    - Medium batches: 50-500 items
-    - Large batches: 500+ items
-
-    **Optimize by:**
-    - Batch processing
-    - Parallel execution
-    - Efficient data structure
+  <Card title="Dashboards and Usage" icon="layout-dashboard" href="/dashboards-and-usage">
+    Monitor activity, tool calls, and credit usage across agents.
   </Card>
-
-  <Card title="Manual Review Rate" icon="user-check">
-    **Formula:** (Runs needing review / Total runs) × 100%
-
-    **Good:** < 10% (for most workflows)
-    **Too high:** > 30% (agent isn't confident)
-
-    **Improve by:**
-    - Better training data
-    - Clearer instructions
-    - More comprehensive sources
+  <Card title="Using Dex" icon="message" href="/guides/ai-assistant">
+    Ask about agents and runs from a conversation.
   </Card>
-</CardGroup>
-
-### Viewing Performance Trends
-
-<Tabs>
-  <Tab title="Success Rate Over Time">
-    Track success rate weekly or monthly:
-
-    ```
-    Week 1: 85% (testing phase)
-    Week 2: 92% (refined instructions)
-    Week 3: 97% (stable)
-    Week 4: 98% (optimized)
-    ```
-
-    **Goal:** Upward trend toward 95%+
-  </Tab>
-
-  <Tab title="Duration Trends">
-    Monitor if runs are getting slower:
-
-    ```
-    Jan: Average 2m 15s
-    Feb: Average 2m 45s (slower - investigate!)
-    Mar: Average 1m 50s (optimized sources)
-    ```
-
-    **Warning sign:** Increasing duration over time
-  </Tab>
-
-  <Tab title="Failure Patterns">
-    Identify common failure reasons:
-
-    ```
-    Integration errors: 45%
-    Data validation: 30%
-    Source issues: 15%
-    Other: 10%
-    ```
-
-    **Action:** Focus on top failure cause first
-  </Tab>
-</Tabs>
-
----
-
-## Advanced Run Management
-
-### Scheduled Runs
-
-View upcoming and past scheduled executions.
-
-**Upcoming runs:**
-- Next execution time
-- Trigger configuration
-- Expected duration (based on history)
-
-**Past scheduled runs:**
-- Filter by "Scheduled" trigger type
-- See execution pattern (daily, weekly, etc.)
-- Identify missed runs (if any)
-
-### Bulk Actions
-
-Manage multiple runs at once:
-
-- **Retry all failed runs** from the past 24 hours
-- **Download logs** for all runs in a date range
-- **Export run data** to CSV for analysis
-
-### Run Notifications
-
-Get alerted when important events happen:
-
-<AccordionGroup>
-  <Accordion title="Email Notifications" icon="envelope">
-    Configure in Settings → Notifications:
-
-    **Options:**
-    - Run completed (all runs or only failures)
-    - Run needs review (human-in-the-loop)
-    - Run duration exceeds threshold
-    - Run failed after 3 retries
-
-    **Recipient:** Your email or team distribution list
-  </Accordion>
-
-  <Accordion title="Slack Notifications" icon="message">
-    Post to Slack channel when:
-
-    **Options:**
-    - Agent completes run
-    - Agent fails
-    - Agent needs approval
-    - Daily summary (runs completed, failed, avg duration)
-
-    **Setup:**
-    1. Connect Slack integration
-    2. Go to Settings → Notifications
-    3. Enable "Send to Slack"
-    4. Choose channel
-  </Accordion>
-
-  <Accordion title="Webhook Notifications" icon="webhook">
-    Call your API when runs complete:
-
-    **Payload:**
-    ```json
-    {
-      "event": "run.completed",
-      "run_id": "run_abc123",
-      "agent_id": "agent_xyz",
-      "status": "completed",
-      "duration_ms": 45000,
-      "items_processed": 100,
-      "timestamp": "2025-01-15T09:30:00Z"
-    }
-    ```
-
-    **Use case:** Integrate with your own monitoring/alerting system
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Best Practices
-
-<Check>
-  **Monitor regularly:** Check run history at least weekly
-</Check>
-
-<Check>
-  **Investigate failures immediately:** Don't let failed runs accumulate
-</Check>
-
-<Check>
-  **Track trends:** Look for patterns (time of day, specific data causing issues)
-</Check>
-
-<Check>
-  **Set up notifications:** Don't rely on manually checking
-</Check>
-
-<Check>
-  **Archive old logs:** Download and store logs for compliance/audit
-</Check>
-
-<Check>
-  **Test before scheduling:** Always manually test before enabling schedule
-</Check>
-
-<Check>
-  **Document fixes:** When you debug an issue, note the solution for future reference
-</Check>
-
----
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Runs not appearing in history" icon="eye-slash">
-    **Possible causes:**
-    1. **Filter applied:** Clear all filters
-    2. **Wrong agent:** Make sure you're viewing correct agent
-    3. **Date range:** Expand date range to "All time"
-
-    **Still missing?** Contact support with agent ID and approximate run time.
-  </Accordion>
-
-  <Accordion title="Can't cancel running agent" icon="ban">
-    **Possible causes:**
-    1. **Already completing:** Agent is finishing up
-    2. **Permission issue:** You need Editor role or higher
-    3. **Browser issue:** Refresh page and try again
-
-    **Stuck?** Runs auto-timeout after 10 minutes if no response.
-  </Accordion>
-
-  <Accordion title="Logs not showing details" icon="file-slash">
-    **Possible causes:**
-    1. **Old run:** Logs older than 90 days are archived (Enterprise has longer retention)
-    2. **Log level:** Some details hidden based on plan
-    3. **Incomplete run:** Run was canceled before logging completed
-
-    **Need archived logs?** Contact support to retrieve.
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Next Steps
-
-<CardGroup cols={2}>
-  <Card title="Working with Agents" icon="robot" href="/guides/agents">
-    Learn how to optimize agent instructions
-  </Card>
-
-  <Card title="Dex" icon="message" href="/guides/ai-assistant">
-    Debug runs interactively with chat
-  </Card>
-
-  <Card title="Integrations" icon="plug" href="/guides/integrations">
-    Connect services for notifications and actions
-  </Card>
-
-	  <Card title="Approvals and Policy" icon="user-check" href="/agents/approvals">
-	    Understand pending approvals and review states
-	  </Card>
 </CardGroup>
