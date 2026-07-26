@@ -78,6 +78,27 @@ After your agent builds, click the **Workflow** tab to see the visual graph. Eac
 
 You can zoom, pan, and click on any node to see its details and the code it runs.
 
+### Inspect a Run on the Graph
+
+Select a run to see what happened on the workflow graph. The graph changes from a plan of what should happen into a record of what happened during that run.
+
+<Frame caption="A completed run selected on the workflow graph, with the run summary open on the right.">
+  <img src="/images/workflows/run-workflow-graph.png" alt="Completed workflow run with successful nodes highlighted in green and a run summary showing six of six steps completed" />
+</Frame>
+
+The run surface on the right shows the run ID, when it started, overall progress, and the number of steps that succeeded, are still running, or failed. Open **Run Outputs** to see files and other results created by the workflow.
+
+The graph shows the status of each node for the selected run. For example, a green outline and check mark mean the node completed successfully. A node can also show that it is running, failed, waiting for approval, skipped, or still pending. When a node processes several rows, its progress shows how many row executions completed.
+
+Click a node to open its **Executions** view. If the node ran once, Decisional opens that execution directly. If it ran more than once, select an execution from the list. The execution details show:
+
+- Whether the node succeeded, failed, or is still running
+- When it started, when it finished, and how long it took
+- The information the node received and the result it returned
+- Live logs, error details, approval information, and retries when available
+
+This lets you move from the run summary to the exact node execution that produced a result or caused a problem.
+
 ## Agent Nodes
 
 An Agent Node gives one part of a workflow to an AI agent. Unlike a fixed step, the agent can decide which actions are needed to reach the goal.
