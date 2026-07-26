@@ -1,0 +1,43 @@
+---
+title: "State Store"
+description: "Inspect the durable state an agent keeps between runs"
+icon: "database"
+---
+
+## Overview
+
+The State Store is the agent's durable memory for small pieces of structured data that must survive between runs. Workflows are otherwise stateless: if a later run needs to remember what an earlier run already processed, the workflow must save that information here.
+
+Good uses include:
+
+- de-duplication markers, such as IDs that were already processed
+- cursors, counters, flags, and last-run timestamps
+- short-lived locks or values that should expire automatically
+- progress that another node or future run needs to continue
+
+State is stored as JSON under a **namespace** and **key**. Namespaces keep unrelated data separate. Each entry also has a version, update time, and optional expiry.
+
+<Frame>
+  <img src="/images/agents/state-store.png" alt="State Store showing namespaced key-value memory retained between agent runs" />
+</Frame>
+
+## Inspect saved state
+
+Open **State Store** from Agent Manager to inspect what the agent currently remembers. You can search keys and values, filter by namespace, refresh the list, and expand a row to read the full JSON value.
+
+This screen is an inspection surface. The workflow's state tools create, update, or delete entries while it runs.
+
+<Tip>
+  Use State Store for small operational memory, not reports or large files. Put documents, spreadsheets, images, and other deliverables in Outputs instead.
+</Tip>
+
+## Related docs
+
+<CardGroup cols={2}>
+  <Card title="Outputs" icon="box" href="/agents/outputs">
+    Learn where files and other run deliverables are stored.
+  </Card>
+  <Card title="Monitoring Runs" icon="play" href="/guides/runs">
+    Inspect the runs that read or update agent state.
+  </Card>
+</CardGroup>

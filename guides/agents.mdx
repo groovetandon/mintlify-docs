@@ -42,97 +42,28 @@ The agent workspace is the control surface for a specific agent. The Agent Manag
   <Card title="Instructions" icon="file-lines" href="/agents/instructions">
     The plain-English operating spec for the agent. Instructions cover the job, success criteria, edge cases, triggers, tools, and runtime parameters.
   </Card>
-  <Card title="Workflow" icon="diagram-project">
+  <Card title="Workflow" icon="diagram-project" href="/workflows/overview">
     The inspectable graph of nodes the agent executes. The workflow shows the steps, tool calls, gates, branching, and generated outputs.
   </Card>
-  <Card title="Runs" icon="play">
+  <Card title="Runs" icon="play" href="/guides/runs">
     The execution history for the agent. Runs show status, logs, node activity, approvals, files, outputs, and failure details.
   </Card>
-  <Card title="Outputs" icon="box">
+  <Card title="Outputs" icon="box" href="/agents/outputs">
     Files, structured results, and other artifacts produced by the agent. Use outputs to inspect what a run created or download generated files.
   </Card>
-  <Card title="Inbox" icon="inbox">
+  <Card title="Inbox" icon="inbox" href="/agents/inbox">
     The agent's email-style intake and response surface when an agent has an inbox. Use it to review inbound requests and outbound replies.
   </Card>
-  <Card title="State Store" icon="database">
+  <Card title="State Store" icon="database" href="/agents/state-store">
     Durable state the agent keeps between runs, such as remembered values, counters, intermediate records, or configuration used by the workflow.
   </Card>
-  <Card title="Activity" icon="person-walking">
+  <Card title="Activity" icon="person-walking" href="/guides/runs">
     A recent timeline of actions, test runs, completed runs, and other agent events. Use it to jump back into the latest work.
   </Card>
-  <Card title="Policy" icon="user-check">
+  <Card title="Policy" icon="user-check" href="/agents/approvals">
     Approval behavior, tool permissions, public access, and other operating controls that govern what the agent can do automatically.
   </Card>
 </CardGroup>
-
-## State Store
-
-The State Store is the agent's durable memory for small pieces of structured data that must survive between runs. Workflows are otherwise stateless: if a later run needs to remember what an earlier run already processed, the workflow must save that information here.
-
-Good uses include:
-
-- de-duplication markers, such as IDs that were already processed
-- cursors, counters, flags, and last-run timestamps
-- short-lived locks or values that should expire automatically
-- progress that another node or future run needs to continue
-
-State is stored as JSON under a **namespace** and **key**. Namespaces keep unrelated data separate. Each entry also has a version, update time, and optional expiry.
-
-<Frame>
-  <img src="/images/agents/state-store.png" alt="State Store showing namespaced key-value memory retained between agent runs" />
-</Frame>
-
-Open **State Store** from Agent Manager to inspect what the agent currently remembers. You can search keys and values, filter by namespace, refresh the list, and expand a row to read the full JSON value. This screen is an inspection surface; the workflow's state tools create, update, or delete entries while it runs.
-
-<Tip>
-  Use State Store for small operational memory, not reports or large files. Put documents, spreadsheets, images, and other deliverables in Outputs instead.
-</Tip>
-
-## Outputs
-
-Outputs are files and artifacts created by agent runs. Examples include a generated PDF, spreadsheet, presentation, image, or exported report.
-
-<Frame>
-  <img src="/images/agents/outputs.png" alt="Outputs tab with generated files grouped into folders by agent run" />
-</Frame>
-
-The **Folders** view groups files by their virtual path, which commonly includes the run that created them. Select a folder to see its files, size, run, and creation time. Use **List** to scan all outputs in one table.
-
-Click a file to preview it. Spreadsheet files open in a workspace tab, while supported documents open in the document preview. Use the download button when you need a local copy. The run link helps you trace an artifact back to the execution that produced it.
-
-<Note>
-  An output is a deliverable, not memory. Saving a file does not replace State Store when the next run needs a reliable de-duplication marker, counter, cursor, or status value.
-</Note>
-
-## Inbox
-
-Inbox gives an agent a dedicated Decisional-managed email address. It is useful when the agent should send from its own identity or receive email threads that can be reviewed from Operator Mode, instead of using a person's Gmail or Outlook mailbox.
-
-<Frame>
-  <img src="/images/agents/inbox.png" alt="Inbox setup for creating a dedicated email address for an agent" />
-</Frame>
-
-To create an inbox:
-
-<Steps>
-  <Step title="Choose the address">
-    Open **Inbox**, enter a unique name for the address, and wait for Decisional to confirm that it is available. The product adds the displayed email domain.
-  </Step>
-  <Step title="Create the inbox">
-    Select **Create inbox**. The address is attached to this agent and can be copied from the Inbox header.
-  </Step>
-  <Step title="Connect it to the workflow">
-    Add the AgentMail tool when the workflow needs to send from this inbox. An inbox is Decisional-managed and does not require Gmail or Outlook OAuth.
-  </Step>
-</Steps>
-
-After messages arrive, Inbox groups them into threads and shows inbound and outbound messages together. Filter the list by **All**, **Received**, **Unread**, or **Sent**. Open a thread to read the full history, inspect attachments, and see message status. New and updated threads appear in real time, and you can also refresh the list manually.
-
-Inbox settings let you enable or disable the address, set its sender policy to **Anyone** or an allowed list, and delete the inbox. Individual threads can also be deleted from the review surface.
-
-<Warning>
-  Deleting an inbox or email thread is permanent. Confirm that the history is no longer needed before deleting it.
-</Warning>
 
 ## Agent Context
 
