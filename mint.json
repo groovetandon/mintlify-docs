@@ -67,6 +67,9 @@
         "workflows/overview",
         "agents/versioning",
         "agents/sources",
+        "agents/inbox",
+        "agents/state-store",
+        "agents/outputs",
         "guides/runs",
         "agents/approvals"
       ]
