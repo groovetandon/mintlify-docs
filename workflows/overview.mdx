@@ -9,6 +9,18 @@ A workflow is the step-by-step plan your agent follows to complete a task. When 
 
 Each step is a node. Each node is connected to the next step by an edge, which shows what happens next.
 
+### Purpose of the Workflow Graph
+
+The workflow graph turns the agent's instructions into a plan you can see and inspect. It helps you understand what the agent will do before it runs and what happened after a run finishes.
+
+Use the graph to:
+
+- Follow the order of steps from the trigger to the final action
+- See how information moves from one step to the next
+- Tell which steps use fixed code and which steps use AI
+- Find where the workflow needs approval or is waiting for a person
+- Identify the step that failed and inspect what it received and returned
+
 In the image below, the **Workflow panel is on the right**. It shows how a scheduled trigger starts the workflow, data moves through each connected node, and the final Action Node uploads and emails the completed report.
 
 <Frame caption="The workflow is the connected sequence of nodes shown in the panel on the right.">
