@@ -109,6 +109,50 @@ Use the dropdown beneath a tool in the connection panel to choose a different co
   An integration can look available while one of its tools still needs a credential. Review every tool in the connection panel before testing the agent.
 </Warning>
 
+## Multiple Credentials for the Same Tool
+
+An agent can use more than one credential from the same integration. Each tool declaration has its own credential mapping, even when two declarations use the same underlying tool.
+
+For example, one agent could use Gmail like this:
+
+| Instruction step | Tool | Credential |
+|------------------|------|------------|
+| Read new support requests | Search Gmail messages | `support@company.com` |
+| Check conversations with prospects | Search Gmail messages | `sales@company.com` |
+| Create an approved reply | Create Gmail draft | `account-owner@company.com` |
+
+The first two steps use the same Gmail search tool, but they are separate declarations and can read from different mailboxes. Ask Dex to declare the tool separately for each purpose, then select the intended account beneath each tool in the connection panel.
+
+The same pattern works for other integrations—for example, reading from two Google Sheets accounts, posting to different Slack workspaces, or using a platform credential for one Apollo read while another Apollo tool uses your connected account.
+
+### Swap a Credential Without Rewriting the Workflow
+
+A workflow node declares **which tool operation to call**. The credential mapping decides **which account performs that operation**. Because those are separate, you can change a tool's account without rewriting the instruction or changing the node's logic.
+
+<Steps>
+  <Step title="Unlock the agent">
+    If the agent is Live, Tested, or otherwise locked, click the lock beside its name to create an editable Draft.
+  </Step>
+  <Step title="Open the integration">
+    Click the integration or inline tool chip to open the right-hand connection panel.
+  </Step>
+  <Step title="Find the exact declaration">
+    Hover over each tool in the panel to highlight where that instance is used in the instructions.
+  </Step>
+  <Step title="Choose another credential">
+    Use the dropdown below that tool to select another compatible connected account or a platform credential when available.
+  </Step>
+  <Step title="Test and publish">
+    Run a small test to confirm the new account can access the expected data and perform the action. Build and publish the Draft when it is ready.
+  </Step>
+</Steps>
+
+Changing the mapping keeps the same tool, instructions, and workflow node. It can still change the result because accounts may contain different data, use a different sender identity, or have different permissions. Always verify the new mapping before publishing, especially for email, CRM, file, or messaging actions.
+
+<Info>
+  Credentials are not stored inside the workflow node. The node keeps its tool declaration, while Decisional resolves the selected credential securely when the tool runs.
+</Info>
+
 ## Locking and Unlocking an Agent
 
 The lock protects a stable agent configuration from accidental edits.
