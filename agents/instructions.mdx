@@ -34,7 +34,7 @@ The integration chips above the instructions give you a quick connection summary
 | **Connected** or a check mark | The tools are mapped to an account connected by you or your workspace. |
 | **Connect** | At least one required tool does not have a usable credential yet. |
 
-Click an integration chip to open its connection panel. The panel lists the credentials, tools, and triggers attached to that integration.
+Click an integration chip to open **Connect Integrations** in the right-hand panel over the chat. The panel lists the credentials, tools, and triggers attached to that integration without taking you away from the instructions. With the panel open, hover over an integration chip or integration row to highlight its matching location on the other side.
 
 <Info>
   Adding an integration does not give the agent every action in that app. The agent receives only the tools declared for its instructions and workflow.
@@ -44,7 +44,28 @@ Click an integration chip to open its connection panel. The panel lists the cred
 
 A **tool** is one specific operation inside an integration. Gmail is an integration; **Create email draft** and **Send email** are two different Gmail tools. Apollo is an integration; **Enrich person with Apollo** is one Apollo tool.
 
-Dex declares the exact tool where it is needed in the instructions. The editor displays that declaration as an inline tool chip. Clicking the chip opens the matching integration, tool, and credential in the connection panel. Clicking a tool in the connection panel highlights its declaration in the instructions.
+Dex declares the exact tool where it is needed in the instructions. The editor displays that declaration as an inline tool chip.
+
+Hover over an inline tool chip to highlight the same tool in the right-hand connection panel. Hover over a tool in the connection panel to highlight the exact place it is declared in the instructions. Both locations receive a visible outline, making it easy to follow the tool from the written step to its credential mapping.
+
+Click an inline tool chip to open its integration in the right-hand panel over the chat. The matching tool is shown with the credential it will use, such as a specific Gmail account or the Decisional **Platform** credential.
+
+### Find Where a Tool Is Used
+
+<Steps>
+  <Step title="Open an integration">
+    Click an integration chip above the instructions. The connection panel opens on the right while the instructions remain visible.
+  </Step>
+  <Step title="Expand its tools">
+    Open the integration to see every tool declared for this agent and the credential selected for each one.
+  </Step>
+  <Step title="Hover over a tool">
+    Hover over a tool in the right-hand panel. Decisional highlights the matching inline declaration in the instructions, showing exactly where that tool is used.
+  </Step>
+  <Step title="Check the credential">
+    Read the credential selector directly below the tool. It shows whether that instruction uses a platform credential, a connected account, a simulated credential, or no credential.
+  </Step>
+</Steps>
 
 For example, an outreach agent might use these declarations:
 
