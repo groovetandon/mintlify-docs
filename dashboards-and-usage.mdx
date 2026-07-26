@@ -4,7 +4,7 @@ description: "Monitor agent health, troubleshoot tool calls, and understand cred
 icon: "chart-line"
 ---
 
-## Operate Agents After They Go Live
+## <Icon icon="play" size={20} /> Operate Agents After They Go Live
 
 Building an agent is only the beginning. Once agents are running on schedules, webhooks, or requests, use Decisional's dashboards to answer three different questions:
 
@@ -20,7 +20,7 @@ Start with the **Agent Dashboard** for overall health. Move to **Tool Calls** wh
   The AI Usage and Tool Stats summaries on the Agent Dashboard are workspace-scoped. The full Usage and Tool Calls pages are account-wide. Check the account badge and use the same date range before comparing numbers across pages.
 </Info>
 
-## Agent Dashboard
+## <Icon icon="layout-dashboard" size={20} /> Agent Dashboard
 
 In **Agents** mode, select **Dashboard**. This is the day-to-day operating view for the selected workspace.
 
@@ -28,7 +28,7 @@ In **Agents** mode, select **Dashboard**. This is the day-to-day operating view 
   <img src="/images/operations/agent-dashboard.png" alt="Agent Dashboard showing total and live agents, upcoming runs, Fixer-assisted runs, completed and failed runs, an activity chart, and published agents" />
 </Frame>
 
-### What the Summary Cards Mean
+### <Icon icon="table-columns" size={16} /> What the Summary Cards Mean
 
 | Card | What it tells you |
 |------|-------------------|
@@ -52,7 +52,7 @@ Below the chart:
   A small number of Fixer-assisted runs is not the same as a failed run—the Fixer may have recovered the execution. Repeated Fixer assistance on the same agent is still worth investigating because it can reveal a fragile instruction, changing data, or an unreliable integration.
 </Tip>
 
-### When Something Looks Wrong
+### <Icon icon="triangle-exclamation" size={16} /> When Something Looks Wrong
 
 1. Open the affected run from **Past Runs**.
 2. Select the run on the workflow graph.
@@ -64,7 +64,7 @@ Below the chart:
   Learn how to inspect node execution, inputs, outputs, logs, and failures on the workflow run surface.
 </Card>
 
-## Usage and Credits
+## <Icon icon="coins" size={20} /> Usage and Credits
 
 Open the full **Usage** page from the **AI Usage** section on the Agent Dashboard. The account badge shows whether the numbers belong to an organization or a personal account.
 
@@ -72,7 +72,7 @@ Open the full **Usage** page from the **AI Usage** section on the Agent Dashboar
   <img src="/images/operations/usage-overview.png" alt="Usage dashboard showing available, reserved, total, and spent credits, the Agent Spend Default, and a Daily Usage chart" />
 </Frame>
 
-### Balance and Spend
+### <Icon icon="wallet" size={16} /> Balance and Spend
 
 | Metric | Meaning |
 |--------|---------|
@@ -92,7 +92,7 @@ The **Daily Usage** chart groups credit-equivalent activity by resource type. De
   “Credit-equivalent” can include work paid for with a personal provider key. Personal-key usage is tracked so you can understand total activity, but it is not deducted from the Decisional credit balance. The **Spent** card and charged amounts exclude that personal-key portion.
 </Note>
 
-### Understand What Is Driving Spend
+### <Icon icon="chart-pie" size={16} /> Understand What Is Driving Spend
 
 Scroll down to compare models and agents.
 
@@ -116,7 +116,7 @@ Use **Agent Spend & Caps** to compare:
 
 You can search by agent name, UUID, or `agt_` public ID. The **All time** option changes the spend columns, but cap usage always represents the current UTC month.
 
-### Set Monthly Agent Caps
+### <Icon icon="gauge-high" size={16} /> Set Monthly Agent Caps
 
 **Agent Spend Default** sets the account-wide monthly cap for workflow-run credits. Individual agents can inherit this default or use their own override.
 
@@ -142,7 +142,7 @@ The lower sections of the Usage page provide a full audit trail:
 - **Active Reservations** shows credits currently held for work in progress
 - **Transaction Ledger** lists grants, debits, reservations, settlements, refunds, adjustments, and expirations
 
-## Tool Calls
+## <Icon icon="wrench" size={20} /> Tool Calls
 
 Open the full **Tool Calls** page from **Tool Stats** on the Agent Dashboard or from the Integrations area. Use it when a workflow reaches an integration step but the result is slow, missing, or incorrect.
 
@@ -150,7 +150,7 @@ Open the full **Tool Calls** page from **Tool Stats** on the Agent Dashboard or 
   <img src="/images/operations/tool-calls-dashboard.png" alt="Tool Calls dashboard showing total calls, success rate, average latency, provider count, calls over time, calls by provider, and top toolkits" />
 </Frame>
 
-### Read the Top-Level Metrics
+### <Icon icon="chart-simple" size={16} /> Read the Top-Level Metrics
 
 | Metric | Meaning |
 |--------|---------|
@@ -174,7 +174,7 @@ Use the filters to narrow recent calls by provider, toolkit, status, caller, age
   Tool Calls covers recorded integration tools and supported Agent Node or orchestrator actions. Some internal workflow platform tools may be only partially represented, so the total is not necessarily the same as the number of workflow nodes executed.
 </Warning>
 
-## A Simple Weekly Review
+## <Icon icon="clipboard-check" size={20} /> A Simple Weekly Review
 
 <Steps>
   <Step title="Check run health">
