@@ -74,6 +74,7 @@
       "group": "Data & Integrations",
       "pages": [
         "integrations",
+        "platform-integrations",
         "guides/sources"
       ]
     },
