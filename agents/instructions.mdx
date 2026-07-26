@@ -1,0 +1,138 @@
+---
+title: "Agent Instructions"
+description: "Understand how instructions connect integrations, tools, credentials, and agent versions"
+---
+
+## What Are Agent Instructions?
+
+Instructions are the operating guide for an agent. They explain the goal, the order of work, the rules to follow, and what a successful result looks like.
+
+Instructions also connect the written process to the exact tools the agent can run. An instruction can say “enrich this person,” but the tool declaration tells Decisional to use a specific Apollo operation with a specific credential.
+
+<Frame caption="A Live agent's Instructions page with integration chips above the instructions and the connection details open on the right.">
+  <img src="/images/agents/instructions-integrations-tools.png" alt="Kriyaculture Email Outreach Agent instructions showing Apollo and Exa platform integrations, connected Gmail, Google Sheets, and Slackbot integrations, and an Apollo tool mapped to the platform credential" />
+</Frame>
+
+In this example:
+
+- The instruction body explains the daily outreach process in plain English
+- The chips above the instructions show the integrations used by the agent
+- **Apollo** and **Exa** use Decisional's platform credentials
+- **Gmail**, **Google Sheets**, and **Slackbot** use connected accounts
+- The right panel shows the exact Apollo tool, **Enrich person with Apollo**, and the credential assigned to it
+- The lock beside the agent name shows that the Live version is read-only
+
+## Integrations
+
+An **integration** is the connection layer for an app or service, such as Apollo, Gmail, Google Sheets, or Slack.
+
+The integration chips above the instructions give you a quick connection summary:
+
+| Label | What it means |
+|-------|---------------|
+| **Platform** | The selected tools use a Decisional-managed credential. No provider account is needed for those tools. Usage may be metered through workspace credits. |
+| **Connected** or a check mark | The tools are mapped to an account connected by you or your workspace. |
+| **Connect** | At least one required tool does not have a usable credential yet. |
+
+Click an integration chip to open its connection panel. The panel lists the credentials, tools, and triggers attached to that integration.
+
+<Info>
+  Adding an integration does not give the agent every action in that app. The agent receives only the tools declared for its instructions and workflow.
+</Info>
+
+## Tools Declared in Instructions
+
+A **tool** is one specific operation inside an integration. Gmail is an integration; **Create email draft** and **Send email** are two different Gmail tools. Apollo is an integration; **Enrich person with Apollo** is one Apollo tool.
+
+Dex declares the exact tool where it is needed in the instructions. The editor displays that declaration as an inline tool chip. Clicking the chip opens the matching integration, tool, and credential in the connection panel. Clicking a tool in the connection panel highlights its declaration in the instructions.
+
+For example, an outreach agent might use these declarations:
+
+| Instruction step | Declared tool |
+|------------------|---------------|
+| Enrich the selected contact | **Enrich person with Apollo** |
+| Create a personalized draft | **Create Gmail draft** |
+| Mark the row as drafted | **Update Google Sheets row** |
+| Post the completion summary | **Send Slackbot message** |
+
+Behind the editor, each tool has a stable tool name such as `APOLLO_PEOPLE_ENRICHMENT`. Dex resolves that name into an inline tool chip and a tool instance for the agent. You normally do not need to type tool names yourself—tell Dex which action the instructions should perform.
+
+<Tip>
+  Be precise about the action. “Use Gmail” is ambiguous. “Create a Gmail draft and do not send it” tells Dex which tool and safety behavior the workflow needs.
+</Tip>
+
+## Credentials Mapped to Tools
+
+A **credential** authorizes a tool to use a particular account. Credentials are mapped to tools, not pasted into the written instructions.
+
+Each tool declaration has its own mapping:
+
+| Tool | Possible credential mapping |
+|------|-----------------------------|
+| Enrich person with Apollo | Decisional **Platform** credential |
+| Create Gmail draft | `ravi@company.com` Gmail connection |
+| Read leads sheet | Company Google Sheets connection |
+| Send completion message | Workspace Slackbot connection |
+
+This per-tool mapping matters when an integration has more than one connected account. Two Gmail tool declarations can use different mailboxes, even when both belong to the Gmail integration.
+
+When Dex adds a tool, Decisional tries to bind it in this order:
+
+1. A compatible user or workspace credential that is already connected
+2. A supported platform credential when the tool is platform-provided
+3. No credential, which leaves the tool waiting for you to connect or select an account
+
+Use the dropdown beneath a tool in the connection panel to choose a different compatible account or switch between your own account and a platform credential when supported.
+
+<Warning>
+  An integration can look available while one of its tools still needs a credential. Review every tool in the connection panel before testing the agent.
+</Warning>
+
+## Locking and Unlocking an Agent
+
+The lock protects a stable agent configuration from accidental edits.
+
+An agent is read-only when it is in a built, tested, Live, or Paused state. It is also temporarily locked while Decisional is building, patching, or testing it. While locked, you can still read the instructions and click tool chips to inspect their mappings, but you cannot edit the instructions, add integrations, or change credentials.
+
+### Unlock an Agent
+
+1. Open the **Instructions** tab in Operator Mode.
+2. Click the lock icon beside the agent name.
+3. The agent returns to **Draft**, where you can edit its instructions and connections.
+4. Build and test the updated draft.
+5. Publish it when the new version is ready.
+
+Unlocking a Live or Paused agent creates a draft from the deployed version. The previous version remains available in version history, but the agent itself returns to Draft while you edit. Rebuild, test, and publish the draft before expecting scheduled or triggered production work to use the changes.
+
+<Note>
+  A temporary lock shown during **Building**, **Patching**, or **Testing** cannot be removed. Wait for the current operation to finish.
+</Note>
+
+## How the Pieces Fit Together
+
+| Concept | Answers this question |
+|---------|-----------------------|
+| **Instructions** | What should the agent do, and what rules should it follow? |
+| **Integration** | Which app or service provides the capability? |
+| **Tool declaration** | Which exact operation can the agent perform at this point in the instructions? |
+| **Credential mapping** | Which authorized account will that tool use? |
+| **Lock** | Is this version protected from edits or open as a Draft? |
+
+Before publishing, read the instructions from top to bottom, open every integration, confirm each tool has the intended credential, and run a small test.
+
+## Related Documentation
+
+<CardGroup cols={2}>
+  <Card title="Platform Integrations" icon="sparkles" href="/platform-integrations">
+    Learn how Apollo, Exa, Agent Mail, and Linq SMS platform credentials work.
+  </Card>
+  <Card title="Credentials" icon="key" href="/guides/credentials">
+    Learn how accounts, tool bindings, and workspace access are managed.
+  </Card>
+  <Card title="Agent Versioning" icon="code-branch" href="/agents/versioning">
+    Learn how drafts, versions, testing, and publishing work together.
+  </Card>
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
+    See how instructions become an executable workflow graph.
+  </Card>
+</CardGroup>

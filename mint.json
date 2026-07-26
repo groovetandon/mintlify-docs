@@ -62,6 +62,7 @@
       "group": "Agents",
       "pages": [
         "guides/agents",
+        "agents/instructions",
         "agents/modes",
         "workflows/overview",
         "agents/versioning",
