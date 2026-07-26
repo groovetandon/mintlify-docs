@@ -76,6 +76,7 @@
       "pages": [
         "integrations",
         "platform-integrations",
+        "custom-integrations",
         "guides/sources"
       ]
     },
