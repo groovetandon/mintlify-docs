@@ -17,8 +17,11 @@ Decisional is built around a few core concepts. Understanding these will help yo
   <Card title="Workflows" icon="diagram-project">
     The step-by-step plans your agents create and execute
   </Card>
+  <Card title="Apps" icon="window">
+    External services where your team and agents get work done
+  </Card>
   <Card title="Integrations" icon="plug">
-    The apps your agents connect to and work with
+    Connections that expose app accounts, tools, and triggers
   </Card>
   <Card title="Runs" icon="play">
     Every time your agent executes its workflow
@@ -56,7 +59,7 @@ You create an agent by describing what you want it to do in the Decisional web a
 
 - **Instructions** — what you told the agent to do, written in plain English
 - **Workflow** — the step-by-step plan the agent built to carry out your instructions
-- **Integrations** — the apps and systems your agent connects to, such as email, CRM, team chat, and spreadsheets
+- **Integrations** — connections that give the agent tools and triggers for apps such as email, CRM, team chat, and spreadsheets
 - **Sources** — documents and files that give your agent context
 - **Triggers** — how your agent gets activated (schedule, event, or manual)
 - **Approval policy** — when the agent pauses, asks for review, bypasses eligible approvals, or blocks an action
@@ -104,20 +107,42 @@ You can see your agent's workflow visually at any time. It shows every node, how
 
 ---
 
+## Apps
+
+Apps are external services where your team already works, such as Gmail, Slack, HubSpot, Google Sheets, or your own internal software. Agents can read from apps, take actions in them, use app events to start runs, and send completed work back to them.
+
+In Decisional, you browse and manage apps through the **Integrations** catalog. Each catalog entry describes the app and shows its connection type, connected accounts, available tools, and triggers.
+
+### Apps, Integrations, and Credentials
+
+- An **app** is the external system where the work or data lives
+- An **integration** defines how Decisional connects to the app and what agents can do
+- A **connected account** or **credential** authorizes which account the integration can use
+
+For example, Gmail is an app. The Gmail integration exposes tools for reading and sending email, triggers for sent or received messages, and connected accounts that determine which mailbox an agent can use.
+
+---
+
 ## Integrations
 
-Integrations are the apps your agents connect to and work with. When your agent needs to send a message, update a CRM record, or read from a spreadsheet, it uses an integration.
+An integration is Decisional's connection layer for an app. It brings the parts an agent needs into one place:
+
+- **Connected accounts** — the authorized app accounts available in the workspace
+- **Tools** — actions an agent can call, classified as read or write operations
+- **Triggers** — app events that can start an agent, delivered by polling or webhook when supported
+- **Approval policy** — workspace defaults and per-tool overrides that control whether a tool runs automatically or needs review
 
 ### How Integrations Work
 
-1. Your agent identifies which apps it needs based on your instructions
-2. You authorize access to each app
-3. Your agent can use them in its workflow when the workflow calls for them
+1. Find the app in **Integrations** or let Dex identify it while building an agent
+2. Connect an account using the app's supported authentication method
+3. Review its available tools, triggers, and approval policy
+4. Add the integration to an agent so its workflow can use those capabilities
 
-Integrations can be shared across your workspace or kept private to specific agents.
+The Integrations page also provides **Tool activity** for reviewing calls and a **Custom integrations** builder for apps that are not already in the catalog.
 
 <Tip>
-  You can browse and connect integrations anytime from the **Integrations** page in the sidebar.
+  Open **Integrations** in the sidebar to browse apps, manage connected accounts, and review tool policies.
 </Tip>
 
 ---
